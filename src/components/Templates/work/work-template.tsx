@@ -3,8 +3,6 @@ import { print } from 'graphql/language/printer'
 import { ContentNode, CategoryToPostConnection, Post, Tag } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WorkQuery } from './WorkQuery'
-import Image from 'next/image'
-import { imageLoader } from '@/src/lib/utils'
 import WorkItem from './WorkItem'
 interface TemplateProps {
   node: ContentNode
