@@ -8,7 +8,7 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { ContentNode } from '@/gql/graphql'
 import { nextSlugToWpSlug } from '@/src/lib/api/nextSlugToWpSlug'
 import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/src/lib/queries'
-import WorkTemplate from '@/components/templates/work/work-template'
+import WorkTemplate from '@/src/components/templates/work/work-template'
 
 type Props = {
   params: { slug: string }

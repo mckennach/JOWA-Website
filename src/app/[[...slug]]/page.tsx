@@ -6,9 +6,9 @@ import { setSeoData } from '@/src/lib/api/seoData'
 
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { ContentNode } from '@/gql/graphql'
-import PageTemplate from '@/components/templates/page/page-template'
+import PageTemplate from '@/src/components/templates/page/page-template'
 import { nextSlugToWpSlug } from '@/src/lib/api/nextSlugToWpSlug'
-import PostTemplate from '@/components/templates/post/post-template'
+import PostTemplate from '@/src/components/templates/post/post-template'
 import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/src/lib/queries'
 
 type Props = {
