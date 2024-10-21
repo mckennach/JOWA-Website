@@ -1,27 +1,74 @@
-import { draftMode } from "next/headers";
-import { Inter } from "next/font/google";
+import { draftMode } from 'next/headers'
+import localFont from 'next/font/local'
+import { GsapProvider, ScrollProvider, ApolloWrapper, ThemeProvider } from '@/context'
+import '@/styles/globals.min.css'
+import { CookiesProvider } from 'next-client-cookies/server'
+import Navigation from '@/src/components/navigation'
+import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
+import Footer from '../components/footer'
+import { cn } from '../lib/utils'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { MENU_ITEMS_QUERY } from '@/src/lib/queries'
+import { RootQueryToMenuItemConnection } from '@/gql/graphql'
+import { print } from 'graphql/language/printer'
 
-import "@/app/globals.css";
+const maisonNeue = localFont({
+  src: '../../public/fonts/MaisonNeue-Book.woff2',
+  display: 'swap',
+  variable: '--font-maison-neue',
+})
 
-import Navigation from "@/components/Globals/Navigation/Navigation";
-import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
+const maisonNeueExt = localFont({
+  src: '../../public/fonts/MaisonNeueExt-Book.woff2',
+  display: 'swap',
+  variable: '--font-maison-neue-ext',
+})
 
-const inter = Inter({ subsets: ["latin"] });
+async function getData() {
+  const { menuItems } = await fetchGraphQL<{
+    menuItems: RootQueryToMenuItemConnection
+  }>(print(MENU_ITEMS_QUERY), {
+    location: 'PRIMARY',
+  })
 
-export default function RootLayout({
+  if (menuItems === null) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return menuItems
+}
+
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const { isEnabled } = draftMode();
-
+  const { isEnabled } = draftMode()
+  const menuItems = await getData()
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {isEnabled && <PreviewNotice />}
-        <Navigation />
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          maisonNeueExt.className,
+          maisonNeueExt.variable,
+          maisonNeue.variable
+        )}
+      >
+        <CookiesProvider>
+          <GsapProvider>
+            <ScrollProvider>
+              <ApolloWrapper>
+								<ThemeProvider>
+									{isEnabled && <PreviewNotice />}
+									<Navigation menuItems={menuItems} />
+									{children}
+									<Footer />
+								</ThemeProvider>
+              </ApolloWrapper>
+            </ScrollProvider>
+          </GsapProvider>
+        </CookiesProvider>
       </body>
     </html>
-  );
+  )
 }

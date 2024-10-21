@@ -1,70 +1,69 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { print } from "graphql/language/printer";
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { print } from 'graphql/language/printer'
 
-import { setSeoData } from "@/utils/seoData";
+import { setSeoData } from '@/src/lib/api/seoData'
 
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
-import { ContentNode } from "@/gql/graphql";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
-import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import PostTemplate from "@/components/Templates/Post/PostTemplate";
-import { SeoQuery } from "@/queries/general/SeoQuery";
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { ContentNode } from '@/gql/graphql'
+import PageTemplate from '@/src/components/templates/page/page-template'
+import { nextSlugToWpSlug } from '@/src/lib/api/nextSlugToWpSlug'
+import PostTemplate from '@/src/components/templates/post/post-template'
+import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/src/lib/queries'
 
 type Props = {
-  params: { slug: string };
-};
+  params: { slug: string }
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = nextSlugToWpSlug(params.slug);
-  const isPreview = slug.includes("preview");
+  const slug = nextSlugToWpSlug(params.slug)
+  const isPreview = slug.includes('preview')
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(SeoQuery),
+    print(SEO_QUERY),
     {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
-      idType: isPreview ? "DATABASE_ID" : "URI",
-    },
-  );
+      slug: isPreview ? slug.split('preview/')[1] : slug,
+      idType: isPreview ? 'DATABASE_ID' : 'URI',
+    }
+  )
 
   if (!contentNode) {
-    return notFound();
+    return notFound()
   }
 
-  const metadata = setSeoData({ seo: contentNode.seo });
+  const metadata = setSeoData({ seo: contentNode.seo })
 
   return {
     ...metadata,
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}${slug}`,
     },
-  } as Metadata;
+  } as Metadata
 }
 
 export function generateStaticParams() {
-  return [];
+  return []
 }
 
 export default async function Page({ params }: Props) {
-  const slug = nextSlugToWpSlug(params.slug);
-  const isPreview = slug.includes("preview");
+  const slug = nextSlugToWpSlug(params.slug)
+  const isPreview = slug.includes('preview')
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(ContentInfoQuery),
+    print(CONTENT_INFO_QUERY),
     {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
-      idType: isPreview ? "DATABASE_ID" : "URI",
-    },
-  );
+      slug: isPreview ? slug.split('preview/')[1] : slug,
+      idType: isPreview ? 'DATABASE_ID' : 'URI',
+    }
+  )
 
-  if (!contentNode) return notFound();
+  if (!contentNode) return notFound()
 
   switch (contentNode.contentTypeName) {
-    case "page":
-      return <PageTemplate node={contentNode} />;
-    case "post":
-      return <PostTemplate node={contentNode} />;
+    case 'page':
+      return <PageTemplate node={contentNode} />
+    case 'post':
+      return <PostTemplate node={contentNode} />
     default:
-      return <p>{contentNode.contentTypeName} not implemented</p>;
+      return <p>{contentNode.contentTypeName} not implemented</p>
   }
 }

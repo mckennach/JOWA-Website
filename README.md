@@ -114,11 +114,11 @@ If you want to add auto completion for your queries, you can do this by installi
 module.exports = {
   client: {
     service: {
-      name: "WordPress",
-      localSchemaFile: "./src/gql/schema.gql",
+      name: 'WordPress',
+      localSchemaFile: './src/gql/schema.gql',
     },
   },
-};
+}
 ```
 
 ## Advanced Custom Fields PRO (optional, but recommended)
