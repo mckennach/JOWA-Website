@@ -16,8 +16,8 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   return (
     <Section className="bg-secondary">
       <Container>
-        {nodes.map((post) => (
-          <WorkItem key={post.id} post={post} />
+        {nodes.map((post, index) => (
+          <WorkItem key={post.id} post={post} index={index} />
         ))}
       </Container>
     </Section>
