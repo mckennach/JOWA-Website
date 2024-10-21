@@ -19,16 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-			"@/src/*": ["./src/*"],
-			"@/components/*": ["./src/components/*"],
-			"@/pages/*": ["./src/pages/*"],
-			"@/styles/*": ["./src/styles/*"],
-			"@/utils/*": ["./src/utils/*"],
-			"@/context/*": ["./src/context/*"],
-			"@/hooks/*": ["./src/hooks/*"],
-			"@/lib/*": ["./src/lib/*"],
-			"@/gql/*": ["./src/gql/*"],
+      "@/*": ["/*"],
+			"@/src/*": ["src/*"],
+			"@/components/*": ["src/components/*"],
+			"@/pages/*": ["src/pages/*"],
+			"@/styles/*": ["src/styles/*"],
+			"@/utils/*": ["src/utils/*"],
+			"@/context/*": ["src/context/*"],
+			"@/hooks/*": ["src/hooks/*"],
+			"@/lib/*": ["src/lib/*"],
+			"@/gql/*": ["src/gql/*"],
     }
   },
   "include": [
