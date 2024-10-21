@@ -6,6 +6,7 @@ import { cn } from '@/src/lib/utils'
 import { MenuItem, RootQueryToMenuItemConnection } from '@/gql/graphql'
 import CustomIcons from '../custom-icons'
 import { useMediaQuery } from 'usehooks-ts'
+import { usePathname } from 'next/navigation'
 
 export default function Navigation({
   menuItems,
@@ -16,7 +17,7 @@ export default function Navigation({
 }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const matches = useMediaQuery('(min-width: 1285px)')
-
+	const pathname = usePathname();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -59,7 +60,10 @@ export default function Navigation({
                   href={item.uri}
                   key={index}
                   target={item.target || '_self'}
-                  className="text-base uppercase"
+                  className={cn(
+										"text-base uppercase",
+										pathname === item.uri ? 'underline' : '',
+									)}
                 >
                   <span itemProp="name">{item.label}</span>
                 </Link>
