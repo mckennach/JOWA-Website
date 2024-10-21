@@ -31,7 +31,7 @@ export default function Navigation({
 
   return (
     <nav
-      className={cn('sticky top-0 z-50 bg-transparent', 'fade-in', className)}
+      className={cn('sticky top-0 z-[100] bg-transparent', 'fade-in', className)}
       role="navigation"
       itemScope
       itemType="http://schema.org/SiteNavigationElement"
