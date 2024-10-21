@@ -15,7 +15,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = nextSlugToWpSlug('work')
+  const slug = nextSlugToWpSlug(params.slug)
   const isPreview = slug.includes('preview')
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
@@ -45,7 +45,7 @@ export function generateStaticParams() {
 }
 
 export default async function WorkPage({ params }: Props) {
-  const slug = nextSlugToWpSlug('work')
+  const slug = nextSlugToWpSlug(params.slug)
   const isPreview = slug.includes('preview')
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(CONTENT_INFO_QUERY),

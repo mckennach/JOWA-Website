@@ -18,7 +18,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+			"@/*": ["./*"],
 			"@/src/*": ["./src/*"],
 			"@/gql/*": ["./src/gql/*"],
 			"@/components/*": ["./src/components/*"],
@@ -27,7 +27,7 @@
 			"@/utils/*": ["./src/utils/*"],
 			"@/hooks/*": ["./src/hooks/*"],
 			"@/services/*": ["./src/services/*"],
-			"@/contexts/*": ["./src/contexts/*"],
+			"@/context/*": ["./src/context/*"],
 			"@/lib/*": ["./src/lib/*"],
     }
   },

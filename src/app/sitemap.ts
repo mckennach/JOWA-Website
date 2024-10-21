@@ -11,7 +11,7 @@ async function getTotalCounts() {
   const propertyNames = Object.keys(data)
 
   const excludeItems = ['page', 'user', 'category', 'tag']
-  let totalArray = propertyNames
+  const totalArray = propertyNames
     .filter((name) => !excludeItems.includes(name))
     .map((name) => {
       return { name, total: data[name] }
