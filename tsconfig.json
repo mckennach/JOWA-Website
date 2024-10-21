@@ -12,22 +12,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-		"baseUrl": "src",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-			"@/src/*": ["*"],
-			"@/components/*": ["components/*"],
-			"@/pages/*": ["pages/*"],
-			"@/styles/*": ["styles/*"],
-			"@/utils/*": ["utils/*"],
-			"@/context/*": ["context/*"],
-			"@/hooks/*": ["hooks/*"],
-			"@/lib/*": ["lib/*"],
-			"@/gql/*": ["gql/*"],
+      "@/*": ["./*", "./src/*"]
     }
   },
   "include": [
