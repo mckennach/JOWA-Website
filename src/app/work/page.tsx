@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { print } from 'graphql/language/printer'
 
-import { setSeoData } from '@/src/lib/api/seoData'
+import { setSeoData } from '../../lib/api/seoData'
 
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { fetchGraphQL } from '../../lib/api/fetchGraphQL'
 import { ContentNode } from '@/gql/graphql'
-import { nextSlugToWpSlug } from '@/src/lib/api/nextSlugToWpSlug'
-import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/src/lib/queries'
-import WorkTemplate from '@/src/components/templates/work/work-template'
+import { nextSlugToWpSlug } from '../../lib/api/nextSlugToWpSlug'
+import { SEO_QUERY, CONTENT_INFO_QUERY } from '../../lib/queries'
+import WorkTemplate from '../../components/templates/work/work-template'
 
 type Props = {
   params: { slug: string }
