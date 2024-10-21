@@ -6,16 +6,18 @@ export const ThemeProvider = ({ children }: {
 	children: React.ReactNode;
 }) => {
 	const pathname = usePathname();
-
+	console.log(pathname);
 	const getTheme = () => {
-		switch (pathname) {
-			case '/':
-				return 'green';
-			case '/work/':
-					return 'dawn';
-			default:
-				return 'green';
+		let theme = 'green';
+		if(pathname.includes('/work') || pathname.includes('/journal')) {
+			theme = 'dawn';
 		}
+
+		if(pathname.includes('/about')) {
+			theme = 'brown';
+		}
+
+		return theme;
 	};
 
   return (

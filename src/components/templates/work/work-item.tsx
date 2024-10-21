@@ -19,7 +19,7 @@ export default function WorkItem({ post }: { post: Post }) {
           <div
             className="cursor-pointer"
             onClick={() => {
-              router.push(`/${post.slug}`)
+              router.push(`/work/${post.slug}`)
             }}
           >
             <h2 className="font-maisonNeueExt text-[48px] uppercase text-accent-foreground">
@@ -36,7 +36,7 @@ export default function WorkItem({ post }: { post: Post }) {
         </div>
         <div className="basis-1/2">
           <div className="relative aspect-[800/620] cursor-pointer" onClick={() => {
-              router.push(`/${post.slug}`)
+              router.push(`/work/${post.slug}`)
             }}>
             <Image
               src={post.featuredImage?.node?.sourceUrl ?? ''}
@@ -47,6 +47,7 @@ export default function WorkItem({ post }: { post: Post }) {
               }}
               className=""
               loader={imageLoader}
+							priority={true}
             />
           </div>
         </div>

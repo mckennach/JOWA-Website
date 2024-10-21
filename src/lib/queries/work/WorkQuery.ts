@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const WorkQuery = gql`
+export const WORK_QUERY = gql`
   query WorkQuery {
     posts {
       nodes {
