@@ -49,7 +49,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
                 if (!item.uri) return null
                 return (
                   <li key={index}>
-                    <MobileLink href={item.uri} className={cn("text-[32px] text-secondary-foreground uppercase")}>{item.label}</MobileLink>
+                    <MobileLink href={item.uri} className={cn("text-[32px] text-secondary-foreground uppercase")} onOpenChange={setOpen}>{item.label}</MobileLink>
                   </li>
                 )
               })}
@@ -80,7 +80,7 @@ function MobileLink({
   const router = useRouter()
   return (
     <Link
-      href="/"
+      href={href.toString()}
       onClick={() => {
         router.push(href.toString())
         onOpenChange?.(false)
