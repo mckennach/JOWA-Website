@@ -12,23 +12,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-		"baseUrl": ".",
+		"baseUrl": "src",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["/*"],
-			"@/src/*": ["src/*"],
-			"@/components/*": ["src/components/*"],
-			"@/pages/*": ["src/pages/*"],
-			"@/styles/*": ["src/styles/*"],
-			"@/utils/*": ["src/utils/*"],
-			"@/context/*": ["src/context/*"],
-			"@/hooks/*": ["src/hooks/*"],
-			"@/lib/*": ["src/lib/*"],
-			"@/gql/*": ["src/gql/*"],
+			"@/src/*": ["*"],
+			"@/components/*": ["components/*"],
+			"@/pages/*": ["pages/*"],
+			"@/styles/*": ["styles/*"],
+			"@/utils/*": ["utils/*"],
+			"@/context/*": ["context/*"],
+			"@/hooks/*": ["hooks/*"],
+			"@/lib/*": ["lib/*"],
+			"@/gql/*": ["gql/*"],
     }
   },
   "include": [
