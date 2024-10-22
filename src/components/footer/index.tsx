@@ -3,7 +3,7 @@ import CustomIcons from '@/src/components/custom-icons'
 
 export default function Footer() {
   return (
-    <footer className="relative z-50 h-screen dawn bg-background text-foreground">
+    <footer className="dawn relative z-50 h-screen bg-background text-foreground">
       <Section className="h-full">
         <Container className="flex h-full flex-col justify-end">
           <div className="flex flex-col gap-[100px]">

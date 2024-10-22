@@ -42,22 +42,32 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
             </SheetClose>
           </div>
         </header>
-        <div className="my-4 h-[calc(100vh)] flex flex-col justify-end">
+        <div className="my-4 flex h-[calc(100vh)] flex-col justify-end">
           <div className="flex flex-col space-y-3 text-secondary-foreground">
-            <ul className="w-full [&>li]:px-14 [&>li]:py-6 [&>li]:border-b [&>li]:border-b-background">
+            <ul className="w-full [&>li]:border-b [&>li]:border-b-background [&>li]:px-14 [&>li]:py-6">
               {menuItems.nodes.map((item: MenuItem, index: number) => {
                 if (!item.uri) return null
                 return (
                   <li key={index}>
-                    <MobileLink href={item.uri} className={cn("text-[32px] text-secondary-foreground uppercase")} onOpenChange={setOpen}>{item.label}</MobileLink>
+                    <MobileLink
+                      href={item.uri}
+                      className={cn(
+                        'text-[32px] uppercase text-secondary-foreground'
+                      )}
+                      onOpenChange={setOpen}
+                    >
+                      {item.label}
+                    </MobileLink>
                   </li>
                 )
               })}
             </ul>
           </div>
-					<div className="py-6 text-center">
-						<p className="font-maisonNeue text-background">Where your vision unfolds.</p>
-					</div>
+          <div className="py-6 text-center">
+            <p className="font-maisonNeue text-background">
+              Where your vision unfolds.
+            </p>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

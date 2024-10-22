@@ -55,7 +55,7 @@ export default async function WorkDetailPage({ params }: Props) {
     }
   )
 
-	if (!contentNode) return notFound()
+  if (!contentNode) return notFound()
 
-	return <WorkDetailTemplate node={contentNode} />
+  return <WorkDetailTemplate node={contentNode} />
 }

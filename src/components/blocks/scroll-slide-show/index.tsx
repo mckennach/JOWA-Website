@@ -54,26 +54,26 @@ export default function ScrollSlideShow({ block }: ScrollSlideShowProps) {
             pin: true,
             pinSpacing: false,
             scrub: 2,
-						onEnter: () => {
-							setCaption(innerBlocks[i].attributes.caption ?? '');
-							setCount(i + 1);
-						},
-						onEnterBack: () => {
-							setCaption(innerBlocks[i].attributes.caption ?? '');
-							setCount(i + 1);
-							if(i !== panels.length - 1) {
-								gsap.set(panel, {
-									opacity: 1,
-								})
-							}
-						},
-						onLeave: () => {
-							if(i !== panels.length - 1) {
-								gsap.set(panel, {
-									opacity: 0,
-								})
-							}
-						},
+            onEnter: () => {
+              setCaption(innerBlocks[i].attributes.caption ?? '')
+              setCount(i + 1)
+            },
+            onEnterBack: () => {
+              setCaption(innerBlocks[i].attributes.caption ?? '')
+              setCount(i + 1)
+              if (i !== panels.length - 1) {
+                gsap.set(panel, {
+                  opacity: 1,
+                })
+              }
+            },
+            onLeave: () => {
+              if (i !== panels.length - 1) {
+                gsap.set(panel, {
+                  opacity: 0,
+                })
+              }
+            },
           },
         })
       })
@@ -130,7 +130,12 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
     })
 
     return (
-      <div ref={ref} data-index={index} key={index} className="not-prose h-[130vh]">
+      <div
+        ref={ref}
+        data-index={index}
+        key={index}
+        className="not-prose h-[130vh]"
+      >
         <div
           className="image relative"
           style={{

@@ -17,7 +17,7 @@ export default function Navigation({
 }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const matches = useMediaQuery('(min-width: 1285px)')
-	const pathname = usePathname();
+  const pathname = usePathname()
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -28,13 +28,18 @@ export default function Navigation({
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, []);
+  }, [])
 
-	const isWorkDetail = pathname.split('/').length > 3;
+  const isWorkDetail = pathname.split('/').length > 3
 
   return (
     <nav
-      className={cn('sticky top-0 z-50 bg-transparent w-full', 'fade-in', isWorkDetail && 'absolute', className)}
+      className={cn(
+        'sticky top-0 z-50 w-full bg-transparent',
+        'fade-in',
+        isWorkDetail && 'absolute',
+        className
+      )}
       role="navigation"
       itemScope
       itemType="http://schema.org/SiteNavigationElement"
@@ -46,13 +51,15 @@ export default function Navigation({
         >
           <h2 className="sr-only">JOWA INTERIORS</h2>
           {isScrolled || !matches ? (
-            <CustomIcons name="submark" className={cn(
-							isWorkDetail && 'text-background',
-						)} />
+            <CustomIcons
+              name="submark"
+              className={cn(isWorkDetail && 'text-background')}
+            />
           ) : (
-            <CustomIcons name="logo-text" className={cn(
-							isWorkDetail && 'text-background',
-						)} />
+            <CustomIcons
+              name="logo-text"
+              className={cn(isWorkDetail && 'text-background')}
+            />
           )}
         </Link>
         <div className="flex items-center gap-2">
@@ -67,10 +74,10 @@ export default function Navigation({
                   key={index}
                   target={item.target || '_self'}
                   className={cn(
-										"text-base uppercase",
-										isWorkDetail && 'text-background',
-										pathname === item.uri ? 'underline' : '',
-									)}
+                    'text-base uppercase',
+                    isWorkDetail && 'text-background',
+                    pathname === item.uri ? 'underline' : ''
+                  )}
                 >
                   <span itemProp="name">{item.label}</span>
                 </Link>

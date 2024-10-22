@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-		"forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": false,
     "plugins": [
       {
         "name": "next"

@@ -1,6 +1,11 @@
 import { draftMode } from 'next/headers'
 import localFont from 'next/font/local'
-import { GsapProvider, ScrollProvider, ApolloWrapper, ThemeProvider } from '@/src/context';
+import {
+  GsapProvider,
+  ScrollProvider,
+  ApolloWrapper,
+  ThemeProvider,
+} from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import Navigation from '@/src/components/navigation'
@@ -58,12 +63,12 @@ export default async function RootLayout({
           <GsapProvider>
             <ScrollProvider>
               <ApolloWrapper>
-								<ThemeProvider>
-									{isEnabled && <PreviewNotice />}
-									<Navigation menuItems={menuItems} />
-									{children}
-									<Footer />
-								</ThemeProvider>
+                <ThemeProvider>
+                  {isEnabled && <PreviewNotice />}
+                  <Navigation menuItems={menuItems} />
+                  {children}
+                  <Footer />
+                </ThemeProvider>
               </ApolloWrapper>
             </ScrollProvider>
           </GsapProvider>

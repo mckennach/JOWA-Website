@@ -6,9 +6,15 @@ import { Category, Project, Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 
-export default function WorkItem({ project, index }: { project: Project, index: number }) {
-  const router = useRouter();
-	console.log(project);
+export default function WorkItem({
+  project,
+  index,
+}: {
+  project: Project
+  index: number
+}) {
+  const router = useRouter()
+  console.log(project)
   return (
     <div
       key={project.id}
@@ -16,34 +22,44 @@ export default function WorkItem({ project, index }: { project: Project, index: 
       data-slug={project.slug}
     >
       <div className="flex flex-col-reverse gap-y-8 lg:flex-row">
-        <div className="flex basis-full lg:basis-1/2 items-end">
+        <div className="flex basis-full items-end lg:basis-1/2">
           <div
-            className="flex flex-col gap-8 lg:gap-12 gap-cursor-pointer"
+            className="gap-cursor-pointer flex flex-col gap-8 lg:gap-12"
             onClick={() => {
               router.push(`/work/${project.slug}`)
             }}
           >
-						<p>{zeroPad(index + 1, 2)}</p>
-						<div>
-							<h2 className="font-maisonNeueExt text-[48px] uppercase text-accent-foreground">
-								{project.title}
-							</h2>
-							<div>
-								{project && project.categories && project.categories.nodes.map((category: Category) => {
-									if(category.parentId === 'dGVybToxMzcw') {
-										return (
-											<p key={category.id} className="text-accent-foreground uppercase">{category.name}</p>
-										)
-									}
-								})}
-							</div>
-						</div>
+            <p>{zeroPad(index + 1, 2)}</p>
+            <div>
+              <h2 className="font-maisonNeueExt text-[48px] uppercase text-accent-foreground">
+                {project.title}
+              </h2>
+              <div>
+                {project &&
+                  project.categories &&
+                  project.categories.nodes.map((category: Category) => {
+                    if (category.parentId === 'dGVybToxMzcw') {
+                      return (
+                        <p
+                          key={category.id}
+                          className="uppercase text-accent-foreground"
+                        >
+                          {category.name}
+                        </p>
+                      )
+                    }
+                  })}
+              </div>
+            </div>
           </div>
         </div>
         <div className="basis-1/2">
-          <div className="relative aspect-[800/620] cursor-pointer" onClick={() => {
+          <div
+            className="relative aspect-[800/620] cursor-pointer"
+            onClick={() => {
               router.push(`/work/${project.slug}`)
-            }}>
+            }}
+          >
             <Image
               src={project.projectFields?.heroImage?.node.mediaItemUrl ?? ''}
               alt="alt"
@@ -53,7 +69,7 @@ export default function WorkItem({ project, index }: { project: Project, index: 
               }}
               className=""
               loader={imageLoader}
-							priority={true}
+              priority={true}
             />
           </div>
         </div>

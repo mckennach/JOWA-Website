@@ -18,9 +18,9 @@ type MediaTextProps = {
 }
 
 export default function MediaText({ data }: MediaTextProps) {
-  const containerRef = useRef(null);
-	const imageRef = useRef<HTMLDivElement>(null);
-	const contentRef = useRef(null);
+  const containerRef = useRef(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef(null)
   // extracting our cookie
   const { mediaId } = data.attributes
   const { data: media } = useQuery(MEDIA_QUERY, {
@@ -30,34 +30,36 @@ export default function MediaText({ data }: MediaTextProps) {
         'Content-Type': 'application/json',
       },
     },
-  });
+  })
 
-	useGSAP(() => {
-		if(imageRef.current === null) return;
-		console.log(imageRef.current.offsetHeight);
+  useGSAP(
+    () => {
+      if (imageRef.current === null) return
+      console.log(imageRef.current.offsetHeight)
 
-		gsap.set(imageRef.current, {
-			yPercent: 100,
-		});
+      gsap.set(imageRef.current, {
+        yPercent: 100,
+      })
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: containerRef.current,
-				start: '-=100% top',
-				end: `+=25% -=${imageRef.current.offsetHeight - 50}px`,
-				pin: false,
-				scrub: 1,
-			},
-		});
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: '-=100% top',
+          end: `+=25% -=${imageRef.current.offsetHeight - 50}px`,
+          pin: false,
+          scrub: 1,
+        },
+      })
 
-		tl.to(imageRef.current, {
-			yPercent: 0,
-			opacity: 1,
-		});
-		
-	}, {
-		scope: containerRef,
-	});
+      tl.to(imageRef.current, {
+        yPercent: 0,
+        opacity: 1,
+      })
+    },
+    {
+      scope: containerRef,
+    }
+  )
 
   return (
     <Section className="sticky top-0">
@@ -65,8 +67,8 @@ export default function MediaText({ data }: MediaTextProps) {
         <div
           className={cn('space-around flex flex-col-reverse gap-4 md:flex-row')}
         >
-          <div className="block  basis-full items-center pb-10 pt-8 md:basis-1/2 md:py-40">
-            <div className="mx-auto max-w-[280px] md:max-w-[476px] ">
+          <div className="block basis-full items-center pb-10 pt-8 md:basis-1/2 md:py-40">
+            <div className="mx-auto max-w-[280px] md:max-w-[476px]">
               <div className="relative aspect-[476/650]" ref={imageRef}>
                 <Image
                   src={media?.mediaItem.mediaItemUrl ?? ''}
