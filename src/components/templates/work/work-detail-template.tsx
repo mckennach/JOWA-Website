@@ -1,5 +1,5 @@
 import { print } from 'graphql/language/printer'
-import { ContentNode, Project } from '@/gql/graphql'
+import { ContentNode, Project } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_DETAIL_QUERY } from '@/lib/queries'
 import WorkHero from './work-hero'
