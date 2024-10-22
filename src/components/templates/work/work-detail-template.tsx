@@ -15,7 +15,7 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
     {
       id: node?.uri,
     }
-  )
+  ) // This is the only change in this file
 
   return (
     <>
