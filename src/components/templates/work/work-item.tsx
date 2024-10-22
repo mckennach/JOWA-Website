@@ -2,47 +2,50 @@
 
 import Image from 'next/image'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
-import { Post, Tag } from '@/src/gql/graphql'
+import { Category, Project, Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 
-export default function WorkItem({ post, index }: { post: Post, index: number }) {
-  const router = useRouter()
+export default function WorkItem({ project, index }: { project: Project, index: number }) {
+  const router = useRouter();
+	console.log(project);
   return (
     <div
-      key={post.id}
+      key={project.id}
       className={cn('border-b border-foreground py-8')}
-      data-slug={post.slug}
+      data-slug={project.slug}
     >
       <div className="flex flex-col-reverse gap-y-8 lg:flex-row">
         <div className="flex basis-full lg:basis-1/2 items-end">
           <div
             className="flex flex-col gap-8 lg:gap-12 gap-cursor-pointer"
             onClick={() => {
-              router.push(`/work/${post.slug}`)
+              router.push(`/work/${project.slug}`)
             }}
           >
 						<p>{zeroPad(index + 1, 2)}</p>
 						<div>
 							<h2 className="font-maisonNeueExt text-[48px] uppercase text-accent-foreground">
-								{post.title}
+								{project.title}
 							</h2>
 							<div>
-								{post &&
-									post.tags &&
-									post.tags.nodes.map((tag) => (
-										<span key={(tag as Tag).name}>{(tag as Tag).name}</span>
-									))}
+								{project && project.categories && project.categories.nodes.map((category: Category) => {
+									if(category.parentId === 'dGVybToxMzcw') {
+										return (
+											<p key={category.id} className="text-accent-foreground uppercase">{category.name}</p>
+										)
+									}
+								})}
 							</div>
 						</div>
           </div>
         </div>
         <div className="basis-1/2">
           <div className="relative aspect-[800/620] cursor-pointer" onClick={() => {
-              router.push(`/work/${post.slug}`)
+              router.push(`/work/${project.slug}`)
             }}>
             <Image
-              src={post.featuredImage?.node?.sourceUrl ?? ''}
+              src={project.projectFields?.heroImage?.node.mediaItemUrl ?? ''}
               alt="alt"
               layout="fill"
               style={{

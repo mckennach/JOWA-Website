@@ -28,11 +28,13 @@ export default function Navigation({
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, []);
+
+	const isWorkDetail = pathname.split('/').length > 3;
 
   return (
     <nav
-      className={cn('sticky top-0 z-[100] bg-transparent', 'fade-in', className)}
+      className={cn('sticky top-0 z-50 bg-transparent w-full', 'fade-in', isWorkDetail && 'absolute', className)}
       role="navigation"
       itemScope
       itemType="http://schema.org/SiteNavigationElement"
@@ -44,9 +46,13 @@ export default function Navigation({
         >
           <h2 className="sr-only">JOWA INTERIORS</h2>
           {isScrolled || !matches ? (
-            <CustomIcons name="submark" />
+            <CustomIcons name="submark" className={cn(
+							isWorkDetail && 'text-background',
+						)} />
           ) : (
-            <CustomIcons name="logo-text" />
+            <CustomIcons name="logo-text" className={cn(
+							isWorkDetail && 'text-background',
+						)} />
           )}
         </Link>
         <div className="flex items-center gap-2">
@@ -62,6 +68,7 @@ export default function Navigation({
                   target={item.target || '_self'}
                   className={cn(
 										"text-base uppercase",
+										isWorkDetail && 'text-background',
 										pathname === item.uri ? 'underline' : '',
 									)}
                 >
