@@ -8,7 +8,7 @@ import { ContentNode, Page } from '@/gql/graphql'
 import { PAGE_QUERY } from '@/src/lib/queries/pages/PageQuery'
 import { SEO_QUERY } from '@/src/lib/queries'
 
-const notFoundPageWordPressId = 28
+const notFoundPageWordPressId = 28;
 
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
