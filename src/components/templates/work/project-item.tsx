@@ -64,7 +64,7 @@ export default function ProjectItem({
             <Image
               src={featuredImage?.mediaItemUrl ?? ''}
               alt={featuredImage?.altText ?? ''}
-              layout="fill"
+              fill={true}
               style={{
                 objectFit: 'cover',
               }}

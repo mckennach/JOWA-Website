@@ -11,7 +11,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
   return (
     <Section>
       <Container className="border-b">
-        <div className="grid grid-cols-3 gap-4 pb-24 pt-10">
+        <div className="grid lg:grid-cols-3 gap-14 lg:gap-4 pb-24 pt-10">
           {posts.map((post, index) => {
             return <JournalItem key={index} post={post} />
           })}

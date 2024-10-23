@@ -76,7 +76,7 @@ export default function HomeContent({ data }: HomeContentProps) {
           <div className="flex items-center py-8 md:basis-1/2 md:py-40">
             <div className="max-w-[750px] space-y-8 md:pr-28" ref={contentRef}>
               <div
-                className="prose"
+                className="text-[32px] text-foreground space-y-8"
                 dangerouslySetInnerHTML={{
                   __html: data?.description || '',
                 }}
@@ -85,7 +85,7 @@ export default function HomeContent({ data }: HomeContentProps) {
                 <div>
                   <Link
                     href={data?.ctaLink?.url ?? ''}
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-4 group"
                   >
                     <Text type="label">{data?.ctaLink?.title}</Text>
                     <svg
@@ -94,6 +94,7 @@ export default function HomeContent({ data }: HomeContentProps) {
                       viewBox="0 0 40 8"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+											className="group-hover:transform group-hover:translate-x-2 transition-transform duration-300"
                     >
                       <path
                         d="M39.3536 4.35355C39.5488 4.15829 39.5488 3.84171 39.3536 3.64645L36.1716 0.464466C35.9763 0.269204 35.6597 0.269204 35.4645 0.464466C35.2692 0.659728 35.2692 0.976311 35.4645 1.17157L38.2929 4L35.4645 6.82843C35.2692 7.02369 35.2692 7.34027 35.4645 7.53553C35.6597 7.7308 35.9763 7.7308 36.1716 7.53553L39.3536 4.35355ZM0 4.5H39V3.5H0V4.5Z"

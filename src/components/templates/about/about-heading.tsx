@@ -19,8 +19,8 @@ export default function AboutHeading({ page, services }: AboutHeadingProps) {
 
   return (
     <Section className="bg-background pb-24 pt-96">
-      <Container className="flex gap-28">
-        <div className="basis-1/2 space-y-8 text-secondary-foreground">
+      <Container className="flex flex-col-reverse lg:flex-row gap-28">
+        <div className="lg:basis-1/2 space-y-8 text-secondary-foreground">
           <div>
             <div className="border-b border-b-secondary-foreground">
               <Text type="label">OUR SERVICES</Text>
@@ -64,7 +64,7 @@ export default function AboutHeading({ page, services }: AboutHeadingProps) {
             </div>
           </div>
         </div>
-        <div className="flex basis-1/2 justify-end">
+        <div className="flex lg:basis-1/2 lg:justify-end">
           <div className="max-w-[650px] space-y-4">
             <Text
               type="heading"

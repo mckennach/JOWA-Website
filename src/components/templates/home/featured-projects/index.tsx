@@ -11,37 +11,11 @@ import { Section, Container } from '@/components/craft'
 import { imageLoader } from '@/src/lib/utils'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
-import gql from 'graphql-tag'
 import { useRouter } from 'next/navigation'
 type FeaturedProjects = {
   projects: Project[];
 }
 
-const FEATURED_PROJECTS_QUERY = gql`
-  query FeaturedProjects($ids: [ID]) {
-    projects(where: { in: $ids }) {
-      nodes {
-        title
-        slug
-        uri
-        featuredImage {
-          node {
-            altText
-            mediaItemUrl
-          }
-        }
-        projectFields {
-          heroImage {
-            node {
-              altText
-              mediaItemUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 export default function FeaturedProjects({ projects }: FeaturedProjects) {
   const router = useRouter()

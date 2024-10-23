@@ -24,7 +24,7 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   return (
     <Section className="bg-secondary">
       <Container>
-        <Filter className="sticky top-24 lg:left-12" />
+        <Filter className="sticky top-24 lg:left-12 z-50" />
         {nodes.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />
         ))}
