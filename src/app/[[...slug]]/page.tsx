@@ -23,17 +23,20 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let detailSlug: string | boolean = false
+  // let detailSlug: string | boolean = false
 
-  if (params.slug && params.slug.length > 1) {
-    if (params.slug[0] === 'work') {
-      detailSlug = `/project/${params.slug[1]}/`
-    } else if (params.slug[0] === 'journal') {
-      detailSlug = `/${params.slug[1]}/`
-    }
-  }
+  // if (params.slug && params.slug.length > 1) {
+  //   if (params.slug[0] === 'work') {
+  //     detailSlug = `/project/${params.slug[1]}/`
+  //   } else if (params.slug[0] === 'journal') {
+  //     detailSlug = `/${params.slug[1]}/`
+  //   }
+  // }
 
-  const slug = nextSlugToWpSlug(detailSlug || params.slug)
+  // const slug = nextSlugToWpSlug(detailSlug || params.slug)
+
+	const slug = nextSlugToWpSlug(params.slug)
+
   const isPreview = slug.includes('preview')
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
@@ -63,17 +66,18 @@ export function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  let detailSlug: string | boolean = false
+  // let detailSlug: string | boolean = false
 
-  if (params.slug && params.slug.length > 1) {
-    if (params.slug[0] === 'work') {
-      detailSlug = `/project/${params.slug[1]}/`
-    } else if (params.slug[0] === 'journal') {
-      detailSlug = `/${params.slug[1]}/`
-    }
-  }
+  // if (params.slug && params.slug.length > 1) {
+  //   if (params.slug[0] === 'work') {
+  //     detailSlug = `/project/${params.slug[1]}/`
+  //   } else if (params.slug[0] === 'journal') {
+  //     detailSlug = `/${params.slug[1]}/`
+  //   }
+  // }
 
-  const slug = nextSlugToWpSlug(detailSlug || params.slug)
+  // const slug = nextSlugToWpSlug(detailSlug || params.slug)
+	const slug = nextSlugToWpSlug(params.slug)
 
   const isPreview = slug.includes('preview')
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
