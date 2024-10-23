@@ -12,7 +12,7 @@ import PostTemplate from '@/src/components/templates/post'
 import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/lib/queries'
 import HomePage from '@/src/components/templates/home'
 import WorkTemplate from '@/src/components/templates/work/work-template'
-import WorkDetailPage from '../_work/[slug]/page'
+import WorkDetailPage from  '@/src/components/templates/work/detail'
 import WorkDetailTemplate from '@/src/components/templates/work/detail'
 import AboutTemplate from '@/src/components/templates/about'
 import ContactTemplate from '@/src/components/templates/contact'
@@ -86,7 +86,7 @@ export default async function Page({ params }: Props) {
 
   if (!contentNode) return notFound()
 
-  console.log('CONTENT NODE', contentNode)
+  
 
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode?.uri) {
