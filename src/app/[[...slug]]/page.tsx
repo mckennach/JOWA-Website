@@ -87,30 +87,30 @@ export default async function Page({ params }: Props) {
 
   if (!contentNode) return notFound()
 
-  if (contentNode.contentTypeName === 'page') {
-    switch (contentNode?.uri) {
-      case '/':
-        return <HomePage node={contentNode} />
-      case '/work/':
-        return <WorkTemplate node={contentNode} />
-      case '/journal/':
-        return <JournalTemplate node={contentNode} />
-      case '/about/':
-        return <AboutTemplate node={contentNode} />
-      case '/contact/':
-        return <ContactTemplate node={contentNode} />
-      default:
-        return (
-					<div className="h-[90vh] flex items-center justify-center">
-						<h1>COMING SOON</h1>
-					</div>
-				)
-    }
-  } else if (contentNode.contentTypeName === 'project') {
-    return <WorkDetailTemplate node={contentNode} />
-  } else if (contentNode.contentTypeName === 'post') {
-    return <PostTemplate node={contentNode} />
-  }
+  // if (contentNode.contentTypeName === 'page') {
+  //   switch (contentNode?.uri) {
+  //     case '/':
+  //       return <HomePage node={contentNode} />
+  //     case '/work/':
+  //       return <WorkTemplate node={contentNode} />
+  //     case '/journal/':
+  //       return <JournalTemplate node={contentNode} />
+  //     case '/about/':
+  //       return <AboutTemplate node={contentNode} />
+  //     case '/contact/':
+  //       return <ContactTemplate node={contentNode} />
+  //     default:
+  //       return (
+	// 				<div className="h-[90vh] flex items-center justify-center">
+	// 					<h1>COMING SOON</h1>
+	// 				</div>
+	// 			)
+  //   }
+  // } else if (contentNode.contentTypeName === 'project') {
+  //   return <WorkDetailTemplate node={contentNode} />
+  // } else if (contentNode.contentTypeName === 'post') {
+  //   return <PostTemplate node={contentNode} />
+  // }
 
   return (
 		<div className="h-[90vh] flex items-center justify-center">
