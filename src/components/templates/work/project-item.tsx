@@ -6,7 +6,7 @@ import { Category, Project, Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 
-export default function WorkItem({
+export default function ProjectItem({
   project,
   index,
 }: {
@@ -14,11 +14,12 @@ export default function WorkItem({
   index: number
 }) {
   const router = useRouter()
-  console.log(project)
+  const featuredImage =
+    project?.featuredImage?.node ?? project?.projectFields?.heroImage?.node
   return (
     <div
       key={project.id}
-      className={cn('border-b border-foreground py-8')}
+      className={cn('border-b border-foreground py-8 group')}
       data-slug={project.slug}
     >
       <div className="flex flex-col-reverse gap-y-8 lg:flex-row">
@@ -55,14 +56,14 @@ export default function WorkItem({
         </div>
         <div className="basis-1/2">
           <div
-            className="relative aspect-[800/620] cursor-pointer"
+            className="relative aspect-[800/620] cursor-pointer group-hover:after:bg-accent/40 after:bg-transparent after:transition-all after:duration-300 after:absolute after:z-30 after:w-full after:h-full"
             onClick={() => {
               router.push(`/work/${project.slug}`)
             }}
           >
             <Image
-              src={project.projectFields?.heroImage?.node.mediaItemUrl ?? ''}
-              alt="alt"
+              src={featuredImage?.mediaItemUrl ?? ''}
+              alt={featuredImage?.altText ?? ''}
               layout="fill"
               style={{
                 objectFit: 'cover',

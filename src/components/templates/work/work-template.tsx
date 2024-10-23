@@ -8,7 +8,8 @@ import {
 } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_QUERY } from '@/lib/queries'
-import WorkItem from './work-item'
+import ProjectItem from './project-item'
+import { Filter } from '../../ui/filter'
 interface TemplateProps {
   node: ContentNode
 }
@@ -23,8 +24,9 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   return (
     <Section className="bg-secondary">
       <Container>
+        <Filter className="sticky top-24 lg:left-12" />
         {nodes.map((project, index) => (
-          <WorkItem key={project.id} project={project} index={index} />
+          <ProjectItem key={project.id} project={project} index={index} />
         ))}
       </Container>
     </Section>

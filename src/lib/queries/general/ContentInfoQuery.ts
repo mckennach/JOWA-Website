@@ -7,6 +7,9 @@ export const CONTENT_INFO_QUERY = gql`
       databaseId
       status
       uri
+      slug
+      isFrontPage
+      isPostsPage
     }
   }
 `

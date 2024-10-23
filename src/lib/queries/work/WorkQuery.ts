@@ -7,6 +7,13 @@ export const WORK_QUERY = gql`
         id
         title
         slug
+        featuredImage {
+          node {
+            altText
+            mediaItemUrl
+            title
+          }
+        }
         projectFields {
           description
           fieldGroupName

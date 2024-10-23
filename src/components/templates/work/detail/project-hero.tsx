@@ -4,14 +4,14 @@ import Image from 'next/image'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { Project } from '@/src/gql/graphql'
 
-export default function WorkHero({ project }: { project: Project }) {
+export default function ProjectHero({ project }: { project: Project }) {
   return (
-    <section className="relative h-screen overflow-hidden">
-      <div className="relative aspect-[800/620] overflow-hidden">
+    <section className="relative h-auto overflow-hidden lg:max-h-screen lg:min-h-screen">
+      <div className="relative aspect-square">
         <Image
           src={project.projectFields?.heroImage?.node.mediaItemUrl ?? ''}
           alt="alt"
-          layout="fill"
+          fill={true}
           style={{
             objectFit: 'cover',
           }}

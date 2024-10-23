@@ -11,6 +11,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       theme = 'dawn'
     }
 
+    if (pathname.includes('/contact')) {
+      theme = 'contact'
+    }
+
     if (pathname.includes('/about')) {
       theme = 'brown'
     }
@@ -21,7 +25,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
       defaultTheme={getTheme()}
-      themes={['green', 'brown', 'dawn']}
+      themes={['green', 'brown', 'dawn', 'contact']}
       forcedTheme={getTheme()}
       attribute="class"
     >

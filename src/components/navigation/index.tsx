@@ -30,14 +30,15 @@ export default function Navigation({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isWorkDetail = pathname.split('/').length > 3
+  const isWorkDetail =
+    pathname.includes('work') && pathname.split('/').length > 3
 
   return (
     <nav
       className={cn(
         'sticky top-0 z-50 w-full bg-transparent',
         'fade-in',
-        isWorkDetail && 'absolute',
+        isWorkDetail && 'fixed',
         className
       )}
       role="navigation"

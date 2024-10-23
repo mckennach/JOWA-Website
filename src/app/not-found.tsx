@@ -13,7 +13,7 @@ const notFoundPageWordPressId = 28
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(SEO_QUERY),
-    { slug: notFoundPageWordPressId, idType: '28' }
+    { slug: notFoundPageWordPressId, idType: 'DATABASE_ID' }
   )
 
   const metadata = setSeoData({ seo: contentNode.seo })

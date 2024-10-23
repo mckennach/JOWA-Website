@@ -25,6 +25,13 @@ const config = {
         maisonNeue: ['Maison Neue', ...fontFamily.sans],
         maisonNeueExt: ['Maison Neue Ext', ...fontFamily.sans],
       },
+      fontSize: {
+        body: ['2rem', '42px'],
+      },
+      lineHeight: {
+        label: '1.88',
+        body: '2.63',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
