@@ -1,10 +1,7 @@
 'use client'
 
-import { useRef, forwardRef, useState, useEffect } from 'react'
+import { useRef, forwardRef, useState } from 'react'
 import {
-  AcfContentNodeConnection,
-  Post,
-  PostFormat,
   Project,
 } from '@/src/gql/graphql'
 import gsap from 'gsap'
@@ -14,11 +11,10 @@ import { Section, Container } from '@/components/craft'
 import { imageLoader } from '@/src/lib/utils'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
-import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 import { useRouter } from 'next/navigation'
 type FeaturedProjects = {
-  projects: AcfContentNodeConnection
+  projects: Project[];
 }
 
 const FEATURED_PROJECTS_QUERY = gql`
@@ -49,16 +45,7 @@ const FEATURED_PROJECTS_QUERY = gql`
 
 export default function FeaturedProjects({ projects }: FeaturedProjects) {
   const router = useRouter()
-  const projectIds = projects.nodes.map((project) => project.id)
-  const { data, loading, error } = useQuery<PostFormat>(
-    FEATURED_PROJECTS_QUERY,
-    {
-      variables: {
-        ids: projectIds,
-      },
-    }
-  )
-  const projectNodes: Project[] = data?.projects?.nodes ?? []
+  const projectNodes = projects ?? []
   const container = useRef(null)
   const galleryRefs = useRef<Array<HTMLDivElement | null>>([])
   const [count, setCount] = useState<number>(1)
