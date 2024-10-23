@@ -45,11 +45,11 @@ export default function TeamMembers() {
         >
           Our Team
         </Text>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {members.map((member, key) => {
             return (
               <div key={key} className="mx-auto w-full max-w-[295px]">
-                <div className="relative aspect-[295/351]">
+                <div className="relative aspect-[295/351] mb-4">
                   <Image
                     src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
                     alt={member?.memberData?.image?.node?.altText ?? ''}
