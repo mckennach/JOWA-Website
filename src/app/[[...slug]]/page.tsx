@@ -78,14 +78,14 @@ export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
 	
 
-  // const isPreview = slug.includes('preview')
-  // const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-  //   print(CONTENT_INFO_QUERY),
-  //   {
-  //     slug: isPreview ? slug.split('preview/')[1] : slug,
-  //     idType: isPreview ? 'DATABASE_ID' : 'URI',
-  //   }
-  // )
+  const isPreview = slug.includes('preview')
+  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+    print(CONTENT_INFO_QUERY),
+    {
+      slug: isPreview ? slug.split('preview/')[1] : slug,
+      idType: isPreview ? 'DATABASE_ID' : 'URI',
+    }
+  )
 
   // if (!contentNode) return notFound()
 
@@ -116,7 +116,14 @@ export default async function Page({ params }: Props) {
 
   return (
 		<div className="h-[90vh] flex items-center justify-center">
-			<h1>{slug}</h1>
+			<h1>{slug}: {isPreview}</h1>
+			<div>
+				<pre>
+					<code>
+						{JSON.stringify(contentNode, null, 2)}
+					</code>
+				</pre>
+			</div>
 		</div>
 	)
 }
