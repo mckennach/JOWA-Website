@@ -19,20 +19,20 @@ export default function ProjectItem({
   return (
     <div
       key={project.id}
-      className={cn('border-b border-foreground py-8 group')}
+      className={cn('border-b border-foreground py-8 ')}
       data-slug={project.slug}
     >
       <div className="flex flex-col-reverse gap-y-8 lg:flex-row">
         <div className="flex basis-full items-end lg:basis-1/2">
           <div
-            className="gap-cursor-pointer flex flex-col gap-8 lg:gap-12"
+            className="cursor-pointer flex flex-col gap-8 lg:gap-12"
             onClick={() => {
               router.push(`/work/${project.slug}`)
             }}
           >
             <p>{zeroPad(index + 1, 2)}</p>
             <div>
-              <h2 className="font-maisonNeueExt text-[48px] uppercase text-accent-foreground">
+              <h2 className="font-maisonNeueExt text-[48px] uppercase text-accent">
                 {project.title}
               </h2>
               <div>
@@ -43,7 +43,7 @@ export default function ProjectItem({
                       return (
                         <p
                           key={category.id}
-                          className="uppercase text-accent-foreground"
+                          className="uppercase text-accent"
                         >
                           {category.name}
                         </p>
@@ -56,7 +56,7 @@ export default function ProjectItem({
         </div>
         <div className="basis-1/2">
           <div
-            className="relative aspect-[800/620] cursor-pointer group-hover:after:bg-accent/40 after:bg-transparent after:transition-all after:duration-300 after:absolute after:z-30 after:w-full after:h-full"
+            className="relative aspect-[800/620] cursor-pointer hover:after:bg-accent/40 after:bg-transparent after:transition-all after:duration-300 after:absolute after:z-30 after:w-full after:h-full"
             onClick={() => {
               router.push(`/work/${project.slug}`)
             }}
