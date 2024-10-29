@@ -9,14 +9,23 @@ import { JournalItems } from './journal-items'
 import { Filter } from '../../ui/filter'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
-    print(JOURNALS_QUERY)
+    print(JOURNALS_QUERY),
+    {
+      caches: false,
+    }
   )
 
   return (
     <>
       <Section className="border-b pb-10 pt-44">
         <Container>
-          <Filter className="fixed top-24 w-2/3 lg:left-12" />
+          <Filter
+            className="fixed top-24 w-2/3 lg:left-12"
+            activeItem={{
+              label: 'All',
+              value: 'all',
+            }}
+          />
           <Text
             type="heading"
             tag="h1"

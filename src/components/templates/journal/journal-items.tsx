@@ -11,7 +11,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
   return (
     <Section>
       <Container className="border-b">
-        <div className="grid lg:grid-cols-3 gap-14 lg:gap-4 pb-24 pt-10">
+        <div className="grid gap-14 pb-24 pt-10 lg:grid-cols-3 lg:gap-4">
           {posts.map((post, index) => {
             return <JournalItem key={index} post={post} />
           })}
@@ -34,13 +34,13 @@ const JournalItem = ({ post }: { post: Post }) => {
 
   return (
     <div
-      className="cursor-pointer space-y-4 group"
+      className="group cursor-pointer space-y-4"
       onClick={() => {
         router.push(`/journal/${post.slug}`)
       }}
       role="button"
     >
-      <div className="relative aspect-square group-hover:after:bg-accent/40 after:bg-transparent after:transition-all after:duration-300 after:absolute after:z-30 after:w-full after:h-full">
+      <div className="relative aspect-square after:absolute after:z-30 after:h-full after:w-full after:bg-transparent after:transition-all after:duration-300 group-hover:after:bg-accent/40">
         <Image
           src={post?.postData?.featuredImage?.node?.mediaItemUrl ?? ''}
           alt={post?.postData?.featuredImage?.node?.altText ?? ''}

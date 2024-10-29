@@ -1,9 +1,7 @@
 'use client'
 
 import { useRef, forwardRef, useState } from 'react'
-import {
-  Project,
-} from '@/src/gql/graphql'
+import { Project } from '@/src/gql/graphql'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
@@ -13,9 +11,8 @@ import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 type FeaturedProjects = {
-  projects: Project[];
+  projects: Project[]
 }
-
 
 export default function FeaturedProjects({ projects }: FeaturedProjects) {
   const router = useRouter()

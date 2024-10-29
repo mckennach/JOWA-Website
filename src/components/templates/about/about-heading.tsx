@@ -19,8 +19,8 @@ export default function AboutHeading({ page, services }: AboutHeadingProps) {
 
   return (
     <Section className="bg-background pb-24 pt-96">
-      <Container className="flex flex-col-reverse lg:flex-row gap-28">
-        <div className="lg:basis-1/2 space-y-8 text-secondary-foreground">
+      <Container className="flex flex-col-reverse gap-28 lg:flex-row">
+        <div className="space-y-8 text-secondary-foreground lg:basis-1/2">
           <div>
             <div className="border-b border-b-secondary-foreground">
               <Text type="label">OUR SERVICES</Text>

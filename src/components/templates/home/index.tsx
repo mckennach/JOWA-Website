@@ -1,4 +1,8 @@
-import { Page, PostFormatConnection, PostFormatToProjectConnection } from '@/gql/graphql'
+import {
+  Page,
+  PostFormatConnection,
+  PostFormatToProjectConnection,
+} from '@/gql/graphql'
 import { TemplateProps } from '../page'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { print } from 'graphql/language/printer'
@@ -36,15 +40,16 @@ const FEATURED_PROJECTS_QUERY = gql`
 export default async function HomePage({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
     id: node.databaseId,
-  });
-	
+  })
+
   const { featuredProjects, homeContent } = page.home ?? {}
-	const projectIds = featuredProjects?.nodes.map((project) => project.id);
+  const projectIds = featuredProjects?.nodes.map((project) => project.id)
 
-	const { projects } = await fetchGraphQL<{ projects: PostFormatToProjectConnection }>(print(FEATURED_PROJECTS_QUERY), {
-		ids: projectIds,
-	});
-
+  const { projects } = await fetchGraphQL<{
+    projects: PostFormatToProjectConnection
+  }>(print(FEATURED_PROJECTS_QUERY), {
+    ids: projectIds,
+  })
 
   return (
     <>

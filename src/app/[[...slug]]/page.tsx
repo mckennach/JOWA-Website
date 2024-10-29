@@ -8,16 +8,15 @@ import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { ContentNode } from '@/gql/graphql'
 import PageTemplate from '@/src/components/templates/page'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
-import PostTemplate from '@/src/components/templates/post'
 import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/lib/queries'
 import HomePage from '@/src/components/templates/home'
 import WorkTemplate from '@/src/components/templates/work/work-template'
-import WorkDetailPage from  '@/src/components/templates/work/detail'
+import WorkDetailPage from '@/src/components/templates/work/detail'
 import WorkDetailTemplate from '@/src/components/templates/work/detail'
 import AboutTemplate from '@/src/components/templates/about'
 import ContactTemplate from '@/src/components/templates/contact'
 import JournalTemplate from '@/src/components/templates/journal'
-
+import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 
 type Props = {
   params: { slug: string }
@@ -76,7 +75,6 @@ export default async function Page({ params }: Props) {
   }
 
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
-	
 
   const isPreview = slug.includes('preview')
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
@@ -103,27 +101,27 @@ export default async function Page({ params }: Props) {
         return <ContactTemplate node={contentNode} />
       default:
         return (
-					<div className="h-[90vh] flex items-center justify-center">
-						<h1>COMING SOON</h1>
-					</div>
-				)
+          <div className="flex h-[90vh] items-center justify-center">
+            <h1>COMING SOON</h1>
+          </div>
+        )
     }
   } else if (contentNode.contentTypeName === 'project') {
     return <WorkDetailTemplate node={contentNode} />
   } else if (contentNode.contentTypeName === 'post') {
-    return <PostTemplate node={contentNode} />
+    return <JournalDetailTemplate node={contentNode} />
   }
 
   return (
-		<div className="h-[90vh] flex items-center justify-center">
-			<h1>{slug}: {isPreview}</h1>
-			<div>
-				<pre>
-					<code>
-						{JSON.stringify(contentNode, null, 2)}
-					</code>
-				</pre>
-			</div>
-		</div>
-	)
+    <div className="flex h-[90vh] items-center justify-center">
+      <h1>
+        {slug}: {isPreview}
+      </h1>
+      <div>
+        <pre>
+          <code>{JSON.stringify(contentNode, null, 2)}</code>
+        </pre>
+      </div>
+    </div>
+  )
 }

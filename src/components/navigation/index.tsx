@@ -75,7 +75,7 @@ export default function Navigation({
                   key={index}
                   target={item.target || '_self'}
                   className={cn(
-                    'text-base uppercase hover:underline transition-all',
+                    'text-base uppercase transition-all hover:underline',
                     isWorkDetail && 'text-background',
                     pathname === item.uri ? 'underline' : ''
                   )}

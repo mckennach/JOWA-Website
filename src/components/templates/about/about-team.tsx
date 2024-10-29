@@ -30,9 +30,6 @@ const TEAM_MEMBERS_QUERY = gql`
 export default function TeamMembers() {
   const { data, loading, error } = useQuery(TEAM_MEMBERS_QUERY)
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-
   const members: TeamMember[] = data?.teamMembers?.nodes
 
   return (
@@ -45,31 +42,32 @@ export default function TeamMembers() {
         >
           Our Team
         </Text>
-        <div className="grid lg:grid-cols-3 gap-8">
-          {members.map((member, key) => {
-            return (
-              <div key={key} className="mx-auto w-full max-w-[295px]">
-                <div className="relative aspect-[295/351] mb-4">
-                  <Image
-                    src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
-                    alt={member?.memberData?.image?.node?.altText ?? ''}
-                    fill={true}
-                    style={{
-                      objectFit: 'cover',
-                      objectPosition: 'center',
-                    }}
-                    loader={imageLoader}
-                  />
+        <div className="grid gap-8 lg:grid-cols-3">
+          {!loading &&
+            members.map((member, key) => {
+              return (
+                <div key={key} className="mx-auto w-full max-w-[295px]">
+                  <div className="relative mb-4 aspect-[295/351]">
+                    <Image
+                      src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
+                      alt={member?.memberData?.image?.node?.altText ?? ''}
+                      fill={true}
+                      style={{
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                      }}
+                      loader={imageLoader}
+                    />
+                  </div>
+                  <div>
+                    <Text type="label" tag="p">
+                      {member?.memberData?.name}
+                    </Text>
+                    <Text>{member?.memberData?.jobTitle}</Text>
+                  </div>
                 </div>
-                <div>
-                  <Text type="label" tag="p">
-                    {member?.memberData?.name}
-                  </Text>
-                  <Text>{member?.memberData?.jobTitle}</Text>
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
         </div>
       </Container>
     </Section>

@@ -31,6 +31,7 @@
     --border: 17 31% 18%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+    --radius: 8px;
   }
 
   .dawn {
@@ -132,6 +133,9 @@
   body {
     @apply min-h-screen bg-background text-foreground antialiased;
     font-family: 'Maison Neue Ext', sans-serif;
+  }
+  .sharedaddy {
+    display: none;
   }
 }
 

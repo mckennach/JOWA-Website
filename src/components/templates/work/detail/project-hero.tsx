@@ -6,7 +6,7 @@ import { Project } from '@/src/gql/graphql'
 
 export default function ProjectHero({ project }: { project: Project }) {
   return (
-    <section className="relative h-auto overflow-hidden lg:max-h-screen lg:min-h-screen">
+    <header className="relative h-auto overflow-hidden lg:max-h-screen lg:min-h-screen">
       <div className="relative aspect-square">
         <Image
           src={project.projectFields?.heroImage?.node.mediaItemUrl ?? ''}
@@ -25,6 +25,6 @@ export default function ProjectHero({ project }: { project: Project }) {
           {project.title}
         </h1>
       </div>
-    </section>
+    </header>
   )
 }

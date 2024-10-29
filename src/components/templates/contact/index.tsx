@@ -17,8 +17,8 @@ export default async function ContactTemplate({ node }: TemplateProps) {
   )
   return (
     <Section className="bg-background">
-      <Container className="flex flex-col lg:flex-row gap-14 py-32">
-        <div className="flex lg:basis-1/2 flex-col gap-28">
+      <Container className="flex flex-col gap-14 py-32 lg:flex-row">
+        <div className="flex flex-col gap-28 lg:basis-1/2">
           <div className="space-y-8">
             <Text
               type="heading"

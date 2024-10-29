@@ -15,18 +15,21 @@ import CustomIcons from '../custom-icons'
 import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/src/lib/utils'
-
+import { usePathname } from 'next/navigation'
 type MobileNavigationProps = {
   menuItems: RootQueryToMenuItemConnection
 }
 
 export function MobileNavigation({ menuItems }: MobileNavigationProps) {
-  const [open, setOpen] = useState(false)
-  return (
+  const [open, setOpen] = useState(false);
+	const pathname = usePathname();
+	const isWorkDetail =
+	pathname.includes('work') && pathname.split('/').length > 3
+	return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger className="p-2 lg:hidden">
         <span className="sr-only">Toggle Menu</span>
-        <CustomIcons name="menu" className="w-[25px]" />
+        <CustomIcons name="menu" className={cn("w-[25px]", isWorkDetail && 'text-background')} />
       </SheetTrigger>
       <SheetContent
         side="top"
