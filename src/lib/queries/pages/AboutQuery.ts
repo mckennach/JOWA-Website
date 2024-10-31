@@ -7,6 +7,7 @@ export const ABOUT_PAGE_QUERY = gql`
       aboutPage {
         title
         description
+				logoDescription
       }
     }
   }

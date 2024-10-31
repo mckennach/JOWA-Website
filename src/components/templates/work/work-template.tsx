@@ -24,10 +24,13 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   return (
     <Section className="bg-secondary">
       <Container>
-        <Filter className="sticky top-24 z-50 lg:left-12" activeItem={{
-					label: 'All',
-					value: 'all',
-				}} />
+        <Filter
+          className="sticky top-24 z-50 lg:left-12"
+          activeItem={{
+            label: 'All',
+            value: 'all',
+          }}
+        />
         {nodes.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />
         ))}

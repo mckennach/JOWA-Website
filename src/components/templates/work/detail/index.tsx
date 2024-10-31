@@ -1,5 +1,9 @@
 import { print } from 'graphql/language/printer'
-import { ContentNode, Project, RootQueryToProjectConnection } from '@/src/gql/graphql'
+import {
+  ContentNode,
+  Project,
+  RootQueryToProjectConnection,
+} from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_DETAIL_QUERY } from '@/lib/queries'
 import ProjectHero from './project-hero'
@@ -18,17 +22,15 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
       id: node?.uri,
     }
   ) // This is the only change in this file
-	const {
-    projects,
-  } = await fetchGraphQL<{ projects: RootQueryToProjectConnection }>(
-    print(WORK_QUERY)
-  );
+  const { projects } = await fetchGraphQL<{
+    projects: RootQueryToProjectConnection
+  }>(print(WORK_QUERY))
 
   return (
     <>
       <ProjectHero project={project} />
       <ProjectInfo project={project} />
-			<NextPost projects={projects} currentId={project.id} />
+      <NextPost projects={projects} currentId={project.id} />
     </>
   )
 }

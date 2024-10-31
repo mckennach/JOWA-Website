@@ -15,15 +15,16 @@ export default function JournalContent({ post }: { post: Post }) {
       <Section>
         <Container className="flex flex-col gap-y-24">
           <div className="space-y-6 pt-40 lg:mx-auto lg:max-w-[80%]">
-            {content?.section1Title && typeof content?.section1Title === "string" && (
-              <Text
-                type="heading"
-                tag="h2"
-                className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
-              >
-                1. {content?.section1Title}
-              </Text>
-            )}
+            {content?.section1Title &&
+              typeof content?.section1Title === 'string' && (
+                <Text
+                  type="heading"
+                  tag="h2"
+                  className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
+                >
+                  1. {content?.section1Title}
+                </Text>
+              )}
 
             {content?.section1Copy && (
               <div
@@ -63,7 +64,7 @@ export default function JournalContent({ post }: { post: Post }) {
             )}
         </Container>
       </Section>
-      {content?.blockQuote && typeof content?.blockQuote === "string" &&  (
+      {content?.blockQuote && typeof content?.blockQuote === 'string' && (
         <Section>
           <Container>
             <div className="mx-auto max-w-[1262px] text-center">
@@ -97,15 +98,16 @@ export default function JournalContent({ post }: { post: Post }) {
       <Section>
         <Container className="flex flex-col gap-y-24">
           <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
-            {content?.section2Title && typeof content?.section2Title === "string" &&  (
-              <Text
-                type="heading"
-                tag="h2"
-                className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
-              >
-                2. {content?.section2Title}
-              </Text>
-            )}
+            {content?.section2Title &&
+              typeof content?.section2Title === 'string' && (
+                <Text
+                  type="heading"
+                  tag="h2"
+                  className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
+                >
+                  2. {content?.section2Title}
+                </Text>
+              )}
 
             {content?.section2Copy && (
               <div

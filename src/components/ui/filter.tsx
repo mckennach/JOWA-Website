@@ -32,7 +32,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
         className={cn('flex max-w-full flex-col', className)}
         {...props}
       >
-        <div className="grid grid-cols-8">
+        <div className="grid grid-cols-3 lg:grid-cols-8">
           <div className="flex border-b">
             <Text type="label" className="">
               {label}:

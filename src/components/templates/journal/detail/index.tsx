@@ -15,10 +15,10 @@ export default async function JournalDetailTemplate({ node }: TemplateProps) {
     {
       caches: false,
     }
-  );
+  )
 
-	console.log(post);
-	
+  console.log(post)
+
   return (
     <>
       <JournalHero post={post} />

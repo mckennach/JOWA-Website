@@ -9,6 +9,7 @@ import { Text } from '../../ui/text'
 import { SERVICES_QUERY } from '@/src/lib/queries/services/service-query'
 import AboutHeading from './about-heading'
 import TeamMembers from './about-team'
+import AboutLogo from './about-logo'
 interface TemplateProps {
   node: ContentNode
 }
@@ -27,9 +28,7 @@ export default async function AboutTemplate({ node }: TemplateProps) {
   return (
     <>
       <AboutHeading page={page} services={services.nodes} />
-      <div className="flex items-center justify-center border-t border-t-foreground py-96">
-        LOGO SECTION
-      </div>
+      <AboutLogo page={page} />
       <TeamMembers />
     </>
   )

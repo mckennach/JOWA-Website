@@ -4,7 +4,7 @@ export const JOURNALS_QUERY = gql`
   query PostsQuery {
     posts {
       nodes {
-				id
+        id
         uri
         slug
         title
@@ -35,7 +35,7 @@ export const JOURNAL_QUERY = gql`
   query JournalDetailQuery($id: ID!, $preview: Boolean = false) {
     post(id: $id, idType: URI, asPreview: $preview) {
       id
-			title
+      title
       date
       tags {
         nodes {

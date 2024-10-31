@@ -77,7 +77,7 @@ export default function Navigation({
                   className={cn(
                     'text-base uppercase transition-all hover:underline',
                     isWorkDetail && 'text-background',
-                    pathname === item.uri ? 'underline' : ''
+                    pathname === item.uri || pathname.includes(item.uri) ? 'underline' : ''
                   )}
                 >
                   <span itemProp="name">{item.label}</span>

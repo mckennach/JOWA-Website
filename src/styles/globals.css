@@ -134,6 +134,7 @@
     @apply min-h-screen bg-background text-foreground antialiased;
     font-family: 'Maison Neue Ext', sans-serif;
   }
+	
   .sharedaddy {
     display: none;
   }
