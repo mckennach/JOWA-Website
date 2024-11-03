@@ -5,7 +5,7 @@ import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { Category, Project, Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
-
+import { useSearchParams } from 'next/navigation'
 export default function ProjectItem({
   project,
   index,
@@ -13,9 +13,17 @@ export default function ProjectItem({
   project: Project
   index: number
 }) {
+	const searchParams = useSearchParams();
+	const searchCategory = searchParams.get('category');
   const router = useRouter()
   const featuredImage =
     project?.featuredImage?.node ?? project?.projectFields?.heroImage?.node
+  const categoryExists = project && project.categories && project?.categories.nodes.some(
+		(category: Category) => category.slug === searchCategory
+	);
+
+	if(searchCategory && !categoryExists) return null;
+
   return (
     <div
       key={project.id}
@@ -32,7 +40,7 @@ export default function ProjectItem({
           >
             <p>{zeroPad(index + 1, 2)}</p>
             <div>
-              <h2 className="font-maisonNeueExt text-[48px] uppercase text-accent">
+              <h2 className="font-maisonNeueExt text-clamp uppercase text-accent">
                 {project.title}
               </h2>
               <div>

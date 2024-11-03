@@ -4,8 +4,15 @@
 
 @layer base {
   :root {
-    --background: 72 15% 67%;
-    --foreground: 17 31% 18%;
+    --cream: 39 78% 93%;
+    --sencha: 65 9% 50%;
+    --genmaicha: 72 15% 67%;
+    --red: 358 72% 45%;
+    --walnut: 16 37% 18%;
+    --black: 0 0% 0%;
+
+    --background: var(--genmaicha);
+    --foreground: var(--walnut);
 
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -32,11 +39,17 @@
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     --radius: 8px;
+
+    --nav-height: 60px;
+
+    @media (min-width: 1024px) {
+      --nav-height: 80px;
+    }
   }
 
-  .dawn {
-    --background: 39 78% 93%;
-    --foreground: 17 31% 18%;
+  .cream {
+    --background: var(--cream);
+    --foreground: var(--walnut);
 
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -48,12 +61,12 @@
     --primary-foreground: 0 0% 9%;
 
     --secondary: 39 78% 93%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: var(--cream);
 
     --muted: 0 0% 14.9%;
     --muted-foreground: 17 31% 18%;
 
-    --accent: 65 9% 50%;
+    --accent: var(--sencha);
     --accent-foreground: 358 72% 45%;
 
     --destructive: 0 62.8% 30.6%;
@@ -64,9 +77,9 @@
     --ring: 0 0% 83.1%;
   }
 
-  .brown {
-    --background: 16 37% 18%;
-    --foreground: 39 78% 93%;
+  .walnut {
+    --background: var(--walnut);
+    --foreground: var(--cream);
 
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -78,13 +91,13 @@
     --primary-foreground: 0 0% 9%;
 
     --secondary: 39 78% 93%;
-    --secondary-foreground: 72 15% 67%;
+    --secondary-foreground: var(--genmaicha);
 
     --muted: 0 0% 14.9%;
     --muted-foreground: 17 31% 18%;
 
     --accent: 0 0% 14.9%;
-    --accent-foreground: 65 9% 50%;
+    --accent-foreground: var(--sencha);
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -94,8 +107,8 @@
     --ring: 0 0% 83.1%;
   }
 
-  .contact {
-    --background: 65 9% 50%;
+  .sencha {
+    --background: var(--sencha);
     --foreground: 39 78% 93%;
 
     --card: 0 0% 3.9%;
@@ -123,6 +136,13 @@
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
   }
+
+  .mobile-navigation {
+    --background: var(--walnut);
+    --foreground: var(--cream);
+    --accent-foreground: var(--sencha);
+    --border: var(--sencha);
+  }
 }
 
 @layer base {
@@ -134,9 +154,110 @@
     @apply min-h-screen bg-background text-foreground antialiased;
     font-family: 'Maison Neue Ext', sans-serif;
   }
-	
+
+  .nav-fluid {
+    @apply relative font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px];
+    @apply before:absolute before:bottom-[3px] before:left-0 before:h-[1.5px] before:w-0 before:bg-foreground before:transition-all before:duration-300 before:ease-in-out;
+    @apply hover:before:w-full focus:before:w-full active:before:w-full;
+    font-size: clamp(
+      12px,
+      calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))),
+      16px
+    );
+  }
+
+  .nav-fluid.active {
+    @apply before:w-full;
+  }
+
+  h1,
+  .title-xl-fluid {
+    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
+    font-size: clamp(
+      32px,
+      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
+      48px
+    );
+  }
+
+  h2,
+  .text-title-l-fluid {
+    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
+    font-size: clamp(
+      32px,
+      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
+      48px
+    );
+  }
+
+  h3,
+  .title-m-fluid {
+    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
+    font-size: clamp(
+      32px,
+      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
+      48px
+    );
+  }
+
+  .text-heading-base-fluid {
+    @apply space-y-8 font-maisonNeue font-normal leading-[32px] tracking-normal lg:leading-[40px];
+    font-size: clamp(
+      20px,
+      calc(20px + (32 - 20) * ((100vw - 375px) / (1920 - 375))),
+      32px
+    );
+  }
+
+  .heading-sm-fluid {
+    @apply space-y-8 font-maisonNeue font-normal leading-[32px] tracking-normal lg:leading-[40px];
+    font-size: 24px;
+  }
+
+  .link-fluid {
+    @apply font-maisonNeueExt font-normal uppercase leading-[40px] tracking-[0.4px];
+    font-size: clamp(
+      12px,
+      calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))),
+      16px
+    );
+  }
+
+  .label-fluid {
+    @apply font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px];
+    font-size: clamp(
+      12px,
+      calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))),
+      16px
+    );
+  }
+
+  .body-xl-fluid {
+    @apply space-y-8 font-maisonNeue font-normal leading-[32px] tracking-normal lg:leading-[40px];
+    font-size: clamp(
+      20px,
+      calc(20px + (32 - 20) * ((100vw - 375px) / (1920 - 375))),
+      32px
+    );
+  }
+
+  .body-sm-fluid {
+    @apply font-maisonNeue font-normal leading-[30px] tracking-normal lg:leading-[34px];
+    font-size: clamp(
+      12px,
+      calc(12px + (24 - 12) * ((100vw - 375px) / (1920 - 375))),
+      24px
+    );
+  }
+
   .sharedaddy {
     display: none;
+  }
+
+  .top-fade {
+    @apply bg-background;
+    @apply from-background to-transparent before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t;
+    /* @apply absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-background to-transparent pointer-events-none; */
   }
 }
 

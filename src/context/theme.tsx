@@ -4,19 +4,19 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
-  console.log(pathname)
+
   const getTheme = () => {
-    let theme = 'green'
+    let theme = 'default'
     if (pathname.includes('/work') || pathname.includes('/journal')) {
-      theme = 'dawn'
+      theme = 'cream'
     }
 
     if (pathname.includes('/contact')) {
-      theme = 'contact'
+      theme = 'sencha'
     }
 
     if (pathname.includes('/about')) {
-      theme = 'brown'
+      theme = 'walnut'
     }
 
     return theme
@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
       defaultTheme={getTheme()}
-      themes={['green', 'brown', 'dawn', 'contact']}
+      themes={['default', 'cream', 'walnut', 'sencha']}
       forcedTheme={getTheme()}
       attribute="class"
     >

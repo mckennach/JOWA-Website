@@ -32,6 +32,7 @@ export const WORK_QUERY = gql`
             categoryId
             name
             parentId
+						slug
           }
         }
       }

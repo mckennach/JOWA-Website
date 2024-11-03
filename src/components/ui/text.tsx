@@ -21,20 +21,16 @@ export type TextProps = {
     | 'strong'
     | 'em'
     | 'blockquote'
-  size?:
-    | 'default'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '3xl'
-    | '4xl'
-    | '5xl'
+  size?: 'default'
   type?:
     | 'default'
     | 'heading'
+    | 'title1'
+    | 'title2'
+    | 'title3'
+    | 'title4'
+    | 'title5'
+    | 'title6'
     | 'body'
     | 'caption'
     | 'label'
@@ -49,10 +45,16 @@ const textVariants = cva('', {
   variants: {
     variant: {
       default: '',
-      heading: 'uppercase text-[48px] leading-heading font-normal',
-      body: 'font-normal',
+      heading: 'heading-xl-fluid',
+      title1: 'title-xl-fluid',
+      title2: 'title-lg-fluid',
+      title3: 'title-md-fluid',
+      title4: 'title-sm-fluid',
+      title5: 'title-xs-fluid',
+      title6: 'title-xxs-fluid',
+      body: 'body-fluid',
       caption: 'text-xs',
-      label: 'uppercase text-xl leading-label font-normal',
+      label: 'label-fluid',
       small: 'text-xs',
       strong: 'font-bold',
       em: 'italic',
@@ -60,16 +62,7 @@ const textVariants = cva('', {
       eyebrow: 'text-eyebrow',
     },
     size: {
-      default: 'text-base',
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-      xl: 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
+      default: '',
     },
   },
   defaultVariants: {

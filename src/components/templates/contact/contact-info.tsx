@@ -11,33 +11,33 @@ export default function ContactInfo({ page }: { page: Page }) {
       <div className="space-y-8">
         <table className="w-full max-w-[529px] text-secondary-foreground">
           <tbody>
-            <tr>
-              <td className="flex border-b">
+            <tr className="border-b">
+              <td className="flex  p-0">
                 <Text type="label">Contact Us</Text>
               </td>
-              <td className="border-b"></td>
+              <td className=""></td>
             </tr>
-            <tr>
-              <td className="flex border-b">
+            <tr className="border-b">
+              <td className="flex  p-0">
                 <Text type="label">E-MAIL</Text>
               </td>
-              <td className="border-b">
+              <td className=" p-0">
                 <Text type="label">{page?.contactPage?.emailAddress}</Text>
               </td>
             </tr>
-            <tr>
-              <td className="flex border-b">
+            <tr className="border-b">
+              <td className="flex  p-0">
                 <Text type="label">TEL</Text>
               </td>
-              <td className="border-b">
+              <td className=" p-0">
                 <Text type="label">{page?.contactPage?.phoneNumber}</Text>
               </td>
             </tr>
             <tr>
-              <td className="flex">
+              <td className="flex p-0">
                 <Text type="label">INSTAGRAM</Text>
               </td>
-              <td>
+              <td className="p-0">
                 <Text type="label">{page?.contactPage?.instagram}</Text>
               </td>
             </tr>

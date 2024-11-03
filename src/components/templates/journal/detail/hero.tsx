@@ -30,11 +30,7 @@ export default function JournalHero({ post }: { post: Post }) {
           <div className="space-y-12">
             <Text type="label">{dateString}</Text>
             <div className="space-y-6">
-              <Text
-                type="heading"
-                tag="h1"
-                className="text-[48px] uppercase text-accent-foreground"
-              >
+              <Text type="title1" tag="h1" className="text-accent-foreground">
                 {post.title}
               </Text>
               <Text type="label" className="block">

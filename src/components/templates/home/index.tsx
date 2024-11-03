@@ -31,6 +31,12 @@ const FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
             }
           }
+          featuredImage {
+            node {
+              altText
+              mediaItemUrl
+            }
+          }
         }
       }
     }

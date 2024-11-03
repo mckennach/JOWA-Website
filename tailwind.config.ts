@@ -7,6 +7,7 @@ const config = {
     './src/pages/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
+    './src/templates/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
     './src/styles/*.css',
   ],
@@ -27,6 +28,9 @@ const config = {
       },
       fontSize: {
         body: ['2rem', '42px'],
+        clamp: 'clamp(1rem, 5vw, 3rem)',
+        label:
+          'clamp(12px, calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))), 16px)',
       },
       lineHeight: {
         label: '1.88',
@@ -36,6 +40,8 @@ const config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+				cream: 'hsl(var(--cream))',
+				walnut: 'hsl(var(--walnut))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
@@ -81,10 +87,15 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+				'fade-out': {
+					from: { opacity: '1' },
+					to: { opacity: '0' },
+				}
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-out': 'fade-out 5s ease-out',
       },
     },
   },

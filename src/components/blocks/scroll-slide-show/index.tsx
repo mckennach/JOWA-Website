@@ -34,7 +34,7 @@ export default function ScrollSlideShow({ block }: ScrollSlideShowProps) {
       gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: 'top 80px',
+          start: 'top var(--nav-height)',
           end: 'bottom bottom',
           onLeave: () => {
             setIsActive(false)
@@ -49,7 +49,7 @@ export default function ScrollSlideShow({ block }: ScrollSlideShowProps) {
         gsap.timeline({
           scrollTrigger: {
             trigger: panel,
-            start: 'top 80px',
+            start: 'top var(--nav-height)',
             end: i === panels.length - 1 ? 'bottom bottom' : 'bottom 80px',
             pin: true,
             pinSpacing: false,

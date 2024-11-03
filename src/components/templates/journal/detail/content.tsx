@@ -29,7 +29,7 @@ export default function JournalContent({ post }: { post: Post }) {
             {content?.section1Copy && (
               <div
                 dangerouslySetInnerHTML={{ __html: content.section1Copy }}
-                className="space-y-8 font-maisonNeue text-[24px] leading-[32px] tracking-wide lg:text-[32px] lg:leading-[42px]"
+                className="body-xl-fluid"
               />
             )}
           </div>
@@ -57,7 +57,7 @@ export default function JournalContent({ post }: { post: Post }) {
                     dangerouslySetInnerHTML={{
                       __html: content?.section1Cta?.copy ?? '',
                     }}
-                    className="space-y-8 font-maisonNeue text-[24px] leading-[32px] tracking-wide lg:text-[32px] lg:leading-[42px]"
+                    className="body-xl-fluid"
                   />
                 </div>
               </div>
@@ -100,11 +100,7 @@ export default function JournalContent({ post }: { post: Post }) {
           <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
             {content?.section2Title &&
               typeof content?.section2Title === 'string' && (
-                <Text
-                  type="heading"
-                  tag="h2"
-                  className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
-                >
+                <Text type="heading" tag="h2" className="body-xl-fluid">
                   2. {content?.section2Title}
                 </Text>
               )}
@@ -112,7 +108,7 @@ export default function JournalContent({ post }: { post: Post }) {
             {content?.section2Copy && (
               <div
                 dangerouslySetInnerHTML={{ __html: content.section2Copy }}
-                className="space-y-8 font-maisonNeue text-[24px] leading-[32px] tracking-wide lg:text-[32px] lg:leading-[42px]"
+                className="body-xl-fluid"
               />
             )}
           </div>
@@ -140,7 +136,7 @@ export default function JournalContent({ post }: { post: Post }) {
                     dangerouslySetInnerHTML={{
                       __html: content?.section2Cta?.copy ?? '',
                     }}
-                    className="space-y-8 font-maisonNeue text-[24px] leading-[32px] tracking-wide lg:text-[32px] lg:leading-[42px]"
+                    className="body-xl-fluid"
                   />
                 </div>
               </div>

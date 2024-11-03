@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, forwardRef, useState } from 'react'
+import { useRef, forwardRef, useState, useEffect } from 'react'
 import { Project } from '@/src/gql/graphql'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
@@ -10,6 +10,7 @@ import { imageLoader } from '@/src/lib/utils'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
+import { Text } from '@/src/components/ui/text'
 type FeaturedProjects = {
   projects: Project[]
 }
@@ -24,12 +25,20 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
 
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   useGSAP(
     () => {
       const panels = galleryRefs.current
-      console.log('panels', panels)
       if (panels.length === 0 || !container.current) return
-      console.log('panels', panels)
       gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
@@ -87,7 +96,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
       <Container ref={container} className="overflow-hidden">
         {projectNodes.map((project, index) => {
           const image =
-            project?.featuredImage?.node ??
+            project?.projectFields?.featuredImage?.node ??
             project?.projectFields?.heroImage?.node
           return (
             <Slide
@@ -110,10 +119,12 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
               router.push(`/work/${activeItem?.slug}`)
             }}
           >
-            <p>
+            <Text type="label" tag="p" className="lg:leading-[21.25px]">
               {zeroPad(count)}/{zeroPad(projectNodes.length)}
-            </p>
-            <p className="uppercase">{activeItem?.title}</p>
+            </Text>
+            <Text type="label" tag="p" className="lg:leading-[21.25px]">
+              {activeItem?.title}
+            </Text>
           </div>
         )}
       </Container>
@@ -128,7 +139,7 @@ type SlideProps = {
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
   ({ image, index }, ref) => {
-    const { isIntersecting, ref: intersectRef } = useIntersectionObserver({
+    const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
 
@@ -153,6 +164,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             style={{
               objectFit: 'cover',
             }}
+            className="brightness-75 filter"
             loader={imageLoader}
             priority={true}
           />

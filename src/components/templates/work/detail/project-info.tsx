@@ -25,64 +25,64 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
     categories.nodes.filter((category) => category.parentId === 'dGVybToxMzc1')
   return (
     <div>
-      <table className="w-full max-w-[529px]">
-        <tbody>
+      <div className="w-full max-w-[529px] ">
+        <div className="">
           {location && (
-            <tr>
-              <td className="flex border-b">
+            <div className="flex border-b">
+              <div className="flex basis-1/2">
                 <Text type="label">Location</Text>
-              </td>
-              <td className="border-b">
+              </div>
+              <div className="flex basis-1/2">
                 <Text type="label">{location}</Text>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
           {category && (
-            <tr>
-              <td className="flex border-b">
+            <div className="border-b flex">
+              <div className="flex basis-1/2">
                 <Text type="label">Category</Text>
-              </td>
-              <td className="border-b">
+              </div>
+              <div className="flex basis-1/2">
                 <Text type="label">{category}</Text>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
           {sqFt && (
-            <tr>
-              <td className="flex border-b">
+            <div className="flex border-b">
+              <div className="flex basis-1/2">
                 <Text type="label">Sq Ft</Text>
-              </td>
-              <td className="border-b">
+              </div>
+              <div className="flex basis-1/2">
                 <Text type="label">{sqFt}</Text>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
           {projectType && (
-            <tr>
-              <td className="flex border-b">
+            <div className="border-b flex">
+              <div className="flex basis-1/2">
                 <Text type="label">Project Type</Text>
-              </td>
-              <td className="border-b">
+              </div>
+              <div className="flex basis-1/2">
                 <Text type="label">{projectType}</Text>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
           {projectServices && (
-            <tr>
-              <td className="flex">
+            <div className="flex items-baseline">
+              <div className="border-b flex  basis-1/2">
                 <Text type="label">Services</Text>
-              </td>
-              <td>
+              </div>
+              <div className="p-0 flex flex-col basis-1/2">
                 {projectServices.map((service) => (
                   <div key={service.id} className="border-b">
                     <Text type="label">{service.name}</Text>
                   </div>
                 ))}
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   )
 }
@@ -100,7 +100,7 @@ export default function ProjectInfo({ project }: { project: Project }) {
               dangerouslySetInnerHTML={{
                 __html: project?.projectFields?.description ?? '',
               }}
-              className="space-y-4 text-body lg:ml-auto lg:mr-0 lg:max-w-screen-sm"
+              className="body-xl-fluid lg:ml-auto lg:mr-0 lg:max-w-[665px]"
             />
           </div>
         </div>

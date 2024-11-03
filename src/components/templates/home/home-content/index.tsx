@@ -53,7 +53,7 @@ export default function HomeContent({ data }: HomeContentProps) {
   )
 
   return (
-    <Section className="sticky top-0">
+    <Section className="top-fade sticky top-0 h-[150vh]">
       <Container ref={containerRef}>
         <div
           className={cn('space-around flex flex-col-reverse gap-4 md:flex-row')}
@@ -76,7 +76,7 @@ export default function HomeContent({ data }: HomeContentProps) {
           <div className="flex items-center py-8 md:basis-1/2 md:py-40">
             <div className="max-w-[750px] space-y-8 md:pr-28" ref={contentRef}>
               <div
-                className="space-y-8 text-[32px] text-foreground"
+                className="body-xl-fluid"
                 dangerouslySetInnerHTML={{
                   __html: data?.description || '',
                 }}

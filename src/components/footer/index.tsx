@@ -3,7 +3,7 @@ import CustomIcons from '@/src/components/custom-icons'
 
 export default function Footer() {
   return (
-    <footer className="dawn relative z-50 h-screen bg-background text-foreground">
+    <footer className="cream relative z-50 h-screen bg-background text-foreground">
       <Section className="h-full">
         <Container className="flex h-full flex-col justify-end">
           <div className="flex flex-col gap-[100px]">
@@ -13,36 +13,28 @@ export default function Footer() {
             <div>
               <div className="grid grid-cols-2 border-b border-t py-4 text-2xl md:grid-cols-4">
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
+                  <p className="body-sm-fluid">
                     Where your vision unfolds.
                   </p>
                 </div>
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
-                    Vancouver, BC
-                  </p>
+                  <p className="body-sm-fluid">Vancouver, BC</p>
                 </div>
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
-                    T: 604.377.6177
-                  </p>
+                  <p className="body-sm-fluid">T: 604.377.6177</p>
                 </div>
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
-                    IG: @jowainteriors
-                  </p>
+                  <p className="body-sm-fluid">IG: @jowainteriors</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 border-b py-4 text-2xl md:grid-cols-4">
                 <div></div>
                 <div></div>
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
-                    E: info@jowa.ca
-                  </p>
+                  <p className="body-sm-fluid">E: info@jowa.ca</p>
                 </div>
                 <div>
-                  <p className="font-maisonNeue text-[14px] md:text-[24px]">
+                  <p className="body-sm-fluid">
                     © 2023 Jowa Interiors Ltd.
                   </p>
                 </div>
