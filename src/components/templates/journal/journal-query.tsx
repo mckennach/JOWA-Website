@@ -15,6 +15,13 @@ export const JOURNALS_QUERY = gql`
             nickname
           }
         }
+				tags {
+					nodes {
+						name
+						slug
+						uri
+					}
+				}
         date
         modified
         postData {

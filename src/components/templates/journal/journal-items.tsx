@@ -1,19 +1,29 @@
 'use client'
 
-import { Post } from '@/src/gql/graphql'
+import { Post, Tag } from '@/src/gql/graphql'
 import { Container, Section } from '../../craft'
 import Image from 'next/image'
 import { imageLoader } from '../../../lib/utils'
 import { Text } from '../../ui/text'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+
 const JournalItems = ({ posts }: { posts: Post[] }) => {
-  console.log(posts)
+  const searchParams = useSearchParams()
+  const searchCategory = searchParams.get('category')
+  const router = useRouter()
   return (
     <Section>
       <Container className="border-b">
         <div className="grid gap-14 pb-24 pt-10 lg:grid-cols-3 lg:gap-4">
           {posts.map((post, index) => {
-            return <JournalItem key={index} post={post} />
+						const categoryExists =
+							post &&
+							post.tags &&
+							post?.tags.nodes.some(
+								(tag: Tag) => tag.slug === searchCategory
+							);
+						if(!searchCategory || categoryExists) return <JournalItem key={index} post={post} />
+            return null;
           })}
         </div>
       </Container>

@@ -20,9 +20,9 @@ export default function ProjectItem({
     project?.featuredImage?.node ?? project?.projectFields?.heroImage?.node
   const categoryExists =
     project &&
-    project.categories &&
-    project?.categories.nodes.some(
-      (category: Category) => category.slug === searchCategory
+    project.tags &&
+    project?.tags.nodes.some(
+      (tag: Tag) => tag.slug === searchCategory
     )
 
   if (searchCategory && !categoryExists) return null

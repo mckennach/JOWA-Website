@@ -3,7 +3,7 @@
 import { cn } from '@/src/lib/utils'
 import { forwardRef, useState, useCallback, useEffect } from 'react'
 import { Text } from '@/src/components/ui/text'
-import { Category } from '@/src/gql/graphql'
+import { Category, Tag } from '@/src/gql/graphql'
 import { useRouter, usePathname } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 export type FilterItem = {
@@ -14,8 +14,8 @@ export type FilterItem = {
 
 export type FilterProps = {
   label?: string
-  items?: Category[]
-  onChange?: (value: Category | null) => void
+  items?: Tag[]
+  onChange?: (value: Tag | null) => void
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Filter = forwardRef<HTMLDivElement, FilterProps>(
@@ -27,10 +27,10 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     const searchCategory = searchParams.get('category')
     const router = useRouter()
     const pathname = usePathname()
-    const [activeItem, setActiveItem] = useState<Category | null>(null)
+    const [activeItem, setActiveItem] = useState<Tag | null>(null)
     const [isOpen, setIsOpen] = useState(false)
     const handleSetActiveItem = useCallback(
-      (item: Category | null) => {
+      (item: Tag | null) => {
         setActiveItem(item)
         setIsOpen(false)
         onChange(item)
@@ -57,7 +57,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       <div ref={ref} className={cn('max-w-full', className)} {...props}>
         <div className="flex items-baseline">
           <div
-            className="flex basis-[12.5%] cursor-pointer border-b"
+            className="flex basis-1/2 lg:basis-[12.5%] cursor-pointer border-b"
             onClick={() => setIsOpen(!isOpen)}
             tabIndex={0}
             onKeyDown={(e) => {
@@ -73,7 +73,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           </div>
           <div
             className={cn(
-              'grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4',
+              'grid flex-shrink basis-1/2 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7 grid-rows-4',
               isOpen && '!hidden opacity-0'
             )}
           >
@@ -102,7 +102,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           </div>
           <div
             className={cn(
-              'grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4',
+              'grid flex-shrink basis-1/2 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7 grid-rows-4',
               !isOpen && 'invisible hidden opacity-0'
             )}
           >
