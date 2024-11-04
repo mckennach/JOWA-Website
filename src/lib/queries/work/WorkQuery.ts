@@ -16,13 +16,59 @@ export const WORK_QUERY = gql`
         }
         projectFields {
           description
-          fieldGroupName
+          fullWidthImage2 {
+            cursor
+            node {
+              altText
+              mediaItemUrl
+              title
+            }
+          }
+          featuredImage {
+            cursor
+            node {
+              altText
+              mediaItemUrl
+              title
+            }
+          }
           heroImage {
             cursor
             node {
               altText
               mediaItemUrl
               title
+            }
+          }
+          introFullWidthImage {
+            node {
+              mediaItemUrl
+              altText
+            }
+          }
+          imageGallery {
+            image1 {
+              node {
+                mediaItemUrl
+                altText
+              }
+            }
+            image1Caption
+            image2Caption
+            image2 {
+              node {
+                altText
+                mediaItemUrl
+              }
+            }
+          }
+          project {
+            content
+            image {
+              node {
+                altText
+                mediaItemUrl
+              }
             }
           }
         }
@@ -32,7 +78,7 @@ export const WORK_QUERY = gql`
             categoryId
             name
             parentId
-						slug
+            slug
           }
         }
       }

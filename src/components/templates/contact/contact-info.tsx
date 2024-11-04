@@ -12,24 +12,24 @@ export default function ContactInfo({ page }: { page: Page }) {
         <table className="w-full max-w-[529px] text-secondary-foreground">
           <tbody>
             <tr className="border-b">
-              <td className="flex  p-0">
+              <td className="flex p-0">
                 <Text type="label">Contact Us</Text>
               </td>
               <td className=""></td>
             </tr>
             <tr className="border-b">
-              <td className="flex  p-0">
+              <td className="flex p-0">
                 <Text type="label">E-MAIL</Text>
               </td>
-              <td className=" p-0">
+              <td className="p-0">
                 <Text type="label">{page?.contactPage?.emailAddress}</Text>
               </td>
             </tr>
             <tr className="border-b">
-              <td className="flex  p-0">
+              <td className="flex p-0">
                 <Text type="label">TEL</Text>
               </td>
-              <td className=" p-0">
+              <td className="p-0">
                 <Text type="label">{page?.contactPage?.phoneNumber}</Text>
               </td>
             </tr>

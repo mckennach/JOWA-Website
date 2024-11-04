@@ -27,17 +27,17 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     categories: { nodes: Array<Category> }
   }>(print(CATEGORIES_QUERY), {
     parent: 1370,
-  });
+  })
 
-	const filterItems = categories.nodes.filter((category: Category) => category && category.projects && category.projects.nodes.length > 0);
+  const filterItems = categories.nodes.filter(
+    (category: Category) =>
+      category && category.projects && category.projects.nodes.length > 0
+  )
 
   return (
     <Section className="bg-secondary">
       <Container>
-        <Filter
-          className="sticky top-24 z-50 lg:left-12"
-          items={filterItems}
-        />
+        <Filter className="sticky top-24 z-50 lg:left-12" items={filterItems} />
         {nodes.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />
         ))}

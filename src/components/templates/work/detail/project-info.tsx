@@ -25,7 +25,7 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
     categories.nodes.filter((category) => category.parentId === 'dGVybToxMzc1')
   return (
     <div>
-      <div className="w-full max-w-[529px] ">
+      <div className="w-full max-w-[529px]">
         <div className="">
           {location && (
             <div className="flex border-b">
@@ -38,7 +38,7 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
             </div>
           )}
           {category && (
-            <div className="border-b flex">
+            <div className="flex border-b">
               <div className="flex basis-1/2">
                 <Text type="label">Category</Text>
               </div>
@@ -58,7 +58,7 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
             </div>
           )}
           {projectType && (
-            <div className="border-b flex">
+            <div className="flex border-b">
               <div className="flex basis-1/2">
                 <Text type="label">Project Type</Text>
               </div>
@@ -69,10 +69,10 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
           )}
           {projectServices && (
             <div className="flex items-baseline">
-              <div className="border-b flex  basis-1/2">
+              <div className="flex basis-1/2 border-b">
                 <Text type="label">Services</Text>
               </div>
-              <div className="p-0 flex flex-col basis-1/2">
+              <div className="flex basis-1/2 flex-col p-0">
                 {projectServices.map((service) => (
                   <div key={service.id} className="border-b">
                     <Text type="label">{service.name}</Text>

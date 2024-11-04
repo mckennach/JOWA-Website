@@ -60,7 +60,11 @@ export default function TeamMembers() {
                     />
                   </div>
                   <div>
-                    <Text type="label" tag="p" className="text-[24px] leading-[40px]">
+                    <Text
+                      type="label"
+                      tag="p"
+                      className="text-[24px] leading-[40px]"
+                    >
                       {member?.memberData?.name}
                     </Text>
                     <Text>{member?.memberData?.jobTitle}</Text>

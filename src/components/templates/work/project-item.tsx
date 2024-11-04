@@ -13,16 +13,19 @@ export default function ProjectItem({
   project: Project
   index: number
 }) {
-	const searchParams = useSearchParams();
-	const searchCategory = searchParams.get('category');
+  const searchParams = useSearchParams()
+  const searchCategory = searchParams.get('category')
   const router = useRouter()
   const featuredImage =
     project?.featuredImage?.node ?? project?.projectFields?.heroImage?.node
-  const categoryExists = project && project.categories && project?.categories.nodes.some(
-		(category: Category) => category.slug === searchCategory
-	);
+  const categoryExists =
+    project &&
+    project.categories &&
+    project?.categories.nodes.some(
+      (category: Category) => category.slug === searchCategory
+    )
 
-	if(searchCategory && !categoryExists) return null;
+  if (searchCategory && !categoryExists) return null
 
   return (
     <div

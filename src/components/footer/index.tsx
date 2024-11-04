@@ -13,9 +13,7 @@ export default function Footer() {
             <div>
               <div className="grid grid-cols-2 border-b border-t py-4 text-2xl md:grid-cols-4">
                 <div>
-                  <p className="body-sm-fluid">
-                    Where your vision unfolds.
-                  </p>
+                  <p className="body-sm-fluid">Where your vision unfolds.</p>
                 </div>
                 <div>
                   <p className="body-sm-fluid">Vancouver, BC</p>
@@ -34,9 +32,7 @@ export default function Footer() {
                   <p className="body-sm-fluid">E: info@jowa.ca</p>
                 </div>
                 <div>
-                  <p className="body-sm-fluid">
-                    © 2023 Jowa Interiors Ltd.
-                  </p>
+                  <p className="body-sm-fluid">© 2023 Jowa Interiors Ltd.</p>
                 </div>
               </div>
               <div className="flex items-center justify-end pb-20 pt-4">

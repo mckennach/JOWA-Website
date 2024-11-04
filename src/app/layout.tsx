@@ -65,7 +65,7 @@ export default async function RootLayout({
             <ScrollProvider>
               <ApolloWrapper>
                 <ThemeProvider>
-									{/* <Loading /> */}
+                  {/* <Loading /> */}
                   {isEnabled && <PreviewNotice />}
                   <Navigation menuItems={menuItems} />
                   {children}

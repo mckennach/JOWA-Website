@@ -19,7 +19,7 @@ export default async function JournalTemplate({ node }: TemplateProps) {
     <>
       <Section className="border-b pb-10 pt-44">
         <Container>
-          <Filter className="fixed top-24 w-full lg:left-12 z-50" />
+          <Filter className="fixed top-24 z-50 w-full lg:left-12" />
           <Text type="title1" tag="h1" className="text-accent-foreground">
             Journal
           </Text>

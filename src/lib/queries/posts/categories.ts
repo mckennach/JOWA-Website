@@ -15,16 +15,16 @@ export const CATEGORIES_QUERY = gql`
           }
         }
         parentId
-				posts {
-					nodes {
-						id
-					}
-				}
-				projects {
-					nodes {
-						id
-					}
-				}
+        posts {
+          nodes {
+            id
+          }
+        }
+        projects {
+          nodes {
+            id
+          }
+        }
       }
     }
   }

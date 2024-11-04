@@ -89,8 +89,7 @@ export default function Navigation({
                   className={cn(
                     'nav-fluid transition-all',
                     isActive,
-                    isWorkDetail && 'text-background before:bg-background',
-
+                    isWorkDetail && 'text-background before:bg-background'
                   )}
                 >
                   <span itemProp="name">{item.label}</span>

@@ -11,6 +11,7 @@ import { Container, Section } from '../../../craft'
 import ProjectInfo from './project-info'
 import { WORK_QUERY } from '@/lib/queries'
 import NextPost from './next-post'
+import ProjectContent from './project-content'
 interface TemplateProps {
   node: ContentNode
 }
@@ -30,6 +31,7 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
     <>
       <ProjectHero project={project} />
       <ProjectInfo project={project} />
+			<ProjectContent project={project} />
       <NextPost projects={projects} currentId={project.id} />
     </>
   )

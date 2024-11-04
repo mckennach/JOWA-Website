@@ -23,33 +23,35 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     { label = 'Filter By', items, className, onChange = () => null, ...props },
     ref
   ) => {
-		const searchParams = useSearchParams();
-		const searchCategory = searchParams.get('category');
-		const router = useRouter();
-		const pathname = usePathname();
+    const searchParams = useSearchParams()
+    const searchCategory = searchParams.get('category')
+    const router = useRouter()
+    const pathname = usePathname()
     const [activeItem, setActiveItem] = useState<Category | null>(null)
-    const [isOpen, setIsOpen] = useState(false);
-		const handleSetActiveItem = useCallback((item: Category | null) => {
-			setActiveItem(item)
-			setIsOpen(false);
-			onChange(item);
-			if(item) {
-				const slug = item.slug;
-				const params = new URLSearchParams(searchParams.toString())
-				slug && params.set('category', slug); 
-				router.push(`${pathname}?${params.toString()}`);
-	
-			} else {
-				router.push(pathname);
-			}
-		}, [onChange, router, pathname]); // eslint-disable-line
+    const [isOpen, setIsOpen] = useState(false)
+    const handleSetActiveItem = useCallback(
+      (item: Category | null) => {
+        setActiveItem(item)
+        setIsOpen(false)
+        onChange(item)
+        if (item) {
+          const slug = item.slug
+          const params = new URLSearchParams(searchParams.toString())
+          slug && params.set('category', slug)
+          router.push(`${pathname}?${params.toString()}`)
+        } else {
+          router.push(pathname)
+        }
+      },
+      [onChange, router, pathname]
+    ) // eslint-disable-line
 
-		useEffect(() => {
-			if(searchCategory && items) {
-				const category = items.find((item) => item.slug === searchCategory);
-				setActiveItem(category || null);
-			}
-		}, [searchCategory, items]);
+    useEffect(() => {
+      if (searchCategory && items) {
+        const category = items.find((item) => item.slug === searchCategory)
+        setActiveItem(category || null)
+      }
+    }, [searchCategory, items])
 
     return (
       <div ref={ref} className={cn('max-w-full', className)} {...props}>
@@ -69,9 +71,14 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               {label}:
             </Text>
           </div>
-					<div className={cn("grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4", isOpen && 'opacity-0 !hidden')}>
-						<div
-              className={cn('flex border-b cursor-pointer')}
+          <div
+            className={cn(
+              'grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4',
+              isOpen && '!hidden opacity-0'
+            )}
+          >
+            <div
+              className={cn('flex cursor-pointer border-b')}
               tabIndex={0}
               role="button"
               onClick={() => {
@@ -92,8 +99,13 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
                 {activeItem ? activeItem.name : 'All'}
               </Text>
             </div>
-					</div>
-          <div className={cn("grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4", !isOpen && 'opacity-0 invisible hidden')}>
+          </div>
+          <div
+            className={cn(
+              'grid flex-shrink basis-[87.5%] grid-flow-col grid-cols-7 grid-rows-4',
+              !isOpen && 'invisible hidden opacity-0'
+            )}
+          >
             <div
               className={cn('flex border-b')}
               tabIndex={0}
@@ -107,7 +119,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
             >
               <Text
                 className={cn(
-									'hover:text-accent-foreground',
+                  'hover:text-accent-foreground',
                   !activeItem && isOpen && 'text-accent-foreground'
                 )}
                 type="label"
@@ -120,20 +132,21 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
                 return (
                   <div
                     key={index}
-										tabIndex={0}
-										role="button"
-                    className={cn('flex border-b cursor-pointer', !isOpen && 'opacity-0 invisible', activeItem === item && isOpen && 'text-accent-foreground')}
-										onClick={() => handleSetActiveItem(item)}
-										onKeyDown={(e) => {
-											if (e.key === 'Enter') {
-												handleSetActiveItem(item)
-											}
-										}}
+                    tabIndex={0}
+                    role="button"
+                    className={cn(
+                      'flex cursor-pointer border-b',
+                      !isOpen && 'invisible opacity-0',
+                      activeItem === item && isOpen && 'text-accent-foreground'
+                    )}
+                    onClick={() => handleSetActiveItem(item)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleSetActiveItem(item)
+                      }
+                    }}
                   >
-                    <Text
-                      type="label"
-                      className="hover:text-accent-foreground"
-                    >
+                    <Text type="label" className="hover:text-accent-foreground">
                       {item.name}
                     </Text>
                   </div>
