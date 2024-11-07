@@ -36,7 +36,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="mobile-navigation flex h-dvh flex-col bg-popover p-0"
+        className="mobile-navigation flex h-dvh max-h-dvh flex-col bg-popover p-0"
       >
         <header className="flex basis-1/4 items-start px-3.5 py-8">
           <div className="flex w-full items-center justify-between">
@@ -48,7 +48,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
             </SheetClose>
           </div>
         </header>
-        <div className="my-4 flex h-dvh flex-col justify-end">
+        <div className="my-4 flex flex-col justify-end">
           <div className="flex flex-col space-y-3 text-foreground">
             <ul className="w-full [&>li]:border-b [&>li]:px-14 [&>li]:py-6">
               {menuItems.nodes.map((item: MenuItem, index: number) => {
