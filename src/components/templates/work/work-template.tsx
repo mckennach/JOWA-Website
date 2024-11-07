@@ -24,20 +24,24 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     print(WORK_QUERY)
   )
 
-	const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
+  const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),
     {
       caches: false,
     }
-  );
+  )
 
-	
-	const filterItems = tags.nodes.filter((tag) => tag?.projects && tag?.projects?.nodes?.length > 0);
+  const filterItems = tags.nodes.filter(
+    (tag) => tag?.projects && tag?.projects?.nodes?.length > 0
+  )
 
   return (
     <Section className="bg-secondary">
       <Container className="pt-36">
-        <Filter className="fixed top-24 z-50 w-full left-0 px-4 lg:px-12" items={filterItems} />
+        <Filter
+          className="fixed left-0 top-24 z-50 w-full px-4 lg:px-12"
+          items={filterItems}
+        />
         {nodes.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />
         ))}

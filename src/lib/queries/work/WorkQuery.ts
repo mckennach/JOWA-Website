@@ -7,13 +7,13 @@ export const WORK_QUERY = gql`
         id
         title
         slug
-				tags {
-					nodes {
-						name
-						slug
-						uri
-					}
-				}
+        tags {
+          nodes {
+            name
+            slug
+            uri
+          }
+        }
         featuredImage {
           node {
             altText

@@ -21,9 +21,7 @@ export default function ProjectItem({
   const categoryExists =
     project &&
     project.tags &&
-    project?.tags.nodes.some(
-      (tag: Tag) => tag.slug === searchCategory
-    )
+    project?.tags.nodes.some((tag: Tag) => tag.slug === searchCategory)
 
   if (searchCategory && !categoryExists) return null
 

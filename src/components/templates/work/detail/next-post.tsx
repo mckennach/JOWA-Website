@@ -30,7 +30,10 @@ export default function NextPost({
   return (
     <Section className="bg-foreground py-32">
       <Container className="">
-        <Text tag="h3" className="text-[48px] leading-8 text-background mb-28 lg:mb-0">
+        <Text
+          tag="h3"
+          className="mb-28 text-[48px] leading-8 text-background lg:mb-0"
+        >
           NEXT PROJECT
         </Text>
         <Carousel
@@ -122,7 +125,7 @@ const CarouselPrevious = () => {
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       className={cn(
-        'absolute left-5 lg:left-12 top-[65%] lg:top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100',
+        'absolute left-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:left-12 lg:top-1/2',
         !canScrollPrev && 'hidden'
       )}
     >
@@ -138,7 +141,7 @@ const CarouselNext = () => {
       disabled={!canScrollNext}
       onClick={scrollNext}
       className={cn(
-        'absolute right-5 lg:right-12 top-[65%] lg:top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100',
+        'absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2',
         !canScrollNext && 'hidden'
       )}
     >

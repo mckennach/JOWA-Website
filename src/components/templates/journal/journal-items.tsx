@@ -16,14 +16,13 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
       <Container className="border-b">
         <div className="grid gap-14 pb-24 pt-10 lg:grid-cols-3 lg:gap-4">
           {posts.map((post, index) => {
-						const categoryExists =
-							post &&
-							post.tags &&
-							post?.tags.nodes.some(
-								(tag: Tag) => tag.slug === searchCategory
-							);
-						if(!searchCategory || categoryExists) return <JournalItem key={index} post={post} />
-            return null;
+            const categoryExists =
+              post &&
+              post.tags &&
+              post?.tags.nodes.some((tag: Tag) => tag.slug === searchCategory)
+            if (!searchCategory || categoryExists)
+              return <JournalItem key={index} post={post} />
+            return null
           })}
         </div>
       </Container>

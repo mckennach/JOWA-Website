@@ -57,7 +57,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       <div ref={ref} className={cn('max-w-full', className)} {...props}>
         <div className="flex items-baseline">
           <div
-            className="flex basis-1/2 lg:basis-[12.5%] cursor-pointer border-b"
+            className="flex basis-1/2 cursor-pointer border-b lg:basis-[12.5%]"
             onClick={() => setIsOpen(!isOpen)}
             tabIndex={0}
             onKeyDown={(e) => {
@@ -73,7 +73,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           </div>
           <div
             className={cn(
-              'grid flex-shrink basis-1/2 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7 grid-rows-4',
+              'grid flex-shrink basis-1/2 grid-rows-4 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7',
               isOpen && '!hidden opacity-0'
             )}
           >
@@ -102,7 +102,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           </div>
           <div
             className={cn(
-              'grid flex-shrink basis-1/2 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7 grid-rows-4',
+              'grid flex-shrink basis-1/2 grid-rows-4 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7',
               !isOpen && 'invisible hidden opacity-0'
             )}
           >

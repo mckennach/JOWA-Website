@@ -31,7 +31,7 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
     <>
       <ProjectHero project={project} />
       <ProjectInfo project={project} />
-			<ProjectContent project={project} />
+      <ProjectContent project={project} />
       <NextPost projects={projects} currentId={project.id} />
     </>
   )

@@ -11,10 +11,10 @@ type AboutLogoProps = {
 
 export default function AboutLogo({ page }: AboutLogoProps) {
   return (
-    <Section className="relative flex items-center justify-center border-t border-t-foreground py-96">
+    <Section className="relative flex items-center justify-center border-t border-t-foreground py-48">
       <Container className="flex flex-col">
         <div className="mx-auto w-full max-w-[800px]">
-          <CustomIcons name="logo" color="#fff" width={800} />
+          <CustomIcons name="about-logo" width={800} />
         </div>
         <div className="absolute bottom-20 left-12 max-w-[296px]">
           <Text className="text-[16px] leading-[24px] text-accent-foreground">
