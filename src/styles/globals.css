@@ -102,7 +102,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 17 31% 18%;
+    --border: var(--cream);
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
   }

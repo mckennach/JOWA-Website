@@ -16,8 +16,9 @@ export default function Navigation({
   className?: string
 }) {
   const [isScrolled, setIsScrolled] = useState(false)
-  const matches = useMediaQuery('(min-width: 1285px)')
-  const pathname = usePathname()
+  const matches = useMediaQuery('(min-width: 1024px)')
+  const pathname = usePathname();
+	
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +74,7 @@ export default function Navigation({
           />
         </Link>
         <div className="flex items-center gap-2">
-          <div className="mx-2 hidden lg:flex lg:gap-24">
+          <div className="mx-2 hidden lg:flex lg:gap-14 xl:gap-24 transition-all duration-75">
             {menuItems.nodes.map((item: MenuItem, index: number) => {
               if (!item.uri) return null
               const isActive =
@@ -97,7 +98,9 @@ export default function Navigation({
               )
             })}
           </div>
-          <MobileNavigation menuItems={menuItems} />
+					{!matches && (
+	          <MobileNavigation menuItems={menuItems} />
+					)}
           {/* <MobileNav /> */}
         </div>
       </div>

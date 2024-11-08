@@ -6,8 +6,8 @@ export const AboutLogo = ({ color = '#FBF1DF', ...props }: Icon) => {
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
-      width={props.width}
-			height={props.height}
+      width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
       viewBox="0 0 924 643.6"
     >
       <path

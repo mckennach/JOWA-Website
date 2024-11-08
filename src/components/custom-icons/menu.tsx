@@ -1,6 +1,6 @@
 import { type Icon } from '.'
 
-export const Menu = ({ color = '#3F261D', ...props }: Icon) => {
+export const Menu = ({ color = 'currentColor', ...props }: Icon) => {
   return (
     <svg
       width="27"

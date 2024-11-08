@@ -11,12 +11,12 @@ type AboutLogoProps = {
 
 export default function AboutLogo({ page }: AboutLogoProps) {
   return (
-    <Section className="relative flex items-center justify-center border-t border-t-foreground py-48">
-      <Container className="flex flex-col">
-        <div className="mx-auto w-full max-w-[800px]">
-          <CustomIcons name="about-logo" width={800} />
+    <Section className="relative flex items-center justify-center border-t border-t-foreground  py-24 lg:py-48">
+      <Container className="flex flex-col gap-8 px-4 lg:px-0 w-full ">
+        <div className="mx-auto w-full lg:max-w-[800px]">
+          <CustomIcons name="about-logo"  className="mx-auto lg:max-w-[800px] w-full" />
         </div>
-        <div className="absolute bottom-20 left-12 max-w-[296px]">
+        <div className="ml-0 lg:absolute lg:bottom-20 lg:left-12 lg:px-0 max-w-[296px]">
           <Text className="text-[16px] leading-[24px] text-accent-foreground">
             {page?.aboutPage?.logoDescription}
           </Text>

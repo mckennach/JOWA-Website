@@ -32,7 +32,7 @@ export const Submark = ({
       </g>
       <defs>
         <clipPath id="clip0_117_273">
-          <rect width="54" height="26" fill="white" />
+          <rect width="54" height="26" fill={color} />
         </clipPath>
       </defs>
     </svg>
