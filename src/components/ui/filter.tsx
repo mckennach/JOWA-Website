@@ -1,9 +1,10 @@
 'use client'
 
 import { cn } from '@/src/lib/utils'
-import { forwardRef, useState, useCallback, useEffect } from 'react'
+import { forwardRef, useState, useCallback, useEffect, useRef } from 'react'
 import { Text } from '@/src/components/ui/text'
 import { Category, Tag } from '@/src/gql/graphql'
+import { useOnClickOutside } from 'usehooks-ts'
 import { useRouter, usePathname } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 export type FilterItem = {
@@ -16,19 +17,22 @@ export type FilterProps = {
   label?: string
   items?: Tag[]
   onChange?: (value: Tag | null) => void
+	columns?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Filter = forwardRef<HTMLDivElement, FilterProps>(
   (
-    { label = 'Filter By', items, className, onChange = () => null, ...props },
+    { label = 'Filter By', items, className, onChange = () => null, columns = false, ...props },
     ref
   ) => {
+		const containerRef = useRef(null)
     const searchParams = useSearchParams()
     const searchCategory = searchParams.get('category')
     const router = useRouter()
-    const pathname = usePathname()
+    const pathname = usePathname();
+		const [clickedOpen, setClickedOpen] = useState(false)
     const [activeItem, setActiveItem] = useState<Tag | null>(null)
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(true)
     const handleSetActiveItem = useCallback(
       (item: Tag | null) => {
         setActiveItem(item)
@@ -43,26 +47,51 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           router.push(pathname)
         }
       },
-      [onChange, router, pathname]
-    ) // eslint-disable-line
+      [onChange, router, pathname] // eslint-disable-line react-hooks/exhaustive-deps
+    );
+		
+		useEffect(() => {
+			const handleScroll = () => {
+				if (window.scrollY > 500) {
+					if(clickedOpen) return;
+					setIsOpen(false)
+				} else {
+					setIsOpen(true)
+				}
+			}
+			window.addEventListener('scroll', handleScroll)
+			return () => window.removeEventListener('scroll', handleScroll)
+		}, [])
 
     useEffect(() => {
       if (searchCategory && items) {
         const category = items.find((item) => item.slug === searchCategory)
         setActiveItem(category || null)
       }
-    }, [searchCategory, items])
+    }, [searchCategory, items]);
+
+		const handleClose = () => {
+			setIsOpen(false);
+			setClickedOpen(false);
+		};
+
+		useOnClickOutside(containerRef, handleClose)
+
 
     return (
       <div ref={ref} className={cn('max-w-full', className)} {...props}>
-        <div className="flex items-baseline">
+        <div className="flex items-baseline" ref={containerRef}>
           <div
             className="flex basis-1/2 cursor-pointer border-b lg:basis-[12.5%]"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+							setIsOpen(!isOpen)
+							setClickedOpen(!isOpen);
+						}}
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                setIsOpen(!isOpen)
+                setIsOpen(!isOpen);
+								setClickedOpen(!isOpen);
               }
             }}
             role="button"
@@ -71,7 +100,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               {label}:
             </Text>
           </div>
-          <div
+          <div				
             className={cn(
               'grid flex-shrink basis-1/2 grid-rows-4 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7',
               isOpen && '!hidden opacity-0'
@@ -102,8 +131,9 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           </div>
           <div
             className={cn(
-              'grid flex-shrink basis-1/2 grid-rows-4 lg:basis-[87.5%] lg:grid-flow-col lg:grid-cols-7',
-              !isOpen && 'invisible hidden opacity-0'
+              'grid flex-shrink basis-1/2  lg:basis-[87.5%] grid-rows-8 lg:grid-flow-col lg:grid-cols-7',
+              columns && 'grid-rows-4 ',
+							!isOpen && 'invisible hidden opacity-0'
             )}
           >
             <div

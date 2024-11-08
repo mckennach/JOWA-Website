@@ -40,6 +40,7 @@ export default async function WorkTemplate({ node }: TemplateProps) {
 		"before:fixed before:left-0 before:z-50 before:top-0 before:w-full before:h-[250px] before:from-background before:from-50% before:to-transparent before:bg-gradient-to-b")}>
       <Container className="pt-36">
         <Filter
+					label='View by'
           className="fixed left-0 top-24 z-50 w-full px-4 lg:px-12"
           items={filterItems}
         />

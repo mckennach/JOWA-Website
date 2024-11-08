@@ -23,15 +23,18 @@ type MobileNavigationProps = {
 export function MobileNavigation({ menuItems }: MobileNavigationProps) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname();
-  // const isWorkDetail =
-  //   pathname.includes('work') && pathname.split('/').length > 3
+  const isWorkDetail =
+    pathname.includes('work') && pathname.split('/').length > 2
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger className="p-2 lg:hidden">
         <span className="sr-only">Toggle Menu</span>
         <CustomIcons
           name="menu"
-          className={cn('w-[25px]', 'text-foreground')}
+          className={cn('w-[25px]', )}
+					color={isWorkDetail ? 'hsla(39, 78%, 93%, 1)' : 'currentColor'}
+					strokeWidth={1}
+
         />
       </SheetTrigger>
       <SheetContent

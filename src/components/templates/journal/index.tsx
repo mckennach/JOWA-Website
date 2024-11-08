@@ -38,6 +38,7 @@ export default async function JournalTemplate({ node }: TemplateProps) {
           <Filter
             className="fixed left-0 top-24 z-50 w-full px-4 lg:px-12"
             items={filterItems}
+						columns={true}
           />
           <Text type="title1" tag="h1" className="text-accent-foreground">
             Journal

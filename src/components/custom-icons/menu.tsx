@@ -6,7 +6,7 @@ export const Menu = ({ color = 'currentColor', ...props }: Icon) => {
       width="27"
       height="18"
       viewBox="0 0 27 18"
-      fill="none"
+      fill={color}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
