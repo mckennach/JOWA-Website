@@ -158,7 +158,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
           ref={intersectRef}
         >
           <Image
-            src={''}
+            src={image?.url ?? ''}
             alt={image.alt ?? ''}
             fill={true}
             style={{
