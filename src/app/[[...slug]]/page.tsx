@@ -59,9 +59,9 @@ type Props = {
 //   } as Metadata
 // }
 
-export function generateStaticParams() {
-  return []
-}
+// export function generateStaticParams() {
+//   return []
+// }
 
 export default async function Page({ params }: Props) {
   let detailSlug: string | boolean = false
@@ -87,30 +87,30 @@ export default async function Page({ params }: Props) {
 
   if (!contentNode) return notFound()
 
-  if (contentNode.contentTypeName === 'page') {
-    switch (slug) {
-      case '/':
-        return <HomePage node={contentNode} />
-      case 'work':
-        return <WorkTemplate node={contentNode} />
-      case 'journal':
-        return <JournalTemplate node={contentNode} />
-      case 'about':
-        return <AboutTemplate node={contentNode} />
-      case 'contact':
-        return <ContactTemplate node={contentNode} />
-      default:
-        return (
-          <div className="flex h-[90vh] items-center justify-center">
-            <h1>COMING SOON</h1>
-          </div>
-        )
-    }
-  } else if (contentNode.contentTypeName === 'project') {
-    return <WorkDetailTemplate node={contentNode} />
-  } else if (contentNode.contentTypeName === 'post') {
-    return <JournalDetailTemplate node={contentNode} />
-  }
+  // if (contentNode.contentTypeName === 'page') {
+  //   switch (slug) {
+  //     case '/':
+  //       return <HomePage node={contentNode} />
+  //     case 'work':
+  //       return <WorkTemplate node={contentNode} />
+  //     case 'journal':
+  //       return <JournalTemplate node={contentNode} />
+  //     case 'about':
+  //       return <AboutTemplate node={contentNode} />
+  //     case 'contact':
+  //       return <ContactTemplate node={contentNode} />
+  //     default:
+  //       return (
+  //         <div className="flex h-[90vh] items-center justify-center">
+  //           <h1>COMING SOON</h1>
+  //         </div>
+  //       )
+  //   }
+  // } else if (contentNode.contentTypeName === 'project') {
+  //   return <WorkDetailTemplate node={contentNode} />
+  // } else if (contentNode.contentTypeName === 'post') {
+  //   return <JournalDetailTemplate node={contentNode} />
+  // }
 
   return (
     <div className="flex h-[90vh] items-center justify-center">
