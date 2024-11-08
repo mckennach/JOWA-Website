@@ -71,8 +71,7 @@ export default async function RootLayout({
                   {isEnabled && <PreviewNotice />}
                   <Navigation menuItems={menuItems} />
                   {children}
-									<PricingCTA />
-									<FloatingContact />
+									
                   <Footer />
                 </ThemeProvider>
               </ApolloWrapper>
