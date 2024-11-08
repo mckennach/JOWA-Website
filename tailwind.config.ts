@@ -44,6 +44,7 @@ const config = {
         walnut: 'hsl(var(--walnut))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+				'jowa-red': 'hsl(var(--red))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

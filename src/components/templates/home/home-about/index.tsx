@@ -13,11 +13,11 @@ import { imageLoader } from '@/src/lib/utils'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
 
-type HomeContentProps = {
+type HomeAboutProps = {
   data: HomeHomeContent
 }
 
-export default function HomeContent({ data }: HomeContentProps) {
+export default function HomeAbout({ data }: HomeAboutProps) {
   const containerRef = useRef(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef(null)
@@ -107,6 +107,13 @@ export default function HomeContent({ data }: HomeContentProps) {
             </div>
           </div>
         </div>
+				<div className="sticky bottom-10 lg:right-24 z-40">
+					<Link href="/about">
+						<Text type="label" className="text-cream inline-flex items-center gap-2">
+							ABOUT US
+					</Text>
+					</Link>
+				</div>
       </Container>
     </Section>
   )

@@ -8,7 +8,7 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { print } from 'graphql/language/printer'
 import { HOME_PAGE_QUERY } from './home-query'
 import FeaturedProjects from './featured-projects'
-import HomeContent from './home-content'
+import HomeAbout from './home-about'
 import gql from 'graphql-tag'
 
 const FEATURED_PROJECTS_QUERY = gql`
@@ -62,7 +62,7 @@ export default async function HomePage({ node }: TemplateProps) {
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects projects={projects?.nodes} />
       )}
-      {homeContent && <HomeContent data={homeContent} />}
+      {homeContent && <HomeAbout data={homeContent} />}
     </>
   )
 }
