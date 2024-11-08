@@ -103,7 +103,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
               key={index}
               index={index}
               image={{
-                url: image?.mediaItemUrl ?? '',
+                url: image?.sourceUrl ?? '',
                 alt: image?.altText ?? '',
               }}
               ref={(el) => {
@@ -158,15 +158,18 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
           ref={intersectRef}
         >
           <Image
-            src={image?.url ?? ''}
+            src={''}
             alt={image.alt ?? ''}
             fill={true}
             style={{
               objectFit: 'cover',
             }}
+						loading="eager"
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}
+						placeholder='blur'
+						blurDataURL='data:,Hello%2C%20World%21'
           />
         </div>
       </div>
