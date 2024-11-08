@@ -16,9 +16,8 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { MENU_ITEMS_QUERY } from '@/src/lib/queries'
 import { RootQueryToMenuItemConnection } from '@/gql/graphql'
 import { print } from 'graphql/language/printer'
-import Loading from '../components/loading'
-import FloatingContact from '../components/footer/floating-contact'
-import PricingCTA from '../components/footer/pricing-cta'
+
+
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
@@ -71,8 +70,6 @@ export default async function RootLayout({
                   {isEnabled && <PreviewNotice />}
                   <Navigation menuItems={menuItems} />
                   {children}
-									<PricingCTA />
-									<FloatingContact />
                   <Footer />
                 </ThemeProvider>
               </ApolloWrapper>

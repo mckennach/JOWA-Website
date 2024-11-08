@@ -24,7 +24,7 @@ export default function PricingCTA() {
 
 	if(closed) return null;
 	return (
-		<div className={cn("flex items-start p-4 gap-4 bg-cream/80 text-jowa-red fixed bottom-36 right-0 z-40 transition-all duration-700 ease-in-out", 
+		<div className={cn("flex items-start p-4 gap-4 bg-cream/85 text-jowa-red fixed bottom-28 right-0 z-40 transition-all duration-700 ease-in-out", 
 			open ? "opacity-100" : "opacity-0 pointer-events-none"
 		)}>
 			<Link href="/pricing" className="flex flex-col items-start justify-start">

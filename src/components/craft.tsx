@@ -91,7 +91,7 @@ type ContainerProps = {
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   ({ children, className, id }, ref) => {
     return (
-      <div className={cn('px-4 lg:px-12', className)} id={id} ref={ref}>
+      <div className={cn('container', className)} id={id} ref={ref}>
         {children}
       </div>
     )
@@ -145,4 +145,15 @@ const Article = ({
   )
 }
 
-export { Layout, Main, Section, Container, Article }
+interface FadedDivProps {
+	children?: React.ReactNode
+	className?: string
+}
+
+export default function FadeDiv({ children, className }: FadedDivProps) {
+	return (
+		<div className={cn('opacity-0 animate-fade-in', className)}>{children}</div>
+	)
+}
+
+export { Layout, Main, Section, Container, Article, FadeDiv }

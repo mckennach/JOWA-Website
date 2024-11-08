@@ -17,6 +17,8 @@ import AboutTemplate from '@/src/components/templates/about'
 import ContactTemplate from '@/src/components/templates/contact'
 import JournalTemplate from '@/src/components/templates/journal'
 import JournalDetailTemplate from '@/src/components/templates/journal/detail'
+import FloatingContact from '@/components/footer/floating-contact'
+import PricingCTA from '@/components/footer/pricing-cta'
 
 type Props = {
   params: { slug: string }
@@ -90,7 +92,13 @@ export default async function Page({ params }: Props) {
   if (contentNode.contentTypeName === 'page') {
     switch (slug) {
       case '/':
-        return <HomePage node={contentNode} />
+        return (
+					<>
+						<HomePage node={contentNode} />
+						<PricingCTA />
+						<FloatingContact />
+					</>
+				)
       case 'work':
         return <WorkTemplate node={contentNode} />
       case 'journal':
@@ -107,7 +115,12 @@ export default async function Page({ params }: Props) {
         )
     }
   } else if (contentNode.contentTypeName === 'project') {
-    return <WorkDetailTemplate node={contentNode} />
+    return (
+			<>
+				<WorkDetailTemplate node={contentNode} />
+				<PricingCTA />
+			</>
+		)
   } else if (contentNode.contentTypeName === 'post') {
     return <JournalDetailTemplate node={contentNode} />
   }

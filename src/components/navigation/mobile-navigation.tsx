@@ -38,7 +38,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
         side="top"
         className="mobile-navigation flex h-dvh max-w-screen max-h-dvh flex-col bg-popover p-0 z-[999]"
       >
-        <header className="h-full flex basis-1/4 items-start px-4 py-8">
+        <header className=" flex basis-1/4 items-start px-4 py-8">
           <div className="flex w-full items-center justify-between">
             <MobileLink href="/" onOpenChange={setOpen}>
               <CustomIcons name="submark" className="text-accent-foreground" />
