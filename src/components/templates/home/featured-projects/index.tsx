@@ -168,8 +168,6 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}
-						placeholder='blur'
-						blurDataURL='data:,Hello%2C%20World%21'
           />
         </div>
       </div>
