@@ -24,42 +24,42 @@ type Props = {
   params: { slug: string }
 }
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   let detailSlug: string | boolean = false
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  let detailSlug: string | boolean = false
 
-//   if (params.slug && params.slug.length > 1) {
-//     if (params.slug[0] === 'work') {
-//       detailSlug = `/project/${params.slug[1]}/`
-//     } else if (params.slug[0] === 'journal') {
-//       detailSlug = `/${params.slug[1]}/`
-//     }
-//   }
+  if (params.slug && params.slug.length > 1) {
+    if (params.slug[0] === 'work') {
+      detailSlug = `/project/${params.slug[1]}/`
+    } else if (params.slug[0] === 'journal') {
+      detailSlug = `/${params.slug[1]}/`
+    }
+  }
 
-//   const slug = nextSlugToWpSlug(detailSlug || params.slug)
+  const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
-//   const isPreview = slug.includes('preview')
+  const isPreview = slug.includes('preview')
 
-//   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-//     print(SEO_QUERY),
-//     {
-//       slug: isPreview ? slug.split('preview/')[1] : slug,
-//       idType: isPreview ? 'DATABASE_ID' : 'URI',
-//     }
-//   )
+  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+    print(SEO_QUERY),
+    {
+      slug: isPreview ? slug.split('preview/')[1] : slug,
+      idType: isPreview ? 'DATABASE_ID' : 'URI',
+    }
+  )
 
-//   if (!contentNode) {
-//     return notFound()
-//   }
+  if (!contentNode) {
+    return notFound()
+  }
 
-//   const metadata = setSeoData({ seo: contentNode.seo })
+  const metadata = setSeoData({ seo: contentNode.seo })
 
-//   return {
-//     ...metadata,
-//     alternates: {
-//       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}${slug}`,
-//     },
-//   } as Metadata
-// }
+  return {
+    ...metadata,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}${slug}`,
+    },
+  } as Metadata
+}
 
 // export function generateStaticParams() {
 //   return []
