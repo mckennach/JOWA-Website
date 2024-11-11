@@ -16,6 +16,7 @@ import { Input } from '@/src/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/src/components/ui/radio-group'
 import { Textarea } from '@/src/components/ui/textarea'
 import { FileWithPath, useDropzone } from 'react-dropzone'
+import { Text } from '../../ui/text'
 
 const formSchema = z.object({
   firstName: z.string().nonempty('First Name is required'),
@@ -151,9 +152,9 @@ export default function ContactForm() {
         </div>
         <div>
           <div className="mb-6 mt-8 border-b border-secondary-foreground">
-            <h2 className="text-[24px] text-secondary-foreground">
+            <Text type="title3" tag="h2" className="text-secondary-foreground">
               Project Details
-            </h2>
+            </Text>
           </div>
           <FormField
             control={form.control}

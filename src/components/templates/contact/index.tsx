@@ -17,27 +17,39 @@ export default async function ContactTemplate({ node }: TemplateProps) {
   )
   return (
     <Section className="bg-background">
-      <Container className="flex flex-col gap-14 py-32 lg:flex-row">
-        <div className="flex flex-col gap-14 lg:basis-1/2">
-          <div className="space-y-8">
-            <Text
-              type="heading"
-              tag="h1"
-              className="text-[48px] text-secondary-foreground"
-            >
-              {page.contactPage?.title}
-            </Text>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: page?.contactPage?.description ?? '',
-              }}
-              className="max-w-[673px] text-body"
-            />
+      <Container className="space-y-8 py-28">
+        <header>
+          <Text
+            type="title1"
+            tag="h1"
+            className="text-secondary-foreground"
+            // className="text-[48px] text-secondary-foreground"
+          >
+            {page.contactPage?.title}
+          </Text>
+        </header>
+        <div className="flex flex-col gap-14 lg:flex-row">
+          <div className="flex flex-col gap-14 lg:basis-1/2">
+            <div className="space-y-8">
+              {/* <Text
+								type="heading"
+								tag="h1"
+								className="text-[48px] text-secondary-foreground"
+							>
+								{page.contactPage?.title}
+							</Text> */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: page?.contactPage?.description ?? '',
+                }}
+                className="max-w-[673px] text-body"
+              />
+            </div>
+            <ContactForm />
           </div>
-          <ContactForm />
-        </div>
-        <div className="lg:basis-1/2">
-          <ContactInfo page={page} />
+          <div className="pt- lg:basis-1/2">
+            <ContactInfo page={page} />
+          </div>
         </div>
       </Container>
     </Section>

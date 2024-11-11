@@ -6,12 +6,7 @@ import {
   Project,
   RootQueryToProjectConnection,
 } from '@/src/gql/graphql'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  useCarousel,
-} from '@/components/ui/carousel'
+import Link from 'next/link'
 import { Section, Container } from '../../../craft'
 import { Text } from '../../../ui/text'
 import Image from 'next/image'
@@ -26,126 +21,98 @@ export default function NextPost({
   currentId: string
 }) {
   const router = useRouter()
+  const numberOfPosts = projects.nodes.length
+  const currentIndex = projects.nodes.findIndex(
+    (project: Project) => project.id === currentId
+  )
+  const nextPostIndex = (currentIndex + 1) % numberOfPosts
+  const nextPost = projects.nodes[nextPostIndex]
+  const date = new Date(nextPost?.date as string)
 
   return (
-    <Section className="bg-foreground py-32">
+    <Section className="bg-foreground py-10 lg:py-32">
       <Container className="">
-        <Text
-          tag="h3"
-          className="mb-28 text-[48px] leading-8 text-background lg:mb-0"
-        >
-          NEXT PROJECT
-        </Text>
-        <Carousel
-          className="w-full"
-          opts={{
-            align: 'start',
-          }}
-        >
-          <CarouselContent>
-            {projects.nodes
-              .filter((project: Project) => project.id !== currentId)
-              .map((project: Project, index: number) => {
-                return (
-                  <CarouselItem key={index}>
-                    <div className="space-y-8 lg:flex lg:px-4">
-                      <div className="flex items-end lg:basis-1/2">
-                        <div
-                          className="max-w-[700px] cursor-pointer space-y-12"
-                          onClick={() => {
-                            router.push(`/work/${project.slug}`)
-                          }}
-                        >
-                          <div className="space-y-6">
-                            <Text
-                              type="heading"
-                              tag="h4"
-                              className="text-[48px] uppercase text-accent"
-                            >
-                              {project.title}
-                            </Text>
-                            <div>
-                              {project &&
-                                project.categories &&
-                                project.categories.nodes.map(
-                                  (category: Category) => {
-                                    if (category.parentId === 'dGVybToxMzcw') {
-                                      return (
-                                        <p
-                                          key={category.id}
-                                          className="text-[16px] uppercase leading-[30px] text-accent"
-                                        >
-                                          {category.name}
-                                        </p>
-                                      )
-                                    }
-                                  }
-                                )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lg:basis-1/2">
-                        <div
-                          className="relative aspect-[800/624] cursor-pointer"
-                          onClick={() => {
-                            router.push(`/work/${project.slug}`)
-                          }}
-                        >
-                          <Image
-                            src={project.featuredImage?.node.mediaItemUrl ?? ''}
-                            alt={project.featuredImage?.node.altText ?? ''}
-                            fill={true}
-                            style={{
-                              objectFit: 'cover',
-                            }}
-                            className="brightness-75 filter"
-                            loader={imageLoader}
-                            priority={true}
-                          />
-                        </div>
+        <div className="relative w-full">
+          <div>
+            <div>
+              <div className="space-y-8 lg:flex lg:space-y-0 lg:px-4">
+                <div className="flex flex-col justify-between gap-y-28 lg:basis-1/2 lg:gap-y-0">
+                  <Text
+                    tag="h3"
+                    type="title1"
+                    className="mb-28 text-[48px] leading-8 text-background lg:mb-0"
+                  >
+                    NEXT PROJECT
+                  </Text>
+                  <div
+                    className="max-w-[700px] cursor-pointer"
+                    onClick={() => {
+                      router.push(`/work/${nextPost.slug}`)
+                    }}
+                  >
+                    <div className="space-y-4">
+                      <Text
+                        type="title1"
+                        tag="h4"
+                        className="uppercase text-accent"
+                      >
+                        {nextPost.title}
+                      </Text>
+                      <div>
+                        {nextPost &&
+                          nextPost.categories &&
+                          nextPost.categories.nodes.map(
+                            (category: Category) => {
+                              if (category.parentId === 'dGVybToxMzcw') {
+                                return (
+                                  <Text
+                                    type="label"
+                                    key={category.id}
+                                    className="text-accent"
+                                  >
+                                    {category.name}
+                                  </Text>
+                                )
+                              }
+                            }
+                          )}
                       </div>
                     </div>
-                  </CarouselItem>
-                )
-              })}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+                  </div>
+                </div>
+                <div className="group lg:basis-1/2">
+                  <div
+                    className="image-hover relative aspect-[800/624] cursor-pointer"
+                    onClick={() => {
+                      router.push(`/work/${nextPost.slug}`)
+                    }}
+                  >
+                    <Image
+                      src={nextPost.featuredImage?.node.mediaItemUrl ?? ''}
+                      alt={nextPost.featuredImage?.node.altText ?? ''}
+                      fill={true}
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                      className="brightness-75 filter"
+                      loader={imageLoader}
+                      priority={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Link
+            href={`/work/${projects.nodes[0].slug}`}
+            className={cn(
+              'absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2'
+            )}
+          >
+            <CustomIcons name="arrow-right" />
+          </Link>
+        </div>
       </Container>
     </Section>
-  )
-}
-
-const CarouselPrevious = () => {
-  const { scrollPrev, canScrollPrev } = useCarousel()
-  return (
-    <button
-      disabled={!canScrollPrev}
-      onClick={scrollPrev}
-      className={cn(
-        'absolute left-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:left-12 lg:top-1/2',
-        !canScrollPrev && 'hidden'
-      )}
-    >
-      <CustomIcons name="arrow-left" />
-    </button>
-  )
-}
-
-const CarouselNext = () => {
-  const { scrollNext, canScrollNext } = useCarousel()
-  return (
-    <button
-      disabled={!canScrollNext}
-      onClick={scrollNext}
-      className={cn(
-        'absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2',
-        !canScrollNext && 'hidden'
-      )}
-    >
-      <CustomIcons name="arrow-right" />
-    </button>
   )
 }

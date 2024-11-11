@@ -6,6 +6,7 @@ import { Category, Project, Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
+import { Text } from '../../ui/text'
 export default function ProjectItem({
   project,
   index,
@@ -40,10 +41,14 @@ export default function ProjectItem({
             }}
           >
             <p>{zeroPad(index + 1, 2)}</p>
-            <div>
-              <h2 className="font-maisonNeueExt text-clamp uppercase text-accent">
+            <div className="space-y-2">
+              <Text
+                type="title1"
+                tag="h2"
+                className="font-maisonNeueExt text-clamp uppercase text-accent"
+              >
                 {project.title}
-              </h2>
+              </Text>
               <div>
                 {project &&
                   project.categories &&

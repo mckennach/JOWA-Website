@@ -29,52 +29,55 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
         <div className="">
           {location && (
             <div className="flex border-b">
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">Location</Text>
               </div>
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">{location}</Text>
               </div>
             </div>
           )}
           {category && (
             <div className="flex border-b">
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">Category</Text>
               </div>
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">{category}</Text>
               </div>
             </div>
           )}
           {sqFt && (
             <div className="flex border-b">
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">Sq Ft</Text>
               </div>
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">{sqFt}</Text>
               </div>
             </div>
           )}
           {projectType && (
             <div className="flex border-b">
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">Project Type</Text>
               </div>
-              <div className="flex basis-1/2">
+              <div className="flex h-5 basis-1/2 py-1 lg:h-auto">
                 <Text type="label">{projectType}</Text>
               </div>
             </div>
           )}
           {projectServices && (
             <div className="flex items-baseline">
-              <div className="flex basis-1/2 border-b">
+              <div className="flex h-5 basis-1/2 border-b py-1 lg:h-auto">
                 <Text type="label">Services</Text>
               </div>
-              <div className="flex basis-1/2 flex-col p-0">
+              <div className="flex basis-1/2 flex-col">
                 {projectServices.map((service) => (
-                  <div key={service.id} className="border-b">
+                  <div
+                    key={service.id}
+                    className="h-[25px] border-b py-1 lg:h-auto"
+                  >
                     <Text type="label">{service.name}</Text>
                   </div>
                 ))}

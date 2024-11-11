@@ -1,27 +1,35 @@
 import type { Config } from 'tailwindcss'
-const { fontFamily } = require('tailwindcss/defaultTheme')
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import animate from 'tailwindcss-animate'
+import typography from '@tailwindcss/typography'
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 
 const config = {
   darkMode: ['class'],
-  content: [
-    './src/pages/**/*.{ts,tsx}',
-    './src/components/**/*.{ts,tsx}',
-    './src/app/**/*.{ts,tsx}',
-    './src/templates/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    './src/styles/*.css',
-  ],
+  content: {
+    files: [
+      './src/pages/**/*.{ts,tsx}',
+      './src/components/**/*.{ts,tsx}',
+      './src/app/**/*.{ts,tsx}',
+      './src/templates/**/*.{ts,tsx}',
+      './src/**/*.{ts,tsx}',
+      './src/styles/*.css',
+    ],
+    extract,
+  },
   prefix: '',
   theme: {
+    screens,
+    fontSize,
     container: {
       center: true,
       padding: {
-				DEFAULT: '1rem',
-				sm: '1rem',
-				lg: '3rem',
-				xl: '3rem',
-				'2xl': '3rem',
-			},
+        DEFAULT: '1rem',
+        sm: '1rem',
+        lg: '3rem',
+        xl: '3rem',
+        '2xl': '3rem',
+      },
     },
     extend: {
       fontFamily: {
@@ -32,11 +40,14 @@ const config = {
       fontSize: {
         body: ['2rem', '42px'],
         clamp: 'clamp(1rem, 5vw, 3rem)',
-        label:
-          'clamp(12px, calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))), 16px)',
+        label: '1rem',
+        labelsm: '1rem',
+        '5xl': ['3.2rem', '6.3rem'],
       },
+      letterSpacing: {},
       lineHeight: {
         label: '1.88',
+        labelsm: '1.88',
         body: '2.63',
       },
       colors: {
@@ -47,7 +58,9 @@ const config = {
         walnut: 'hsl(var(--walnut))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-				'jowa-red': 'hsl(var(--red))',
+        genmaicha: 'hsl(var(--genmaicha))',
+        'nav-foreground': 'hsl(var(--nav-foreground))',
+        'jowa-red': 'hsl(var(--red))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -103,7 +116,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [animate, typography, fluid],
 } satisfies Config
 
 export default config

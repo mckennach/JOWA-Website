@@ -15,14 +15,27 @@ export default function Navigation({
   menuItems: RootQueryToMenuItemConnection
   className?: string
 }) {
+  const [scrollPosition, setScrollPosition] = useState(500)
   const [isScrolled, setIsScrolled] = useState(false)
   const matches = useMediaQuery('(min-width: 1024px)')
-  const pathname = usePathname();
-	
+  const pathname = usePathname()
+
+  useEffect(() => {
+    switch (pathname) {
+      case '/':
+        setScrollPosition(500)
+        break
+      case '/work':
+        setScrollPosition(10)
+        break
+      default:
+        setScrollPosition(10)
+    }
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > scrollPosition) {
         setIsScrolled(true)
       } else {
         setIsScrolled(false)
@@ -30,7 +43,7 @@ export default function Navigation({
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [scrollPosition])
 
   const isWorkDetail =
     pathname.includes('work') && pathname.split('/').length > 2
@@ -38,7 +51,7 @@ export default function Navigation({
   return (
     <nav
       className={cn(
-        'group sticky top-0 z-[150] w-full bg-transparent',
+        'navigation group sticky top-0 z-[150] w-full bg-transparent text-nav-foreground',
         'fade-in',
         isWorkDetail && 'fixed',
         className
@@ -59,7 +72,7 @@ export default function Navigation({
           <CustomIcons
             name="submark"
             className={cn(
-              'absolute top-0 transition-all duration-300 ease-in-out',
+              'absolute top-0 text-nav-foreground transition-all duration-300 ease-in-out',
               isWorkDetail && 'text-cream',
               isScrolled ? 'opacity-1 visible' : 'lg:invisible lg:opacity-0'
             )}
@@ -67,14 +80,14 @@ export default function Navigation({
           <CustomIcons
             name="logo-text"
             className={cn(
-              'absolute top-0 hidden transition-all duration-300 ease-in-out lg:block',
+              'absolute top-0 hidden text-nav-foreground transition-all duration-300 ease-in-out lg:block',
               isWorkDetail && 'text-cream',
               !isScrolled ? 'lg:opacity-1 lg:visible' : 'invisible opacity-0'
             )}
           />
         </Link>
         <div className="flex items-center gap-2">
-          <div className="mx-2 hidden lg:flex lg:gap-14 xl:gap-24 transition-all duration-75">
+          <div className="mx-2 hidden transition-all duration-75 lg:flex lg:gap-14 xl:gap-24">
             {menuItems.nodes.map((item: MenuItem, index: number) => {
               if (!item.uri) return null
               const isActive =
@@ -88,7 +101,7 @@ export default function Navigation({
                   key={index}
                   target={item.target || '_self'}
                   className={cn(
-                    'nav-fluid transition-all',
+                    'nav-fluid',
                     isActive,
                     isWorkDetail && 'text-cream before:bg-background'
                   )}
@@ -98,9 +111,7 @@ export default function Navigation({
               )
             })}
           </div>
-					{!matches && (
-	          <MobileNavigation menuItems={menuItems} />
-					)}
+          {!matches && <MobileNavigation menuItems={menuItems} />}
           {/* <MobileNav /> */}
         </div>
       </div>

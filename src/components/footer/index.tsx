@@ -1,9 +1,32 @@
+'use client'
+
+import { useIntersectionObserver } from 'usehooks-ts'
 import { Section, Container } from '@/components/craft'
 import CustomIcons from '@/src/components/custom-icons'
 
 export default function Footer() {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0.9,
+    onChange: (isIntersecting) => {
+      if (isIntersecting) {
+        document.documentElement.style.setProperty(
+          '--nav-foreground',
+          'var(--walnut)'
+        )
+      } else {
+        document.documentElement.style.setProperty(
+          '--nav-foreground',
+          'var(--foreground)'
+        )
+      }
+    },
+  })
+
   return (
-    <footer className="cream relative z-50 h-screen bg-background text-foreground">
+    <footer
+      className="cream relative z-50 h-screen bg-background text-foreground"
+      ref={ref}
+    >
       <Section className="h-full">
         <Container className="flex h-full flex-col justify-end">
           <div className="flex flex-col gap-[100px]">

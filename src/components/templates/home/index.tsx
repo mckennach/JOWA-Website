@@ -27,14 +27,14 @@ const FEATURED_PROJECTS_QUERY = gql`
         projectFields {
           heroImage {
             node {
-							sourceUrl(size: _1536X1536)
+              sourceUrl(size: _1536X1536)
               altText
               mediaItemUrl
             }
           }
           featuredImage {
             node {
-							sourceUrl(size: _1536X1536)
+              sourceUrl(size: _1536X1536)
               altText
               mediaItemUrl
             }

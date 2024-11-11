@@ -36,13 +36,18 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   )
 
   return (
-    <Section className={cn("relative bg-background",  
-		"before:fixed before:left-0 before:z-50 before:top-0 before:w-full before:h-[250px] before:from-background before:from-50% before:to-transparent before:bg-gradient-to-b")}>
+    <Section
+      className={cn(
+        'relative bg-background',
+        'before:fixed before:left-0 before:top-0 before:z-50 before:h-[250px] before:w-full before:bg-gradient-to-b before:from-background before:from-50% before:to-transparent'
+      )}
+    >
       <Container className="pt-36">
         <Filter
-					label='View by'
+          label="View by"
           className="fixed left-0 top-24 z-50 w-full px-4 lg:px-12"
           items={filterItems}
+          columns={false}
         />
         {nodes.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />

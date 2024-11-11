@@ -17,13 +17,11 @@ export default async function JournalDetailTemplate({ node }: TemplateProps) {
     }
   )
 
-  console.log(post)
-
   return (
-    <>
+    <article id={`post-${post?.id}`}>
       <JournalHero post={post} />
       <JournalContent post={post} />
       <NextPost posts={posts} currentId={post.id} />
-    </>
+    </article>
   )
 }

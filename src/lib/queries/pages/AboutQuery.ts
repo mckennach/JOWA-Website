@@ -8,6 +8,16 @@ export const ABOUT_PAGE_QUERY = gql`
         title
         description
         logoDescription
+        ourProcess {
+          title
+          description
+          image {
+            node {
+              altText
+              sourceUrl
+            }
+          }
+        }
       }
     }
   }

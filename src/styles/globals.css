@@ -90,7 +90,7 @@
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
 
-    --secondary: 39 78% 93%;
+    --secondary: var(--sencha);
     --secondary-foreground: var(--genmaicha);
 
     --muted: 0 0% 14.9%;
@@ -143,6 +143,12 @@
     --accent-foreground: var(--sencha);
     --border: var(--sencha);
   }
+
+  :root {
+    --nav-background: var(var(--background));
+    --nav-foreground: var(--foreground);
+    --nav-border: var(--border);
+  }
 }
 
 @layer base {
@@ -151,14 +157,20 @@
   }
 
   body {
-    @apply min-h-screen bg-background text-foreground antialiased;
+    @apply min-h-screen scroll-smooth bg-background text-foreground antialiased;
     font-family: 'Maison Neue Ext', sans-serif;
   }
 
+  main {
+    @apply h-full w-full scroll-smooth bg-background text-foreground antialiased;
+  }
+
   .nav-fluid {
-    @apply relative font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px];
-    @apply before:absolute before:bottom-[3px] before:left-0 before:h-[1.5px] before:w-0 before:bg-foreground before:transition-all before:duration-300 before:ease-in-out;
+    @apply transition-all duration-300 ease-in-out before:transition-all before:duration-300 before:ease-in-out;
+    @apply relative font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px] text-nav-foreground;
+    @apply before:absolute before:bottom-[3px] before:left-0 before:h-[1.5px] before:w-0 before:bg-nav-foreground;
     @apply hover:before:w-full focus:before:w-full active:before:w-full;
+
     font-size: clamp(
       12px,
       calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))),
@@ -172,32 +184,21 @@
 
   h1,
   .title-xl-fluid {
-    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
-    font-size: clamp(
-      32px,
-      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
-      48px
-    );
+    @apply space-y-8 font-maisonNeueExt font-normal uppercase !leading-[35.87px] tracking-normal ~text-3xl/5xl lg:!leading-[63.75px];
   }
 
   h2,
-  .text-title-l-fluid {
-    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
-    font-size: clamp(
-      32px,
-      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
-      48px
-    );
+  .text-title-l-fluid,
+  .process-description h1,
+  .process-description h2,
+  .process-description h3,
+  .process-description h4 {
+    @apply space-y-8 font-maisonNeueExt font-normal leading-[42.5px] tracking-normal ~text-2xl/3xl lg:leading-[63px];
   }
 
   h3,
   .title-m-fluid {
-    @apply space-y-8 font-maisonNeueExt font-normal uppercase leading-[42.5px] tracking-normal lg:leading-[63px];
-    font-size: clamp(
-      32px,
-      calc(32px + (48 - 32) * ((100vw - 375px) / (1920 - 375))),
-      48px
-    );
+    @apply space-y-8 font-maisonNeueExt font-normal leading-[42.5px] tracking-normal ~text-sm/2xl lg:leading-[63px];
   }
 
   .text-heading-base-fluid {
@@ -224,32 +225,17 @@
   }
 
   .label-fluid {
-    @apply font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px];
-    font-size: clamp(
-      12px,
-      calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375))),
-      16px
-    );
+    @apply font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px] ~text-xs/base;
   }
 
   .body-xl-fluid {
-    @apply space-y-8 font-maisonNeue font-normal leading-[32px] tracking-normal lg:leading-[40px];
-    font-size: clamp(
-      20px,
-      calc(20px + (32 - 20) * ((100vw - 375px) / (1920 - 375))),
-      32px
-    );
+    @apply space-y-8 font-maisonNeue font-normal leading-[32px] tracking-normal ~text-xl/3xl lg:leading-[40px];
   }
 
-  .body-sm-fluid {
-    @apply font-maisonNeue font-normal leading-[30px] tracking-normal lg:leading-[34px];
-    font-size: clamp(
-      12px,
-      calc(12px + (24 - 12) * ((100vw - 375px) / (1920 - 375))),
-      24px
-    );
+  .body-sm-fluid,
+  .process-description {
+    @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/2xl lg:leading-[34px];
   }
-
 
   .sharedaddy {
     display: none;
@@ -260,6 +246,10 @@
     @apply from-background to-transparent before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t;
     /* @apply absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-background to-transparent pointer-events-none; */
   }
+
+  .image-hover {
+    @apply after:absolute after:z-30 after:h-full after:w-full after:bg-transparent after:transition-all after:duration-300 group-hover:after:bg-accent/40;
+  }
 }
 
 @layer prose-m-none {
@@ -269,9 +259,9 @@
 }
 
 @layer components {
-	.container {
-		@apply px-4 lg:px-12 max-w-full;
-	}
+  .container {
+    @apply max-w-full px-4 lg:px-12;
+  }
 }
 
 @layer utilities {

@@ -1,6 +1,6 @@
 import { type Icon } from '.'
 
-export const Logo = ({ color = '#3F261D', ...props }: Icon) => {
+export const Logo = ({ color = 'currentColor', ...props }: Icon) => {
   return (
     <svg
       viewBox="0 0 1628 113"

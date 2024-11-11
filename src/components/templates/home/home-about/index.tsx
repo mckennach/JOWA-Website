@@ -5,9 +5,6 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { Section, Container, cn } from '@/components/craft'
-import { MEDIA_QUERY } from '@/src/lib/queries'
-import { useCookies } from 'next-client-cookies'
-import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import { imageLoader } from '@/src/lib/utils'
 import { HomeHomeContent } from '@/src/gql/graphql'
@@ -20,31 +17,49 @@ type HomeAboutProps = {
 export default function HomeAbout({ data }: HomeAboutProps) {
   const containerRef = useRef(null)
   const imageRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef(null)
   const contentRef = useRef(null)
   const image = data?.image?.node
 
   useGSAP(
     () => {
       if (imageRef.current === null) return
-      console.log(imageRef.current.offsetHeight)
 
       gsap.set(imageRef.current, {
         yPercent: 100,
       })
 
+      gsap.set(textRef?.current, {
+        opacity: 0,
+      })
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: '-=100% top',
-          end: `+=25% -=${imageRef.current.offsetHeight - 50}px`,
-          pin: false,
+          start: 'top top',
+          end: `bottom+=${window.innerHeight} bottom`,
+          pin: true,
+          pinSpacing: false,
           scrub: 1,
         },
       })
 
+      tl.set(textRef.current, {
+        opacity: 1,
+      })
+
+      tl.to(
+        imageRef.current,
+        {
+          yPercent: 0,
+          opacity: 1,
+        },
+        '<'
+      )
+
       tl.to(imageRef.current, {
         yPercent: 0,
-        opacity: 1,
+        duration: 2,
       })
     },
     {
@@ -53,8 +68,8 @@ export default function HomeAbout({ data }: HomeAboutProps) {
   )
 
   return (
-    <Section className="top-fade sticky top-0 h-[150vh]">
-      <Container ref={containerRef}>
+    <Section className="top-fade">
+      <Container ref={containerRef} className="h-[200vh]">
         <div
           className={cn('space-around flex flex-col-reverse gap-4 md:flex-row')}
         >
@@ -67,7 +82,9 @@ export default function HomeAbout({ data }: HomeAboutProps) {
                   fill={true}
                   style={{
                     objectFit: 'cover',
+                    objectPosition: 'center',
                   }}
+                  sizes="(max-width: 476px) 100vw, 476px"
                   loader={imageLoader}
                 />
               </div>
@@ -107,13 +124,16 @@ export default function HomeAbout({ data }: HomeAboutProps) {
             </div>
           </div>
         </div>
-				<div className="sticky bottom-10 lg:right-24 z-40">
-					<Link href="/about">
-						<Text type="label" className="text-cream inline-flex items-center gap-2">
-							ABOUT US
-					</Text>
-					</Link>
-				</div>
+        <div className="fixed bottom-10 z-40 lg:left-12" ref={textRef}>
+          <Link href="/about">
+            <Text
+              type="label"
+              className="inline-flex items-center gap-2 text-cream"
+            >
+              ABOUT US
+            </Text>
+          </Link>
+        </div>
       </Container>
     </Section>
   )

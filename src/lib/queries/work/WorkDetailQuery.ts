@@ -25,7 +25,7 @@ export const WORK_DETAIL_QUERY = gql`
           cursor
           node {
             altText
-						sourceUrl(size: _1536X1536)
+            sourceUrl(size: _1536X1536)
             mediaItemUrl
             title
           }
@@ -34,7 +34,7 @@ export const WORK_DETAIL_QUERY = gql`
           cursor
           node {
             altText
-						sourceUrl(size: _1536X1536)
+            sourceUrl(size: _1536X1536)
             mediaItemUrl
             title
           }

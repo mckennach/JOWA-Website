@@ -18,9 +18,9 @@ export default function JournalContent({ post }: { post: Post }) {
             {content?.section1Title &&
               typeof content?.section1Title === 'string' && (
                 <Text
-                  type="heading"
+                  type="title2"
                   tag="h2"
-                  className="font-maisonNeue text-[24px] leading-[32px] tracking-wide text-accent-foreground lg:text-[32px] lg:leading-[42px]"
+                  className="uppercase text-accent-foreground"
                 >
                   1. {content?.section1Title}
                 </Text>
@@ -100,7 +100,11 @@ export default function JournalContent({ post }: { post: Post }) {
           <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
             {content?.section2Title &&
               typeof content?.section2Title === 'string' && (
-                <Text type="heading" tag="h2" className="body-xl-fluid">
+                <Text
+                  type="title2"
+                  tag="h2"
+                  className="uppercase text-accent-foreground"
+                >
                   2. {content?.section2Title}
                 </Text>
               )}

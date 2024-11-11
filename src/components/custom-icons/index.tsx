@@ -5,12 +5,12 @@ import { Link } from './link'
 import { Submark } from './submark'
 import { ArrowRight } from './arrow-right'
 import { ArrowLeft } from './arrow-left'
-import { AboutLogo } from './about-logo';
+import { AboutLogo } from './about-logo'
 export type Icon = {
   name:
     | 'arrow-right'
     | 'arrow-left'
-		| 'about-logo'
+    | 'about-logo'
     | 'logo'
     | 'logo-text'
     | 'submark'
@@ -22,7 +22,7 @@ export type Icon = {
 
 export default function CustomIcons({ ...props }: Icon) {
   switch (props.name) {
-		case 'about-logo':
+    case 'about-logo':
       return <AboutLogo {...props} />
     case 'logo':
       return <Logo {...props} />

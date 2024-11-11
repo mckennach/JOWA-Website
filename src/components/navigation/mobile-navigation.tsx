@@ -22,7 +22,7 @@ type MobileNavigationProps = {
 
 export function MobileNavigation({ menuItems }: MobileNavigationProps) {
   const [open, setOpen] = useState(false)
-  const pathname = usePathname();
+  const pathname = usePathname()
   const isWorkDetail =
     pathname.includes('work') && pathname.split('/').length > 2
   return (
@@ -31,17 +31,16 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
         <span className="sr-only">Toggle Menu</span>
         <CustomIcons
           name="menu"
-          className={cn('w-[25px]', )}
-					color={isWorkDetail ? 'hsla(39, 78%, 93%, 1)' : 'currentColor'}
-					strokeWidth={1}
-
+          className={cn('w-[25px]')}
+          color={isWorkDetail ? 'hsla(39, 78%, 93%, 1)' : 'currentColor'}
+          strokeWidth={1}
         />
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="mobile-navigation flex h-dvh max-w-screen max-h-dvh flex-col bg-popover p-0 z-[999]"
+        className="mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0"
       >
-        <header className=" flex basis-1/4 items-start px-4 py-8">
+        <header className="flex basis-1/4 items-start px-4 py-8">
           <div className="flex w-full items-center justify-between">
             <MobileLink href="/" onOpenChange={setOpen}>
               <CustomIcons name="submark" className="text-accent-foreground" />
@@ -51,7 +50,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
             </SheetClose>
           </div>
         </header>
-        <div className="my-4 flex flex-col justify-end basis-3/4">
+        <div className="my-4 flex basis-3/4 flex-col justify-end">
           <div className="flex flex-col space-y-3 text-foreground">
             <ul className="w-full [&>li]:border-b [&>li]:px-14 [&>li]:py-6">
               {menuItems.nodes.map((item: MenuItem, index: number) => {

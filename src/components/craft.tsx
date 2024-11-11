@@ -146,14 +146,14 @@ const Article = ({
 }
 
 interface FadedDivProps {
-	children?: React.ReactNode
-	className?: string
+  children?: React.ReactNode
+  className?: string
 }
 
 export default function FadeDiv({ children, className }: FadedDivProps) {
-	return (
-		<div className={cn('opacity-0 animate-fade-in', className)}>{children}</div>
-	)
+  return (
+    <div className={cn('animate-fade-in opacity-0', className)}>{children}</div>
+  )
 }
 
 export { Layout, Main, Section, Container, Article, FadeDiv }

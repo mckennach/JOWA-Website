@@ -1,5 +1,8 @@
 'use client'
 
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
 import gql from 'graphql-tag'
@@ -29,11 +32,34 @@ const TEAM_MEMBERS_QUERY = gql`
 
 export default function TeamMembers() {
   const { data, loading, error } = useQuery(TEAM_MEMBERS_QUERY)
+  const containerRef = useRef(null)
 
   const members: TeamMember[] = data?.teamMembers?.nodes
 
+  useGSAP(
+    () => {
+      if (containerRef.current === null) return
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: `bottom+=${window.innerHeight} bottom`,
+          pin: true,
+          pinSpacing: false,
+          scrub: 1,
+        },
+      })
+    },
+    {
+      scope: containerRef,
+    }
+  )
+
   return (
-    <Section className="bg-secondary-foreground py-32 text-background">
+    <Section
+      ref={containerRef}
+      className="relative z-10 h-[120vh] bg-secondary-foreground py-32 text-background"
+    >
       <Container>
         <Text
           type="heading"
@@ -74,6 +100,9 @@ export default function TeamMembers() {
             })}
         </div>
       </Container>
+      <div className="bg-red pointer-events-none absolute top-0 h-screen w-full">
+        <div className="absolute bottom-0 left-0 h-28 w-full bg-cream" />
+      </div>
     </Section>
   )
 }

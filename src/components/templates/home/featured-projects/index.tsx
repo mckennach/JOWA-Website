@@ -164,7 +164,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             style={{
               objectFit: 'cover',
             }}
-						loading="eager"
+            loading="eager"
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}

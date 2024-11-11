@@ -12,6 +12,7 @@ import { JOURNALS_QUERY } from './journal-query'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
 import { JournalItems } from './journal-items'
 import { Filter } from '../../ui/filter'
+import { cn } from '@/src/lib/utils'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
     print(JOURNALS_QUERY),
@@ -33,12 +34,16 @@ export default async function JournalTemplate({ node }: TemplateProps) {
 
   return (
     <>
-      <Section className="border-b pb-10 pt-44">
-        <Container>
+      <Section
+        className={cn(
+          'before:fixed before:left-0 before:top-0 before:z-50 before:h-[250px] before:w-full before:bg-gradient-to-b before:from-background before:from-65% before:to-transparent'
+        )}
+      >
+        <Container className="border-b pb-10 pt-44">
           <Filter
             className="fixed left-0 top-24 z-50 w-full px-4 lg:px-12"
             items={filterItems}
-						columns={true}
+            columns={true}
           />
           <Text type="title1" tag="h1" className="text-accent-foreground">
             Journal

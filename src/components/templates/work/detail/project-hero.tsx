@@ -20,7 +20,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           priority={true}
         />
       </div>
-      <div className="absolute bottom-5 left-16 w-full text-cream">
+      <div className="absolute bottom-5 left-4 w-full text-cream lg:left-12">
         <Text tag="h1" type="title1" className="text-cream">
           {project.title}
         </Text>

@@ -16,8 +16,7 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { MENU_ITEMS_QUERY } from '@/src/lib/queries'
 import { RootQueryToMenuItemConnection } from '@/gql/graphql'
 import { print } from 'graphql/language/printer'
-
-
+import SkipToContent from '../components/navigation/skip-to-content'
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
@@ -68,8 +67,9 @@ export default async function RootLayout({
                 <ThemeProvider>
                   {/* <Loading /> */}
                   {isEnabled && <PreviewNotice />}
+                  <SkipToContent />
                   <Navigation menuItems={menuItems} />
-                  {children}
+                  <main className="">{children}</main>
                   <Footer />
                 </ThemeProvider>
               </ApolloWrapper>

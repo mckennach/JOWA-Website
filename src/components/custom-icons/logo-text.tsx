@@ -13,7 +13,7 @@ export const LogoText = ({
       viewBox="0 0 314 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn('text-foreground', className)}
+      className={cn('', className)}
       {...props}
     >
       <g clipPath="url(#clip0_117_216)">
