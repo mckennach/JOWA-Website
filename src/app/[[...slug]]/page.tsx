@@ -61,9 +61,9 @@ type Props = {
 //   } as Metadata
 // }
 
-export function generateStaticParams() {
-  return []
-}
+// export function generateStaticParams() {
+//   return []
+// }
 
 export default async function Page({ params }: Props) {
   let detailSlug: string | boolean = false
