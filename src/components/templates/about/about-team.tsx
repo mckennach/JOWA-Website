@@ -1,8 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/all'
+
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
 import gql from 'graphql-tag'
@@ -10,6 +12,7 @@ import { useQuery } from '@apollo/client'
 import { TeamMember } from '@/gql/graphql'
 import Image from 'next/image'
 import { imageLoader } from '../../../lib/utils'
+gsap.registerPlugin(ScrollTrigger)
 
 const TEAM_MEMBERS_QUERY = gql`
   query TeamMembers {
@@ -36,18 +39,30 @@ export default function TeamMembers() {
 
   const members: TeamMember[] = data?.teamMembers?.nodes
 
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   useGSAP(
     () => {
+      const mm = gsap.matchMedia()
       if (containerRef.current === null) return
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: `bottom+=${window.innerHeight} bottom`,
-          pin: true,
-          pinSpacing: false,
-          scrub: 1,
-        },
+      mm.add('(min-width: 1024px)', () => {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: `bottom+=${window.innerHeight} bottom`,
+            pin: true,
+            pinSpacing: false,
+            scrub: 1,
+          },
+        })
       })
     },
     {
@@ -58,7 +73,7 @@ export default function TeamMembers() {
   return (
     <Section
       ref={containerRef}
-      className="relative z-10 h-[120vh] bg-secondary-foreground py-32 text-background"
+      className="relative z-10 lg:h-[120vh] bg-secondary-foreground py-32 text-background"
     >
       <Container>
         <Text
@@ -100,7 +115,7 @@ export default function TeamMembers() {
             })}
         </div>
       </Container>
-      <div className="bg-red pointer-events-none absolute top-0 h-screen w-full">
+      <div className="hidden lg:block bg-red pointer-events-none absolute top-0 h-screen w-full">
         <div className="absolute bottom-0 left-0 h-28 w-full bg-cream" />
       </div>
     </Section>

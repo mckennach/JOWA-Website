@@ -1,10 +1,6 @@
 import { Section, Container, cn } from '../../craft'
 import { print } from 'graphql/language/printer'
-import {
-  ContentNode,
-  Project,
-  TagConnection,
-} from '@/gql/graphql'
+import { ContentNode, Project, TagConnection } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_QUERY } from '@/lib/queries'
 import { Filter } from '../../ui/filter'
@@ -38,9 +34,7 @@ export default async function PricingTemplate({ node }: TemplateProps) {
         'before:fixed before:left-0 before:top-0 before:z-50 before:h-[250px] before:w-full before:bg-gradient-to-b before:from-background before:from-50% before:to-transparent'
       )}
     >
-      <Container className="pt-36">
-        PRICING
-      </Container>
+      <Container className="pt-36">PRICING</Container>
     </Section>
   )
 }

@@ -16,7 +16,6 @@ import { Text } from '@/src/components/ui/text'
 
 gsap.registerPlugin(ScrollTrigger)
 
-
 type FeaturedProjects = {
   projects: Project[]
 }

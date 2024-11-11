@@ -29,7 +29,7 @@ export default async function HomePage({ node }: TemplateProps) {
 
   return (
     <>
-			{/* <Loading project={projects?.nodes[0]} /> */}
+      {/* <Loading project={projects?.nodes[0]} /> */}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects projects={projects?.nodes} />
       )}

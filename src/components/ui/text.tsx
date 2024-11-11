@@ -23,7 +23,7 @@ export type TextProps = {
     | 'blockquote'
   size?: 'default'
   type?:
-		| 'footer'
+    | 'footer'
     | 'default'
     | 'heading'
     | 'title1'
@@ -47,7 +47,7 @@ const textVariants = cva('', {
     variant: {
       default: '',
       heading: 'heading-xl-fluid',
-			footer: 'footer-link',
+      footer: 'footer-link',
       title1: 'title-xl-fluid',
       title2: 'title-lg-fluid',
       title3: 'title-md-fluid',

@@ -184,7 +184,7 @@
 
   h1,
   .title-xl-fluid {
-    @apply space-y-8 font-maisonNeueExt font-normal uppercase ~text-3xl/5xl ;
+    @apply space-y-8 font-maisonNeueExt font-normal uppercase ~text-3xl/5xl;
   }
 
   h2,
@@ -229,7 +229,7 @@
   }
 
   .body-xl-fluid {
-    @apply space-y-8 font-maisonNeue font-normal tracking-normal ~text-body-xl/body-3xl ;
+    @apply space-y-8 font-maisonNeue font-normal tracking-normal ~text-body-xl/body-3xl;
   }
 
   .body-sm-fluid,
@@ -237,13 +237,13 @@
     @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/2xl lg:leading-[34px];
   }
 
-	.footer-link {
-		@apply font-maisonNeueExt ~text-fs/fl;
-	}
+  .footer-link {
+    @apply font-maisonNeueExt ~text-fs/fl;
+  }
 
-	.caption-sm-fluid {
-		@apply font-maisonNeueExt ~text-xxs/sm;
-	}
+  .caption-sm-fluid {
+    @apply font-maisonNeueExt ~text-xxs/sm;
+  }
 
   .sharedaddy {
     display: none;

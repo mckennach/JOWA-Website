@@ -39,7 +39,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="@container mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0"
+        className="mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0 @container"
       >
         <header className="flex basis-1/4 items-start px-4 py-8">
           <div className="flex w-full items-center justify-between">
@@ -58,10 +58,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
                 if (!item.uri) return null
                 return (
                   <li key={index} className="px-14 py-4 smH:py-6">
-                    <MobileLink
-                      href={item.uri}
-                      onOpenChange={setOpen}
-                    >
+                    <MobileLink href={item.uri} onOpenChange={setOpen}>
                       {item.label}
                     </MobileLink>
                   </li>
@@ -69,7 +66,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
               })}
             </ul>
           </div>
-          <div className="py-4 smH:py-6 text-center">
+          <div className="py-4 text-center smH:py-6">
             <p className="font-maisonNeue text-accent-foreground">
               Where your vision unfolds.
             </p>
@@ -104,9 +101,7 @@ function MobileLink({
       className={cn('', className)}
       {...props}
     >
-			<Text type="title1">
-	      {children}
-			</Text>
+      <Text type="title1">{children}</Text>
     </Link>
   )
 }

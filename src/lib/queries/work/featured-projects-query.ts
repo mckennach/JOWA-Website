@@ -1,4 +1,4 @@
-import gql from "graphql-tag"
+import gql from 'graphql-tag'
 
 export const FEATURED_PROJECTS_QUERY = gql`
   query FeaturedProjects($ids: [ID]) {

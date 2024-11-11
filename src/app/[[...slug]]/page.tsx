@@ -60,7 +60,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } as Metadata
 }
 
-
 export default async function Page({ params }: Props) {
   let detailSlug: string | boolean = false
 
@@ -75,7 +74,7 @@ export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
   const isPreview = slug.includes('preview')
-	
+
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(CONTENT_INFO_QUERY),
     {
@@ -104,8 +103,8 @@ export default async function Page({ params }: Props) {
         return <AboutTemplate node={contentNode} />
       case 'contact':
         return <ContactTemplate node={contentNode} />
-			// case 'pricing':
-			// 	return <PricingTemplate node={contentNode} />
+      // case 'pricing':
+      // 	return <PricingTemplate node={contentNode} />
       default:
         return (
           <div className="flex h-[90vh] items-center justify-center">

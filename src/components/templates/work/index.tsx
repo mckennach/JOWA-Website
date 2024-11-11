@@ -1,10 +1,6 @@
 import { Section, Container, cn } from '../../craft'
 import { print } from 'graphql/language/printer'
-import {
-  ContentNode,
-  Project,
-  TagConnection,
-} from '@/gql/graphql'
+import { ContentNode, Project, TagConnection } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_QUERY } from '@/lib/queries'
 import ProjectItem from './project-item'

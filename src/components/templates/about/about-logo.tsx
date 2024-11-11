@@ -1,12 +1,16 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/all'
+
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
 import { Page, Service } from '@/src/gql/graphql'
 import CustomIcons from '../../custom-icons'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type AboutLogoProps = {
   page: Page
@@ -15,18 +19,31 @@ type AboutLogoProps = {
 export default function AboutLogo({ page }: AboutLogoProps) {
   const containerRef = useRef(null)
 
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   useGSAP(
     () => {
+      const mm = gsap.matchMedia()
       if (containerRef.current === null) return
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: `bottom+=${window.innerHeight} bottom`,
-          pin: true,
-          pinSpacing: false,
-          scrub: 1,
-        },
+      mm.add('(min-width: 1024px)', () => {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: `bottom+=${window.innerHeight} bottom`,
+            pin: true,
+            pinSpacing: false,
+            scrub: 1,
+          },
+        })
       })
     },
     {
@@ -40,7 +57,7 @@ export default function AboutLogo({ page }: AboutLogoProps) {
       ref={containerRef}
     >
       <Container>
-        <div className="relative flex w-full flex-col gap-8 px-4 py-24 lg:px-0">
+        <div className="relative flex lg:min-h-screen w-full flex-col gap-8 px-4 py-24 lg:px-0 lg:py-0">
           <div className="mx-auto w-full lg:max-w-[800px]">
             <CustomIcons
               name="about-logo"
@@ -53,7 +70,7 @@ export default function AboutLogo({ page }: AboutLogoProps) {
             </Text>
           </div>
         </div>
-        <div className="h-[80vh]" />
+        <div className="lg:h-[80vh]" />
       </Container>
     </Section>
   )
