@@ -1,2 +1,2 @@
-export * from './WorkDetailQuery'
-export * from './WorkQuery'
+export * from './work-detail-query'
+export * from './work-query'

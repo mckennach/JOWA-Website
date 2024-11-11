@@ -1,1 +1,1 @@
-export * from './PostQuery'
+export * from './post-query'

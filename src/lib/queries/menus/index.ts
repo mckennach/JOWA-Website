@@ -1,1 +1,1 @@
-export * from './MenuQuery'
+export * from './menu-query'

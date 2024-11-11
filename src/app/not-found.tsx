@@ -5,7 +5,7 @@ import { setSeoData } from '@/src/lib/api/seoData'
 
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { ContentNode, Page } from '@/gql/graphql'
-import { PAGE_QUERY } from '@/src/lib/queries/pages/PageQuery'
+import { PAGE_QUERY } from '@/src/lib/queries/pages/page-query'
 import { SEO_QUERY } from '@/src/lib/queries'
 
 const notFoundPageWordPressId = 28
