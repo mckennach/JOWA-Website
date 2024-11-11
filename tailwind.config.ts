@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-import * as animate from 'tailwindcss-animate'
+import animate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
-import * as containerQuery from '@tailwindcss/container-queries'
+import containerQuery from '@tailwindcss/container-queries'
 import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 
 const config = {
@@ -43,17 +43,43 @@ const config = {
         maisonNeue: ['Maison Neue', ...fontFamily.sans],
         maisonNeueExt: ['Maison Neue Ext', ...fontFamily.sans],
       },
+			letterSpacing: {
+				'3%': '.01',
+			},
       fontSize: {
         body: ['2rem', '42px'],
         clamp: 'clamp(1rem, 5vw, 3rem)',
         label: '1rem',
         labelsm: '1rem',
+				'fs': ['0.625rem', {
+					lineHeight: '1rem',
+					letterSpacing: '.01em'
+				}],
+				'fl': ['1.5rem', {
+					lineHeight: '1.88rem',
+					letterSpacing: '.01em'
+				}],
+				'xxs': ['0.5rem', {
+					lineHeight: '1rem',
+					letterSpacing: '.01em'
+				}],
+				'body-xl': ['1.25rem', {
+					lineHeight: '1.75rem',
+					letterSpacing: '0em'
+				}],
+				'body-3xl': ['2rem', {
+					lineHeight: '2.5rem',
+					letterSpacing: '0em'
+				}],
         '3xl': ['2rem', {
 					lineHeight: '2.5rem',
-					letterSpacing: '-0.02em'
+					letterSpacing: '.01em'
 				}],
+				'5xl': ['3rem', {
+					lineHeight: '3.98rem',
+					letterSpacing: '.01em',
+				}]
       },
-      letterSpacing: {},
       lineHeight: {
         label: '1.88',
         labelsm: '1.88',

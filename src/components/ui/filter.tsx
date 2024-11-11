@@ -68,7 +68,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       }
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
       if (searchCategory && items) {

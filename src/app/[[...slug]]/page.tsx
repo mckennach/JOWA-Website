@@ -6,12 +6,10 @@ import { setSeoData } from '@/lib/api/seoData'
 
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { ContentNode } from '@/gql/graphql'
-import PageTemplate from '@/src/components/templates/page'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { SEO_QUERY, CONTENT_INFO_QUERY } from '@/lib/queries'
 import HomePage from '@/src/components/templates/home'
-import WorkTemplate from '@/src/components/templates/work/work-template'
-import Loading from '@/src/components/templates/home/loading'
+import WorkTemplate from '@/src/components/templates/work'
 import WorkDetailTemplate from '@/src/components/templates/work/detail'
 import AboutTemplate from '@/src/components/templates/about'
 import ContactTemplate from '@/src/components/templates/contact'
@@ -19,6 +17,7 @@ import JournalTemplate from '@/src/components/templates/journal'
 import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 import FloatingContact from '@/components/footer/floating-contact'
 import PricingCTA from '@/components/footer/pricing-cta'
+import PricingTemplate from '@/src/components/templates/pricing'
 
 type Props = {
   params: { slug: string }
@@ -105,6 +104,8 @@ export default async function Page({ params }: Props) {
         return <AboutTemplate node={contentNode} />
       case 'contact':
         return <ContactTemplate node={contentNode} />
+			// case 'pricing':
+			// 	return <PricingTemplate node={contentNode} />
       default:
         return (
           <div className="flex h-[90vh] items-center justify-center">

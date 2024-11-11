@@ -4,6 +4,8 @@ import { useRef, forwardRef, useState, useEffect } from 'react'
 import { Project } from '@/src/gql/graphql'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/all'
+
 import Image from 'next/image'
 import { Section, Container } from '@/components/craft'
 import { imageLoader } from '@/src/lib/utils'
@@ -11,6 +13,10 @@ import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 import { Text } from '@/src/components/ui/text'
+
+gsap.registerPlugin(ScrollTrigger)
+
+
 type FeaturedProjects = {
   projects: Project[]
 }

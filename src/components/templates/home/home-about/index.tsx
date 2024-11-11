@@ -1,14 +1,19 @@
 'use client'
 
-import { useRef } from 'react'
+
+import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
-import { Section, Container, cn } from '@/components/craft'
+import { Section, Container } from '@/components/craft'
+import { ScrollTrigger } from 'gsap/all'
+import { cn } from '@/src/lib/utils'
 import Link from 'next/link'
 import { imageLoader } from '@/src/lib/utils'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type HomeAboutProps = {
   data: HomeHomeContent
@@ -21,46 +26,60 @@ export default function HomeAbout({ data }: HomeAboutProps) {
   const contentRef = useRef(null)
   const image = data?.image?.node
 
+	useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   useGSAP(
     () => {
+			const mm = gsap.matchMedia();
+			
       if (imageRef.current === null) return
-
-      gsap.set(imageRef.current, {
-        yPercent: 100,
-      })
-
-      gsap.set(textRef?.current, {
-        opacity: 0,
-      })
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: `bottom+=${window.innerHeight} bottom`,
-          pin: true,
-          pinSpacing: false,
-          scrub: 1,
-        },
-      })
-
-      tl.set(textRef.current, {
-        opacity: 1,
-      })
-
-      tl.to(
-        imageRef.current,
-        {
-          yPercent: 0,
-          opacity: 1,
-        },
-        '<'
-      )
-
-      tl.to(imageRef.current, {
-        yPercent: 0,
-        duration: 2,
-      })
+			mm.add('(min-width: 1024px)', () => {
+				gsap.set(imageRef.current, {
+					yPercent: 100,
+				})
+	
+				gsap.set(textRef?.current, {
+					opacity: 0,
+				})
+	
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: containerRef.current,
+						start: 'top top',
+						end: `bottom+=${window.innerHeight} bottom`,
+						pin: true,
+						pinSpacing: false,
+						scrub: 1,
+					},
+				})
+	
+				tl.set(textRef.current, {
+					opacity: 1,
+				})
+	
+				tl.to(
+					imageRef.current,
+					{
+						yPercent: 0,
+						opacity: 1,
+					},
+					'<'
+				)
+	
+				tl.to(imageRef.current, {
+					yPercent: 0,
+					duration: 2,
+				})
+			})
+      
     },
     {
       scope: containerRef,
@@ -69,12 +88,12 @@ export default function HomeAbout({ data }: HomeAboutProps) {
 
   return (
     <Section className="top-fade">
-      <Container ref={containerRef} className="h-[200vh]">
+      <Container ref={containerRef} className="lg:h-[200vh] py-14 lg:py-0">
         <div
-          className={cn('space-around flex flex-col-reverse gap-4 md:flex-row')}
+          className={cn('space-around flex flex-col-reverse gap-14 lg:flex-row')}
         >
-          <div className="block basis-full items-center pb-10 pt-8 md:basis-1/2 md:py-40">
-            <div className="mx-auto max-w-[280px] md:max-w-[476px]">
+          <div className="block basis-full items-center  lg:basis-1/2 lg:py-40">
+            <div className="mx-auto max-w-[280px] lg:max-w-[476px]">
               <div className="relative aspect-[476/650]" ref={imageRef}>
                 <Image
                   src={image?.mediaItemUrl ?? ''}
@@ -90,8 +109,8 @@ export default function HomeAbout({ data }: HomeAboutProps) {
               </div>
             </div>
           </div>
-          <div className="flex items-center py-8 md:basis-1/2 md:py-40">
-            <div className="max-w-[750px] space-y-8 md:pr-28" ref={contentRef}>
+          <div className="flex items-center py-0 lg:basis-1/2 lg:py-40">
+            <div className="max-w-[780px] mr-0 ml-auto space-y-8" ref={contentRef}>
               <div
                 className="body-xl-fluid"
                 dangerouslySetInnerHTML={{
@@ -124,7 +143,7 @@ export default function HomeAbout({ data }: HomeAboutProps) {
             </div>
           </div>
         </div>
-        <div className="fixed bottom-10 z-40 lg:left-12" ref={textRef}>
+        <div className="hidden lg:block fixed bottom-10 z-40 lg:left-12" ref={textRef}>
           <Link href="/about">
             <Text
               type="label"
