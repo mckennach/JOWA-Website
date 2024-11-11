@@ -16,6 +16,7 @@ import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/src/lib/utils'
 import { usePathname } from 'next/navigation'
+import { Text } from '../ui/text'
 type MobileNavigationProps = {
   menuItems: RootQueryToMenuItemConnection
 }
@@ -38,7 +39,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0"
+        className="@container mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0"
       >
         <header className="flex basis-1/4 items-start px-4 py-8">
           <div className="flex w-full items-center justify-between">
@@ -52,14 +53,13 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
         </header>
         <div className="my-4 flex basis-3/4 flex-col justify-end">
           <div className="flex flex-col space-y-3 text-foreground">
-            <ul className="w-full [&>li]:border-b [&>li]:px-14 [&>li]:py-6">
+            <ul className="w-full [&>li]:border-b">
               {menuItems.nodes.map((item: MenuItem, index: number) => {
                 if (!item.uri) return null
                 return (
-                  <li key={index}>
+                  <li key={index} className="px-14 py-4 smH:py-6">
                     <MobileLink
                       href={item.uri}
-                      className={cn('text-[32px] uppercase text-foreground')}
                       onOpenChange={setOpen}
                     >
                       {item.label}
@@ -69,7 +69,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
               })}
             </ul>
           </div>
-          <div className="py-6 text-center">
+          <div className="py-4 smH:py-6 text-center">
             <p className="font-maisonNeue text-accent-foreground">
               Where your vision unfolds.
             </p>
@@ -104,7 +104,9 @@ function MobileLink({
       className={cn('', className)}
       {...props}
     >
-      {children}
+			<Text type="title1">
+	      {children}
+			</Text>
     </Link>
   )
 }

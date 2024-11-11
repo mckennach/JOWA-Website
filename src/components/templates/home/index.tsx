@@ -10,40 +10,8 @@ import { HOME_PAGE_QUERY } from './home-query'
 import FeaturedProjects from './featured-projects'
 import HomeAbout from './home-about'
 import gql from 'graphql-tag'
-
-const FEATURED_PROJECTS_QUERY = gql`
-  query FeaturedProjects($ids: [ID]) {
-    projects(where: { in: $ids }) {
-      nodes {
-        title
-        slug
-        uri
-        featuredImage {
-          node {
-            altText
-            mediaItemUrl
-          }
-        }
-        projectFields {
-          heroImage {
-            node {
-              sourceUrl(size: _1536X1536)
-              altText
-              mediaItemUrl
-            }
-          }
-          featuredImage {
-            node {
-              sourceUrl(size: _1536X1536)
-              altText
-              mediaItemUrl
-            }
-          }
-        }
-      }
-    }
-  }
-`
+import { FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query'
+import Loading from './loading'
 
 export default async function HomePage({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
@@ -61,6 +29,7 @@ export default async function HomePage({ node }: TemplateProps) {
 
   return (
     <>
+			{/* <Loading project={projects?.nodes[0]} /> */}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects projects={projects?.nodes} />
       )}

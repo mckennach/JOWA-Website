@@ -1,7 +1,8 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
-import animate from 'tailwindcss-animate'
+import * as animate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
+import * as containerQuery from '@tailwindcss/container-queries'
 import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 
 const config = {
@@ -32,6 +33,11 @@ const config = {
       },
     },
     extend: {
+			screens: {
+				'smH': {
+					raw: '(min-height: 700px)'
+				}
+			},
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
         maisonNeue: ['Maison Neue', ...fontFamily.sans],
@@ -42,7 +48,10 @@ const config = {
         clamp: 'clamp(1rem, 5vw, 3rem)',
         label: '1rem',
         labelsm: '1rem',
-        '5xl': ['3.2rem', '6.3rem'],
+        '3xl': ['2rem', {
+					lineHeight: '2.5rem',
+					letterSpacing: '-0.02em'
+				}],
       },
       letterSpacing: {},
       lineHeight: {
@@ -116,7 +125,12 @@ const config = {
       },
     },
   },
-  plugins: [animate, typography, fluid],
+  plugins: [
+		animate,
+		typography,
+		containerQuery,
+		fluid
+],
 } satisfies Config
 
 export default config

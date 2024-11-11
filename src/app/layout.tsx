@@ -7,7 +7,7 @@ import {
   ThemeProvider,
 } from '@/src/context'
 import '@/styles/globals.min.css'
-import Loading from '../components/loading'
+import Loading from '../components/templates/home/loading'
 import { CookiesProvider } from 'next-client-cookies/server'
 import Navigation from '@/src/components/navigation'
 import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
@@ -66,11 +66,10 @@ export default async function RootLayout({
             <ScrollProvider>
               <ApolloWrapper>
                 <ThemeProvider>
-                  {/* <Loading /> */}
                   {isEnabled && <PreviewNotice />}
                   <SkipToContent />
                   <Navigation menuItems={menuItems} />
-                  <main className="">{children}</main>
+                  <main className="max-w-full overflow-x-hidden">{children}</main>
                   <Footer />
                 </ThemeProvider>
               </ApolloWrapper>
