@@ -77,7 +77,7 @@ export default function PricingCalculator({ page }: PricingCalculatorProps) {
   )
 
   return (
-    <Section className="grid grid-cols-2 border-t" ref={containerRef}>
+    <Section className="grid lg:grid-cols-2 border-t" ref={containerRef}>
       <Container className="flex flex-col gap-12 py-32" ref={formRef}>
         <header className="space-y-8">
           <Text type="title1" tag="h1" className="text-cream">
@@ -89,7 +89,7 @@ export default function PricingCalculator({ page }: PricingCalculatorProps) {
         </header>
         <PricingCalculatorForm page={page} setImage={setImage} />
       </Container>
-      <div className="sticky top-0" ref={imageRef}>
+      <div className="hidden lg:block" ref={imageRef}>
         <div className="relative h-screen w-full overflow-hidden">
           <Image
             src={image?.sourceUrl ?? ''}

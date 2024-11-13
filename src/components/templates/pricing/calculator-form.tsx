@@ -199,6 +199,43 @@ const PricingCalculatorForm = forwardRef<
               </FormItem>
             )}
           />
+
+					<FormField
+            control={form.control}
+            name="cost"
+            render={({ field }) => (
+              <FormItem className="w-full border-t border-t-cream py-8 space-y-8">
+                <div className="flex items-center justify-between">
+									<FormLabel className="">
+										<Text type="title2">Total Estimated Cost:</Text>
+									</FormLabel>
+									<div className="flex items-center gap-8">
+										<div className="flex items-center gap-4">
+											<Text type="title2" tag="p" className="">
+												$
+											</Text>
+											<Input
+												{...field}
+												readOnly
+												value={0}
+												className="h-14 max-w-[135px] flex-shrink rounded-none border border-2 font-maisonNeueExt placeholder:text-foreground"
+											/>
+											<div className="w-[40px]" />
+										</div>
+									</div>
+								</div>
+								{content?.disclaimer && (
+									<div>
+										<Text tag="p" className="text-cream">
+											DISCLAIMER: {content?.disclaimer}
+										</Text>
+									</div>
+								)}
+								
+								
+              </FormItem>
+            )}
+          />
         </div>
         <div className="mb-6 mt-8 border-t py-8">
           <Text type="title3" tag="h2" className="">
