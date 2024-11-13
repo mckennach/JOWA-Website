@@ -103,8 +103,8 @@ export default async function Page({ params }: Props) {
         return <AboutTemplate node={contentNode} />
       case 'contact':
         return <ContactTemplate node={contentNode} />
-      // case 'pricing':
-      // 	return <PricingTemplate node={contentNode} />
+      case 'pricing':
+        return <PricingTemplate node={contentNode} />
       default:
         return (
           <div className="flex h-[90vh] items-center justify-center">

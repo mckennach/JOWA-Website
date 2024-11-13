@@ -54,7 +54,7 @@ const textVariants = cva('', {
       title4: 'title-sm-fluid',
       title5: 'title-xs-fluid',
       title6: 'title-xxs-fluid',
-      body: 'body-fluid',
+      body: 'body-xl-fluid',
       caption: 'caption-sm-fluid',
       label: 'label-fluid',
       small: 'text-xs',

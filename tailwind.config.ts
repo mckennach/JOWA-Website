@@ -115,6 +115,7 @@ const config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         genmaicha: 'hsl(var(--genmaicha))',
+        'active-radio': 'hsl(var(--active-radio))',
         'nav-foreground': 'hsl(var(--nav-foreground))',
         'jowa-red': 'hsl(var(--red))',
         primary: {

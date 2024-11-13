@@ -69,9 +69,7 @@ export default async function RootLayout({
                   {isEnabled && <PreviewNotice />}
                   <SkipToContent />
                   <Navigation menuItems={menuItems} />
-                  <main className="max-w-full overflow-x-hidden">
-                    {children}
-                  </main>
+                  <main className="max-w-full overflow-hidden">{children}</main>
                   <Footer />
                 </ThemeProvider>
               </ApolloWrapper>

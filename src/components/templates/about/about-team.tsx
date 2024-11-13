@@ -73,7 +73,7 @@ export default function TeamMembers() {
   return (
     <Section
       ref={containerRef}
-      className="relative z-10 lg:h-[120vh] bg-secondary-foreground py-32 text-background"
+      className="relative z-10 bg-secondary-foreground py-32 text-background lg:h-[120vh]"
     >
       <Container>
         <Text
@@ -115,7 +115,7 @@ export default function TeamMembers() {
             })}
         </div>
       </Container>
-      <div className="hidden lg:block bg-red pointer-events-none absolute top-0 h-screen w-full">
+      <div className="bg-red pointer-events-none absolute top-0 hidden h-screen w-full lg:block">
         <div className="absolute bottom-0 left-0 h-28 w-full bg-cream" />
       </div>
     </Section>

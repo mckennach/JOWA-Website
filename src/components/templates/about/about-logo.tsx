@@ -57,7 +57,7 @@ export default function AboutLogo({ page }: AboutLogoProps) {
       ref={containerRef}
     >
       <Container>
-        <div className="relative flex lg:min-h-screen w-full flex-col gap-8 px-4 py-24 lg:px-0 lg:py-0">
+        <div className="relative flex w-full flex-col gap-8 px-4 py-24 lg:min-h-screen lg:px-0 lg:py-0">
           <div className="mx-auto w-full lg:max-w-[800px]">
             <CustomIcons
               name="about-logo"

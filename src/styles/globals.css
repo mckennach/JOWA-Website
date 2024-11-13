@@ -11,6 +11,8 @@
     --walnut: 16 37% 18%;
     --black: 0 0% 0%;
 
+    --active-radio: var(--cream);
+
     --background: var(--genmaicha);
     --foreground: var(--walnut);
 
@@ -135,6 +137,8 @@
     --border: 17 31% 18%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+
+    --active-radio: var(--walunut);
   }
 
   .mobile-navigation {
