@@ -100,7 +100,7 @@ export default function PricingCalculator({ page }: PricingCalculatorProps) {
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-            layout="fill"
+						sizes='50%'
           />
         </div>
       </div>

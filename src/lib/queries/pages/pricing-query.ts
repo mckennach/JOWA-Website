@@ -11,9 +11,9 @@ export const PRICING_QUERY = gql`
         disclaimer
         types {
           laneway {
-            level1Standard
-            level2Premium
-            level3Luxury
+						label
+            full
+						partial
             visualContent {
               content
               image {
@@ -25,9 +25,9 @@ export const PRICING_QUERY = gql`
             }
           }
           reno {
-            level1Standard
-            level2Premium
-            level3Luxury
+						label
+            full
+						partial
             visualContent {
               content
               image {
@@ -38,10 +38,10 @@ export const PRICING_QUERY = gql`
               }
             }
           }
-          newHome {
-            level1Standard
-            level2Premium
-            level3Luxury
+          newBuild {
+						label
+            full
+						partial
             visualContent {
               content
               image {

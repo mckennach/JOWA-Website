@@ -1,11 +1,11 @@
 'use client'
-import { useState, forwardRef } from 'react'
-import Link from 'next/link'
+import { useEffect, useState, forwardRef } from 'react'
 import { Text } from '../../ui/text'
-import { Node, Page, AcfMediaItemConnectionEdge } from '@/src/gql/graphql'
+import { Node, Page, AcfMediaItemConnectionEdge, PricingTypes_Fields, PricingTypesReno, PricingTypesNewBuild, PricingTypesLaneway } from '@/src/gql/graphql'
 import { Slider } from '@/components/ui/slider'
-import { useForm, useFormContext } from 'react-hook-form'
+import { set, useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Form,
   FormControl,
@@ -25,6 +25,13 @@ type PricingCalculatorFormProps = {
   setImage: (node: AcfMediaItemConnectionEdge['node']) => void
 }
 
+declare global {
+	interface ObjectConstructor {
+			typedKeys<T>(obj: T): Array<keyof T>
+	}
+}
+Object.typedKeys = Object.keys as any
+
 const formSchema = z.object({
   firstName: z.string().nonempty('First Name is required'),
   lastName: z.string().nonempty('Last Name is required'),
@@ -33,7 +40,6 @@ const formSchema = z.object({
   projectAddress: z.string().nonempty('Project Address is required'),
   projectType: z.string(),
   description: z.string(),
-  type: z.string(),
   package: z.string(),
   sqFt: z.number(),
   cost: z.number(),
@@ -46,8 +52,28 @@ const PricingCalculatorForm = forwardRef<
   PricingCalculatorFormProps
 >(({ page, setImage }, ref) => {
   const content = page?.pricing
-  const form = useForm<z.infer<typeof formSchema>>()
+  const types = content?.types;
+  const spaces = content?.spaces;
+	const [cost, setCost] = useState(0);
   const [sqFtValue, setSqFtValue] = useState(10000)
+
+  const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			phoneNumber: '',
+			projectAddress: '',
+			projectType: 'laneway',
+			description: '',
+			package: 'full',
+			sqFt: 10000,
+			cost: 10000 * 11,
+			file: [],
+			preferredContactMethod: '',
+		},
+	});
 
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: {
@@ -56,17 +82,31 @@ const PricingCalculatorForm = forwardRef<
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
   }
 
-  const { types, spaces } = content ?? {}
+
+	useEffect(() => {
+		const { unsubscribe } = form.watch((value) => {
+			if(value.projectType && value.sqFt) {
+				const selectedType = types && types[value.projectType as 'laneway' | 'reno' | 'newBuild']
+				if(selectedType && value.package) {
+					const cost = selectedType[value?.package] * value.sqFt;
+					setCost(cost)
+					// form.setValue('cost', cost)
+				}
+			}
+		})
+		return () => unsubscribe()
+	}, [form]) // eslint-disable-line react-hooks/exhaustive-deps
+
 
   return (
     <Form {...form}>
-      <form ref={ref}>
+      <form ref={ref} onSubmit={form.handleSubmit(onSubmit)}>
         <header className="mb-8 space-y-8 border-b pb-8">
           <Text tag="p" className="text-cream">
             * = required field
@@ -86,7 +126,7 @@ const PricingCalculatorForm = forwardRef<
                   onValueChange={(value) => {
                     field.onChange(value)
                     const selectedType =
-                      types && types[value as 'laneway' | 'reno' | 'newHome']
+                      types && types[value as 'laneway' | 'reno' | 'newBuild']
                     if (
                       selectedType &&
                       selectedType?.visualContent &&
@@ -98,25 +138,24 @@ const PricingCalculatorForm = forwardRef<
                   defaultValue="laneway"
                 >
                   {types &&
-                    Object.keys(types).length > 0 &&
-                    Object.keys(types).map((type, index) => {
+                    Object.typedKeys(types).length > 0 &&
+                    Object.typedKeys(types).map((key, index) => {
+											if(!key) return null;
                       return (
                         <div
                           key={index}
                           className="flex items-center space-x-2"
                         >
                           <RadioGroupItem
-                            value={type}
-                            id={type}
+                            value={key}
+                            id={key}
                             className="border-foreground"
                           />
                           <FormLabel
-                            htmlFor={type}
+                            htmlFor={key}
                             className="font-maisonNeue font-[16px] leading-[30px]"
                           >
-                            {type === 'laneway' && 'Laneway'}
-                            {type === 'reno' && 'Reno'}
-                            {type === 'newHome' && 'New Home'}
+                            {(types[key] as PricingTypesReno | PricingTypesNewBuild | PricingTypesLaneway)?.label}
                           </FormLabel>
                         </div>
                       )
@@ -135,30 +174,38 @@ const PricingCalculatorForm = forwardRef<
                 </FormLabel>
                 <RadioGroup
                   onValueChange={field.onChange}
-                  defaultValue="ensuites"
+                  defaultValue="full"
                 >
-                  {spaces &&
-                    Object.keys(spaces).length > 0 &&
-                    Object.keys(spaces).map((type, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="flex items-center space-x-2"
-                        >
-                          <RadioGroupItem
-                            value={type}
-                            id={type}
-                            className="border-foreground"
-                          />
-                          <FormLabel
-                            htmlFor={type}
-                            className="font-maisonNeue font-[16px] leading-[30px]"
-                          >
-                            {type}
-                          </FormLabel>
-                        </div>
-                      )
-                    })}
+                  <div
+										className="flex items-center space-x-2"
+									>
+										<RadioGroupItem
+											value="full"
+											id="full"
+											className="border-foreground"
+										/>
+										<FormLabel
+											htmlFor="full"
+											className="font-maisonNeue font-[16px] leading-[30px]"
+										>
+											Full
+										</FormLabel>
+									</div>
+									<div
+										className="flex items-center space-x-2"
+									>
+										<RadioGroupItem
+											value="partial"
+											id="partial"
+											className="border-foreground"
+										/>
+										<FormLabel
+											htmlFor="partial"
+											className="font-maisonNeue font-[16px] leading-[30px]"
+										>
+											Partial
+										</FormLabel>
+									</div>
                 </RadioGroup>
               </FormItem>
             )}
@@ -176,19 +223,18 @@ const PricingCalculatorForm = forwardRef<
                 <div className="flex items-center gap-8">
                   <div className="basis-2/3">
                     <Slider
-                      defaultValue={[sqFtValue]}
+                      defaultValue={[10000]}
                       min={0}
                       max={25000}
                       step={10}
-                      onValueChange={(value) => {
-                        setSqFtValue(value[0])
-                      }}
+											onValueCommit={(value) => {
+												field.onChange(value[0])
+											}}
                     />
                   </div>
                   <div className="flex flex-grow basis-1/3 items-center gap-4">
                     <Input
-                      {...field}
-                      value={sqFtValue}
+											{...field}
                       className="h-14 max-w-[135px] flex-shrink rounded-none border-foreground bg-cream font-maisonNeueExt text-foreground placeholder:text-foreground"
                     />
                     <Text type="caption" tag="p" className="flex-grow">
@@ -216,9 +262,9 @@ const PricingCalculatorForm = forwardRef<
 											</Text>
 											<Input
 												{...field}
+												value={cost}
 												readOnly
-												value={0}
-												className="h-14 max-w-[135px] flex-shrink rounded-none border border-2 font-maisonNeueExt placeholder:text-foreground"
+												className="h-14 max-w-[135px] flex-shrink rounded-none border-2 font-maisonNeueExt placeholder:text-foreground"
 											/>
 											<div className="w-[40px]" />
 										</div>
