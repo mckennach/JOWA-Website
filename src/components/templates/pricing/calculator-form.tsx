@@ -94,9 +94,9 @@ const PricingCalculatorForm = forwardRef<
 			if(value.projectType && value.sqFt) {
 				const selectedType = types && types[value.projectType as 'laneway' | 'reno' | 'newBuild']
 				if(selectedType && value.package) {
-					const cost = selectedType[value?.package] * value.sqFt;
+					const pack = value.package === 'full' ? selectedType.full : selectedType.partial;
+					const cost = pack ? pack * value.sqFt : 10000 * value.sqFt;
 					setCost(cost)
-					// form.setValue('cost', cost)
 				}
 			}
 		})
