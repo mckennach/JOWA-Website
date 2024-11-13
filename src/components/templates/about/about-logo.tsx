@@ -53,18 +53,18 @@ export default function AboutLogo({ page }: AboutLogoProps) {
 
   return (
     <Section
-      className="relative flex items-center justify-center lg:py-48"
+      className="relative flex items-center justify-center"
       ref={containerRef}
     >
       <Container>
         <div className="relative flex w-full flex-col gap-8 px-4 py-24 lg:min-h-screen lg:px-0 lg:py-0">
-          <div className="mx-auto w-full lg:max-w-[800px]">
+          <div className="mx-auto w-full lg:max-w-[800px] lg:py-48">
             <CustomIcons
               name="about-logo"
               className="mx-auto w-full lg:max-w-[800px]"
             />
           </div>
-          <div className="ml-0 max-w-[296px] lg:absolute lg:bottom-7 lg:left-12 lg:px-0">
+          <div className="ml-0 max-w-[296px] lg:absolute lg:bottom-10 lg:left-12 lg:px-0">
             <Text className="text-[16px] leading-[24px] text-genmaicha">
               {page?.aboutPage?.logoDescription}
             </Text>
