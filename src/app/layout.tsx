@@ -7,7 +7,6 @@ import {
   ThemeProvider,
 } from '@/src/context'
 import '@/styles/globals.min.css'
-import Loading from '../components/templates/home/loading'
 import { CookiesProvider } from 'next-client-cookies/server'
 import Navigation from '@/src/components/navigation'
 import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'

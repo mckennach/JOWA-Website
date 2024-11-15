@@ -18,6 +18,7 @@ import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 import FloatingContact from '@/components/footer/floating-contact'
 import PricingCTA from '@/components/footer/pricing-cta'
 import PricingTemplate from '@/src/components/templates/pricing'
+import PageTemplate from '@/src/components/templates/page'
 
 type Props = {
   params: { slug: string }
@@ -74,7 +75,7 @@ export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
   const isPreview = slug.includes('preview')
-
+	const slugToCheck = isPreview ? slug.split('preview/')[1] : slug
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(CONTENT_INFO_QUERY),
     {
@@ -86,7 +87,7 @@ export default async function Page({ params }: Props) {
   if (!contentNode) return notFound()
 
   if (contentNode.contentTypeName === 'page') {
-    switch (slug) {
+    switch (slugToCheck) {
       case '/':
         return (
           <>
@@ -106,11 +107,7 @@ export default async function Page({ params }: Props) {
       case 'pricing':
         return <PricingTemplate node={contentNode} />
       default:
-        return (
-          <div className="flex h-[90vh] items-center justify-center">
-            <h1>COMING SOON</h1>
-          </div>
-        )
+        return <PageTemplate node={contentNode} />
     }
   } else if (contentNode.contentTypeName === 'project') {
     return (
