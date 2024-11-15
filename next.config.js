@@ -10,6 +10,15 @@ const nextConfig = {
       },
     ],
   },
+	async redirects() {
+		return [
+			{
+				source: '/admin',
+				destination: 'https://jowadotca.wpcomstaging.com/wp-admin/index.php',
+				permanent: true,
+			},
+		]
+	}
 }
 
 module.exports = nextConfig

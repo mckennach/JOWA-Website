@@ -84,11 +84,12 @@ export default async function Page({ params }: Props) {
     }
   )
 
-  if (!contentNode) return notFound()
+  if (!contentNode) return notFound();
+
 
   if (contentNode.contentTypeName === 'page') {
-    switch (slugToCheck) {
-      case '/':
+    switch (contentNode.slug) {
+      case 'home-2':
         return (
           <>
             <HomePage node={contentNode} />
@@ -107,7 +108,7 @@ export default async function Page({ params }: Props) {
       case 'pricing':
         return <PricingTemplate node={contentNode} />
       default:
-        return <PageTemplate node={contentNode} />
+        return null;
     }
   } else if (contentNode.contentTypeName === 'project') {
     return (
