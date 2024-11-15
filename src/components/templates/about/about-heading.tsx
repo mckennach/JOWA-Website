@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
 import { Page, Service } from '@/src/gql/graphql'
+import CustomIcons from '../../custom-icons'
 
 type AboutHeadingProps = {
   page: Page
@@ -58,8 +59,10 @@ export default function AboutHeading({ page, services }: AboutHeadingProps) {
               <Text type="label">GET IN TOUCH</Text>
             </div>
             <div className="max-w-[346px] grow border-b border-b-secondary-foreground">
-              <Link href="mailto:info@jowa.ca">
-                <Text type="label">info@jowa.ca</Text>
+              <Link href="mailto:info@jowa.ca" target="_blank">
+                <Text type="label" className="flex items-center gap-2">info@jowa.ca
+									<CustomIcons name="link" />
+								</Text>
               </Link>
             </div>
           </div>
