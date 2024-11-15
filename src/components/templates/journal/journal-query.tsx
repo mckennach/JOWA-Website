@@ -107,7 +107,6 @@ export const JOURNAL_QUERY = gql`
           section1Title
           section1Copy
           section1Cta {
-            alignImage
             copy
             ctaLink {
               url
@@ -124,7 +123,22 @@ export const JOURNAL_QUERY = gql`
           section2Title
           section2Copy
           section2Cta {
-            alignImage
+            copy
+            ctaLink {
+              target
+              title
+              url
+            }
+            image {
+              node {
+                mediaItemUrl
+                altText
+              }
+            }
+          }
+          section3Title
+          section3Copy
+          section3Cta {
             copy
             ctaLink {
               target

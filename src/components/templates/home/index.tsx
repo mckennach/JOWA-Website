@@ -17,9 +17,9 @@ import Loading from './loading'
 
 export default async function HomePage({ node }: TemplateProps) {
   const cookieStore = await cookies()
-  const loaded = cookieStore.get('animation-loaded');
-	console.log(loaded);
-	const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
+  const loaded = cookieStore.get('animation-loaded')
+
+  const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
     id: node.databaseId,
   })
 
@@ -30,7 +30,7 @@ export default async function HomePage({ node }: TemplateProps) {
     projects: PostFormatToProjectConnection
   }>(print(FEATURED_PROJECTS_QUERY), {
     ids: projectIds,
-  });
+  })
 
   return (
     <>

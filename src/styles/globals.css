@@ -170,7 +170,7 @@
   }
 
   .nav-fluid {
-    @apply ~text-xs/base transition-all duration-300 ease-in-out before:transition-all before:duration-300 before:ease-in-out;
+    @apply transition-all duration-300 ease-in-out ~text-xs/base before:transition-all before:duration-300 before:ease-in-out;
     @apply relative font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px] text-nav-foreground;
     @apply before:absolute before:bottom-[3px] before:left-0 before:h-[1px] before:w-0 before:bg-nav-foreground;
     @apply hover:before:w-full focus:before:w-full active:before:w-full;

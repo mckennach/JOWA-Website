@@ -6,7 +6,6 @@ type TextBlockProps = {
 }
 
 export default function TextBlock({ data, className }: TextBlockProps) {
-  console.log(data)
   const { htmlContent } = data
   if (!htmlContent) return null
   return (

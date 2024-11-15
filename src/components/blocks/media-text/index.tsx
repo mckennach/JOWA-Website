@@ -35,7 +35,7 @@ export default function MediaText({ data }: MediaTextProps) {
   useGSAP(
     () => {
       if (imageRef.current === null) return
-      console.log(imageRef.current.offsetHeight)
+    
 
       gsap.set(imageRef.current, {
         yPercent: 100,

@@ -112,6 +112,7 @@ const config = {
         ring: 'hsl(var(--ring))',
         cream: 'hsl(var(--cream))',
         walnut: 'hsl(var(--walnut))',
+        sencha: 'hsl(var(--sencha))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         genmaicha: 'hsl(var(--genmaicha))',

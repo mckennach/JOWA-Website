@@ -7,6 +7,7 @@ import { Post, Tag } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
 import Link from 'next/link'
 import CustomIcons from '@/src/components/custom-icons'
+import ShareButton from '@/src/components/ui/share'
 
 export default function JournalHero({ post }: { post: Post }) {
   const date = new Date(post?.date as string)
@@ -23,9 +24,7 @@ export default function JournalHero({ post }: { post: Post }) {
       <div className="flex flex-col lg:h-[90vh] lg:flex-row">
         <Container className="flex h-full flex-col justify-between pb-12 pt-6 lg:basis-1/2 lg:pl-24">
           <div className="flex justify-end">
-            <Text className="flex items-center gap-1 tracking-wider">
-              SHARE <CustomIcons name="link" />
-            </Text>
+            <ShareButton />
           </div>
           <div className="space-y-12">
             <Text type="label">{dateString}</Text>

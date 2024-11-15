@@ -11,9 +11,9 @@ export const PRICING_QUERY = gql`
         disclaimer
         types {
           laneway {
-						label
+            label
             full
-						partial
+            partial
             visualContent {
               content
               image {
@@ -25,9 +25,9 @@ export const PRICING_QUERY = gql`
             }
           }
           reno {
-						label
+            label
             full
-						partial
+            partial
             visualContent {
               content
               image {
@@ -39,9 +39,9 @@ export const PRICING_QUERY = gql`
             }
           }
           newBuild {
-						label
+            label
             full
-						partial
+            partial
             visualContent {
               content
               image {

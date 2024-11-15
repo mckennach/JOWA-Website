@@ -8,7 +8,6 @@ import { Fragment } from 'react'
 
 export default function ProjectContent({ project }: { project: Project }) {
   const content = project?.projectFields
-  console.log(content)
   return (
     <Fragment>
       {content?.introFullWidthImage?.node &&

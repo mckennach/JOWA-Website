@@ -21,7 +21,6 @@ export default async function AboutTemplate({ node }: TemplateProps) {
     services: { nodes: Array<Service> }
   }>(print(SERVICES_QUERY))
 
-  console.log(services)
 
   return (
     <>

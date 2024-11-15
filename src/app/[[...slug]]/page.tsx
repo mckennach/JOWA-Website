@@ -75,7 +75,7 @@ export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
   const isPreview = slug.includes('preview')
-	const slugToCheck = isPreview ? slug.split('preview/')[1] : slug
+  const slugToCheck = isPreview ? slug.split('preview/')[1] : slug
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(CONTENT_INFO_QUERY),
     {

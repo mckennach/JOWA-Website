@@ -6,7 +6,6 @@ import ImageBlock from '../image'
 import TextBlock from '../text-block'
 
 export default function Columns({ ...props }: BlockData) {
-  console.log(props)
   return (
     <Section>
       <Container>

@@ -7,9 +7,11 @@ import { Post, PostData, Tag } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
 import CustomIcons from '@/src/components/custom-icons'
 import Link from 'next/link'
+import ShareButton from '@/src/components/ui/share'
 export default function JournalContent({ post }: { post: Post }) {
   const { postData } = post
-  const { content } = postData as PostData
+  const { content } = postData as PostData;
+
   return (
     <div className="space-y-32 pb-20 lg:pb-36">
       <Section>
@@ -95,36 +97,139 @@ export default function JournalContent({ post }: { post: Post }) {
             </Container>
           </Section>
         )}
-      <Section>
-        <Container className="flex flex-col gap-y-24">
-          <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
-            {content?.section2Title &&
-              typeof content?.section2Title === 'string' && (
-                <Text
-                  type="title2"
-                  tag="h2"
-                  className="uppercase text-accent-foreground"
-                >
-                  2. {content?.section2Title}
-                </Text>
-              )}
 
-            {content?.section2Copy && (
-              <div
-                dangerouslySetInnerHTML={{ __html: content.section2Copy }}
-                className="body-xl-fluid"
-              />
-            )}
-          </div>
-          {content?.section2Cta &&
-            content?.section2Cta?.image &&
-            content?.section2Cta?.copy && (
-              <div className="flex gap-28">
-                <div className="basis-1/2">
-                  <div className="relative mx-auto aspect-[662/868] max-w-[662px]">
+      {content?.section2Title ||
+        content?.section2Copy ||
+        (content?.section2Cta?.copy && (
+          <Section>
+            <Container className="flex flex-col gap-y-24">
+              <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
+                {content?.section2Title &&
+                  typeof content?.section2Title === 'string' && (
+                    <Text
+                      type="title2"
+                      tag="h2"
+                      className="uppercase text-accent-foreground"
+                    >
+                      2. {content?.section2Title}
+                    </Text>
+                  )}
+
+                {content?.section2Copy && (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: content.section2Copy }}
+                    className="body-xl-fluid"
+                  />
+                )}
+              </div>
+              {content?.section2Cta &&
+                content?.section2Cta?.image &&
+                content?.section2Cta?.copy && (
+                  <div className="flex gap-28">
+                    <div className="basis-1/2">
+                      <div className="relative mx-auto aspect-[662/868] max-w-[662px]">
+                        <Image
+                          src={
+                            content?.section2Cta?.image?.node.mediaItemUrl ?? ''
+                          }
+                          alt={content?.section2Cta?.image?.node.altText ?? ''}
+                          fill={true}
+                          style={{
+                            objectFit: 'cover',
+                          }}
+                          className="brightness-75 filter"
+                          loader={imageLoader}
+                          priority={true}
+                        />
+                      </div>
+                    </div>
+                    <div className="basis-1/2">
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: content?.section2Cta?.copy ?? '',
+                        }}
+                        className="body-xl-fluid"
+                      />
+                    </div>
+                  </div>
+                )}
+            </Container>
+          </Section>
+        ))}
+
+      {content?.section3Title ||
+        content?.section3Copy ||
+        (content?.section3Cta?.copy && (
+          <Section>
+            <Container className="flex flex-col gap-y-24">
+              <div className="space-y-6 lg:mx-auto lg:max-w-[80%]">
+                {content?.section3Title &&
+                  typeof content?.section3Title === 'string' && (
+                    <Text
+                      type="title2"
+                      tag="h2"
+                      className="uppercase text-accent-foreground"
+                    >
+                      2. {content?.section3Title}
+                    </Text>
+                  )}
+
+                {content?.section3Copy && (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: content.section3Copy }}
+                    className="body-xl-fluid"
+                  />
+                )}
+              </div>
+              {content?.section3Cta &&
+                content?.section3Cta?.image &&
+                content?.section3Cta?.copy && (
+                  <div className="flex gap-28">
+                    <div className="basis-1/2">
+                      <div className="relative mx-auto aspect-[662/868] max-w-[662px]">
+                        <Image
+                          src={
+                            content?.section3Cta?.image?.node.mediaItemUrl ?? ''
+                          }
+                          alt={content?.section3Cta?.image?.node.altText ?? ''}
+                          fill={true}
+                          style={{
+                            objectFit: 'cover',
+                          }}
+                          className="brightness-75 filter"
+                          loader={imageLoader}
+                          priority={true}
+                        />
+                      </div>
+                    </div>
+                    <div className="basis-1/2">
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: content?.section3Cta?.copy ?? '',
+                        }}
+                        className="body-xl-fluid"
+                      />
+                    </div>
+                  </div>
+                )}
+            </Container>
+          </Section>
+        ))}
+
+      <Section>
+        <Container>
+          {(postData?.imageGallery?.image1?.node ||
+            postData?.imageGallery?.image2?.node ||
+            postData?.imageGallery?.image3?.node) && (
+            <div className="grid lg:grid-cols-2">
+              <div>
+                {postData?.imageGallery?.image1?.node && (
+                  <div className="relative mx-auto mb-24 aspect-[662/868] max-w-[662px] lg:mb-0 lg:ml-0">
                     <Image
-                      src={content?.section2Cta?.image?.node.mediaItemUrl ?? ''}
-                      alt={content?.section2Cta?.image?.node.altText ?? ''}
+                      src={
+                        postData?.imageGallery?.image1?.node.mediaItemUrl ?? ''
+                      }
+                      alt={postData?.imageGallery?.image1?.node.altText ?? ''}
                       fill={true}
                       style={{
                         objectFit: 'cover',
@@ -134,88 +239,51 @@ export default function JournalContent({ post }: { post: Post }) {
                       priority={true}
                     />
                   </div>
-                </div>
-                <div className="basis-1/2">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: content?.section2Cta?.copy ?? '',
-                    }}
-                    className="body-xl-fluid"
-                  />
-                </div>
+                )}
               </div>
-            )}
-        </Container>
-      </Section>
-      <Section>
-        <Container>
-          <div className="grid lg:grid-cols-2">
-            <div>
-              {postData?.imageGallery?.image1?.node && (
-                <div className="relative mx-auto mb-24 aspect-[662/868] max-w-[662px] lg:mb-0 lg:ml-0">
-                  <Image
-                    src={
-                      postData?.imageGallery?.image1?.node.mediaItemUrl ?? ''
-                    }
-                    alt={postData?.imageGallery?.image1?.node.altText ?? ''}
-                    fill={true}
-                    style={{
-                      objectFit: 'cover',
-                    }}
-                    className="brightness-75 filter"
-                    loader={imageLoader}
-                    priority={true}
-                  />
-                </div>
-              )}
+              <div>
+                {postData?.imageGallery?.image2?.node && (
+                  <div className="relative mb-16 ml-auto mr-auto aspect-[660/454] max-w-[75%] lg:mb-52 lg:mr-0 lg:max-w-[660px]">
+                    <Image
+                      src={
+                        postData?.imageGallery?.image2?.node.mediaItemUrl ?? ''
+                      }
+                      alt={postData?.imageGallery?.image2?.node.altText ?? ''}
+                      fill={true}
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                      className="brightness-75 filter"
+                      loader={imageLoader}
+                      priority={true}
+                    />
+                  </div>
+                )}
+                {postData?.imageGallery?.image3?.node && (
+                  <div className="relative ml-auto mr-auto aspect-[295/351] max-w-[295px] lg:mr-0">
+                    <Image
+                      src={
+                        postData?.imageGallery?.image3?.node.mediaItemUrl ?? ''
+                      }
+                      alt={postData?.imageGallery?.image3?.node.altText ?? ''}
+                      fill={true}
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                      className="brightness-75 filter"
+                      loader={imageLoader}
+                      priority={true}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-            <div>
-              {postData?.imageGallery?.image2?.node && (
-                <div className="relative mb-16 ml-auto mr-auto aspect-[660/454] max-w-[75%] lg:mb-52 lg:mr-0 lg:max-w-[660px]">
-                  <Image
-                    src={
-                      postData?.imageGallery?.image2?.node.mediaItemUrl ?? ''
-                    }
-                    alt={postData?.imageGallery?.image2?.node.altText ?? ''}
-                    fill={true}
-                    style={{
-                      objectFit: 'cover',
-                    }}
-                    className="brightness-75 filter"
-                    loader={imageLoader}
-                    priority={true}
-                  />
-                </div>
-              )}
-              {postData?.imageGallery?.image3?.node && (
-                <div className="relative ml-auto mr-auto aspect-[295/351] max-w-[295px] lg:mr-0">
-                  <Image
-                    src={
-                      postData?.imageGallery?.image3?.node.mediaItemUrl ?? ''
-                    }
-                    alt={postData?.imageGallery?.image3?.node.altText ?? ''}
-                    fill={true}
-                    style={{
-                      objectFit: 'cover',
-                    }}
-                    className="brightness-75 filter"
-                    loader={imageLoader}
-                    priority={true}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+          )}
           <div className="mt-20 space-y-3 text-center lg:mt-0 lg:text-left">
             <Text tag="p" className="text-accent">
               {postData?.credits}
             </Text>
-            <Link
-              href="/share"
-              className="flex items-center justify-center gap-1 tracking-wider lg:justify-start"
-            >
-              SHARE <CustomIcons name="link" />
-            </Link>
+            <ShareButton />
           </div>
         </Container>
       </Section>

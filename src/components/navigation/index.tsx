@@ -49,8 +49,7 @@ export default function Navigation({
   const isWorkDetail =
     pathname.includes('work') && pathname.split('/').length > 2
 
-	const isPricing =
-		pathname.includes('pricing');
+  const isPricing = pathname.includes('pricing')
 
   return (
     <nav
@@ -58,7 +57,7 @@ export default function Navigation({
         'navigation group sticky top-0 z-[150] w-full bg-transparent text-nav-foreground',
         'fade-in',
         isWorkDetail && 'fixed',
-				isPricing && 'bg-[var(--pricing-bg)]',
+        isPricing && 'bg-[var(--pricing-bg)]',
         className
       )}
       role="navigation"

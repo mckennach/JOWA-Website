@@ -1,11 +1,19 @@
 'use client'
 import { useEffect, useState, forwardRef } from 'react'
 import { Text } from '../../ui/text'
-import { Node, Page, AcfMediaItemConnectionEdge, PricingTypes_Fields, PricingTypesReno, PricingTypesNewBuild, PricingTypesLaneway } from '@/src/gql/graphql'
+import {
+  Node,
+  Page,
+  AcfMediaItemConnectionEdge,
+  PricingTypes_Fields,
+  PricingTypesReno,
+  PricingTypesNewBuild,
+  PricingTypesLaneway,
+} from '@/src/gql/graphql'
 import { Slider } from '@/components/ui/slider'
 import { set, useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -26,9 +34,9 @@ type PricingCalculatorFormProps = {
 }
 
 declare global {
-	interface ObjectConstructor {
-			typedKeys<T>(obj: T): Array<keyof T>
-	}
+  interface ObjectConstructor {
+    typedKeys<T>(obj: T): Array<keyof T>
+  }
 }
 Object.typedKeys = Object.keys as any
 
@@ -52,28 +60,28 @@ const PricingCalculatorForm = forwardRef<
   PricingCalculatorFormProps
 >(({ page, setImage }, ref) => {
   const content = page?.pricing
-  const types = content?.types;
-  const spaces = content?.spaces;
-	const [cost, setCost] = useState(0);
+  const types = content?.types
+  const spaces = content?.spaces
+  const [cost, setCost] = useState(0)
   const [sqFtValue, setSqFtValue] = useState(10000)
 
   const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			firstName: '',
-			lastName: '',
-			email: '',
-			phoneNumber: '',
-			projectAddress: '',
-			projectType: 'laneway',
-			description: '',
-			package: 'full',
-			sqFt: 10000,
-			cost: 10000 * 11,
-			file: [],
-			preferredContactMethod: '',
-		},
-	});
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      projectAddress: '',
+      projectType: 'laneway',
+      description: '',
+      package: 'full',
+      sqFt: 10000,
+      cost: 10000 * 11,
+      file: [],
+      preferredContactMethod: '',
+    },
+  })
 
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: {
@@ -88,21 +96,21 @@ const PricingCalculatorForm = forwardRef<
     console.log(values)
   }
 
-
-	useEffect(() => {
-		const { unsubscribe } = form.watch((value) => {
-			if(value.projectType && value.sqFt) {
-				const selectedType = types && types[value.projectType as 'laneway' | 'reno' | 'newBuild']
-				if(selectedType && value.package) {
-					const pack = value.package === 'full' ? selectedType.full : selectedType.partial;
-					const cost = pack ? pack * value.sqFt : 10000 * value.sqFt;
-					setCost(cost)
-				}
-			}
-		})
-		return () => unsubscribe()
-	}, [form]) // eslint-disable-line react-hooks/exhaustive-deps
-
+  useEffect(() => {
+    const { unsubscribe } = form.watch((value) => {
+      if (value.projectType && value.sqFt) {
+        const selectedType =
+          types && types[value.projectType as 'laneway' | 'reno' | 'newBuild']
+        if (selectedType && value.package) {
+          const pack =
+            value.package === 'full' ? selectedType.full : selectedType.partial
+          const cost = pack ? pack * value.sqFt : 10000 * value.sqFt
+          setCost(cost)
+        }
+      }
+    })
+    return () => unsubscribe()
+  }, [form]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Form {...form}>
@@ -140,7 +148,7 @@ const PricingCalculatorForm = forwardRef<
                   {types &&
                     Object.typedKeys(types).length > 0 &&
                     Object.typedKeys(types).map((key, index) => {
-											if(!key) return null;
+                      if (!key) return null
                       return (
                         <div
                           key={index}
@@ -155,7 +163,14 @@ const PricingCalculatorForm = forwardRef<
                             htmlFor={key}
                             className="font-maisonNeue font-[16px] leading-[30px]"
                           >
-                            {(types[key] as PricingTypesReno | PricingTypesNewBuild | PricingTypesLaneway)?.label}
+                            {
+                              (
+                                types[key] as
+                                  | PricingTypesReno
+                                  | PricingTypesNewBuild
+                                  | PricingTypesLaneway
+                              )?.label
+                            }
                           </FormLabel>
                         </div>
                       )
@@ -172,40 +187,33 @@ const PricingCalculatorForm = forwardRef<
                 <FormLabel className="font-maisonNeue font-[16px] leading-[30px]">
                   2) Are you looking for full or partial design package?*
                 </FormLabel>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue="full"
-                >
-                  <div
-										className="flex items-center space-x-2"
-									>
-										<RadioGroupItem
-											value="full"
-											id="full"
-											className="border-foreground"
-										/>
-										<FormLabel
-											htmlFor="full"
-											className="font-maisonNeue font-[16px] leading-[30px]"
-										>
-											Full
-										</FormLabel>
-									</div>
-									<div
-										className="flex items-center space-x-2"
-									>
-										<RadioGroupItem
-											value="partial"
-											id="partial"
-											className="border-foreground"
-										/>
-										<FormLabel
-											htmlFor="partial"
-											className="font-maisonNeue font-[16px] leading-[30px]"
-										>
-											Partial
-										</FormLabel>
-									</div>
+                <RadioGroup onValueChange={field.onChange} defaultValue="full">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="full"
+                      id="full"
+                      className="border-foreground"
+                    />
+                    <FormLabel
+                      htmlFor="full"
+                      className="font-maisonNeue font-[16px] leading-[30px]"
+                    >
+                      Full
+                    </FormLabel>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="partial"
+                      id="partial"
+                      className="border-foreground"
+                    />
+                    <FormLabel
+                      htmlFor="partial"
+                      className="font-maisonNeue font-[16px] leading-[30px]"
+                    >
+                      Partial
+                    </FormLabel>
+                  </div>
                 </RadioGroup>
               </FormItem>
             )}
@@ -227,14 +235,14 @@ const PricingCalculatorForm = forwardRef<
                       min={0}
                       max={25000}
                       step={10}
-											onValueCommit={(value) => {
-												field.onChange(value[0])
-											}}
+                      onValueCommit={(value) => {
+                        field.onChange(value[0])
+                      }}
                     />
                   </div>
                   <div className="flex flex-grow basis-1/3 items-center gap-4">
                     <Input
-											{...field}
+                      {...field}
                       className="h-14 max-w-[135px] flex-shrink rounded-none border-foreground bg-cream font-maisonNeueExt text-foreground placeholder:text-foreground"
                     />
                     <Text type="caption" tag="p" className="flex-grow">
@@ -246,39 +254,37 @@ const PricingCalculatorForm = forwardRef<
             )}
           />
 
-					<FormField
+          <FormField
             control={form.control}
             name="cost"
             render={({ field }) => (
-              <FormItem className="w-full border-t border-t-cream py-8 space-y-8">
+              <FormItem className="w-full space-y-8 border-t border-t-cream py-8">
                 <div className="flex items-center justify-between">
-									<FormLabel className="">
-										<Text type="title2">Total Estimated Cost:</Text>
-									</FormLabel>
-									<div className="flex items-center gap-8">
-										<div className="flex items-center gap-4">
-											<Text type="title2" tag="p" className="">
-												$
-											</Text>
-											<Input
-												{...field}
-												value={cost}
-												readOnly
-												className="h-14 max-w-[135px] flex-shrink rounded-none border-2 font-maisonNeueExt placeholder:text-foreground"
-											/>
-											<div className="w-[40px]" />
-										</div>
-									</div>
-								</div>
-								{content?.disclaimer && (
-									<div>
-										<Text tag="p" className="text-cream">
-											DISCLAIMER: {content?.disclaimer}
-										</Text>
-									</div>
-								)}
-								
-								
+                  <FormLabel className="">
+                    <Text type="title2">Total Estimated Cost:</Text>
+                  </FormLabel>
+                  <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-4">
+                      <Text type="title2" tag="p" className="">
+                        $
+                      </Text>
+                      <Input
+                        {...field}
+                        value={cost}
+                        readOnly
+                        className="h-14 max-w-[135px] flex-shrink rounded-none border-2 font-maisonNeueExt placeholder:text-foreground"
+                      />
+                      <div className="w-[40px]" />
+                    </div>
+                  </div>
+                </div>
+                {content?.disclaimer && (
+                  <div>
+                    <Text tag="p" className="text-cream">
+                      DISCLAIMER: {content?.disclaimer}
+                    </Text>
+                  </div>
+                )}
               </FormItem>
             )}
           />
