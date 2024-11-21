@@ -31,7 +31,7 @@ export default function OurProcess({ page }: OurProcessProps) {
             />
           </div>
           <div>
-            <div className="relative mt-12 mx-auto aspect-[662/868] max-w-[278px] lg:max-w-[662px]">
+            <div className="relative mt-16 mx-auto aspect-[662/868] max-w-[278px] lg:max-w-[662px]">
               <Image
                 src={section?.image?.node?.sourceUrl ?? ''}
                 alt={section?.image?.node?.altText ?? ''}
