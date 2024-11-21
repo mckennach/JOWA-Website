@@ -1,11 +1,10 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
+import { gsap, ScrollTrigger } from "gsap/all";
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { Section, Container } from '@/components/craft'
-import { ScrollTrigger } from 'gsap/all'
 import { cn } from '@/src/lib/utils'
 import Link from 'next/link'
 import { imageLoader } from '@/src/lib/utils'
@@ -81,6 +80,7 @@ export default function HomeAbout({ data }: HomeAboutProps) {
     },
     {
       scope: containerRef,
+			revertOnUpdate: true
     }
   )
 

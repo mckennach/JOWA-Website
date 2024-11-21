@@ -2,10 +2,8 @@
 
 import { useRef, forwardRef, useState, useEffect } from 'react'
 import { Project } from '@/src/gql/graphql'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/all'
-
+import { gsap, ScrollTrigger } from "gsap/all";
 import Image from 'next/image'
 import { Section, Container } from '@/components/craft'
 import { imageLoader } from '@/src/lib/utils'
