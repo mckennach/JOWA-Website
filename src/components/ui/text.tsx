@@ -33,6 +33,8 @@ export type TextProps = {
     | 'title5'
     | 'title6'
     | 'body'
+		| 'body-sm'
+		| 'body-xs'
     | 'caption'
     | 'label'
     | 'small'
@@ -55,6 +57,8 @@ const textVariants = cva('', {
       title5: 'title-xs-fluid',
       title6: 'title-xxs-fluid',
       body: 'body-xl-fluid',
+      'body-sm': 'body-sm-fluid',
+      'body-xs': 'body-xs-fluid',
       caption: 'caption-sm-fluid',
       label: 'label-fluid',
       small: 'text-xs',

@@ -9,6 +9,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     let theme = 'default'
     if (pathname.includes('/work') || pathname.includes('/journal')) {
       theme = 'cream'
+			if(pathname.includes('/work') && pathname.split('/').length > 2) {
+				theme = 'cream-detail'
+			}
     }
 
     if (pathname.includes('/contact')) {
@@ -25,7 +28,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
       defaultTheme={getTheme()}
-      themes={['default', 'cream', 'walnut', 'sencha']}
+      themes={['default', 'cream', 'cream-detail', 'walnut', 'sencha']}
       forcedTheme={getTheme()}
       attribute="class"
     >

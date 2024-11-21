@@ -108,7 +108,7 @@ export default async function Page({ params }: Props) {
       case 'pricing':
         return <PricingTemplate node={contentNode} />
       default:
-        return null;
+        return <PageTemplate node={contentNode} />
     }
   } else if (contentNode.contentTypeName === 'project') {
     return (
@@ -121,16 +121,5 @@ export default async function Page({ params }: Props) {
     return <JournalDetailTemplate node={contentNode} />
   }
 
-  return (
-    <div className="flex h-[90vh] items-center justify-center">
-      <h1>
-        {slug}: {isPreview}
-      </h1>
-      <div>
-        <pre>
-          <code>{JSON.stringify(contentNode, null, 2)}</code>
-        </pre>
-      </div>
-    </div>
-  )
+  return null;
 }

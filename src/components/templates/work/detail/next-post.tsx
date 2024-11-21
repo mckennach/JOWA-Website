@@ -40,7 +40,7 @@ export default function NextPost({
                   <Text
                     tag="h3"
                     type="title1"
-                    className="mb-28 text-[48px] leading-8 text-background lg:mb-0"
+                    className="text-background"
                   >
                     NEXT PROJECT
                   </Text>
@@ -106,7 +106,7 @@ export default function NextPost({
           <Link
             href={`/work/${projects.nodes[0].slug}`}
             className={cn(
-              'absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2'
+              'hidden lg:block absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2'
             )}
           >
             <CustomIcons name="arrow-right" />

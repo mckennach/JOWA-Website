@@ -11,6 +11,15 @@
     --walnut: 16 37% 18%;
     --black: 0 0% 0%;
 
+		--main-nav-background: var(var(--background));
+    --main-nav-foreground: var(--foreground);
+    --main-nav-border: var(--border);
+
+
+		--nav-background: var(var(--background));
+    --nav-foreground: var(--foreground);
+    --nav-border: var(--border);
+
     --active-radio: var(--cream);
 
     --background: var(--genmaicha);
@@ -50,6 +59,45 @@
   }
 
   .cream {
+    --background: var(--cream);
+    --foreground: var(--walnut);
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 17 31% 18%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 39 78% 93%;
+    --secondary-foreground: var(--cream);
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 17 31% 18%;
+
+    --accent: var(--sencha);
+    --accent-foreground: 358 72% 45%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 17 31% 18%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+
+	.cream-detail {
+
+		--main-nav-background: var(var(--cream));
+    --main-nav-foreground: var(--cream);
+    --main-nav-border: var(--cream);
+
+		--nav-background: var(var(--cream));
+    --nav-foreground: var(--cream);
+    --nav-border: var(--cream);
+
     --background: var(--cream);
     --foreground: var(--walnut);
 
@@ -148,11 +196,6 @@
     --border: var(--sencha);
   }
 
-  :root {
-    --nav-background: var(var(--background));
-    --nav-foreground: var(--foreground);
-    --nav-border: var(--border);
-  }
 }
 
 @layer base {
@@ -170,7 +213,7 @@
   }
 
   .nav-fluid {
-    @apply transition-all duration-300 ease-in-out ~text-xs/base before:transition-all before:duration-300 before:ease-in-out;
+    @apply font-maisonNeueExt transition-all duration-300 ease-in-out ~text-xs/base before:transition-all before:duration-300 before:ease-in-out;
     @apply relative font-maisonNeueExt font-normal uppercase leading-[1.88] tracking-[0.4px] text-nav-foreground;
     @apply before:absolute before:bottom-[3px] before:left-0 before:h-[1px] before:w-0 before:bg-nav-foreground;
     @apply hover:before:w-full focus:before:w-full active:before:w-full;
@@ -235,6 +278,10 @@
     @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/2xl lg:leading-[34px];
   }
 
+	.body-xs-fluid {
+    @apply font-maisonNeue font-normal leading-[30px] tracking-normal text-base lg:leading-[34px];
+  }
+
   .footer-link {
     @apply font-maisonNeueExt ~text-fs/fl;
   }
@@ -248,8 +295,9 @@
   }
 
   .top-fade {
-    @apply bg-background;
-    @apply from-background to-transparent before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t;
+		@apply relative;
+    /* @apply bg-background; */
+    @apply before:from-background before:to-transparent before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t;
     /* @apply absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-background to-transparent pointer-events-none; */
   }
 

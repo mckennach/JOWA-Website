@@ -14,7 +14,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
   return (
     <Section className="overflow-hidden">
       <Container className=" ">
-        <div className="grid grid-cols-3 gap-y-14 pb-24 pt-10 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-32">
+        <div className="grid gap-y-14 pb-24 pt-10 lg:grid-cols-3 lg:gap-x-4 lg:gap-y-32">
           {posts.map((post, index) => {
             const categoryExists =
               post &&
@@ -26,7 +26,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
           })}
         </div>
       </Container>
-      <div className="border-b-[1.5px] py-24">{/* PAG */}</div>
+      <div className="lg:border-b-[1.5px] py-24">{/* PAG */}</div>
     </Section>
   )
 }
@@ -45,14 +45,14 @@ const JournalItem = ({ post }: { post: Post }) => {
   return (
     <div
       className={cn(
-        'group relative cursor-pointer space-y-4 before:absolute before:-bottom-20 before:-left-16 before:h-[1.5px] before:w-[calc(112px+100%)] before:bg-walnut [&:nth-last-child(-n+3)]:before:opacity-0'
+        'group relative cursor-pointer space-y-4 before:hidden lg:before:block before:absolute before:-bottom-20 before:-left-16 before:h-[1.5px] before:w-[calc(112px+100%)] before:bg-walnut [&:nth-last-child(-n+3)]:before:opacity-0'
       )}
       onClick={() => {
         router.push(`/journal/${post.slug}`)
       }}
       role="button"
     >
-      <div className="card-container relative">
+      <div className="card-container relative space-y-6">
         <div className="image-hover relative aspect-square">
           <Image
             src={post?.postData?.featuredImage?.node?.mediaItemUrl ?? ''}
@@ -64,13 +64,14 @@ const JournalItem = ({ post }: { post: Post }) => {
             loader={imageLoader}
           />
         </div>
-
-        <Text type="label" tag="p" className="text-accent-foreground">
-          {dateString}
-        </Text>
-        <Text type="label" tag="p" className="text-[24px] leading-8">
-          {post.title}
-        </Text>
+				<div className="space-y-2">
+					<Text type="label" tag="p" className="text-accent-foreground">
+						{dateString}
+					</Text>
+					<Text type="label" tag="p" className="text-[24px] leading-8">
+						{post.title}
+					</Text>
+				</div>
       </div>
     </div>
   )

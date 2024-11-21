@@ -11,6 +11,7 @@ const config = {
     files: [
       './src/pages/**/*.{ts,tsx}',
       './src/components/**/*.{ts,tsx}',
+      './src/components/ui/*.{ts,tsx}',
       './src/app/**/*.{ts,tsx}',
       './src/templates/**/*.{ts,tsx}',
       './src/**/*.{ts,tsx}',
@@ -48,6 +49,7 @@ const config = {
       },
       fontSize: {
         body: ['2rem', '42px'],
+				base: ['1rem', '1.4rem'],
         clamp: 'clamp(1rem, 5vw, 3rem)',
         label: '1rem',
         labelsm: '1rem',
@@ -116,7 +118,7 @@ const config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         genmaicha: 'hsl(var(--genmaicha))',
-        'active-radio': 'hsl(var(--active-radio))',
+        'active-radio': 'hsl(var(--cream))',
         'nav-foreground': 'hsl(var(--nav-foreground))',
         'jowa-red': 'hsl(var(--red))',
         primary: {

@@ -93,7 +93,7 @@ export default function HomeAbout({ data }: HomeAboutProps) {
           )}
         >
           <div className="block basis-full items-center lg:basis-1/2 lg:py-40">
-            <div className="mx-auto max-w-[280px] lg:max-w-[476px]">
+            <div className="mx-auto max-w-[280px] lg:max-w-[55%]">
               <div className="relative aspect-[476/650]" ref={imageRef}>
                 <Image
                   src={image?.mediaItemUrl ?? ''}

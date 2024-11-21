@@ -77,7 +77,7 @@ export default function Navigation({
             name="submark"
             className={cn(
               'absolute top-0 text-nav-foreground transition-all duration-300 ease-in-out',
-              isWorkDetail && 'text-cream',
+              // isWorkDetail && 'text-cream',
               isScrolled ? 'opacity-1 visible' : 'lg:invisible lg:opacity-0'
             )}
           />
@@ -85,7 +85,7 @@ export default function Navigation({
             name="logo-text"
             className={cn(
               'absolute top-0 hidden text-nav-foreground transition-all duration-300 ease-in-out lg:block',
-              isWorkDetail && 'text-cream',
+              // isWorkDetail && 'text-cream',
               !isScrolled ? 'lg:opacity-1 lg:visible' : 'invisible opacity-0'
             )}
           />
@@ -107,7 +107,7 @@ export default function Navigation({
                   className={cn(
                     'nav-fluid',
                     isActive,
-                    isWorkDetail && 'text-cream before:bg-background'
+                    // isWorkDetail && 'text-cream before:bg-background'
                   )}
                 >
                   <span itemProp="name">{item.label}</span>

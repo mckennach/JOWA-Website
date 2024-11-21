@@ -1,12 +1,17 @@
 'use client'
 
+import { Global } from '@/src/gql/graphql'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { Section, Container } from '@/components/craft'
 import CustomIcons from '@/src/components/custom-icons'
 import { Text } from '../ui/text'
 import Link from 'next/link'
-export default function Footer() {
-  const { isIntersecting, ref } = useIntersectionObserver({
+
+export default function Footer({ globalData }: { globalData: Global }) {
+
+	const { phone, email, instagram, credits } = globalData?.globals ?? {};
+
+  const { ref } = useIntersectionObserver({
     threshold: 0.9,
     onChange: (isIntersecting) => {
       if (isIntersecting) {
@@ -17,11 +22,12 @@ export default function Footer() {
       } else {
         document.documentElement.style.setProperty(
           '--nav-foreground',
-          'var(--foreground)'
+          'var(--main-nav-foreground)'
         )
       }
     },
-  })
+  });
+
 
   return (
     <footer
@@ -30,12 +36,12 @@ export default function Footer() {
     >
       <Section className="h-full">
         <Container className="flex h-full flex-col justify-end">
-          <div className="flex flex-col gap-[100px]">
+          <div className="flex flex-col gap-[30px] lg:gap-[100px]">
             <div className="w-full">
               <CustomIcons name="logo" />
             </div>
             <div>
-              <div className="grid grid-cols-2 border-b border-t py-4 text-2xl md:grid-cols-4">
+              <div className="grid grid-cols-2 border-b border-t py-1 lg:py-4 md:grid-cols-4">
                 <div>
                   <Text className="footer-link" type="footer">
                     Where your vision unfolds.
@@ -46,36 +52,56 @@ export default function Footer() {
                     Vancouver, BC
                   </Text>
                 </div>
-                <div>
-                  <Link href="tel:6043776177" target="_blank" rel="noreferrer">
+                <div className="hidden lg:block">
+                  <Link href={phone?.url ?? 'tel:6043776177'} target="_blank" rel="noreferrer">
                     <Text className="footer-link" type="footer">
-                      T: 604.377.6177
+                      T: {phone?.title ?? '604-377-6177'}
                     </Text>
                   </Link>
                 </div>
-                <div>
+                <div className="hidden lg:block">
                   <Link
-                    href="https://www.instagram.com/embark.homes/?hl=en"
+                    href={instagram?.url ?? 'https://www.instagram.com/jowa.interiors/'}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Text className="footer-link" type="footer">
-                      IG: @jowainteriors
+                      IG: {instagram?.title ?? '@jowa.interiors'}
                     </Text>
                   </Link>
                 </div>
               </div>
-              <div className="grid grid-cols-2 border-b py-4 text-2xl md:grid-cols-4">
-                <div></div>
-                <div></div>
-                <div>
+							<div className="grid grid-cols-2 border-b py-1 lg:hidden">
+								<div >
+                  <Link href={phone?.url ?? 'tel:6043776177'} target="_blank" rel="noreferrer">
+                    <Text className="footer-link" type="footer">
+                      T: {phone?.title ?? '604-377-6177'}
+                    </Text>
+                  </Link>
+                </div>
+                <div >
                   <Link
-                    href="mailto:info@jowa.ca"
+                    href={instagram?.url ?? 'https://www.instagram.com/jowa.interiors/'}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Text className="footer-link" type="footer">
-                      E: info@jowa.ca
+                      IG: {instagram?.title ?? '@jowa.interiors'}
+                    </Text>
+                  </Link>
+                </div>
+							</div>
+              <div className="grid grid-cols-2 border-b py-1 lg:py-4 md:grid-cols-4">
+                <div></div>
+                <div></div>
+                <div>
+                  <Link
+                    href={email?.url ?? "mailto:info@jowa.ca"}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Text className="footer-link" type="footer">
+                      E: {email?.title ?? 'info@jowa.ca'}
                     </Text>
                   </Link>
                 </div>
@@ -89,11 +115,11 @@ export default function Footer() {
                 <Text type="caption" className="text-muted-foreground/25">
                   Site by{' '}
                   <Link
-                    href="https://bio.site/supersensitivestudios?fbclid=PAZXh0bgNhZW0CMTEAAaYVHhacjDkQyvQldO_86QXWuiVOPSJFHHXXvomcj-iFU5t721kmiATzBio_aem_-KroG2Pdc1qxCOkcKiGWOw"
-                    target="_blank"
+                    href={credits?.title ?? 'https://bio.site/supersensitivestudios?fbclid=PAZXh0bgNhZW0CMTEAAaYVHhacjDkQyvQldO_86QXWuiVOPSJFHHXXvomcj-iFU5t721kmiATzBio_aem_-KroG2Pdc1qxCOkcKiGWOw'}
+										target="_blank"
                     rel="noreferrer"
                   >
-                    Super Sensitive Studios
+                    {credits?.title ?? 'Super Sensitive Studios'}
                   </Link>
                 </Text>
               </div>

@@ -17,6 +17,16 @@ const nextConfig = {
 				destination: 'https://jowadotca.wpcomstaging.com/wp-admin/index.php',
 				permanent: true,
 			},
+			{
+				source: '/wp-admin',
+				destination: 'https://jowadotca.wpcomstaging.com/wp-admin/index.php',
+				permanent: true,
+			},
+			{
+				source: '/wiki',
+				destination: 'https://github.com/mckennach/jowa-dev_2/wiki',
+				permanent: true,
+			}
 		]
 	}
 }

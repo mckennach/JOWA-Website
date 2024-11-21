@@ -13,8 +13,8 @@ import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
 import Footer from '../components/footer'
 import { cn } from '../lib/utils'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { MENU_ITEMS_QUERY } from '@/src/lib/queries'
-import { RootQueryToMenuItemConnection } from '@/gql/graphql'
+import { MENU_ITEMS_QUERY, GLOBALS_QUERY } from '@/src/lib/queries'
+import { RootQueryToMenuItemConnection, Global } from '@/gql/graphql'
 import { print } from 'graphql/language/printer'
 import SkipToContent from '../components/navigation/skip-to-content'
 
@@ -42,6 +42,20 @@ async function getData() {
   }
 
   return menuItems
+};
+
+async function getGlobalData() {
+	const { global } = await fetchGraphQL<{
+		global: Global
+	}>(print(GLOBALS_QUERY), {
+		id: '357',
+	})
+
+	if (global === null) {
+		throw new Error('Failed to fetch data')
+	}
+
+	return global
 }
 
 export default async function RootLayout({
@@ -50,7 +64,9 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const { isEnabled } = draftMode()
-  const menuItems = await getData()
+  const menuItems = await getData();
+	const globalData = await getGlobalData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -69,7 +85,7 @@ export default async function RootLayout({
                   <SkipToContent />
                   <Navigation menuItems={menuItems} />
                   <main className="max-w-full overflow-hidden">{children}</main>
-                  <Footer />
+                  <Footer globalData={globalData} />
                 </ThemeProvider>
               </ApolloWrapper>
             </ScrollProvider>

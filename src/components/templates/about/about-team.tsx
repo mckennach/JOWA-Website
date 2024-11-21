@@ -34,7 +34,7 @@ const TEAM_MEMBERS_QUERY = gql`
 `
 
 export default function TeamMembers() {
-  const { data, loading, error } = useQuery(TEAM_MEMBERS_QUERY)
+  const { data, loading } = useQuery(TEAM_MEMBERS_QUERY)
   const containerRef = useRef(null)
 
   const members: TeamMember[] = data?.teamMembers?.nodes
@@ -73,13 +73,13 @@ export default function TeamMembers() {
   return (
     <Section
       ref={containerRef}
-      className="relative z-10 bg-secondary-foreground py-32 text-background lg:h-[120vh]"
+      className="relative z-10 bg-secondary-foreground py-12 lg:py-32 text-background lg:h-[120vh]"
     >
       <Container>
         <Text
-          type="heading"
+          type="title1"
           tag="h2"
-          className="mb-14 text-center text-[48px] tracking-wide"
+          className="mb-5 lg:mb-14 text-center "
         >
           Our Team
         </Text>

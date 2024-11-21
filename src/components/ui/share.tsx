@@ -10,9 +10,7 @@ import {
 import { cn } from '@/src/lib/utils'
 import CustomIcons from '../custom-icons'
 import { ShareSocial } from 'react-share-social'
-import { usePathname } from 'next/navigation'
-import { fontFamily } from 'tailwindcss/defaultTheme'
-
+import { useMediaQuery } from 'usehooks-ts'
 interface ShareButtonProps {
   className?: string
   children?: React.ReactNode
@@ -21,7 +19,8 @@ interface ShareButtonProps {
 const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
   ({ children, className }, ref) => {
     const [isOpen, setIsOpen] = useState(false)
-    const pathname = usePathname()
+  	const matches = useMediaQuery('(min-width: 1024px)')
+    
     return (
       <div ref={ref}>
         <TooltipProvider>
@@ -37,8 +36,10 @@ const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
               SHARE <CustomIcons name="link" />
             </TooltipTrigger>
             <TooltipContent
-              side="right"
-              sideOffset={15}
+              side={matches ? "right" : "bottom"}
+              sideOffset={matches ? 15 : 10}
+							alignOffset={matches ? 0 : 0}
+							align={matches ? "center" : "start"}
               hideWhenDetached={false}
               onPointerDownOutside={() => setIsOpen(false)}
             >
