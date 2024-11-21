@@ -41,7 +41,7 @@ export default function Loading({ project }: LoadingProps) {
       })
 
       gsap.set(containerRef.current, {
-        alhpa: 1,
+        opacity: 1,
         backgroundColor: 'hsla(70, 14%, 67%, 1)',
       })
 
