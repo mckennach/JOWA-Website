@@ -4,7 +4,6 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { JOURNAL_QUERY, JOURNALS_QUERY } from '../journal-query'
 import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
 import JournalHero from './hero'
-import JournalContent from './content'
 import JournalPostContent from './post-content'
 import NextPost from './next-post'
 export default async function JournalDetailTemplate({ node }: TemplateProps) {
