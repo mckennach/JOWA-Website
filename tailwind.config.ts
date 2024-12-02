@@ -49,7 +49,7 @@ const config = {
       },
       fontSize: {
         body: ['2rem', '42px'],
-				base: ['1rem', '1.4rem'],
+        base: ['1rem', '1.4rem'],
         clamp: 'clamp(1rem, 5vw, 3rem)',
         label: '1rem',
         labelsm: '1rem',

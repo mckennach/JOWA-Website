@@ -81,7 +81,6 @@ export const PRICING_QUERY = gql`
         }
         additionalSpaces {
           basementSuite
-					
         }
       }
     }

@@ -1,7 +1,7 @@
 'use client'
 import { useGSAP } from '@gsap/react'
 import { useEffect, useRef, useState } from 'react'
-import { gsap, ScrollTrigger } from "gsap/all";
+import { gsap, ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
 import CustomIcons from '../../../custom-icons'
 import { Container } from '../../../craft'
@@ -26,7 +26,7 @@ export default function Loading({ project }: LoadingProps) {
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const logoRef = useRef(null)
-  const logoTextRef = useRef(null);
+  const logoTextRef = useRef(null)
 
   useGSAP(
     () => {
@@ -80,9 +80,13 @@ export default function Loading({ project }: LoadingProps) {
           opacity: 0,
         })
 
-        tl.to(containerRef.current, {
-          opacity: 0,
-        }, '<+=0.25')
+        tl.to(
+          containerRef.current,
+          {
+            opacity: 0,
+          },
+          '<+=0.25'
+        )
       }
       setTimeout(animation, 200)
     },
@@ -90,9 +94,9 @@ export default function Loading({ project }: LoadingProps) {
       scope: containerRef,
       revertOnUpdate: true,
     }
-  );
+  )
 
-	// deleteCookie('animation-loaded')
+  // deleteCookie('animation-loaded')
 
   return (
     <div

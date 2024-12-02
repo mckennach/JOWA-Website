@@ -10,7 +10,8 @@ import Link from 'next/link'
 import ShareButton from '@/src/components/ui/share'
 export default function JournalContent({ post }: { post: Post }) {
   const { postData } = post
-  const { content } = postData as PostData;
+  console.log(postData)
+  const { content } = postData as PostData
 
   return (
     <div className="space-y-32 pb-20 lg:pb-36">

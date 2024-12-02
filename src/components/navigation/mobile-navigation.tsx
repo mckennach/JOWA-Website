@@ -28,11 +28,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger className="p-2 lg:hidden">
         <span className="sr-only">Toggle Menu</span>
-        <CustomIcons
-          name="menu"
-          className={cn('w-[25px]')}
-          strokeWidth={1}
-        />
+        <CustomIcons name="menu" className={cn('w-[25px]')} strokeWidth={1} />
       </SheetTrigger>
       <SheetContent
         side="top"

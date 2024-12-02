@@ -26,7 +26,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
           })}
         </div>
       </Container>
-      <div className="lg:border-b-[1.5px] py-24">{/* PAG */}</div>
+      <div className="py-24 lg:border-b-[1.5px]">{/* PAG */}</div>
     </Section>
   )
 }
@@ -45,7 +45,7 @@ const JournalItem = ({ post }: { post: Post }) => {
   return (
     <div
       className={cn(
-        'group relative cursor-pointer space-y-4 before:hidden lg:before:block before:absolute before:-bottom-20 before:-left-16 before:h-[1.5px] before:w-[calc(112px+100%)] before:bg-walnut [&:nth-last-child(-n+3)]:before:opacity-0'
+        'group relative cursor-pointer space-y-4 before:absolute before:-bottom-20 before:-left-16 before:hidden before:h-[1.5px] before:w-[calc(112px+100%)] before:bg-walnut lg:before:block [&:nth-last-child(-n+3)]:before:opacity-0'
       )}
       onClick={() => {
         router.push(`/journal/${post.slug}`)
@@ -64,14 +64,14 @@ const JournalItem = ({ post }: { post: Post }) => {
             loader={imageLoader}
           />
         </div>
-				<div className="space-y-2">
-					<Text type="label" tag="p" className="text-accent-foreground">
-						{dateString}
-					</Text>
-					<Text type="label" tag="p" className="text-[24px] leading-8">
-						{post.title}
-					</Text>
-				</div>
+        <div className="space-y-2">
+          <Text type="label" tag="p" className="text-accent-foreground">
+            {dateString}
+          </Text>
+          <Text type="label" tag="p" className="text-[24px] leading-8">
+            {post.title}
+          </Text>
+        </div>
       </div>
     </div>
   )

@@ -19,8 +19,8 @@ interface ShareButtonProps {
 const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
   ({ children, className }, ref) => {
     const [isOpen, setIsOpen] = useState(false)
-  	const matches = useMediaQuery('(min-width: 1024px)')
-    
+    const matches = useMediaQuery('(min-width: 1024px)')
+
     return (
       <div ref={ref}>
         <TooltipProvider>
@@ -36,10 +36,10 @@ const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
               SHARE <CustomIcons name="link" />
             </TooltipTrigger>
             <TooltipContent
-              side={matches ? "right" : "bottom"}
+              side={matches ? 'right' : 'bottom'}
               sideOffset={matches ? 15 : 10}
-							alignOffset={matches ? 0 : 0}
-							align={matches ? "center" : "start"}
+              alignOffset={matches ? 0 : 0}
+              align={matches ? 'center' : 'start'}
               hideWhenDetached={false}
               onPointerDownOutside={() => setIsOpen(false)}
             >

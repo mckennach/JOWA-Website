@@ -60,6 +60,7 @@ export default function JournalHero({ post }: { post: Post }) {
               style={{
                 objectFit: 'cover',
               }}
+              sizes="100vw"
               className="brightness-75 filter"
               loader={imageLoader}
               priority={true}

@@ -106,7 +106,7 @@ export default function Navigation({
                   target={item.target || '_self'}
                   className={cn(
                     'nav-fluid',
-                    isActive,
+                    isActive
                     // isWorkDetail && 'text-cream before:bg-background'
                   )}
                 >

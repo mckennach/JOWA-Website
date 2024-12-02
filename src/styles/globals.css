@@ -11,12 +11,11 @@
     --walnut: 16 37% 18%;
     --black: 0 0% 0%;
 
-		--main-nav-background: var(var(--background));
+    --main-nav-background: var(var(--background));
     --main-nav-foreground: var(--foreground);
     --main-nav-border: var(--border);
 
-
-		--nav-background: var(var(--background));
+    --nav-background: var(var(--background));
     --nav-foreground: var(--foreground);
     --nav-border: var(--border);
 
@@ -88,13 +87,12 @@
     --ring: 0 0% 83.1%;
   }
 
-	.cream-detail {
-
-		--main-nav-background: var(var(--cream));
+  .cream-detail {
+    --main-nav-background: var(var(--cream));
     --main-nav-foreground: var(--cream);
     --main-nav-border: var(--cream);
 
-		--nav-background: var(var(--cream));
+    --nav-background: var(var(--cream));
     --nav-foreground: var(--cream);
     --nav-border: var(--cream);
 
@@ -195,7 +193,6 @@
     --accent-foreground: var(--sencha);
     --border: var(--sencha);
   }
-
 }
 
 @layer base {
@@ -278,8 +275,8 @@
     @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/2xl lg:leading-[34px];
   }
 
-	.body-xs-fluid {
-    @apply font-maisonNeue font-normal leading-[30px] tracking-normal text-base lg:leading-[34px];
+  .body-xs-fluid {
+    @apply font-maisonNeue text-base font-normal leading-[30px] tracking-normal lg:leading-[34px];
   }
 
   .footer-link {
@@ -295,9 +292,9 @@
   }
 
   .top-fade {
-		@apply relative;
+    @apply relative;
     /* @apply bg-background; */
-    @apply before:from-background before:to-transparent before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t;
+    @apply before:absolute before:left-0 before:top-[-50px] before:h-[50px] before:w-full before:bg-gradient-to-t before:from-background before:to-transparent;
     /* @apply absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-background to-transparent pointer-events-none; */
   }
 

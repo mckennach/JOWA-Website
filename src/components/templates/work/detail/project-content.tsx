@@ -50,35 +50,41 @@ export default function ProjectContent({ project }: { project: Project }) {
               </div>
             </div>
             <div className="flex flex-col justify-between">
-							<div className="block">
-								<div className="relative ml-auto mr-0 aspect-[660/454] lg:max-w-[80%] h-full">
-									<Image
-										src={content?.imageGallery?.image2?.node.mediaItemUrl ?? ''}
-										alt={content?.imageGallery?.image2?.node.altText ?? ''}
-										fill={true}
-										style={{
-											objectFit: 'cover',
-										}}
-										className="brightness-75 filter"
-										loader={imageLoader}
-										priority={true}
-									/>
-								</div>
-							</div>
-              
-              <div className="mt-11 mr-0 flex h-[45%] max-w-[475px] flex-col justify-end gap-9 text-accent-foreground lg:mt-0 lg:ml-auto">
+              <div className="block">
+                <div className="relative ml-auto mr-0 aspect-[660/454] h-full lg:max-w-[80%]">
+                  <Image
+                    src={content?.imageGallery?.image2?.node.mediaItemUrl ?? ''}
+                    alt={content?.imageGallery?.image2?.node.altText ?? ''}
+                    fill={true}
+                    style={{
+                      objectFit: 'cover',
+                    }}
+                    className="brightness-75 filter"
+                    loader={imageLoader}
+                    priority={true}
+                  />
+                </div>
+              </div>
+
+              <div className="mr-0 mt-11 flex h-[45%] max-w-[475px] flex-col justify-end gap-9 text-accent-foreground lg:ml-auto lg:mt-0">
                 {content?.imageGallery?.image1Caption && (
                   <div>
-                    <Text type="body-xs" tag="p">fig. 01</Text>
                     <Text type="body-xs" tag="p">
-											{content?.imageGallery?.image1Caption}
-										</Text>
+                      fig. 01
+                    </Text>
+                    <Text type="body-xs" tag="p">
+                      {content?.imageGallery?.image1Caption}
+                    </Text>
                   </div>
                 )}
                 {content?.imageGallery?.image2Caption && (
                   <div>
-                    <Text type="body-xs" tag="p">fig. 02</Text>
-                    <Text type="body-xs" tag="p">{content?.imageGallery?.image2Caption}</Text>
+                    <Text type="body-xs" tag="p">
+                      fig. 02
+                    </Text>
+                    <Text type="body-xs" tag="p">
+                      {content?.imageGallery?.image2Caption}
+                    </Text>
                   </div>
                 )}
               </div>

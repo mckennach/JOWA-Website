@@ -21,12 +21,11 @@ export default async function AboutTemplate({ node }: TemplateProps) {
     services: { nodes: Array<Service> }
   }>(print(SERVICES_QUERY))
 
-	const { global } = await fetchGraphQL<{
-		global: Global
-	}>(print(GLOBALS_QUERY), {
-		id: '357',
-	})
-
+  const { global } = await fetchGraphQL<{
+    global: Global
+  }>(print(GLOBALS_QUERY), {
+    id: '357',
+  })
 
   return (
     <>

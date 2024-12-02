@@ -84,8 +84,7 @@ export default async function Page({ params }: Props) {
     }
   )
 
-  if (!contentNode) return notFound();
-
+  if (!contentNode) return notFound()
 
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
@@ -121,5 +120,5 @@ export default async function Page({ params }: Props) {
     return <JournalDetailTemplate node={contentNode} />
   }
 
-  return null;
+  return null
 }

@@ -76,79 +76,42 @@ export const JOURNAL_QUERY = gql`
         }
         customTitle
         credits
-        imageGallery {
-          image1 {
-            node {
-              altText
-              mediaItemUrl
-            }
+        postContent {
+          ... on PostDataPostContentTextSectionLayout {
+            fieldGroupName
+            description
+            title
           }
-          image2 {
-            node {
-              altText
-              mediaItemUrl
-            }
-          }
-          image3 {
-            node {
-              altText
-              mediaItemUrl
-            }
-          }
-        }
-        content {
-          blockQuote
-          fullWidthImage {
-            node {
-              mediaItemUrl
-              altText
-            }
-          }
-          section1Title
-          section1Copy
-          section1Cta {
-            copy
-            ctaLink {
-              url
-              title
-              target
-            }
+          ... on PostDataPostContentImageTextSectionLayout {
+            fieldGroupName
+            description
+            title
             image {
               node {
-                mediaItemUrl
                 altText
+                sourceUrl
               }
             }
           }
-          section2Title
-          section2Copy
-          section2Cta {
-            copy
-            ctaLink {
-              target
-              title
-              url
-            }
+          ... on PostDataPostContentBlockquoteLayout {
+            fieldGroupName
+            text
+          }
+          ... on PostDataPostContentFullWidthImageLayout {
+            fieldGroupName
             image {
               node {
-                mediaItemUrl
                 altText
+                sourceUrl
               }
             }
           }
-          section3Title
-          section3Copy
-          section3Cta {
-            copy
-            ctaLink {
-              target
-              title
-              url
-            }
-            image {
-              node {
-                mediaItemUrl
+          ... on PostDataPostContentImageGalleryLayout {
+            fieldGroupName
+            images {
+              nodes {
                 altText
+                sourceUrl
               }
             }
           }

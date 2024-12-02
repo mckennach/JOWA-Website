@@ -73,14 +73,10 @@ export default function TeamMembers() {
   return (
     <Section
       ref={containerRef}
-      className="relative z-10 bg-secondary-foreground py-12 lg:py-32 text-background lg:h-[120vh]"
+      className="relative z-10 bg-secondary-foreground py-12 text-background lg:h-[120vh] lg:py-32"
     >
       <Container>
-        <Text
-          type="title1"
-          tag="h2"
-          className="mb-5 lg:mb-14 text-center "
-        >
+        <Text type="title1" tag="h2" className="mb-5 text-center lg:mb-14">
           Our Team
         </Text>
         <div className="grid gap-8 lg:grid-cols-3">

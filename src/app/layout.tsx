@@ -42,20 +42,20 @@ async function getData() {
   }
 
   return menuItems
-};
+}
 
 async function getGlobalData() {
-	const { global } = await fetchGraphQL<{
-		global: Global
-	}>(print(GLOBALS_QUERY), {
-		id: '357',
-	})
+  const { global } = await fetchGraphQL<{
+    global: Global
+  }>(print(GLOBALS_QUERY), {
+    id: '357',
+  })
 
-	if (global === null) {
-		throw new Error('Failed to fetch data')
-	}
+  if (global === null) {
+    throw new Error('Failed to fetch data')
+  }
 
-	return global
+  return global
 }
 
 export default async function RootLayout({
@@ -64,8 +64,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const { isEnabled } = draftMode()
-  const menuItems = await getData();
-	const globalData = await getGlobalData();
+  const menuItems = await getData()
+  const globalData = await getGlobalData()
 
   return (
     <html lang="en" suppressHydrationWarning>

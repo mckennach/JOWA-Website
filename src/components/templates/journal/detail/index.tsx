@@ -5,6 +5,7 @@ import { JOURNAL_QUERY, JOURNALS_QUERY } from '../journal-query'
 import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
 import JournalHero from './hero'
 import JournalContent from './content'
+import JournalPostContent from './post-content'
 import NextPost from './next-post'
 export default async function JournalDetailTemplate({ node }: TemplateProps) {
   const { post } = await fetchGraphQL<{ post: Post }>(print(JOURNAL_QUERY), {
@@ -20,7 +21,7 @@ export default async function JournalDetailTemplate({ node }: TemplateProps) {
   return (
     <article id={`post-${post?.id}`}>
       <JournalHero post={post} />
-      <JournalContent post={post} />
+      <JournalPostContent post={post} />
       <NextPost posts={posts} currentId={post.id} />
     </article>
   )

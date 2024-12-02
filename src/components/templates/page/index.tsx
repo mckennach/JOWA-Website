@@ -11,19 +11,21 @@ export interface TemplateProps {
 }
 
 export default async function PageTemplate({ node }: TemplateProps) {
-
   const { page } = await fetchGraphQL<{ page: Page }>(print(PAGE_QUERY), {
     id: node.databaseId,
   })
 
- 
-	return (
-		<Section className="py-28">
-			<Container className="space-y-8">
-				<Text type="title1" tag="h1">{page.title}</Text>
-				<div className="body-sm-fluid" dangerouslySetInnerHTML={{ __html: page?.content ?? ''}} />
-			</Container>
-		</Section>
-	)
-
+  return (
+    <Section className="py-28">
+      <Container className="space-y-8">
+        <Text type="title1" tag="h1">
+          {page.title}
+        </Text>
+        <div
+          className="body-sm-fluid"
+          dangerouslySetInnerHTML={{ __html: page?.content ?? '' }}
+        />
+      </Container>
+    </Section>
+  )
 }

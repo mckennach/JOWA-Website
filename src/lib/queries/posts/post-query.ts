@@ -30,6 +30,41 @@ export const POST_QUERY = gql`
           }
         }
         content
+        postContent {
+          ... on PostDataPostContentTextSectionLayout {
+            description
+            title
+          }
+          ... on PostDataPostContentImageTextSectionLayout {
+            description
+            title
+            image {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+          ... on PostDataPostContentBlockquoteLayout {
+            text
+          }
+          ... on PostDataPostContentFullWidthImageLayout {
+            image {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+          ... on PostDataPostContentImageGalleryLayout {
+            images {
+              nodes {
+                altText
+                sourceUrl
+              }
+            }
+          }
+        }
         customTitle
         tags {
           nodes {

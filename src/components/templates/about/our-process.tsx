@@ -19,19 +19,19 @@ export default function OurProcess({ page }: OurProcessProps) {
             {section?.title}
           </Text>
         </header>
-        <div className="grid gap-x-36 gap-y-16 lg:grid-cols-2">
+        <div className="grid gap-x-36 gap-y-4 lg:gap-y-16 lg:grid-cols-2">
           <div>
             <div
               dangerouslySetInnerHTML={{ __html: section?.description ?? '' }}
               className={cn(
                 'process-description',
-                '[&>h3]:uppercase [&>h3]:text-walnut [&>h3]:',
-                '[&>ul]:list-disc [&>ul]:py-2 [&>ul]:ml-4 [&>ul]:pl-4 [&>ul]:text-cream'
+                '[&>h3]: [&>h3]:uppercase [&>h3]:text-walnut',
+                '[&>ul]:ml-4 [&>ul]:list-disc [&>ul]:py-2 [&>ul]:pl-4 [&>ul]:text-cream'
               )}
             />
           </div>
           <div>
-            <div className="relative mt-16 mx-auto aspect-[662/868] max-w-[278px] lg:max-w-[662px]">
+            <div className="relative mx-auto mt-16 aspect-[662/868] max-w-full lg:max-w-[662px]">
               <Image
                 src={section?.image?.node?.sourceUrl ?? ''}
                 alt={section?.image?.node?.altText ?? ''}

@@ -37,11 +37,7 @@ export default function NextPost({
             <div>
               <div className="space-y-8 lg:flex lg:space-y-0 lg:px-4">
                 <div className="flex flex-col justify-between gap-y-28 lg:basis-1/2 lg:gap-y-0">
-                  <Text
-                    tag="h3"
-                    type="title1"
-                    className="text-background"
-                  >
+                  <Text tag="h3" type="title1" className="text-background">
                     NEXT PROJECT
                   </Text>
                   <div
@@ -106,7 +102,7 @@ export default function NextPost({
           <Link
             href={`/work/${projects.nodes[0].slug}`}
             className={cn(
-              'hidden lg:block absolute right-5 top-[65%] -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2'
+              'absolute right-5 top-[65%] hidden -translate-y-1/2 opacity-30 hover:opacity-100 lg:right-12 lg:top-1/2 lg:block'
             )}
           >
             <CustomIcons name="arrow-right" />

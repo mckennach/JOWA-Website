@@ -35,7 +35,6 @@ export default function MediaText({ data }: MediaTextProps) {
   useGSAP(
     () => {
       if (imageRef.current === null) return
-    
 
       gsap.set(imageRef.current, {
         yPercent: 100,

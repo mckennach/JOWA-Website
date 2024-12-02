@@ -18,6 +18,12 @@ export const ABOUT_PAGE_QUERY = gql`
             }
           }
         }
+				ourServices {
+          title
+        }
+        specificServices {
+          title
+        }
       }
     }
   }

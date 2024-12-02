@@ -17,22 +17,17 @@ export default async function ContactTemplate({ node }: TemplateProps) {
     }
   )
 
-	const { global } = await fetchGraphQL<{
-		global: Global
-	}>(print(GLOBALS_QUERY), {
-		id: '357',
-	})
-
+  const { global } = await fetchGraphQL<{
+    global: Global
+  }>(print(GLOBALS_QUERY), {
+    id: '357',
+  })
 
   return (
     <Section className="bg-background">
       <Container className="space-y-8 py-28">
         <header>
-          <Text
-            type="title1"
-            tag="h1"
-            className="text-secondary-foreground"
-          >
+          <Text type="title1" tag="h1" className="text-secondary-foreground">
             {page.contactPage?.title}
           </Text>
         </header>
