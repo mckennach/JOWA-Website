@@ -11,7 +11,6 @@ import {
   Node,
   AcfMediaItemConnectionEdge,
   Page,
-  Service,
 } from '@/src/gql/graphql'
 import Image from 'next/image'
 import { imageLoader } from '@/src/lib/utils'
