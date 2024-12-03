@@ -18,7 +18,7 @@ export const ABOUT_PAGE_QUERY = gql`
             }
           }
         }
-				ourServices {
+        ourServices {
           title
         }
         specificServices {

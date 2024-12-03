@@ -16,9 +16,9 @@ export default function AboutHeading({
   globalData,
   services,
 }: AboutHeadingProps) {
-	const data =  page.aboutPage;
-	const ourServices = data?.ourServices;
-	const specificServices = data?.specificServices;
+  const data = page.aboutPage
+  const ourServices = data?.ourServices
+  const specificServices = data?.specificServices
 
   return (
     <Section className="bg-background pb-24 pt-32 lg:pt-80">

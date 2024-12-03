@@ -19,7 +19,7 @@ export default function OurProcess({ page }: OurProcessProps) {
             {section?.title}
           </Text>
         </header>
-        <div className="grid gap-x-36 gap-y-4 lg:gap-y-16 lg:grid-cols-2">
+        <div className="grid gap-x-36 gap-y-4 lg:grid-cols-2 lg:gap-y-16">
           <div>
             <div
               dangerouslySetInnerHTML={{ __html: section?.description ?? '' }}

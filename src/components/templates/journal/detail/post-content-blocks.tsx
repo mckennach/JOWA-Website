@@ -55,7 +55,7 @@ export function ImageTextSection({
               style={{
                 objectFit: 'cover',
               }}
-							sizes="662px"
+              sizes="662px"
               className="brightness-75 filter"
               loader={imageLoader}
               priority={true}
@@ -103,7 +103,7 @@ export function FullWidthImage({
             style={{
               objectFit: 'cover',
             }}
-						sizes="1527px"
+            sizes="1527px"
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}
@@ -119,7 +119,7 @@ export function ImageGallery({
 }: PostDataPostContentImageGalleryLayout) {
   return (
     <Section>
-      <Container className="grid lg:grid-cols-2 gap-8">
+      <Container className="grid gap-8 lg:grid-cols-2">
         <div>
           {images?.nodes[0] && (
             <div className="relative mx-auto mb-24 aspect-[662/868] max-w-[662px] lg:mb-0 lg:ml-0">
@@ -130,7 +130,7 @@ export function ImageGallery({
                 style={{
                   objectFit: 'cover',
                 }}
-								sizes="662px"
+                sizes="662px"
                 className="brightness-75 filter"
                 loader={imageLoader}
                 priority={true}
@@ -138,41 +138,40 @@ export function ImageGallery({
             </div>
           )}
         </div>
-				<div>
-					{images?.nodes[1] && (
-						<div className="relative mb-16 ml-auto mr-auto aspect-[660/454] max-w-[75%] lg:mb-52 lg:mr-0 lg:max-w-[660px]">
-							<Image
-								src={images?.nodes[1].sourceUrl ?? ''}
-								alt={images?.nodes[1].altText ?? ''}
-								fill={true}
-								style={{
-									objectFit: 'cover',
-								}}
-								sizes="660px"
-								className="brightness-75 filter"
-								loader={imageLoader}
-								priority={true}
-							/>
-						</div>
-					)}
-					{images?.nodes[2] && (
-						<div className="relative ml-auto mr-auto aspect-[295/351] max-w-[295px] lg:mr-0">
-							<Image
-								src={images?.nodes[2].sourceUrl ?? ''}
-								alt={images?.nodes[2].altText ?? ''}
-								fill={true}
-								style={{
-									objectFit: 'cover',
-								}}
-								sizes="295px"
-								className="brightness-75 filter"
-								loader={imageLoader}
-								priority={true}
-							/>
-						</div>
-					)}
-					
-				</div>
+        <div>
+          {images?.nodes[1] && (
+            <div className="relative mb-16 ml-auto mr-auto aspect-[660/454] max-w-[75%] lg:mb-52 lg:mr-0 lg:max-w-[660px]">
+              <Image
+                src={images?.nodes[1].sourceUrl ?? ''}
+                alt={images?.nodes[1].altText ?? ''}
+                fill={true}
+                style={{
+                  objectFit: 'cover',
+                }}
+                sizes="660px"
+                className="brightness-75 filter"
+                loader={imageLoader}
+                priority={true}
+              />
+            </div>
+          )}
+          {images?.nodes[2] && (
+            <div className="relative ml-auto mr-auto aspect-[295/351] max-w-[295px] lg:mr-0">
+              <Image
+                src={images?.nodes[2].sourceUrl ?? ''}
+                alt={images?.nodes[2].altText ?? ''}
+                fill={true}
+                style={{
+                  objectFit: 'cover',
+                }}
+                sizes="295px"
+                className="brightness-75 filter"
+                loader={imageLoader}
+                priority={true}
+              />
+            </div>
+          )}
+        </div>
       </Container>
     </Section>
   )

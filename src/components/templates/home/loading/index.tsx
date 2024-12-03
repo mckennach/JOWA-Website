@@ -57,7 +57,7 @@ export default function Loading({ project }: LoadingProps) {
 
         tl.to(textRef.current, {
           opacity: 1,
-          duration: 3,
+          duration: 1.5,
           stagger: 0.25,
         })
 
@@ -65,7 +65,7 @@ export default function Loading({ project }: LoadingProps) {
           containerRef.current,
           {
             backgroundColor: 'hsla(70, 14%, 67%, 0)',
-            duration: 3,
+            duration: 1.5,
             stagger: 0.25,
           },
           '<+=0.5'
@@ -108,20 +108,23 @@ export default function Loading({ project }: LoadingProps) {
       )}
     >
       <Container
-        className="relative z-10 flex h-full w-full items-center justify-between bg-background"
+        className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-y-8 bg-background lg:flex-row lg:justify-between"
         ref={containerRef}
       >
-        <div className="absolute left-12 top-8 opacity-0" ref={logoTextRef}>
+        <div
+          className="absolute left-12 top-8 mx-auto max-w-[85%] opacity-0 lg:max-w-full"
+          ref={logoTextRef}
+        >
           <CustomIcons name="logo-text" color="hsla(39, 78%, 93%, 1)" />
         </div>
-        <div className="basis-1/2" ref={logoRef}>
+        <div className="lg:basis-1/2" ref={logoRef}>
           <CustomIcons
             name="logo"
             className="w-[381px] text-cream"
             color="hsla(39, 78%, 93%, 1)"
           />
         </div>
-        <div className="basis-1/2 opacity-0" ref={textRef}>
+        <div className="opacity-0 lg:basis-1/2" ref={textRef}>
           <p className="font-maisonNeue text-[32px] text-cream">
             Where your vision unfolds.
           </p>

@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
+import { Fragment, useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, useFormContext } from 'react-hook-form'
 import { z } from 'zod'
@@ -19,18 +20,29 @@ import { FileWithPath, useDropzone } from 'react-dropzone'
 import { Text } from '../../ui/text'
 
 const formSchema = z.object({
-  firstName: z.string().nonempty('First Name is required'),
-  lastName: z.string().nonempty('Last Name is required'),
-  email: z.string().email('Invalid email address'),
-  phoneNumber: z.string().nonempty('Phone Number is required'),
-  projectAddress: z.string().nonempty('Project Address is required'),
-  projectType: z.string(),
-  description: z.string(),
-  file: z.array(z.string()),
-  preferredContactMethod: z.string(),
+  EMAIL: z.string().email('Invalid email address'), // Email
+  FNAME: z.string().nonempty('First Name is required'), // First Name
+  LNAME: z.string().nonempty('Last Name is required'), // Last Name
+  PROJADD: z.string().nonempty('Project Address is required'), // Project Address
+  PHONE: z.string().nonempty('Phone Number is required'), // Phone Number
+  DESC: z.string().optional(), // Project Description
+  TYPE: z.string(), // Project Type
+  IMAGE: z.array(z.string()).optional(), // File Upload
+  METHOD: z.string(), // Best way to get in touch
 })
 
-export default function ContactForm() {
+export function CustomContactForm({
+  status,
+  message,
+  onValidated,
+}: {
+  status: string | null
+  message: string | Error | null
+  onValidated: (formData: any) => void
+}) {
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
   const form = useForm<z.infer<typeof formSchema>>()
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: {
@@ -40,21 +52,37 @@ export default function ContactForm() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    onValidated({
+      FORMTYPE: 'Contact',
+      ...values,
+    })
   }
+
+  useEffect(() => {
+    if (status === 'success') {
+      form.reset()
+      setSuccessMessage('Thank you for subscribing!')
+    }
+
+    if (status === 'error') {
+      setErrorMessage(message as string)
+    }
+  }, [status, message]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+        autoComplete="on"
+      >
         <div className="flex w-full gap-8">
           <FormField
             control={form.control}
-            name="firstName"
+            name="FNAME"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="sr-only" htmlFor="firstName">
+                <FormLabel className="sr-only" htmlFor="FNAME">
                   First Name*
                 </FormLabel>
                 <FormControl>
@@ -70,10 +98,10 @@ export default function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="lastName"
+            name="LNAME"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="sr-only" htmlFor="lastName">
+                <FormLabel className="sr-only" htmlFor="LNAME">
                   Last Name*
                 </FormLabel>
                 <FormControl>
@@ -91,10 +119,10 @@ export default function ContactForm() {
         <div className="flex w-full gap-8">
           <FormField
             control={form.control}
-            name="email"
+            name="EMAIL"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="sr-only" htmlFor="email">
+                <FormLabel className="sr-only" htmlFor="EMAIL">
                   E-mail*
                 </FormLabel>
                 <FormControl>
@@ -111,10 +139,10 @@ export default function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="phoneNumber"
+            name="PHONE"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="sr-only" htmlFor="phoneNumber">
+                <FormLabel className="sr-only" htmlFor="PHONE">
                   Phone Number*
                 </FormLabel>
                 <FormControl>
@@ -132,10 +160,10 @@ export default function ContactForm() {
         <div className="flex w-full gap-8">
           <FormField
             control={form.control}
-            name="projectAddress"
+            name="PROJADD"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="sr-only" htmlFor="projectAddress">
+                <FormLabel className="sr-only" htmlFor="PROJADD">
                   Project Address*
                 </FormLabel>
                 <FormControl>
@@ -158,7 +186,7 @@ export default function ContactForm() {
           </div>
           <FormField
             control={form.control}
-            name="projectType"
+            name="TYPE"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel className="font-maisonNeue font-[16px] leading-[30px]">
@@ -166,13 +194,14 @@ export default function ContactForm() {
                 </FormLabel>
                 <RadioGroup
                   onValueChange={field.onChange}
-                  defaultValue="new-construction"
+                  defaultValue="New Construction"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem
-                      value="new-construction"
+                      value="New Construction"
                       id="new-construction"
                       className="border-foreground"
+                      {...form.register('TYPE')}
                     />
                     <FormLabel
                       htmlFor="new-construction"
@@ -183,9 +212,10 @@ export default function ContactForm() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem
-                      value="full-renovation"
+                      value="Full Renovation"
                       id="full-renovation"
                       className="border-foreground"
+                      {...form.register('TYPE')}
                     />
                     <FormLabel
                       htmlFor="full-renovation"
@@ -196,9 +226,10 @@ export default function ContactForm() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem
-                      value="partial-renovation"
+                      value="Partial Renovation"
                       id="partial-renovation"
                       className="border-foreground"
+                      {...form.register('TYPE')}
                     />
                     <FormLabel
                       htmlFor="partial-renovation"
@@ -209,9 +240,10 @@ export default function ContactForm() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem
-                      value="other"
+                      value="Other"
                       id="other"
                       className="border-foreground"
+                      {...form.register('TYPE')}
                     />
                     <FormLabel
                       htmlFor="other"
@@ -228,7 +260,7 @@ export default function ContactForm() {
 
         <FormField
           control={form.control}
-          name="description"
+          name="DESC"
           render={({ field }) => (
             <FormItem className="w-full">
               <FormLabel className="font-maisonNeue font-[16px] leading-[30px]">
@@ -238,7 +270,7 @@ export default function ContactForm() {
                 <Textarea
                   {...field}
                   rows={6}
-                  required={true}
+                  required={false}
                   className="rounded-none border-foreground bg-foreground font-maisonNeueExt text-background placeholder:text-foreground"
                 />
               </FormControl>
@@ -248,7 +280,7 @@ export default function ContactForm() {
 
         <FormField
           control={form.control}
-          name="file"
+          name="IMAGE"
           render={({ field: { onChange } }) => (
             <FormItem className="w-full">
               <FormLabel className="font-maisonNeue font-[16px] leading-[30px]">
@@ -259,7 +291,11 @@ export default function ContactForm() {
                   {...getRootProps({ className: 'dropzone' })}
                   className="flex h-[161px] flex-col items-center justify-center border border-foreground bg-background/20"
                 >
-                  <input {...getInputProps({ onChange })} />
+                  <input
+                    {...getInputProps({ onChange })}
+                    name="IMAGE"
+                    id="IMAGE"
+                  />
 
                   <p>
                     Drag files here or{' '}
@@ -280,7 +316,7 @@ export default function ContactForm() {
 
         <FormField
           control={form.control}
-          name="preferredContactMethod"
+          name="METHOD"
           render={({ field }) => (
             <FormItem className="w-full">
               <FormLabel className="font-maisonNeue font-[16px] leading-[30px]">
@@ -296,6 +332,7 @@ export default function ContactForm() {
                     value="phone"
                     id="phone"
                     className="border-foreground"
+                    {...form.register('METHOD')}
                   />
                   <FormLabel
                     htmlFor="phone"
@@ -309,6 +346,7 @@ export default function ContactForm() {
                     value="text"
                     id="text"
                     className="border-foreground"
+                    {...form.register('METHOD')}
                   />
                   <FormLabel
                     htmlFor="text"
@@ -322,6 +360,7 @@ export default function ContactForm() {
                     value="email"
                     id="email"
                     className="border-foreground"
+                    {...form.register('METHOD')}
                   />
                   <FormLabel
                     htmlFor="email"
@@ -341,7 +380,37 @@ export default function ContactForm() {
         >
           Submit
         </button>
+
+        {successMessage && (
+          <FormMessage className="pt-4 text-foreground">
+            <Text type="label">{successMessage}</Text>
+          </FormMessage>
+        )}
+
+        {errorMessage && (
+          <FormMessage className="pt-4">
+            <Text type="label">{errorMessage}</Text>
+          </FormMessage>
+        )}
       </form>
     </Form>
+  )
+}
+
+export default function ContactForm() {
+  const url = `https://jowa.us20.list-manage.com/subscribe/post?u=24be9cc32ed66ec1c6739aa69&amp;id=434e73273f&amp;f_id=00e861e0f0`
+  return (
+    <Fragment>
+      <MailchimpSubscribe
+        url={url}
+        render={({ subscribe, status, message }) => (
+          <CustomContactForm
+            status={status}
+            message={message}
+            onValidated={(formData: any) => subscribe(formData)}
+          />
+        )}
+      />
+    </Fragment>
   )
 }

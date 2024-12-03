@@ -111,9 +111,9 @@ export default function TeamMembers() {
             })}
         </div>
       </Container>
-      <div className="bg-red pointer-events-none absolute top-0 hidden h-screen w-full lg:block">
+      {/* <div className="bg-red pointer-events-none absolute top-0 hidden h-screen w-full lg:block">
         <div className="absolute bottom-0 left-0 h-28 w-full bg-cream" />
-      </div>
+      </div> */}
     </Section>
   )
 }

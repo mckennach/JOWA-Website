@@ -42,9 +42,7 @@ const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
               align={matches ? 'center' : 'start'}
               hideWhenDetached={false}
               onPointerDownOutside={() => setIsOpen(false)}
-							className={cn(
-								'px-2 py-4'
-							)}
+              className={cn('px-2 py-4')}
             >
               <ShareSocial
                 title="Share this page"
@@ -56,7 +54,7 @@ const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
                     borderRadius: 3,
                     border: 0,
                     color: 'hsla(16 37% 18% / 0.9)',
-										padding: 0,
+                    padding: 0,
                   },
                   copyContainer: {
                     color: 'hsla(16 37% 18% / 0.9)',
@@ -64,7 +62,7 @@ const ShareButton = forwardRef<HTMLDivElement, ShareButtonProps>(
                   },
                   copyUrl: {
                     color: 'hsla(16 37% 18% / 0.9)',
-										whiteSpace: 'wrap',
+                    whiteSpace: 'wrap',
                   },
                   copyIcon: {
                     color: 'hsla(16 37% 18% / 0.9)',
