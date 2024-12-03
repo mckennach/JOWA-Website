@@ -1,6 +1,6 @@
 import { Section, Container, cn } from '../../craft'
 import { print } from 'graphql/language/printer'
-import { ContentNode, Page, Service, Global } from '@/gql/graphql'
+import { ContentNode, Page, Global } from '@/gql/graphql'
 import { ABOUT_PAGE_QUERY, GLOBALS_QUERY } from '@/lib/queries'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import AboutHeading from './about-heading'
