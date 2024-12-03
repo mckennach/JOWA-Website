@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/all'
 
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
-import { Page, Service } from '@/src/gql/graphql'
+import { Page } from '@/src/gql/graphql'
 import CustomIcons from '../../custom-icons'
 
 gsap.registerPlugin(ScrollTrigger)
