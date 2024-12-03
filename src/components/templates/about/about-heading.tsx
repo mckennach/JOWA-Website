@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
-import { Page, Service, Global } from '@/src/gql/graphql'
+import { Page, Global } from '@/src/gql/graphql'
 import CustomIcons from '../../custom-icons'
 
 type AboutHeadingProps = {
