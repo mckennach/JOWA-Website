@@ -8,13 +8,11 @@ import CustomIcons from '../../custom-icons'
 type AboutHeadingProps = {
   page: Page
   globalData: Global
-  services: Service[]
 }
 
 export default function AboutHeading({
   page,
   globalData,
-  services,
 }: AboutHeadingProps) {
   const data = page.aboutPage
   const ourServices = data?.ourServices
