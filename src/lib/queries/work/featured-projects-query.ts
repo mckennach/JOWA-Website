@@ -21,6 +21,15 @@ export const FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
             }
           }
+					projectInfo {
+						location
+						sqFt
+						category
+						projectType
+						services {
+							service
+						}
+					}
           featuredImage {
             node {
               sourceUrl(size: _1536X1536)

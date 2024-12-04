@@ -31,6 +31,15 @@ export const WORK_QUERY = gql`
               title
             }
           }
+					projectInfo {
+						location
+						sqFt
+						category
+						projectType
+						services {
+							service
+						}
+					}
           heroImage {
             cursor
             node {

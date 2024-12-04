@@ -70,9 +70,13 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
           )}
           {services && (
             <div className="flex items-baseline">
-              <div className="flex h-5 basis-1/2 border-b py-1 lg:h-auto">
-                <Text type="label">Services</Text>
-              </div>
+							<div className="flex basis-1/2 flex-col">
+								<div className="h-[25px] border-b py-1 lg:h-auto">
+									<Text type="label">Services</Text>
+								</div>
+								
+							</div>
+             
               <div className="flex basis-1/2 flex-col">
                 {services.map((service, index) => (
                   <div

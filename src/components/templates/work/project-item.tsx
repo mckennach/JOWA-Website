@@ -50,17 +50,11 @@ export default function ProjectItem({
                 {project.title}
               </Text>
               <div>
-                {project &&
-                  project.categories &&
-                  project.categories.nodes.map((category: Category) => {
-                    if (category.parentId === 'dGVybToxMzcw') {
-                      return (
-                        <p key={category.id} className="uppercase text-accent">
-                          {category.name}
-                        </p>
-                      )
-                    }
-                  })}
+								{project.projectFields?.projectInfo?.category && (
+									<Text type="label" className="text-accent">
+										{project.projectFields?.projectInfo?.category}
+									</Text>
+								)}
               </div>
             </div>
           </div>
