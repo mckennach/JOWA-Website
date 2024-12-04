@@ -6,7 +6,7 @@ import {
   Project,
   ProjectFields,
   ProjectFieldsContentFullWidthImageLayout,
-	ProjectFieldsContentTextImageSectionLayout,
+  ProjectFieldsContentTextImageSectionLayout,
   ProjectFieldsContentImageGalleryLayout,
 } from '@/src/gql/graphql'
 import { Section, Container } from '@/src/components/craft'
@@ -30,7 +30,7 @@ export function ImageGallery({
                 style={{
                   objectFit: 'cover',
                 }}
-								sizes="662px"
+                sizes="662px"
                 className="brightness-75 filter"
                 loader={imageLoader}
                 priority={true}
@@ -49,7 +49,7 @@ export function ImageGallery({
                   style={{
                     objectFit: 'cover',
                   }}
-									sizes="660px"
+                  sizes="660px"
                   className="brightness-75 filter"
                   loader={imageLoader}
                   priority={true}
@@ -101,21 +101,21 @@ export function FullWidthImage({
 }
 
 export function TextImageSection({
- content,
- image,
+  content,
+  image,
 }: ProjectFieldsContentTextImageSectionLayout) {
   return (
     <Section className="">
-			<Container className="grid gap-8 lg:grid-cols-2">
-				<div>
-					<div
-						className="body-xl-fluid"
-						dangerouslySetInnerHTML={{ __html: content ?? '' }}
-					/>
-				</div>
-				<div className="pt-32">
-					<div className="relative ml-auto mr-0 aspect-[295/351] max-w-[295px]">
-						<Image
+      <Container className="grid gap-8 lg:grid-cols-2">
+        <div>
+          <div
+            className="body-xl-fluid"
+            dangerouslySetInnerHTML={{ __html: content ?? '' }}
+          />
+        </div>
+        <div className="pt-32">
+          <div className="relative ml-auto mr-0 aspect-[295/351] max-w-[295px]">
+            <Image
               src={image?.node.sourceUrl ?? ''}
               alt={image?.node.altText ?? ''}
               fill={true}
@@ -127,9 +127,9 @@ export function TextImageSection({
               loader={imageLoader}
               priority={true}
             />
-					</div>
-				</div>
-			</Container>
+          </div>
+        </div>
+      </Container>
     </Section>
   )
 }

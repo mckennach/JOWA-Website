@@ -19,6 +19,7 @@ import FloatingContact from '@/components/footer/floating-contact'
 import PricingCTA from '@/components/footer/pricing-cta'
 import PricingTemplate from '@/src/components/templates/pricing'
 import PageTemplate from '@/src/components/templates/page'
+import EmailSignature from '@/src/components/templates/email-signature'
 
 type Props = {
   params: { slug: string }
@@ -26,7 +27,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let detailSlug: string | boolean = false
-	console.log(params);
+  console.log(params)
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
       detailSlug = `/work/${params.slug[1]}/`
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const slug = nextSlugToWpSlug(detailSlug || params.slug);
+  const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
   const isPreview = slug.includes('preview')
 
@@ -85,7 +86,7 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
-		console.log(contentNode);
+  console.log(contentNode)
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':
@@ -106,6 +107,8 @@ export default async function Page({ params }: Props) {
         return <ContactTemplate node={contentNode} />
       case 'pricing':
         return <PricingTemplate node={contentNode} />
+      case 'email-signature':
+        return <EmailSignature />
       default:
         return <PageTemplate node={contentNode} />
     }

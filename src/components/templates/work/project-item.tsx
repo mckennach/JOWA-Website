@@ -50,11 +50,11 @@ export default function ProjectItem({
                 {project.title}
               </Text>
               <div>
-								{project.projectFields?.projectInfo?.category && (
-									<Text type="label" className="text-accent">
-										{project.projectFields?.projectInfo?.category}
-									</Text>
-								)}
+                {project.projectFields?.projectInfo?.category && (
+                  <Text type="label" className="text-accent">
+                    {project.projectFields?.projectInfo?.category}
+                  </Text>
+                )}
               </div>
             </div>
           </div>

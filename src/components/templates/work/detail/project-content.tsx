@@ -1,12 +1,13 @@
 'use client'
 
-import {
-  Project,
-  ProjectFields,
-} from '@/src/gql/graphql'
+import { Project, ProjectFields } from '@/src/gql/graphql'
 import { Section, Container } from '@/src/components/craft'
 import { Fragment } from 'react'
-import { FullWidthImage, ImageGallery, TextImageSection } from './project-content-blocks'
+import {
+  FullWidthImage,
+  ImageGallery,
+  TextImageSection,
+} from './project-content-blocks'
 
 export default function ProjectContentBlocks({
   project,
@@ -28,7 +29,7 @@ export default function ProjectContentBlocks({
               'ProjectFieldsContentImageGalleryLayout' && (
               <ImageGallery {...block} />
             )}
-						{block?.fieldGroupName ===
+            {block?.fieldGroupName ===
               'ProjectFieldsContentTextImageSectionLayout' && (
               <TextImageSection {...block} />
             )}

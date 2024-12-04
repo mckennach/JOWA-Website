@@ -12,11 +12,11 @@ export const WORK_DETAIL_QUERY = gql`
         projectInfo {
           location
           sqFt
-					category
-					projectType
-					services {
-						service
-					}
+          category
+          projectType
+          services {
+            service
+          }
         }
         featuredImage {
           cursor

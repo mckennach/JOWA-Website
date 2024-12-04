@@ -20,7 +20,7 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
   //   categories.nodes.filter(
   //     (category) => category.parentId === 'dGVybToxMzc5'
   //   )[0]?.name;
-	console.log(services);
+  console.log(services)
   const projectServices =
     categories &&
     categories.nodes.filter((category) => category.parentId === 'dGVybToxMzc1')
@@ -70,19 +70,15 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
           )}
           {services && (
             <div className="flex items-baseline">
-							<div className="flex basis-1/2 flex-col">
-								<div className="h-[25px] border-b py-1 lg:h-auto">
-									<Text type="label">Services</Text>
-								</div>
-								
-							</div>
-             
+              <div className="flex basis-1/2 flex-col">
+                <div className="h-[25px] border-b py-1 lg:h-auto">
+                  <Text type="label">Services</Text>
+                </div>
+              </div>
+
               <div className="flex basis-1/2 flex-col">
                 {services.map((service, index) => (
-                  <div
-                    key={index}
-                    className="h-[25px] border-b py-1 lg:h-auto"
-                  >
+                  <div key={index} className="h-[25px] border-b py-1 lg:h-auto">
                     <Text type="label">{service?.service ?? ''}</Text>
                   </div>
                 ))}

@@ -84,13 +84,19 @@ export default function NextPost({
                     }}
                   >
                     <Image
-                      src={nextPost?.projectFields?.featuredImage?.node.mediaItemUrl ?? ''}
-                      alt={nextPost?.projectFields?.featuredImage?.node.altText ?? ''}
+                      src={
+                        nextPost?.projectFields?.featuredImage?.node
+                          .mediaItemUrl ?? ''
+                      }
+                      alt={
+                        nextPost?.projectFields?.featuredImage?.node.altText ??
+                        ''
+                      }
                       fill={true}
                       style={{
                         objectFit: 'cover',
                       }}
-											sizes="800px"
+                      sizes="800px"
                       className="brightness-75 filter"
                       loader={imageLoader}
                       priority={true}
