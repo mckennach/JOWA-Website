@@ -41,7 +41,7 @@ export default function JournalHero({ post }: { post: Post }) {
             {(post.tags?.nodes as Tag[]).map((tag, index) => {
               return (
                 <Link
-                  href={`/journal?tag=${tag.slug}`}
+                  href={`/journal?q=${tag.slug}`}
                   key={index}
                   className="rounded-lg border border-accent px-4 py-1.5 text-accent hover:bg-accent hover:text-background"
                 >

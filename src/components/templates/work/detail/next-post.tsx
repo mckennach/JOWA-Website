@@ -90,6 +90,7 @@ export default function NextPost({
                       style={{
                         objectFit: 'cover',
                       }}
+											sizes="800px"
                       className="brightness-75 filter"
                       loader={imageLoader}
                       priority={true}

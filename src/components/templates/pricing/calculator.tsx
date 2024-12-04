@@ -7,11 +7,7 @@ import { ScrollTrigger } from 'gsap/all'
 import Link from 'next/link'
 import { Section, Container } from '../../craft'
 import { Text } from '../../ui/text'
-import {
-  Node,
-  AcfMediaItemConnectionEdge,
-  Page,
-} from '@/src/gql/graphql'
+import { Node, AcfMediaItemConnectionEdge, Page } from '@/src/gql/graphql'
 import Image from 'next/image'
 import { imageLoader } from '@/src/lib/utils'
 import PricingCalculatorForm from './calculator-form'

@@ -10,10 +10,7 @@ type AboutHeadingProps = {
   globalData: Global
 }
 
-export default function AboutHeading({
-  page,
-  globalData,
-}: AboutHeadingProps) {
+export default function AboutHeading({ page, globalData }: AboutHeadingProps) {
   const data = page.aboutPage
   const ourServices = data?.ourServices
   const specificServices = data?.specificServices

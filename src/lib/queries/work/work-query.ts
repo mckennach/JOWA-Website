@@ -23,14 +23,6 @@ export const WORK_QUERY = gql`
         }
         projectFields {
           description
-          fullWidthImage2 {
-            cursor
-            node {
-              altText
-              mediaItemUrl
-              title
-            }
-          }
           featuredImage {
             cursor
             node {
@@ -45,37 +37,6 @@ export const WORK_QUERY = gql`
               altText
               mediaItemUrl
               title
-            }
-          }
-          introFullWidthImage {
-            node {
-              mediaItemUrl
-              altText
-            }
-          }
-          imageGallery {
-            image1 {
-              node {
-                mediaItemUrl
-                altText
-              }
-            }
-            image1Caption
-            image2Caption
-            image2 {
-              node {
-                altText
-                mediaItemUrl
-              }
-            }
-          }
-          project {
-            content
-            image {
-              node {
-                altText
-                mediaItemUrl
-              }
             }
           }
         }

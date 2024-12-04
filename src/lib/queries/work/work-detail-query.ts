@@ -12,14 +12,11 @@ export const WORK_DETAIL_QUERY = gql`
         projectInfo {
           location
           sqFt
-        }
-        fullWidthImage2 {
-          cursor
-          node {
-            altText
-            mediaItemUrl
-            title
-          }
+					category
+					projectType
+					services {
+						service
+					}
         }
         featuredImage {
           cursor
@@ -39,34 +36,36 @@ export const WORK_DETAIL_QUERY = gql`
             title
           }
         }
-        introFullWidthImage {
-          node {
-            mediaItemUrl
-            altText
-          }
-        }
-        imageGallery {
-          image1 {
-            node {
-              mediaItemUrl
-              altText
+        content {
+          ... on ProjectFieldsContentTextImageSectionLayout {
+            content
+            fieldGroupName
+            image {
+              node {
+                altText
+                sourceUrl
+              }
             }
           }
-          image1Caption
-          image2Caption
-          image2 {
-            node {
-              altText
-              mediaItemUrl
+          ... on ProjectFieldsContentFullWidthImageLayout {
+            fieldGroupName
+            image {
+              node {
+                altText
+                sourceUrl
+              }
             }
           }
-        }
-        project {
-          content
-          image {
-            node {
-              altText
-              mediaItemUrl
+          ... on ProjectFieldsContentImageGalleryLayout {
+            fieldGroupName
+            images {
+              caption
+              image {
+                node {
+                  altText
+                  sourceUrl
+                }
+              }
             }
           }
         }

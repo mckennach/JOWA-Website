@@ -8,18 +8,19 @@ import { Text } from '@/src/components/ui/text'
 
 const ProjectInfoTable = ({ project }: { project: Project }) => {
   const { projectInfo } = project?.projectFields ?? {}
-  const { location, sqFt } = projectInfo ?? {}
+  const { category, projectType, services, location, sqFt } = projectInfo ?? {}
   const { categories } = project
-  const category =
-    categories &&
-    categories.nodes.filter(
-      (category) => category.parentId === 'dGVybToxMzcw'
-    )[0]?.name
-  const projectType =
-    categories &&
-    categories.nodes.filter(
-      (category) => category.parentId === 'dGVybToxMzc5'
-    )[0]?.name
+  // const category =
+  //   categories &&
+  //   categories.nodes.filter(
+  //     (category) => category.parentId === 'dGVybToxMzcw'
+  //   )[0]?.name
+  // const projectType =
+  //   categories &&
+  //   categories.nodes.filter(
+  //     (category) => category.parentId === 'dGVybToxMzc5'
+  //   )[0]?.name;
+	console.log(services);
   const projectServices =
     categories &&
     categories.nodes.filter((category) => category.parentId === 'dGVybToxMzc1')
@@ -67,18 +68,18 @@ const ProjectInfoTable = ({ project }: { project: Project }) => {
               </div>
             </div>
           )}
-          {projectServices && (
+          {services && (
             <div className="flex items-baseline">
               <div className="flex h-5 basis-1/2 border-b py-1 lg:h-auto">
                 <Text type="label">Services</Text>
               </div>
               <div className="flex basis-1/2 flex-col">
-                {projectServices.map((service) => (
+                {services.map((service, index) => (
                   <div
-                    key={service.id}
+                    key={index}
                     className="h-[25px] border-b py-1 lg:h-auto"
                   >
-                    <Text type="label">{service.name}</Text>
+                    <Text type="label">{service?.service ?? ''}</Text>
                   </div>
                 ))}
               </div>

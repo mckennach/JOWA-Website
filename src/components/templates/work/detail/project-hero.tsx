@@ -15,6 +15,7 @@ export default function ProjectHero({ project }: { project: Project }) {
           style={{
             objectFit: 'cover',
           }}
+					sizes='100vw'
           className="brightness-75 filter"
           loader={imageLoader}
           priority={true}

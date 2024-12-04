@@ -34,7 +34,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
   ) => {
     const containerRef = useRef(null)
     const searchParams = useSearchParams()
-    const searchCategory = searchParams.get('category')
+    const searchCategory = searchParams.get('q')
     const router = useRouter()
     const pathname = usePathname()
     const [clickedOpen, setClickedOpen] = useState(false)
@@ -48,7 +48,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
         if (item) {
           const slug = item.slug
           const params = new URLSearchParams(searchParams.toString())
-          slug && params.set('category', slug)
+          slug && params.set('q', slug)
           router.push(`${pathname}?${params.toString()}`)
         } else {
           router.push(pathname)
