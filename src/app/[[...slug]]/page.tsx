@@ -26,16 +26,16 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let detailSlug: string | boolean = false
-
+	console.log(params);
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
-      detailSlug = `/project/${params.slug[1]}/`
+      detailSlug = `/work/${params.slug[1]}/`
     } else if (params.slug[0] === 'journal') {
       detailSlug = `/${params.slug[1]}/`
     }
   }
 
-  const slug = nextSlugToWpSlug(detailSlug || params.slug)
+  const slug = nextSlugToWpSlug(detailSlug || params.slug);
 
   const isPreview = slug.includes('preview')
 
@@ -66,7 +66,7 @@ export default async function Page({ params }: Props) {
 
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
-      detailSlug = `/project/${params.slug[1]}/`
+      detailSlug = `/work/${params.slug[1]}/`
     } else if (params.slug[0] === 'journal') {
       detailSlug = `/${params.slug[1]}/`
     }
@@ -85,7 +85,7 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
-
+		console.log(contentNode);
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':
@@ -109,7 +109,7 @@ export default async function Page({ params }: Props) {
       default:
         return <PageTemplate node={contentNode} />
     }
-  } else if (contentNode.contentTypeName === 'project') {
+  } else if (contentNode.contentTypeName === 'work') {
     return (
       <>
         <WorkDetailTemplate node={contentNode} />

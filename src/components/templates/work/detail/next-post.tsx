@@ -84,8 +84,8 @@ export default function NextPost({
                     }}
                   >
                     <Image
-                      src={nextPost.featuredImage?.node.mediaItemUrl ?? ''}
-                      alt={nextPost.featuredImage?.node.altText ?? ''}
+                      src={nextPost?.projectFields?.featuredImage?.node.mediaItemUrl ?? ''}
+                      alt={nextPost?.projectFields?.featuredImage?.node.altText ?? ''}
                       fill={true}
                       style={{
                         objectFit: 'cover',
