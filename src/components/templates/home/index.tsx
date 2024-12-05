@@ -36,9 +36,9 @@ export default async function HomePage({ node }: TemplateProps) {
     <>
       {loaded === undefined && <Loading project={projects?.nodes[0]} />}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
-        <FeaturedProjects projects={projects?.nodes} />
+        <FeaturedProjects projects={projects?.nodes} noLoading={loaded !== undefined} />
       )}
-      {homeContent && <HomeAbout data={homeContent} />}
+      {homeContent && <HomeAbout data={homeContent} noLoading={loaded !== undefined} />}
     </>
   )
 }

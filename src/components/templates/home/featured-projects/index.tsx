@@ -11,14 +11,15 @@ import { useIntersectionObserver } from 'usehooks-ts'
 import { zeroPad } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
 import { Text } from '@/src/components/ui/text'
-
+import useLoading from '../loading/useLoading'
 gsap.registerPlugin(ScrollTrigger)
 
 type FeaturedProjects = {
-  projects: Project[]
+  projects: Project[];
+	noLoading?: boolean;
 }
 
-export default function FeaturedProjects({ projects }: FeaturedProjects) {
+export default function FeaturedProjects({ projects, noLoading }: FeaturedProjects) {
   const router = useRouter()
   const projectNodes = projects ?? []
   const container = useRef(null)
@@ -27,6 +28,14 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
   const [caption, setCaption] = useState<string>(projectNodes[0]?.title ?? '')
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
+	const { hasLoaded } = useLoading();
+
+
+	// useEffect(() => {
+	// 	if(hasLoaded) {
+	// 		// ScrollTrigger.refresh();
+	// 	}
+	// }, [hasLoaded])
 
   useEffect(() => {
     const handleResize = () => {
@@ -91,8 +100,9 @@ export default function FeaturedProjects({ projects }: FeaturedProjects) {
         })
       })
     },
-    { scope: container, dependencies: [projectNodes] }
-  )
+    { scope: container, dependencies: [projectNodes, hasLoaded], revertOnUpdate: true }
+  );
+
 
   return (
     <Section className="relative">

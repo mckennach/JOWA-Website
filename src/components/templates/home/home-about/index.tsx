@@ -10,14 +10,14 @@ import Link from 'next/link'
 import { imageLoader } from '@/src/lib/utils'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
-
 gsap.registerPlugin(ScrollTrigger)
 
 type HomeAboutProps = {
-  data: HomeHomeContent
+  data: HomeHomeContent;
+	noLoading?: boolean;
 }
 
-export default function HomeAbout({ data }: HomeAboutProps) {
+export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const containerRef = useRef(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const textRef = useRef(null)

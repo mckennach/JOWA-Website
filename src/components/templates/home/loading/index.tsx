@@ -9,7 +9,7 @@ import { cn, imageLoader } from '@/src/lib/utils'
 import { Project } from '@/src/gql/graphql'
 import { useLocalStorage } from 'usehooks-ts'
 import { createCookie, deleteCookie } from '@/src/lib/api/actions'
-
+import useLoading from './useLoading'
 gsap.registerPlugin(ScrollTrigger)
 
 interface LoadingProps {
@@ -17,7 +17,9 @@ interface LoadingProps {
 }
 
 export default function Loading({ project }: LoadingProps) {
-  const [hasLoaded, setHasLoaded] = useState(false)
+	const mm = gsap.matchMedia();
+	const { hasLoaded, setHasLoaded } = useLoading();
+  const [hasLoadedInternal, setHasLoadedInternal] = useState(false)
   const [modifiedDate, setModifiedDate, removeDate] = useLocalStorage(
     'loading-date',
     false
@@ -49,18 +51,20 @@ export default function Loading({ project }: LoadingProps) {
         const tl = gsap.timeline({
           onComplete: () => {
             setTimeout(() => {
-              setHasLoaded(true)
-              createCookie('animation-loaded', 'true')
+              setHasLoaded(true);
+							createCookie('animation-loaded', 'true')
             }, 100)
           },
         })
 
-        tl.to(textRef.current, {
-          opacity: 1,
-          duration: 1.5,
-          stagger: 0.25,
-        })
-
+        mm.add("(min-width: 1024px)", () => {
+					tl.to(textRef.current, {
+						opacity: 1,
+						duration: 1.5,
+						stagger: 0.25,
+					})
+				});
+        
         tl.to(
           containerRef.current,
           {
@@ -75,6 +79,14 @@ export default function Loading({ project }: LoadingProps) {
           opacity: 0,
           stagger: 0.25,
         })
+
+				mm.add("(max-width: 1024px)", () => {
+					tl.to(textRef.current, {
+						opacity: 1,
+						duration: 1.5,
+						stagger: 0.25,
+					}, '>');
+				});
 
         tl.to(textRef.current, {
           opacity: 0,
@@ -124,7 +136,7 @@ export default function Loading({ project }: LoadingProps) {
             color="hsla(39, 78%, 93%, 1)"
           />
         </div>
-        <div className="opacity-0 lg:basis-1/2" ref={textRef}>
+        <div className="opacity-0 lg:basis-1/2 absolute lg:relative" ref={textRef}>
           <p className="font-maisonNeue text-[32px] text-cream">
             Where your vision unfolds.
           </p>
