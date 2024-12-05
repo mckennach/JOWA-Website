@@ -29,7 +29,7 @@ export default function Loading({ project }: LoadingProps) {
   const imageRef = useRef(null)
   const logoRef = useRef(null)
   const logoTextRef = useRef(null)
-
+	
   useGSAP(
     () => {
       if (containerRef.current === null) return
