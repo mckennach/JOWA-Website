@@ -31,12 +31,6 @@ export default function FeaturedProjects({ projects, noLoading }: FeaturedProjec
 	const { hasLoaded } = useLoading();
 
 
-	// useEffect(() => {
-	// 	if(hasLoaded) {
-	// 		// ScrollTrigger.refresh();
-	// 	}
-	// }, [hasLoaded])
-
   useEffect(() => {
     const handleResize = () => {
       ScrollTrigger.refresh()

@@ -27,7 +27,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let detailSlug: string | boolean = false
-  console.log(params)
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
       detailSlug = `/work/${params.slug[1]}/`
@@ -86,7 +85,7 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
-  console.log(contentNode)
+ 
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':

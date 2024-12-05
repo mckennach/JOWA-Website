@@ -1,7 +1,4 @@
 'use client'
-
-import Image from 'next/image'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { Project } from '@/src/gql/graphql'
 import { Container, Section } from '../../../craft'
 import { Text } from '@/src/components/ui/text'
@@ -9,21 +6,7 @@ import { Text } from '@/src/components/ui/text'
 const ProjectInfoTable = ({ project }: { project: Project }) => {
   const { projectInfo } = project?.projectFields ?? {}
   const { category, projectType, services, location, sqFt } = projectInfo ?? {}
-  const { categories } = project
-  // const category =
-  //   categories &&
-  //   categories.nodes.filter(
-  //     (category) => category.parentId === 'dGVybToxMzcw'
-  //   )[0]?.name
-  // const projectType =
-  //   categories &&
-  //   categories.nodes.filter(
-  //     (category) => category.parentId === 'dGVybToxMzc5'
-  //   )[0]?.name;
-  console.log(services)
-  const projectServices =
-    categories &&
-    categories.nodes.filter((category) => category.parentId === 'dGVybToxMzc1')
+
   return (
     <div>
       <div className="w-full max-w-[529px]">

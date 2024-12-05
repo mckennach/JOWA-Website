@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { imageLoader } from '@/src/lib/utils'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
+import useLoading from '../loading/useLoading'
+
 gsap.registerPlugin(ScrollTrigger)
 
 type HomeAboutProps = {
@@ -23,6 +25,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const textRef = useRef(null)
   const contentRef = useRef(null)
   const image = data?.image?.node
+	const { hasLoaded } = useLoading();
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,6 +83,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
     },
     {
       scope: containerRef,
+			dependencies: [hasLoaded],
       revertOnUpdate: true,
     }
   )
