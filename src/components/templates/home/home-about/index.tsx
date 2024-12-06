@@ -15,8 +15,8 @@ import useLoading from '../loading/useLoading'
 gsap.registerPlugin(ScrollTrigger)
 
 type HomeAboutProps = {
-  data: HomeHomeContent;
-	noLoading?: boolean;
+  data: HomeHomeContent
+  noLoading?: boolean
 }
 
 export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
@@ -25,7 +25,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const textRef = useRef(null)
   const contentRef = useRef(null)
   const image = data?.image?.node
-	const { hasLoaded } = useLoading();
+  const { hasLoaded } = useLoading()
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,7 +83,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
     },
     {
       scope: containerRef,
-			dependencies: [hasLoaded],
+      dependencies: [hasLoaded],
       revertOnUpdate: true,
     }
   )
@@ -100,14 +100,14 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
             <div className="mx-auto max-w-[280px] lg:max-w-[55%]">
               <div className="relative aspect-[476/650]" ref={imageRef}>
                 <Image
-                  src={image?.mediaItemUrl ?? ''}
+                  src={image?.sourceUrl ?? ''}
                   alt={image?.altText ?? ''}
                   fill={true}
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  sizes="(max-width: 476px) 100vw, 476px"
+                  sizes={image?.sizes ?? ''}
                   loader={imageLoader}
                 />
               </div>

@@ -11,6 +11,9 @@ export const FEATURED_PROJECTS_QUERY = gql`
           node {
             altText
             mediaItemUrl
+						sourceUrl(size: _1536X1536)
+						sizes(size: _1536X1536)
+
           }
         }
         projectFields {
@@ -35,6 +38,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
               sourceUrl(size: _1536X1536)
               altText
               mediaItemUrl
+							sizes(size: _1536X1536)
             }
           }
         }

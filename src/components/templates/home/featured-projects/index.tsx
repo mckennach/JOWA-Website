@@ -15,11 +15,14 @@ import useLoading from '../loading/useLoading'
 gsap.registerPlugin(ScrollTrigger)
 
 type FeaturedProjects = {
-  projects: Project[];
-	noLoading?: boolean;
+  projects: Project[]
+  noLoading?: boolean
 }
 
-export default function FeaturedProjects({ projects, noLoading }: FeaturedProjects) {
+export default function FeaturedProjects({
+  projects,
+  noLoading,
+}: FeaturedProjects) {
   const router = useRouter()
   const projectNodes = projects ?? []
   const container = useRef(null)
@@ -28,8 +31,7 @@ export default function FeaturedProjects({ projects, noLoading }: FeaturedProjec
   const [caption, setCaption] = useState<string>(projectNodes[0]?.title ?? '')
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
-	const { hasLoaded } = useLoading();
-
+  const { hasLoaded } = useLoading()
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,9 +96,12 @@ export default function FeaturedProjects({ projects, noLoading }: FeaturedProjec
         })
       })
     },
-    { scope: container, dependencies: [projectNodes, hasLoaded], revertOnUpdate: true }
-  );
-
+    {
+      scope: container,
+      dependencies: [projectNodes],
+      revertOnUpdate: true,
+    }
+  )
 
   return (
     <Section className="relative">
@@ -112,6 +117,7 @@ export default function FeaturedProjects({ projects, noLoading }: FeaturedProjec
               image={{
                 url: image?.sourceUrl ?? '',
                 alt: image?.altText ?? '',
+								sizes: image?.sizes ?? '',
               }}
               ref={(el) => {
                 galleryRefs.current[index] = el
@@ -140,7 +146,7 @@ export default function FeaturedProjects({ projects, noLoading }: FeaturedProjec
 }
 
 type SlideProps = {
-  image: { url?: string; alt?: string }
+  image: { url?: string; alt?: string, sizes?: string }
   index: number
 }
 
@@ -170,8 +176,9 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             fill={true}
             style={{
               objectFit: 'cover',
+							objectPosition: 'center',
             }}
-            loading="eager"
+						sizes={image?.sizes ?? ''}
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}

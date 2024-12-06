@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { print } from 'graphql/language/printer'
-
+import { Suspense } from 'react'
 import { setSeoData } from '@/lib/api/seoData'
 
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
@@ -85,41 +85,73 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
- 
+
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':
         return (
-          <>
+          <Suspense fallback={<div className="h-screen w-screen" />}>
             <HomePage node={contentNode} />
             <PricingCTA />
             <FloatingContact />
-          </>
+          </Suspense>
         )
       case 'work':
-        return <WorkTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <WorkTemplate node={contentNode} />
+          </Suspense>
+        )
       case 'journal':
-        return <JournalTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <JournalTemplate node={contentNode} />
+          </Suspense>
+        )
       case 'about':
-        return <AboutTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <AboutTemplate node={contentNode} />
+          </Suspense>
+        )
       case 'contact':
-        return <ContactTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <ContactTemplate node={contentNode} />
+          </Suspense>
+        )
       case 'pricing':
-        return <PricingTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <PricingTemplate node={contentNode} />
+          </Suspense>
+        )
       case 'email-signature':
-        return <EmailSignature />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <EmailSignature />
+          </Suspense>
+        )
       default:
-        return <PageTemplate node={contentNode} />
+        return (
+          <Suspense fallback={<div className="h-screen w-screen" />}>
+            <PageTemplate node={contentNode} />
+          </Suspense>
+        )
     }
   } else if (contentNode.contentTypeName === 'work') {
     return (
-      <>
+      <Suspense fallback={<div className="h-screen w-screen" />}>
         <WorkDetailTemplate node={contentNode} />
         <PricingCTA />
-      </>
+      </Suspense>
     )
   } else if (contentNode.contentTypeName === 'post') {
-    return <JournalDetailTemplate node={contentNode} />
+    return (
+      <Suspense fallback={<div className="h-screen w-screen" />}>
+        <JournalDetailTemplate node={contentNode} />
+      </Suspense>
+    )
   }
 
   return null

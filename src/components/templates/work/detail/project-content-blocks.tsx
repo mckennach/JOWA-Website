@@ -16,7 +16,6 @@ import { Text } from '@/src/components/ui/text'
 export function ImageGallery({
   images,
 }: ProjectFieldsContentImageGalleryLayout) {
-  
   return (
     <Section className="">
       <Container className="grid gap-8 lg:grid-cols-2">

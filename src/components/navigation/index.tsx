@@ -1,4 +1,5 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MobileNavigation } from './mobile-navigation'
@@ -21,21 +22,18 @@ export default function Navigation({
   const matches = useMediaQuery('(min-width: 1024px)')
   const pathname = usePathname()
 
-  useEffect(() => {
-    switch (pathname) {
-      case '/':
-        setScrollPosition(500)
-        break
-      case '/work':
-        setScrollPosition(10)
-        break
-      default:
-        setScrollPosition(10)
-    }
-  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
+
+			let scrollPosition = 10;
+
+			if (pathname === '/') {
+				scrollPosition = 500;
+			} else if (pathname === '/work') {
+				scrollPosition = 10;
+			}
+
       if (window.scrollY > scrollPosition) {
         setIsScrolled(true)
       } else {
@@ -44,7 +42,7 @@ export default function Navigation({
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [scrollPosition])
+  }, [scrollPosition, pathname])
 
   const isWorkDetail =
     pathname.includes('work') && pathname.split('/').length > 2
@@ -115,8 +113,7 @@ export default function Navigation({
               )
             })}
           </div>
-          {!matches && <MobileNavigation menuItems={menuItems} />}
-          {/* <MobileNav /> */}
+          <MobileNavigation menuItems={menuItems} />
         </div>
       </div>
     </nav>

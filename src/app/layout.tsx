@@ -17,6 +17,7 @@ import { MENU_ITEMS_QUERY, GLOBALS_QUERY } from '@/src/lib/queries'
 import { RootQueryToMenuItemConnection, Global } from '@/gql/graphql'
 import { print } from 'graphql/language/printer'
 import SkipToContent from '../components/navigation/skip-to-content'
+import { Suspense } from 'react'
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
@@ -83,7 +84,9 @@ export default async function RootLayout({
                 <ThemeProvider>
                   {isEnabled && <PreviewNotice />}
                   <SkipToContent />
-                  <Navigation menuItems={menuItems} />
+                  <Suspense>
+                    <Navigation menuItems={menuItems} />
+                  </Suspense>
                   <main className="max-w-full overflow-hidden">{children}</main>
                   <Footer globalData={globalData} />
                 </ThemeProvider>

@@ -2,13 +2,11 @@
 
 import { cookies } from 'next/headers'
 
-
 export async function getCookie(key: string) {
-	const cookieStore = await cookies()
+  const cookieStore = await cookies()
 
-	return cookieStore.get(key)
+  return cookieStore.get(key)
 }
-
 
 export async function createCookie(key: string, value: string) {
   const cookieStore = await cookies()
