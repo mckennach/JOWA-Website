@@ -5,13 +5,12 @@ import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { gsap, ScrollTrigger } from 'gsap/all'
+import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useEffect, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
-gsap.registerPlugin(ScrollTrigger)
 
 type FeaturedProjects = {
   projects: Project[]
