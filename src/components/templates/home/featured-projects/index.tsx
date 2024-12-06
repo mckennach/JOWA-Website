@@ -183,7 +183,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
 						sizes={image?.sizes ?? ''}
             className="brightness-75 filter"
             loader={imageLoader}
-            priority={true}
+            priority={index === 0} 
 						onLoad={() => setAnimationReady(true)}
           />
         </div>
