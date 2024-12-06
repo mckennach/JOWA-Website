@@ -28,6 +28,8 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     (tag) => tag?.projects && tag?.projects?.nodes?.length > 0
   )
 
+	if(!nodes) return null;
+
   return (
     <Section
       className={cn(

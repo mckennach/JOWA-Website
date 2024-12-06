@@ -27,6 +27,8 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
     projects: RootQueryToProjectConnection
   }>(print(WORK_QUERY))
 
+	if (!project || !projects) return null;
+
   return (
     <>
       <ProjectHero project={project} />

@@ -21,13 +21,13 @@ export default async function AboutTemplate({ node }: TemplateProps) {
   }>(print(GLOBALS_QUERY), {
     id: '357',
   })
-
+	if(!page) return null;
   return (
     <>
       <AboutHeading page={page} globalData={global} />
       <OurProcess page={page} />
       <AboutLogo page={page} />
-      <TeamMembers />
+      {/* <TeamMembers /> */}
     </>
   )
 }

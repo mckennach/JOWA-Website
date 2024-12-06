@@ -31,7 +31,7 @@ export default async function HomePage({ node }: TemplateProps) {
   }>(print(FEATURED_PROJECTS_QUERY), {
     ids: projectIds,
   })
-
+	if(!projects || !featuredProjects) return null;
   return (
     <>
       {/* {loaded === undefined && <Loading project={projects?.nodes[0]} />} */}

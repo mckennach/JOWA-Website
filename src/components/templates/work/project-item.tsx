@@ -67,12 +67,14 @@ export default function ProjectItem({
             }}
           >
             <Image
-              src={featuredImage?.mediaItemUrl ?? ''}
+              src={featuredImage?.sourceUrl ?? ''}
               alt={featuredImage?.altText ?? ''}
               fill={true}
               style={{
                 objectFit: 'cover',
+								objectPosition: 'center',
               }}
+							sizes={featuredImage?.sizes ?? ''}
               className=""
               loader={imageLoader}
               priority={true}

@@ -85,16 +85,19 @@ export default function TeamMembers() {
               return (
                 <div key={key} className="mx-auto w-full max-w-[295px]">
                   <div className="relative mb-4 aspect-[295/351]">
-                    <Image
-                      src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
-                      alt={member?.memberData?.image?.node?.altText ?? ''}
-                      fill={true}
-                      style={{
-                        objectFit: 'cover',
-                        objectPosition: 'center',
-                      }}
-                      loader={imageLoader}
-                    />
+										{member?.memberData?.image?.node?.mediaItemUrl && (
+											<Image
+												src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
+												alt={member?.memberData?.image?.node?.altText ?? ''}
+												fill={true}
+												style={{
+													objectFit: 'cover',
+													objectPosition: 'center',
+												}}
+												loader={imageLoader}
+											/>
+										)}
+                    
                   </div>
                   <div>
                     <Text
@@ -111,9 +114,6 @@ export default function TeamMembers() {
             })}
         </div>
       </Container>
-      {/* <div className="bg-red pointer-events-none absolute top-0 hidden h-screen w-full lg:block">
-        <div className="absolute bottom-0 left-0 h-28 w-full bg-cream" />
-      </div> */}
     </Section>
   )
 }
