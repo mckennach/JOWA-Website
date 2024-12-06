@@ -1,11 +1,11 @@
 'use client'
 
+import { cn } from '@/src/lib/utils'
+import { X } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useSessionStorage } from 'usehooks-ts'
-import Link from 'next/link'
 import { Text } from '../ui/text'
-import { X } from 'lucide-react'
-import { cn } from '@/src/lib/utils'
 
 export default function PricingCTA() {
   const [closed, setClosed] = useSessionStorage('pricingCTA', false)
@@ -38,7 +38,7 @@ export default function PricingCTA() {
           Try our pricing calculator
         </Text>
       </Link>
-      <button onClick={handleClose}>
+      <button onClick={handleClose} aria-label="Close Toaster">
         <X
           className="mt-1 text-jowa-red"
           width={20}
