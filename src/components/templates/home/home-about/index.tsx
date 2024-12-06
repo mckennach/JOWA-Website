@@ -5,11 +5,11 @@ import { Text } from '@/src/components/ui/text'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { cn, imageLoader } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
-import _ScrollTrigger from 'gsap/ScrollTrigger'
+// import _ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import useLoading from '../loading/useLoading'
 
 
@@ -26,15 +26,15 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const image = data?.image?.node
   const { hasLoaded } = useLoading()
 
-  useEffect(() => {
-    const handleResize = () => {
-      _ScrollTrigger.refresh()
-    }
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     _ScrollTrigger.refresh()
+  //   }
+  //   window.addEventListener('resize', handleResize)
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize)
+  //   }
+  // }, [])
 
   useGSAP(
     () => {

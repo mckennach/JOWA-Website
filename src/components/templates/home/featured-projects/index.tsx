@@ -5,11 +5,11 @@ import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
-import _ScrollTrigger from 'gsap/ScrollTrigger'
+// import _ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
 
@@ -33,15 +33,15 @@ export default function FeaturedProjects({
   const [isActive, setIsActive] = useState<boolean>(true)
   const { hasLoaded } = useLoading()
 
-  useEffect(() => {
-    const handleResize = () => {
-      _ScrollTrigger.refresh()
-    }
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     _ScrollTrigger.refresh()
+  //   }
+  //   window.addEventListener('resize', handleResize)
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize)
+  //   }
+  // }, [])
 
   useGSAP(
     () => {
