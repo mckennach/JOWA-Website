@@ -62,8 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound()
   }
 
-  const metadata = setSeoData({ seo: contentNode.seo })
-
+  const metadata = setSeoData({ seo: contentNode.seo });
+	
   return {
     ...metadata,
     alternates: {
