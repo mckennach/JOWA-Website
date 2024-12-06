@@ -164,7 +164,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
         className="not-prose h-[130vh]"
       >
         <div
-          className="image relative"
+          className="image relative max-w-full"
           style={{
             height: 'calc(100vh - 80px)',
           }}
