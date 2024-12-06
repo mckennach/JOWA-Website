@@ -1,18 +1,16 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { gsap, ScrollTrigger } from 'gsap/all'
-import { useGSAP } from '@gsap/react'
-import Image from 'next/image'
-import { Section, Container } from '@/components/craft'
-import { cn } from '@/src/lib/utils'
-import Link from 'next/link'
-import { imageLoader } from '@/src/lib/utils'
-import { HomeHomeContent } from '@/src/gql/graphql'
+import { Container, Section } from '@/components/craft'
 import { Text } from '@/src/components/ui/text'
+import { HomeHomeContent } from '@/src/gql/graphql'
+import { cn, imageLoader } from '@/src/lib/utils'
+import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap/all'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useRef } from 'react'
 import useLoading from '../loading/useLoading'
 
-gsap.registerPlugin(ScrollTrigger)
 
 type HomeAboutProps = {
   data: HomeHomeContent

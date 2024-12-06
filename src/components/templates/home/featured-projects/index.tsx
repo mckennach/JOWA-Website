@@ -1,16 +1,15 @@
 'use client'
 
-import { useRef, forwardRef, useState, useEffect } from 'react'
+import { Container, Section } from '@/components/craft'
+import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
+import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 import { gsap, ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
-import { Section, Container } from '@/components/craft'
-import { imageLoader } from '@/src/lib/utils'
-import { useIntersectionObserver } from 'usehooks-ts'
-import { zeroPad } from '@/src/lib/utils'
 import { useRouter } from 'next/navigation'
-import { Text } from '@/src/components/ui/text'
+import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useIntersectionObserver } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
 gsap.registerPlugin(ScrollTrigger)
 

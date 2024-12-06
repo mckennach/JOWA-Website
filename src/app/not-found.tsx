@@ -1,14 +1,14 @@
-import type { Metadata } from 'next'
 import { print } from 'graphql/language/printer'
+import type { Metadata } from 'next'
 
 import { setSeoData } from '@/src/lib/api/seoData'
 
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { ContentNode, Page } from '@/gql/graphql'
-import { PAGE_QUERY } from '@/src/lib/queries/pages/page-query'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { SEO_QUERY } from '@/src/lib/queries'
-import { Section, Container } from '../components/craft'
+import { PAGE_QUERY } from '@/src/lib/queries/pages/page-query'
 import Link from 'next/link'
+import { Container, Section } from '../components/craft'
 
 const notFoundPageWordPressId = 28
 

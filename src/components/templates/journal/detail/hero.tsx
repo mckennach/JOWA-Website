@@ -1,13 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import { Container } from '@/src/components/craft'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
-import { Post, Tag } from '@/src/gql/graphql'
-import { Text } from '@/src/components/ui/text'
-import Link from 'next/link'
-import CustomIcons from '@/src/components/custom-icons'
 import ShareButton from '@/src/components/ui/share'
+import { Text } from '@/src/components/ui/text'
+import { Post, Tag } from '@/src/gql/graphql'
+import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function JournalHero({ post }: { post: Post }) {
   const date = new Date(post?.date as string)

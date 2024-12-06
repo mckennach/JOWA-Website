@@ -1,18 +1,12 @@
 'use client'
 
-import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  useCarousel,
-} from '@/components/ui/carousel'
-import { Section, Container } from '../../../craft'
-import { Text } from '../../../ui/text'
-import Image from 'next/image'
-import { cn, imageLoader, zeroPad } from '@/src/lib/utils'
 import CustomIcons from '@/src/components/custom-icons'
+import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
+import { cn, imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { Container, Section } from '../../../craft'
+import { Text } from '../../../ui/text'
 export default function NextPost({
   posts,
   currentId,

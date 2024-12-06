@@ -1,11 +1,11 @@
 'use client'
 
 import { Post, Tag } from '@/src/gql/graphql'
-import { Container, Section } from '../../craft'
 import Image from 'next/image'
-import { cn, imageLoader } from '../../../lib/utils'
-import { Text } from '../../ui/text'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { cn, imageLoader } from '../../../lib/utils'
+import { Container, Section } from '../../craft'
+import { Text } from '../../ui/text'
 
 const JournalItems = ({ posts }: { posts: Post[] }) => {
   const searchParams = useSearchParams()

@@ -1,18 +1,17 @@
-import { print } from 'graphql'
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
 import {
-  Post,
-  RootQueryToPostConnection,
-  TagConnection,
+	RootQueryToPostConnection,
+	TagConnection
 } from '@/src/gql/graphql'
-import { TemplateProps } from '../page'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { JOURNALS_QUERY } from './journal-query'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
-import { JournalItems } from './journal-items'
-import { Filter } from '../../ui/filter'
 import { cn } from '@/src/lib/utils'
+import { print } from 'graphql'
+import { Container, Section } from '../../craft'
+import { Filter } from '../../ui/filter'
+import { Text } from '../../ui/text'
+import { TemplateProps } from '../page'
+import { JournalItems } from './journal-items'
+import { JOURNALS_QUERY } from './journal-query'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
     print(JOURNALS_QUERY),

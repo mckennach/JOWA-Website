@@ -1,23 +1,23 @@
-import { draftMode } from 'next/headers'
-import localFont from 'next/font/local'
-import {
-  GsapProvider,
-  ScrollProvider,
-  ApolloWrapper,
-  ThemeProvider,
-} from '@/src/context'
-import '@/styles/globals.min.css'
-import { CookiesProvider } from 'next-client-cookies/server'
+import { Global, RootQueryToMenuItemConnection } from '@/gql/graphql'
 import Navigation from '@/src/components/navigation'
 import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
-import Footer from '../components/footer'
-import { cn } from '../lib/utils'
+import {
+	ApolloWrapper,
+	GsapProvider,
+	ScrollProvider,
+	ThemeProvider,
+} from '@/src/context'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { MENU_ITEMS_QUERY, GLOBALS_QUERY } from '@/src/lib/queries'
-import { RootQueryToMenuItemConnection, Global } from '@/gql/graphql'
+import { GLOBALS_QUERY, MENU_ITEMS_QUERY } from '@/src/lib/queries'
+import '@/styles/globals.min.css'
 import { print } from 'graphql/language/printer'
-import SkipToContent from '../components/navigation/skip-to-content'
+import { CookiesProvider } from 'next-client-cookies/server'
+import localFont from 'next/font/local'
+import { draftMode } from 'next/headers'
 import { Suspense } from 'react'
+import Footer from '../components/footer'
+import SkipToContent from '../components/navigation/skip-to-content'
+import { cn } from '../lib/utils'
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',

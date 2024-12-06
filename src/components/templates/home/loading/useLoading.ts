@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import { getCookie } from '@/src/lib/api/actions'
-import { useEffect } from 'react'
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+import { useEffect, useState } from 'react'
 export default function useLoading() {
   const [hasLoaded, setHasLoaded] = useState(true)
   const [cookie, setCookie] = useState<RequestCookie>()

@@ -1,17 +1,14 @@
-import Image from 'next/image'
 import { Container, Section } from '@/src/components/craft'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
-import type {
-  PostDataPostContentTextSectionLayout,
-  PostDataPostContentImageGalleryLayout,
-  PostDataPostContentImageTextSectionLayout,
-  PostDataPostContentFullWidthImageLayout,
-  PostDataPostContentBlockquoteLayout,
-} from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
-import CustomIcons from '@/src/components/custom-icons'
-import Link from 'next/link'
-import ShareButton from '@/src/components/ui/share'
+import type {
+	PostDataPostContentBlockquoteLayout,
+	PostDataPostContentFullWidthImageLayout,
+	PostDataPostContentImageGalleryLayout,
+	PostDataPostContentImageTextSectionLayout,
+	PostDataPostContentTextSectionLayout,
+} from '@/src/gql/graphql'
+import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
 
 export function TextSection({
   title,

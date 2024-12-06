@@ -1,11 +1,11 @@
+import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { print } from 'graphql'
 import { TemplateProps } from '../../page'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { JOURNAL_QUERY, JOURNALS_QUERY } from '../journal-query'
-import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
 import JournalHero from './hero'
-import JournalPostContent from './post-content'
 import NextPost from './next-post'
+import JournalPostContent from './post-content'
 export default async function JournalDetailTemplate({ node }: TemplateProps) {
   const { post } = await fetchGraphQL<{ post: Post }>(print(JOURNAL_QUERY), {
     id: node?.uri,

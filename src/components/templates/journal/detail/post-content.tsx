@@ -1,29 +1,24 @@
 'use client'
 
-import Image from 'next/image'
 import { Container, Section } from '@/src/components/craft'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
-import {
-  Post,
-  PostData,
-  Tag,
-  PostDataPostContentTextSectionLayout,
-  PostDataPostContentImageTextSectionLayout,
-  PostDataPostContentBlockquoteLayout,
-  PostDataPostContentFullWidthImageLayout,
-  PostDataPostContentImageGalleryLayout,
-} from '@/src/gql/graphql'
-import { Text } from '@/src/components/ui/text'
-import CustomIcons from '@/src/components/custom-icons'
-import Link from 'next/link'
 import ShareButton from '@/src/components/ui/share'
+import { Text } from '@/src/components/ui/text'
+import {
+	Post,
+	PostData,
+	PostDataPostContentBlockquoteLayout,
+	PostDataPostContentFullWidthImageLayout,
+	PostDataPostContentImageGalleryLayout,
+	PostDataPostContentImageTextSectionLayout,
+	PostDataPostContentTextSectionLayout
+} from '@/src/gql/graphql'
 import { Fragment } from 'react'
 import {
-  Blockquote,
-  FullWidthImage,
-  ImageGallery,
-  ImageTextSection,
-  TextSection,
+	Blockquote,
+	FullWidthImage,
+	ImageGallery,
+	ImageTextSection,
+	TextSection,
 } from './post-content-blocks'
 export default function JournalPostContent({ post }: { post: Post }) {
   const { postData } = post
