@@ -5,6 +5,7 @@ import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
+import _ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -34,7 +35,7 @@ export default function FeaturedProjects({
 
   useEffect(() => {
     const handleResize = () => {
-      ScrollTrigger.refresh()
+      _ScrollTrigger.refresh()
     }
     window.addEventListener('resize', handleResize)
     return () => {

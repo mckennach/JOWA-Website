@@ -5,6 +5,7 @@ import { Text } from '@/src/components/ui/text'
 import { HomeHomeContent } from '@/src/gql/graphql'
 import { cn, imageLoader } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
+import _ScrollTrigger from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -27,7 +28,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      ScrollTrigger.refresh()
+      _ScrollTrigger.refresh()
     }
     window.addEventListener('resize', handleResize)
     return () => {
