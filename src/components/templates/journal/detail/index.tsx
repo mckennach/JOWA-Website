@@ -13,7 +13,7 @@ export default async function JournalDetailTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
     print(JOURNALS_QUERY),
     {
-      caches: false,
+      caches: true,
     }
   )
 

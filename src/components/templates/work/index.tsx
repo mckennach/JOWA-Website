@@ -20,7 +20,7 @@ export default async function WorkTemplate({ node }: TemplateProps) {
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),
     {
-      caches: false,
+      caches: true,
     }
   )
 
