@@ -2,7 +2,7 @@ import { setSeoData } from '@/lib/api/seoData'
 import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 
 import FloatingContact from '@/components/footer/floating-contact'
 import PricingCTA from '@/components/footer/pricing-cta'
@@ -10,16 +10,27 @@ import { ContentNode } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
-import AboutTemplate from '@/src/components/templates/about'
-import ContactTemplate from '@/src/components/templates/contact'
+// import AboutTemplate from '@/src/components/templates/about'
+// import ContactTemplate from '@/src/components/templates/contact'
 import EmailSignature from '@/src/components/templates/email-signature'
-import HomePage from '@/src/components/templates/home'
-import JournalTemplate from '@/src/components/templates/journal'
-import JournalDetailTemplate from '@/src/components/templates/journal/detail'
+// import HomePage from '@/src/components/templates/home'
+// import JournalTemplate from '@/src/components/templates/journal'
+// import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 import PageTemplate from '@/src/components/templates/page'
-import PricingTemplate from '@/src/components/templates/pricing'
-import WorkTemplate from '@/src/components/templates/work'
-import WorkDetailTemplate from '@/src/components/templates/work/detail'
+// import PricingTemplate from '@/src/components/templates/pricing'
+// import WorkTemplate from '@/src/components/templates/work'
+// import WorkDetailTemplate from '@/src/components/templates/work/detail'
+
+const HomePage = lazy(() => import('@/src/components/templates/home'));
+const JournalTemplate = lazy(() => import('@/src/components/templates/journal'));
+const JournalDetailTemplate = lazy(() => import('@/src/components/templates/journal/detail'));
+const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'));
+const WorkTemplate = lazy(() => import('@/src/components/templates/work'));
+const WorkDetailTemplate = lazy(() => import('@/src/components/templates/work/detail'));
+const AboutTemplate = lazy(() => import('@/src/components/templates/about'));
+const ContactTemplate = lazy(() => import('@/src/components/templates/contact'));
+
+
 
 type Props = {
   params: { slug: string }

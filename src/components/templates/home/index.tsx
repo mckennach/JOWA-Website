@@ -1,15 +1,20 @@
 import {
 	Page,
 	PostFormatToProjectConnection
-} from '@/gql/graphql'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query'
-import { print } from 'graphql/language/printer'
-import { cookies } from 'next/headers'
-import { TemplateProps } from '../page'
-import FeaturedProjects from './featured-projects'
-import HomeAbout from './home-about'
-import { HOME_PAGE_QUERY } from './home-query'
+} from '@/gql/graphql';
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL';
+import { FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query';
+import { print } from 'graphql/language/printer';
+import { cookies } from 'next/headers';
+import { lazy } from 'react';
+import { TemplateProps } from '../page';
+// import FeaturedProjects from './featured-projects'
+// import HomeAbout from './home-about'
+import { HOME_PAGE_QUERY } from './home-query';
+
+
+const HomeAbout = lazy(() => import('./home-about'));
+const FeaturedProjects = lazy(() => import('./featured-projects'));
 
 export default async function HomePage({ node }: TemplateProps) {
   const cookieStore = await cookies()

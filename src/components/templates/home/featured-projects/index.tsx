@@ -21,6 +21,7 @@ export default function FeaturedProjects({
   projects,
   noLoading,
 }: FeaturedProjects) {
+	const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
   const projectNodes = projects ?? []
   const container = useRef(null)
@@ -44,7 +45,7 @@ export default function FeaturedProjects({
   useGSAP(
     () => {
       const panels = galleryRefs.current
-      if (panels.length === 0 || !container.current) return
+      if (panels.length === 0 || !container.current || !animationReady) return
       gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
@@ -96,7 +97,7 @@ export default function FeaturedProjects({
     },
     {
       scope: container,
-      dependencies: [projectNodes],
+      dependencies: [projectNodes, animationReady],
       revertOnUpdate: true,
     }
   )
@@ -112,6 +113,7 @@ export default function FeaturedProjects({
             <Slide
               key={index}
               index={index}
+							setAnimationReady={setAnimationReady}
               image={{
                 url: image?.sourceUrl ?? '',
                 alt: image?.altText ?? '',
@@ -145,11 +147,12 @@ export default function FeaturedProjects({
 
 type SlideProps = {
   image: { url?: string; alt?: string, sizes?: string }
+	setAnimationReady: (value: boolean) => void
   index: number
 }
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  ({ image, index }, ref) => {
+  ({ image, setAnimationReady, index }, ref) => {
     const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
@@ -180,6 +183,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             className="brightness-75 filter"
             loader={imageLoader}
             priority={true}
+						onLoad={() => setAnimationReady(true)}
           />
         </div>
       </div>
