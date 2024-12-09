@@ -10,17 +10,11 @@ import { ContentNode } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
-// import AboutTemplate from '@/src/components/templates/about'
-// import ContactTemplate from '@/src/components/templates/contact'
 import EmailSignature from '@/src/components/templates/email-signature'
-// import HomePage from '@/src/components/templates/home'
-// import JournalTemplate from '@/src/components/templates/journal'
-// import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 import PageTemplate from '@/src/components/templates/page'
-// import PricingTemplate from '@/src/components/templates/pricing'
-// import WorkTemplate from '@/src/components/templates/work'
-// import WorkDetailTemplate from '@/src/components/templates/work/detail'
+import { cookies } from 'next/headers'
 
+const LoginPage = lazy(() => import('@/src/components/templates/login'));
 const HomePage = lazy(() => import('@/src/components/templates/home'));
 const JournalTemplate = lazy(() => import('@/src/components/templates/journal'));
 const JournalDetailTemplate = lazy(() => import('@/src/components/templates/journal/detail'));
@@ -37,7 +31,15 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let detailSlug: string | boolean = false
+  const cookieStore = await cookies()
+  const isAuth = cookieStore.get('user:auth');
+
+	if(!isAuth) return {
+		title: 'Login',
+		description: 'Login',
+	};
+	
+	let detailSlug: string | boolean = false
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
       detailSlug = `/work/${params.slug[1]}/`
@@ -73,7 +75,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  let detailSlug: string | boolean = false
+  const cookieStore = await cookies()
+  const isAuth = cookieStore.get('user:auth');
+
+	if(!isAuth) {
+		return <LoginPage />;
+	}
+
+	let detailSlug: string | boolean = false
 
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
@@ -96,7 +105,8 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
-
+	
+	
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':

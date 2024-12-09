@@ -1,7 +1,11 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+
+const protectedPaths = [
+	'/', '/about', '/contact', '/work', '/work/:path', '/journal', '/journal/:path', '/pricing', '/email-signature'];
 
 export async function middleware(request: NextRequest) {
+	
   if (!process.env.WP_USER || !process.env.WP_APP_PASS) {
     return NextResponse.next()
   }
@@ -23,7 +27,8 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const data = await response.json()
+  const data = await response.json();
+
 
   if (data?.items?.length > 0) {
     const redirect = data.items.find(
@@ -37,7 +42,10 @@ export async function middleware(request: NextRequest) {
     const newUrl = new URL(
       redirect.action_data.url,
       process.env.NEXT_PUBLIC_BASE_URL
-    ).toString()
+    ).toString();
+
+	
+		
 
     return NextResponse.redirect(newUrl, {
       status: redirect.action_code === 301 ? 308 : 307,

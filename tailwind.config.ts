@@ -1,9 +1,9 @@
-import type { Config } from 'tailwindcss'
-import { fontFamily } from 'tailwindcss/defaultTheme'
-import animate from 'tailwindcss-animate'
-import typography from '@tailwindcss/typography'
 import containerQuery from '@tailwindcss/container-queries'
-import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
+import typography from '@tailwindcss/typography'
+import fluid, { extract, fontSize, screens } from 'fluid-tailwind'
+import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config = {
   darkMode: ['class'],
@@ -13,6 +13,8 @@ const config = {
       './src/components/**/*.{ts,tsx}',
       './src/components/ui/*.{ts,tsx}',
       './src/app/**/*.{ts,tsx}',
+			'./src/app/(main)/**/*.{ts,tsx}',
+			'./src/app/(auth)/**/*.{ts,tsx}',
       './src/templates/**/*.{ts,tsx}',
       './src/**/*.{ts,tsx}',
       './src/styles/*.css',
