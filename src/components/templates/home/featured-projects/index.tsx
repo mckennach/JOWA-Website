@@ -98,7 +98,7 @@ export default function FeaturedProjects({
     },
     {
       scope: container,
-      dependencies: [projectNodes, animationReady],
+      dependencies: [projectNodes, animationReady, hasLoaded],
       revertOnUpdate: true,
     }
   )

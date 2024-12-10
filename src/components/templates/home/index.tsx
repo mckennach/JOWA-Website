@@ -11,6 +11,7 @@ import { TemplateProps } from '../page';
 // import FeaturedProjects from './featured-projects'
 // import HomeAbout from './home-about'
 import { HOME_PAGE_QUERY } from './home-query';
+import Loading from './loading';
 
 
 const HomeAbout = lazy(() => import('./home-about'));
@@ -19,7 +20,7 @@ const FeaturedProjects = lazy(() => import('./featured-projects'));
 export default async function HomePage({ node }: TemplateProps) {
   const cookieStore = await cookies()
   const loaded = cookieStore.get('animation-loaded')
-
+	
   const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
     id: node.databaseId,
   })
@@ -33,9 +34,13 @@ export default async function HomePage({ node }: TemplateProps) {
     ids: projectIds,
   })
 	if(!projects || !featuredProjects) return null;
+
+	if(loaded === undefined) {
+		return <Loading project={projects?.nodes[0]} />
+	}
+
   return (
     <>
-      {/* {loaded === undefined && <Loading project={projects?.nodes[0]} />} */}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects
           projects={projects?.nodes}
