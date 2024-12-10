@@ -35,12 +35,11 @@ export default async function HomePage({ node }: TemplateProps) {
   })
 	if(!projects || !featuredProjects) return null;
 
-	if(loaded === undefined) {
-		return <Loading project={projects?.nodes[0]} />
-	}
 
+	
   return (
     <>
+      {loaded === undefined && <Loading project={projects?.nodes[0]} />}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects
           projects={projects?.nodes}
