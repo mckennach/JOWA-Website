@@ -2,7 +2,7 @@
 
 import { Container, Section } from '@/components/craft'
 import { Text } from '@/src/components/ui/text'
-import { Project } from '@/src/gql/graphql'
+import { MediaItem, Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 // import _ScrollTrigger from 'gsap/ScrollTrigger'
@@ -101,23 +101,19 @@ export default function FeaturedProjects({
     <Section className="relative">
       <Container ref={container} className="overflow-hidden">
         {projectNodes.map((project, index) => {
-					let image = project?.projectFields?.featuredImage?.node ?? project?.projectFields?.heroImage?.node;
-					if (!matches) {
-						image = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node
-					}
-
-					console.log(image);
+					const image = project?.projectFields?.featuredImage?.node ?? project?.projectFields?.heroImage?.node;
+					const mobileImage = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node;
+					// if (!matches) {
+					// 	image = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node
+					// }
 
           return (
             <Slide
               key={index}
               index={index}
 							setAnimationReady={setAnimationReady}
-              image={{
-                url: image?.sourceUrl ?? '',
-                alt: image?.altText ?? '',
-								sizes: image?.sizes ?? '',
-              }}
+							image={image}
+							mobileImage={mobileImage}
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}
@@ -145,13 +141,21 @@ export default function FeaturedProjects({
 }
 
 type SlideProps = {
-  image: { url?: string; alt?: string, sizes?: string }
+  image?: MediaItem;
+	mobileImage?: MediaItem;
 	setAnimationReady: (value: boolean) => void
   index: number
 }
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  ({ image, setAnimationReady, index }, ref) => {
+  ({ image, mobileImage, setAnimationReady, index }, ref) => {
+
+		const {
+			sourceUrl: url,
+			altText: alt,
+			sizes,
+		} = image ?? {};
+
     const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
@@ -170,7 +174,27 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
           }}
           ref={intersectRef}
         >
-          <Image
+					<picture>
+						<source media="(max-width:768px)" srcSet={image?.srcSet ?? ''} type={image?.mediaDetails?.sizes?.mimeType} /> 
+						<source media="(max-width:640px)" srcSet={mobileImage?.srcSet ?? ''} type={image?.mediaDetails?.sizes?.mimeType} />
+						<Image
+							src={url ?? ''}
+							alt={alt ?? ''}
+							fill={true}
+							style={{
+								objectFit: 'cover',
+								objectPosition: 'center',
+							}}
+							sizes={sizes ?? ''}
+							className="brightness-75 filter"
+							loader={imageLoader}
+							priority={index === 0}
+							quality={100}
+							loading={index === 0 ? 'eager' : 'lazy'}
+							onLoad={() => setAnimationReady(true)}
+						/>
+					</picture>
+          {/* <Image
             src={image?.url ?? ''}
             alt={image.alt ?? ''}
             fill={true}
@@ -184,7 +208,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             priority={index === 0} 
 						loading={index === 0 ? 'eager' : 'lazy'}
 						onLoad={() => setAnimationReady(true)}
-          />
+          /> */}
         </div>
       </div>
     )

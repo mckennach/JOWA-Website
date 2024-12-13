@@ -18,14 +18,15 @@ export const FEATURED_PROJECTS_QUERY = gql`
         }
         projectFields {
           heroImage {
-            node {
+						node {
               sourceUrl(size: LARGE)
               altText
               mediaItemUrl
+							sizes(size: MEDIUM_LARGE)
+							srcSet(size: _1536X1536)
 							mediaDetails {
 								sizes {
-									height
-									width
+									mimeType
 								}
 							}
             }
@@ -45,6 +46,12 @@ export const FEATURED_PROJECTS_QUERY = gql`
               altText
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
+							srcSet(size: _1536X1536)
+							mediaDetails {
+								sizes {
+									mimeType
+								}
+							}
             }
           }
         }
@@ -61,24 +68,30 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
         slug
         uri
         featuredImage {
-          node {
-            altText
-            mediaItemUrl
-						sourceUrl(size: MEDIUM_LARGE)
-						sizes(size: MEDIUM_LARGE)
-
-          }
+					node {
+              sourceUrl(size: LARGE)
+              altText
+              mediaItemUrl
+							sizes(size: MEDIUM_LARGE)
+							srcSet(size: _1536X1536)
+							mediaDetails {
+								sizes {
+									mimeType
+								}
+							}
+            }
         }
         projectFields {
           heroImage {
-            node {
-              sourceUrl(size: MEDIUM_LARGE)
+						node {
+              sourceUrl(size: LARGE)
               altText
               mediaItemUrl
+							sizes(size: MEDIUM_LARGE)
+							srcSet(size: _1536X1536)
 							mediaDetails {
 								sizes {
-									height
-									width
+									mimeType
 								}
 							}
             }
@@ -98,6 +111,11 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               altText
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
+							mediaDetails {
+								sizes {
+									mimeType
+								}
+							}
             }
           }
         }
