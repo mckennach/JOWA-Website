@@ -97,7 +97,7 @@ export default function FeaturedProjects({
 
   return (
     <Section className="relative">
-      <Container ref={container} className="overflow-hidden">
+      <Container ref={container} className="relative overflow-hidden">
         {projectNodes.map((project, index) => {
           let image =
             project?.projectFields?.featuredImage?.node ??
@@ -177,7 +177,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectPosition: 'center',
             }}
             sizes="(max-width: 768px) 1500px, 400px"
-            className="brightness-75 filter max-w-full"
+            className="brightness-75 filter max-w-[1600px]"
             loader={imageLoader}
             priority={index === 0}
             loading={index === 0 ? 'eager' : 'lazy'}
