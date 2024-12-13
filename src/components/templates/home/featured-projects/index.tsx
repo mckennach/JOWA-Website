@@ -162,7 +162,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
         ref={ref}
         data-index={index}
         key={index}
-        className="not-prose h-[130vh]"
+        className="not-prose h-[130vh] max-w-full w-full"
       >
         <div
           className="image relative max-w-full w-full h-[calc(100vh-80px)]"
