@@ -1,5 +1,6 @@
 'use client'
 
+// import dynamic from 'next/dynamic'
 import { Container, Section } from '@/components/craft'
 import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
@@ -12,6 +13,9 @@ import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
+
+
+
 
 type FeaturedProjects = {
   projects: Project[]
