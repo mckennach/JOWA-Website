@@ -10,18 +10,21 @@ import { gsap } from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
 
 type FeaturedProjects = {
   projects: Project[]
+	mobileProjects: Project[];
   noLoading?: boolean
 }
 
 export default function FeaturedProjects({
   projects,
+	mobileProjects,
   noLoading,
 }: FeaturedProjects) {
+	const matches = useMediaQuery('(min-width: 1024px)')
 	const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
   const projectNodes = projects ?? []
@@ -33,15 +36,6 @@ export default function FeaturedProjects({
   const [isActive, setIsActive] = useState<boolean>(true)
   const { hasLoaded } = useLoading()
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     _ScrollTrigger.refresh()
-  //   }
-  //   window.addEventListener('resize', handleResize)
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize)
-  //   }
-  // }, [])
 
   useGSAP(
     () => {
@@ -98,7 +92,7 @@ export default function FeaturedProjects({
     },
     {
       scope: container,
-      dependencies: [projectNodes, animationReady, hasLoaded],
+      dependencies: [projectNodes, animationReady],
       revertOnUpdate: true,
     }
   )
@@ -107,9 +101,10 @@ export default function FeaturedProjects({
     <Section className="relative">
       <Container ref={container} className="overflow-hidden">
         {projectNodes.map((project, index) => {
-          const image =
-            project?.projectFields?.featuredImage?.node ??
-            project?.projectFields?.heroImage?.node
+					let image = project?.projectFields?.featuredImage?.node ?? project?.projectFields?.heroImage?.node;
+					if (!matches) {
+						image = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node
+					}
           return (
             <Slide
               key={index}
@@ -184,6 +179,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             className="brightness-75 filter"
             loader={imageLoader}
             priority={index === 0} 
+						loading={index === 0 ? 'eager' : 'lazy'}
 						onLoad={() => setAnimationReady(true)}
           />
         </div>

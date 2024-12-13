@@ -32,7 +32,14 @@ export default async function HomePage({ node }: TemplateProps) {
     projects: PostFormatToProjectConnection
   }>(print(FEATURED_PROJECTS_QUERY), {
     ids: projectIds,
+  });
+
+	const { projects: mobileProjects } = await fetchGraphQL<{
+    projects: PostFormatToProjectConnection
+  }>(print(FEATURED_PROJECTS_QUERY), {
+    ids: projectIds,
   })
+	
 	if(!projects || !featuredProjects) return null;
 
 
@@ -43,6 +50,7 @@ export default async function HomePage({ node }: TemplateProps) {
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects
           projects={projects?.nodes}
+					mobileProjects={mobileProjects?.nodes}
           noLoading={loaded !== undefined}
         />
       )}
