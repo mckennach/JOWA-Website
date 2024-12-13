@@ -10,9 +10,8 @@ import _gsap from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
-import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
+import { useIntersectionObserver } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
-
 type FeaturedProjects = {
   projects: Project[]
   noLoading?: boolean
@@ -22,7 +21,6 @@ export default function FeaturedProjects({
   projects,
   noLoading,
 }: FeaturedProjects) {
-  const matches = useMediaQuery('(min-width: 768px)')
   const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
   const projectNodes = projects ?? []
@@ -99,16 +97,9 @@ export default function FeaturedProjects({
     <Section className="relative">
       <Container ref={container} className="relative overflow-hidden">
         {projectNodes.map((project, index) => {
-          let image =
+          const image =
             project?.projectFields?.featuredImage?.node ??
-            project?.projectFields?.heroImage?.node
-          if (!matches) {
-            image =
-              project?.projectFields?.mobileFeaturedImage?.node ??
-              project?.projectFields?.featuredImage?.node
-          }
-
-
+            project?.projectFields?.heroImage?.node;
           return (
             <Slide
               key={index}
@@ -119,6 +110,11 @@ export default function FeaturedProjects({
                 alt: image?.altText ?? '',
                 sizes: image?.sizes ?? '',
               }}
+							mobileImage={{
+								url: project?.projectFields?.mobileFeaturedImage?.node?.sourceUrl ?? '',
+								alt: project?.projectFields?.mobileFeaturedImage?.node?.altText ?? '',
+								sizes: project?.projectFields?.mobileFeaturedImage?.node?.sizes ?? ''
+							}}
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}
@@ -147,12 +143,13 @@ export default function FeaturedProjects({
 
 type SlideProps = {
   image: { url?: string; alt?: string; sizes?: string }
+	mobileImage: { url?: string; alt?: string; sizes?: string }
   setAnimationReady: (value: boolean) => void
   index: number
 }
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  ({ image, setAnimationReady, index }, ref) => {
+  ({ image, mobileImage, setAnimationReady, index }, ref) => {
     const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
@@ -177,7 +174,22 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectPosition: 'center',
             }}
             sizes="(max-width: 768px) 1500px, 400px"
-            className="brightness-75 filter max-w-[1600px]"
+            className="brightness-75 filter max-w-full hidden md:block"
+            loader={imageLoader}
+            priority={index === 0}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            onLoad={() => setAnimationReady(true)}
+          />
+					<Image
+            src={mobileImage?.url ?? ''}
+            alt={mobileImage.alt ?? ''}
+            fill={true}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+            sizes="(max-width: 768px) 1500px, 400px"
+            className="brightness-75 filter max-w-full block md:hidden" 
             loader={imageLoader}
             priority={index === 0}
             loading={index === 0 ? 'eager' : 'lazy'}

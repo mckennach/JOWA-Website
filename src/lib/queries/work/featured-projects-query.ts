@@ -58,7 +58,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
           }
 					mobileFeaturedImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl(size: MEDIUM_LARGE)
               altText
               mediaItemUrl
               sizes(size: MEDIUM_LARGE)
