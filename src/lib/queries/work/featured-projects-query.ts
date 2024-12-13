@@ -64,15 +64,15 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
           node {
             altText
             mediaItemUrl
-						sourceUrl(size: LARGE)
-						sizes(size: LARGE)
+						sourceUrl(size: MEDIUM_LARGE)
+						sizes(size: MEDIUM_LARGE)
 
           }
         }
         projectFields {
           heroImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl(size: MEDIUM_LARGE)
               altText
               mediaItemUrl
 							mediaDetails {
@@ -94,10 +94,10 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
           }
           featuredImage {
             node {
-              sourceUrl(size: MEDIUM)
+              sourceUrl(size: MEDIUM_LARGE)
               altText
               mediaItemUrl
-							sizes(size: MEDIUM)
+							sizes(size: MEDIUM_LARGE)
             }
           }
         }

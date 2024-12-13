@@ -3,7 +3,7 @@ import {
 	PostFormatToProjectConnection
 } from '@/gql/graphql';
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL';
-import { FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query';
+import { FEATURED_PROJECTS_QUERY, MOBILE_FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query';
 import { print } from 'graphql/language/printer';
 import { cookies } from 'next/headers';
 import { lazy } from 'react';
@@ -36,7 +36,7 @@ export default async function HomePage({ node }: TemplateProps) {
 
 	const { projects: mobileProjects } = await fetchGraphQL<{
     projects: PostFormatToProjectConnection
-  }>(print(FEATURED_PROJECTS_QUERY), {
+  }>(print(MOBILE_FEATURED_PROJECTS_QUERY), {
     ids: projectIds,
   })
 	

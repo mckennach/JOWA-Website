@@ -24,7 +24,7 @@ export default function FeaturedProjects({
 	mobileProjects,
   noLoading,
 }: FeaturedProjects) {
-	const matches = useMediaQuery('(min-width: 1024px)')
+	const matches = useMediaQuery('(min-width: 768px)')
 	const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
   const projectNodes = projects ?? []
@@ -105,6 +105,9 @@ export default function FeaturedProjects({
 					if (!matches) {
 						image = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node
 					}
+
+					console.log(image);
+
           return (
             <Slide
               key={index}
