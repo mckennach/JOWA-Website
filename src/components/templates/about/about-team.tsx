@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/all'
 import { useEffect, useRef } from 'react'
 
 import { TeamMember } from '@/gql/graphql'
-import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 import Image from 'next/image'
 import { imageLoader } from '../../../lib/utils'
@@ -33,11 +32,12 @@ const TEAM_MEMBERS_QUERY = gql`
   }
 `
 
-export default function TeamMembers() {
-  const { data, loading } = useQuery(TEAM_MEMBERS_QUERY)
+export default function TeamMembers({ members }: { members: TeamMember[] }) {
+	// console.log(membersTeam);
+  // const { data, loading } = useQuery(TEAM_MEMBERS_QUERY)
   const containerRef = useRef(null)
 
-  const members: TeamMember[] = data?.teamMembers?.nodes
+  // const members: TeamMember[] = data?.teamMembers?.nodes
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,7 +80,7 @@ export default function TeamMembers() {
           Our Team
         </Text>
         <div className="grid gap-8 lg:grid-cols-3">
-          {!loading &&
+          {
             members.map((member, key) => {
               return (
                 <div key={key} className="mx-auto w-full max-w-[295px]">

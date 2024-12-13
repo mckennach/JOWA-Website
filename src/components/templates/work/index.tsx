@@ -17,7 +17,6 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     print(WORK_QUERY)
   )
 
-  console.log(nodes)
 
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),

@@ -1,8 +1,7 @@
 import {
-  ApolloWrapper,
-  GsapProvider,
-  ScrollProvider,
-  ThemeProvider,
+	GsapProvider,
+	ScrollProvider,
+	ThemeProvider
 } from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
@@ -38,9 +37,7 @@ export default async function RootLayout({
         <CookiesProvider>
           <GsapProvider>
             <ScrollProvider>
-              <ApolloWrapper>
                 <ThemeProvider>{children}</ThemeProvider>
-              </ApolloWrapper>
             </ScrollProvider>
           </GsapProvider>
         </CookiesProvider>

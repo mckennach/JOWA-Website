@@ -110,7 +110,6 @@ export default function FeaturedProjects({
               mobileProjects[index]?.projectFields?.heroImage?.node
           }
 
-          console.log(image)
 
           return (
             <Slide
