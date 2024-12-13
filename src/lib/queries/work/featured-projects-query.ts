@@ -56,6 +56,21 @@ export const FEATURED_PROJECTS_QUERY = gql`
               }
             }
           }
+					mobileFeaturedImage {
+            node {
+              sourceUrl(size: LARGE)
+              altText
+              mediaItemUrl
+              sizes(size: MEDIUM_LARGE)
+              srcSet(size: _1536X1536)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -115,6 +130,21 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               altText
               mediaItemUrl
               sizes(size: MEDIUM_LARGE)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
+            }
+          }
+					mobileFeaturedImage {
+            node {
+              sourceUrl(size: LARGE)
+              altText
+              mediaItemUrl
+              sizes(size: MEDIUM_LARGE)
+              srcSet(size: _1536X1536)
               mimeType
               mediaDetails {
                 sizes {

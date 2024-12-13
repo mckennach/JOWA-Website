@@ -15,13 +15,11 @@ import useLoading from '../loading/useLoading'
 
 type FeaturedProjects = {
   projects: Project[]
-  mobileProjects: Project[]
   noLoading?: boolean
 }
 
 export default function FeaturedProjects({
   projects,
-  mobileProjects,
   noLoading,
 }: FeaturedProjects) {
   const matches = useMediaQuery('(min-width: 768px)')
@@ -106,8 +104,8 @@ export default function FeaturedProjects({
             project?.projectFields?.heroImage?.node
           if (!matches) {
             image =
-              mobileProjects[index]?.projectFields?.featuredImage?.node ??
-              mobileProjects[index]?.projectFields?.heroImage?.node
+              project?.projectFields?.mobileFeaturedImage?.node ??
+              project?.projectFields?.featuredImage?.node
           }
 
 
@@ -181,7 +179,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-            sizes={image?.sizes ?? ''}
+            sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter"
             loader={imageLoader}
             priority={index === 0}
