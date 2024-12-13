@@ -1,11 +1,11 @@
-import { Section, Container, cn } from '../../craft'
-import { print } from 'graphql/language/printer'
 import { ContentNode, Project, TagConnection } from '@/gql/graphql'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { WORK_QUERY } from '@/lib/queries'
-import ProjectItem from './project-item'
-import { Filter } from '../../ui/filter'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
+import { print } from 'graphql/language/printer'
+import { Container, Section, cn } from '../../craft'
+import { Filter } from '../../ui/filter'
+import ProjectItem from './project-item'
 interface TemplateProps {
   node: ContentNode
 }
@@ -15,7 +15,9 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     projects: { nodes },
   } = await fetchGraphQL<{ projects: { nodes: Array<Project> } }>(
     print(WORK_QUERY)
-  )
+  );
+
+	console.log(nodes);
 
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),
