@@ -177,7 +177,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectPosition: 'center',
             }}
             sizes="(max-width: 768px) 1500px, 400px"
-            className="brightness-75 filter"
+            className="brightness-75 filter max-w-full"
             loader={imageLoader}
             priority={index === 0}
             loading={index === 0 ? 'eager' : 'lazy'}
