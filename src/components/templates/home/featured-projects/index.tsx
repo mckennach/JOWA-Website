@@ -6,15 +6,12 @@ import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
-// import _ScrollTrigger from 'gsap/ScrollTrigger'
-import { gsap } from 'gsap/all'
+import _gsap from 'gsap/all'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
-
-
 
 
 type FeaturedProjects = {
@@ -39,7 +36,7 @@ export default function FeaturedProjects({
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
   const { hasLoaded } = useLoading()
-
+	const gsap = _gsap;
 
   useGSAP(
     () => {

@@ -1,11 +1,11 @@
 'use client'
 
 import Lenis from '@studio-freight/lenis/types'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import _gsap from 'gsap'
+import _ScrollTrigger from 'gsap/ScrollTrigger'
 import React, { createContext, useContext, useRef } from 'react'
 
-gsap.registerPlugin(ScrollTrigger)
+_gsap.registerPlugin(_ScrollTrigger)
 
 export type GsapContextProps = React.RefObject<HTMLDivElement>
 

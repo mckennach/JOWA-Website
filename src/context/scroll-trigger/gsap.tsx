@@ -1,7 +1,7 @@
 'use client'
 
-import Tempus from '@studio-freight/tempus'
-import gsap from 'gsap'
+import _Tempus from '@studio-freight/tempus'
+import _gsap from 'gsap'
 
 import { useLayoutEffect } from 'react'
 
@@ -9,13 +9,13 @@ import { ScrollTriggerConfig } from './scroll-trigger'
 
 export function GSAP({ scrollTrigger = false }) {
   useLayoutEffect(() => {
-    gsap.defaults({ ease: 'none' })
+    _gsap.defaults({ ease: 'none' })
 
     // merge rafs
-    gsap.ticker.lagSmoothing(0)
-    gsap.ticker.remove(gsap.updateRoot)
-    Tempus?.add((time: number) => {
-      gsap.updateRoot(time / 1000)
+    _gsap.ticker.lagSmoothing(0)
+    _gsap.ticker.remove(_gsap.updateRoot)
+    _Tempus?.add((time: number) => {
+      _gsap.updateRoot(time / 1000)
     }, 0)
   }, [])
 

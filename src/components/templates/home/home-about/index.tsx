@@ -6,7 +6,7 @@ import { HomeHomeContent } from '@/src/gql/graphql'
 import { cn, imageLoader } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 // import _ScrollTrigger from 'gsap/ScrollTrigger'
-import { gsap } from 'gsap/all'
+import _gsap from 'gsap/all'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
@@ -25,7 +25,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const contentRef = useRef(null)
   const image = data?.image?.node
   const { hasLoaded } = useLoading()
-
+	const gsap = _gsap;
   // useEffect(() => {
   //   const handleResize = () => {
   //     _ScrollTrigger.refresh()

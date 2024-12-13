@@ -1,22 +1,22 @@
 'use client'
 
 import { useLenis } from '@studio-freight/react-lenis'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/all'
+import _gsap from 'gsap'
+import _ScrollTrigger from 'gsap/ScrollTrigger'
 
 import { useEffect, useLayoutEffect } from 'react'
 
 export function ScrollTriggerConfig() {
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    ScrollTrigger.clearScrollMemory('manual')
-    ScrollTrigger.defaults({
+    _gsap.registerPlugin(_ScrollTrigger)
+    _ScrollTrigger.clearScrollMemory('manual')
+    _ScrollTrigger.defaults({
       // markers: process.env.NODE_ENV === "development",
     })
   }, [])
 
-  const lenis = useLenis(ScrollTrigger.update)
-  useEffect(() => ScrollTrigger.refresh(), [lenis])
+  const lenis = useLenis(_ScrollTrigger.update)
+  useEffect(() => _ScrollTrigger.refresh(), [lenis])
 
   return null
 }

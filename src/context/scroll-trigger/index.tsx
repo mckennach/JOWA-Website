@@ -1,9 +1,8 @@
 'use client'
 
-import { type LenisOptions } from '@studio-freight/lenis/types'
 import { ReactLenis } from '@studio-freight/react-lenis'
-import { LenisRef } from '../gsap'
 import React, { createContext, useContext, useRef } from 'react'
+import { LenisRef } from '../gsap'
 
 import { GSAP } from './gsap'
 

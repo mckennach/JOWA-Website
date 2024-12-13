@@ -8,8 +8,6 @@ import { print } from 'graphql/language/printer';
 import { cookies } from 'next/headers';
 import { lazy } from 'react';
 import { TemplateProps } from '../page';
-// import FeaturedProjects from './featured-projects'
-// import HomeAbout from './home-about'
 import { HOME_PAGE_QUERY } from './home-query';
 import Loading from './loading';
 
