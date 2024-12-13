@@ -11,26 +11,25 @@ export const FEATURED_PROJECTS_QUERY = gql`
           node {
             altText
             mediaItemUrl
-						sourceUrl(size: LARGE)
-						sizes(size: LARGE)
-						mimeType
-
+            sourceUrl(size: LARGE)
+            sizes(size: LARGE)
+            mimeType
           }
         }
         projectFields {
           heroImage {
-						node {
+            node {
               sourceUrl(size: LARGE)
               altText
               mediaItemUrl
-							sizes(size: MEDIUM_LARGE)
-							srcSet(size: _1536X1536)
-							mimeType
-							mediaDetails {
-								sizes {
-									mimeType
-								}
-							}
+              sizes(size: MEDIUM_LARGE)
+              srcSet(size: _1536X1536)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
             }
           }
           projectInfo {
@@ -47,14 +46,14 @@ export const FEATURED_PROJECTS_QUERY = gql`
               sourceUrl(size: LARGE)
               altText
               mediaItemUrl
-							sizes(size: MEDIUM_LARGE)
-							srcSet(size: _1536X1536)
-							mimeType
-							mediaDetails {
-								sizes {
-									mimeType
-								}
-							}
+              sizes(size: MEDIUM_LARGE)
+              srcSet(size: _1536X1536)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
             }
           }
         }
@@ -71,34 +70,34 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
         slug
         uri
         featuredImage {
-					node {
-              sourceUrl(size: LARGE)
-              altText
-              mediaItemUrl
-							sizes(size: MEDIUM_LARGE)
-							srcSet(size: _1536X1536)
-							mimeType
-							mediaDetails {
-								sizes {
-									mimeType
-								}
-							}
+          node {
+            sourceUrl(size: LARGE)
+            altText
+            mediaItemUrl
+            sizes(size: MEDIUM_LARGE)
+            srcSet(size: _1536X1536)
+            mimeType
+            mediaDetails {
+              sizes {
+                mimeType
+              }
             }
+          }
         }
         projectFields {
           heroImage {
-						node {
+            node {
               sourceUrl(size: LARGE)
               altText
               mediaItemUrl
-							sizes(size: MEDIUM_LARGE)
-							srcSet(size: _1536X1536)
-							mimeType
-							mediaDetails {
-								sizes {
-									mimeType
-								}
-							}
+              sizes(size: MEDIUM_LARGE)
+              srcSet(size: _1536X1536)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
             }
           }
           projectInfo {
@@ -115,13 +114,13 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               sourceUrl(size: MEDIUM_LARGE)
               altText
               mediaItemUrl
-							sizes(size: MEDIUM_LARGE)
-							mimeType
-							mediaDetails {
-								sizes {
-									mimeType
-								}
-							}
+              sizes(size: MEDIUM_LARGE)
+              mimeType
+              mediaDetails {
+                sizes {
+                  mimeType
+                }
+              }
             }
           }
         }

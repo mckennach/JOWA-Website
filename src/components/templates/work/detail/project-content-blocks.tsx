@@ -1,17 +1,14 @@
 'use client'
 
-import Image from 'next/image'
-import { imageLoader } from '@/src/lib/utils'
-import {
-  Project,
-  ProjectFields,
-  ProjectFieldsContentFullWidthImageLayout,
-  ProjectFieldsContentTextImageSectionLayout,
-  ProjectFieldsContentImageGalleryLayout,
-} from '@/src/gql/graphql'
-import { Section, Container } from '@/src/components/craft'
-import { Fragment } from 'react'
+import { Container, Section } from '@/src/components/craft'
 import { Text } from '@/src/components/ui/text'
+import {
+  ProjectFieldsContentFullWidthImageLayout,
+  ProjectFieldsContentImageGalleryLayout,
+  ProjectFieldsContentTextImageSectionLayout,
+} from '@/src/gql/graphql'
+import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
 
 export function ImageGallery({
   images,

@@ -1,15 +1,14 @@
 'use client'
-import { useRef, useEffect, useState } from 'react'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useEffect, useRef, useState } from 'react'
 
-import Link from 'next/link'
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
-import { Node, AcfMediaItemConnectionEdge, Page } from '@/src/gql/graphql'
-import Image from 'next/image'
+import { AcfMediaItemConnectionEdge, Page } from '@/src/gql/graphql'
 import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
+import { Container, Section } from '../../craft'
+import { Text } from '../../ui/text'
 import PricingCalculatorForm from './calculator-form'
 
 gsap.registerPlugin(ScrollTrigger)

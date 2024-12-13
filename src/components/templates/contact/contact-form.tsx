@@ -1,13 +1,7 @@
 'use client'
-import MailchimpSubscribe from 'react-mailchimp-subscribe'
-import { Fragment, useEffect, useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, useFormContext } from 'react-hook-form'
-import { z } from 'zod'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +10,11 @@ import {
 import { Input } from '@/src/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/src/components/ui/radio-group'
 import { Textarea } from '@/src/components/ui/textarea'
-import { FileWithPath, useDropzone } from 'react-dropzone'
+import { Fragment, useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { useForm } from 'react-hook-form'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
+import { z } from 'zod'
 import { Text } from '../../ui/text'
 
 const formSchema = z.object({

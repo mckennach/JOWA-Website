@@ -1,10 +1,10 @@
 'use client'
 
-import { Page, Global } from '@/src/gql/graphql'
-import { Text } from '../../ui/text'
-import Image from 'next/image'
+import { Global, Page } from '@/src/gql/graphql'
 import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
 import Link from 'next/link'
+import { Text } from '../../ui/text'
 export default function ContactInfo({
   page,
   globalData,

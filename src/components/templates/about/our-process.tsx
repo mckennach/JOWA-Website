@@ -1,10 +1,10 @@
 'use client'
 
 import { Page } from '@/src/gql/graphql'
-import { Text } from '../../ui/text'
-import { Section, Container } from '../../craft'
-import Image from 'next/image'
 import { cn, imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
+import { Container, Section } from '../../craft'
+import { Text } from '../../ui/text'
 type OurProcessProps = {
   page: Page
 }

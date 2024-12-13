@@ -13,20 +13,19 @@ import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
 
-
 type FeaturedProjects = {
   projects: Project[]
-	mobileProjects: Project[];
+  mobileProjects: Project[]
   noLoading?: boolean
 }
 
 export default function FeaturedProjects({
   projects,
-	mobileProjects,
+  mobileProjects,
   noLoading,
 }: FeaturedProjects) {
-	const matches = useMediaQuery('(min-width: 768px)')
-	const [animationReady, setAnimationReady] = useState(false)
+  const matches = useMediaQuery('(min-width: 768px)')
+  const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
   const projectNodes = projects ?? []
   const container = useRef(null)
@@ -36,7 +35,7 @@ export default function FeaturedProjects({
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
   const { hasLoaded } = useLoading()
-	const gsap = _gsap;
+  const gsap = _gsap
 
   useGSAP(
     () => {
@@ -102,22 +101,26 @@ export default function FeaturedProjects({
     <Section className="relative">
       <Container ref={container} className="overflow-hidden">
         {projectNodes.map((project, index) => {
-					let image = project?.projectFields?.featuredImage?.node ?? project?.projectFields?.heroImage?.node;
-					if (!matches) {
-						image = mobileProjects[index]?.projectFields?.featuredImage?.node ?? mobileProjects[index]?.projectFields?.heroImage?.node
-					}
+          let image =
+            project?.projectFields?.featuredImage?.node ??
+            project?.projectFields?.heroImage?.node
+          if (!matches) {
+            image =
+              mobileProjects[index]?.projectFields?.featuredImage?.node ??
+              mobileProjects[index]?.projectFields?.heroImage?.node
+          }
 
-					console.log(image);
+          console.log(image)
 
           return (
             <Slide
               key={index}
               index={index}
-							setAnimationReady={setAnimationReady}
+              setAnimationReady={setAnimationReady}
               image={{
                 url: image?.sourceUrl ?? '',
                 alt: image?.altText ?? '',
-								sizes: image?.sizes ?? '',
+                sizes: image?.sizes ?? '',
               }}
               ref={(el) => {
                 galleryRefs.current[index] = el
@@ -146,8 +149,8 @@ export default function FeaturedProjects({
 }
 
 type SlideProps = {
-  image: { url?: string; alt?: string, sizes?: string }
-	setAnimationReady: (value: boolean) => void
+  image: { url?: string; alt?: string; sizes?: string }
+  setAnimationReady: (value: boolean) => void
   index: number
 }
 
@@ -177,14 +180,14 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             fill={true}
             style={{
               objectFit: 'cover',
-							objectPosition: 'center',
+              objectPosition: 'center',
             }}
-						sizes={image?.sizes ?? ''}
+            sizes={image?.sizes ?? ''}
             className="brightness-75 filter"
             loader={imageLoader}
-            priority={index === 0} 
-						loading={index === 0 ? 'eager' : 'lazy'}
-						onLoad={() => setAnimationReady(true)}
+            priority={index === 0}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            onLoad={() => setAnimationReady(true)}
           />
         </div>
       </div>

@@ -23,7 +23,7 @@ export const WORK_DETAIL_QUERY = gql`
           node {
             altText
             sourceUrl(size: _1536X1536)
-						sizes
+            sizes
             mediaItemUrl
             title
           }
@@ -33,7 +33,7 @@ export const WORK_DETAIL_QUERY = gql`
           node {
             altText
             sourceUrl(size: _1536X1536)
-						sizes
+            sizes
             mediaItemUrl
             title
           }
@@ -46,7 +46,7 @@ export const WORK_DETAIL_QUERY = gql`
               node {
                 altText
                 sourceUrl(size: LARGE)
-								sizes
+                sizes
               }
             }
           }
@@ -56,7 +56,7 @@ export const WORK_DETAIL_QUERY = gql`
               node {
                 altText
                 sourceUrl(size: LARGE)
-								sizes
+                sizes
               }
             }
           }
@@ -68,7 +68,7 @@ export const WORK_DETAIL_QUERY = gql`
                 node {
                   altText
                   sourceUrl(size: LARGE)
-								sizes
+                  sizes
                 }
               }
             }

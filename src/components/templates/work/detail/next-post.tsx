@@ -1,18 +1,17 @@
 'use client'
 
+import CustomIcons from '@/src/components/custom-icons'
 import {
-  Post,
   Category,
   Project,
   RootQueryToProjectConnection,
 } from '@/src/gql/graphql'
-import Link from 'next/link'
-import { Section, Container } from '../../../craft'
-import { Text } from '../../../ui/text'
+import { cn, imageLoader } from '@/src/lib/utils'
 import Image from 'next/image'
-import { cn, imageLoader, zeroPad } from '@/src/lib/utils'
-import CustomIcons from '@/src/components/custom-icons'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { Container, Section } from '../../../craft'
+import { Text } from '../../../ui/text'
 export default function NextPost({
   projects,
   currentId,

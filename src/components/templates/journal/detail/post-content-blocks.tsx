@@ -1,11 +1,11 @@
 import { Container, Section } from '@/src/components/craft'
 import { Text } from '@/src/components/ui/text'
 import type {
-	PostDataPostContentBlockquoteLayout,
-	PostDataPostContentFullWidthImageLayout,
-	PostDataPostContentImageGalleryLayout,
-	PostDataPostContentImageTextSectionLayout,
-	PostDataPostContentTextSectionLayout,
+  PostDataPostContentBlockquoteLayout,
+  PostDataPostContentFullWidthImageLayout,
+  PostDataPostContentImageGalleryLayout,
+  PostDataPostContentImageTextSectionLayout,
+  PostDataPostContentTextSectionLayout,
 } from '@/src/gql/graphql'
 import { imageLoader } from '@/src/lib/utils'
 import Image from 'next/image'

@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
-import { Project } from '@/src/gql/graphql'
 import { Text } from '@/src/components/ui/text'
+import { Project } from '@/src/gql/graphql'
+import { imageLoader } from '@/src/lib/utils'
+import Image from 'next/image'
 export default function ProjectHero({ project }: { project: Project }) {
   return (
     <header className="relative h-auto overflow-hidden lg:max-h-screen lg:min-h-screen">

@@ -15,9 +15,9 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     projects: { nodes },
   } = await fetchGraphQL<{ projects: { nodes: Array<Project> } }>(
     print(WORK_QUERY)
-  );
+  )
 
-	console.log(nodes);
+  console.log(nodes)
 
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),
@@ -30,7 +30,7 @@ export default async function WorkTemplate({ node }: TemplateProps) {
     (tag) => tag?.projects && tag?.projects?.nodes?.length > 0
   )
 
-	if(!nodes) return null;
+  if (!nodes) return null
 
   return (
     <Section

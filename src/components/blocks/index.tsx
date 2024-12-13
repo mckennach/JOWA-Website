@@ -1,10 +1,10 @@
 'use client'
 
 import { Page } from '@/src/gql/graphql'
-import ScrollSlideShow from './scroll-slide-show'
 import Columns from './columns'
-import TextBlock from './text-block'
 import MediaText from './media-text'
+import ScrollSlideShow from './scroll-slide-show'
+import TextBlock from './text-block'
 export type BlockData = {
   name: string
   attributes: {

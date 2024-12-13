@@ -1,9 +1,9 @@
 'use client'
+import { Global, Page } from '@/src/gql/graphql'
 import Link from 'next/link'
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
-import { Page, Global } from '@/src/gql/graphql'
+import { Container, Section } from '../../craft'
 import CustomIcons from '../../custom-icons'
+import { Text } from '../../ui/text'
 
 type AboutHeadingProps = {
   page: Page

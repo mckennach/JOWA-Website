@@ -1,7 +1,4 @@
-import {
-	RootQueryToPostConnection,
-	TagConnection
-} from '@/src/gql/graphql'
+import { RootQueryToPostConnection, TagConnection } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
 import { cn } from '@/src/lib/utils'

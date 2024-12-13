@@ -14,17 +14,19 @@ import EmailSignature from '@/src/components/templates/email-signature'
 import PageTemplate from '@/src/components/templates/page'
 import { cookies } from 'next/headers'
 
-const LoginPage = lazy(() => import('@/src/components/templates/login'));
-const HomePage = lazy(() => import('@/src/components/templates/home'));
-const JournalTemplate = lazy(() => import('@/src/components/templates/journal'));
-const JournalDetailTemplate = lazy(() => import('@/src/components/templates/journal/detail'));
-const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'));
-const WorkTemplate = lazy(() => import('@/src/components/templates/work'));
-const WorkDetailTemplate = lazy(() => import('@/src/components/templates/work/detail'));
-const AboutTemplate = lazy(() => import('@/src/components/templates/about'));
-const ContactTemplate = lazy(() => import('@/src/components/templates/contact'));
-
-
+const LoginPage = lazy(() => import('@/src/components/templates/login'))
+const HomePage = lazy(() => import('@/src/components/templates/home'))
+const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
+const JournalDetailTemplate = lazy(
+  () => import('@/src/components/templates/journal/detail')
+)
+const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
+const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
+const WorkDetailTemplate = lazy(
+  () => import('@/src/components/templates/work/detail')
+)
+const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
+const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
 
 type Props = {
   params: { slug: string }
@@ -32,14 +34,15 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth');
+  const isAuth = cookieStore.get('user:auth')
 
-	if(!isAuth) return {
-		title: 'Login',
-		description: 'Login',
-	};
-	
-	let detailSlug: string | boolean = false
+  if (!isAuth)
+    return {
+      title: 'Login',
+      description: 'Login',
+    }
+
+  let detailSlug: string | boolean = false
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
       detailSlug = `/work/${params.slug[1]}/`
@@ -64,8 +67,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound()
   }
 
-  const metadata = setSeoData({ seo: contentNode.seo });
-	
+  const metadata = setSeoData({ seo: contentNode.seo })
+
   return {
     ...metadata,
     alternates: {
@@ -76,13 +79,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth');
+  const isAuth = cookieStore.get('user:auth')
 
-	if(!isAuth) {
-		return <LoginPage />;
-	}
+  if (!isAuth) {
+    return <LoginPage />
+  }
 
-	let detailSlug: string | boolean = false
+  let detailSlug: string | boolean = false
 
   if (params.slug && params.slug.length > 1) {
     if (params.slug[0] === 'work') {
@@ -105,8 +108,7 @@ export default async function Page({ params }: Props) {
   )
 
   if (!contentNode) return notFound()
-	
-	
+
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':

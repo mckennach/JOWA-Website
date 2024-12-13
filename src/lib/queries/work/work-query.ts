@@ -19,8 +19,8 @@ export const WORK_QUERY = gql`
             altText
             mediaItemUrl
             title
-						sourceUrl(size: LARGE)
-						sizes
+            sourceUrl(size: LARGE)
+            sizes
           }
         }
         projectFields {
@@ -30,8 +30,8 @@ export const WORK_QUERY = gql`
             node {
               altText
               mediaItemUrl
-							sourceUrl(size: LARGE)
-							sizes
+              sourceUrl(size: LARGE)
+              sizes
               title
             }
           }
@@ -50,8 +50,8 @@ export const WORK_QUERY = gql`
               altText
               mediaItemUrl
               title
-							sourceUrl(size: LARGE)
-							sizes
+              sourceUrl(size: LARGE)
+              sizes
             }
           }
         }

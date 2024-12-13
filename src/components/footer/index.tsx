@@ -1,11 +1,11 @@
 'use client'
 
-import { Global } from '@/src/gql/graphql'
-import { useIntersectionObserver } from 'usehooks-ts'
-import { Section, Container } from '@/components/craft'
+import { Container, Section } from '@/components/craft'
 import CustomIcons from '@/src/components/custom-icons'
-import { Text } from '../ui/text'
+import { Global } from '@/src/gql/graphql'
 import Link from 'next/link'
+import { useIntersectionObserver } from 'usehooks-ts'
+import { Text } from '../ui/text'
 
 export default function Footer({ globalData }: { globalData: Global }) {
   const { phone, email, instagram, credits } = globalData?.globals ?? {}

@@ -1,21 +1,18 @@
 'use client'
 
-import { useState } from 'react'
-import { MenuItem, RootQueryToMenuItemConnection } from '@/gql/graphql'
 import {
   Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
   SheetClose,
+  SheetContent,
+  SheetTrigger,
 } from '@/components/ui/sheet'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { X } from 'lucide-react'
-import CustomIcons from '../custom-icons'
-import Link, { LinkProps } from 'next/link'
-import { useRouter } from 'next/navigation'
+import { MenuItem, RootQueryToMenuItemConnection } from '@/gql/graphql'
 import { cn } from '@/src/lib/utils'
-import { usePathname } from 'next/navigation'
+import { X } from 'lucide-react'
+import Link, { LinkProps } from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import CustomIcons from '../custom-icons'
 import { Text } from '../ui/text'
 type MobileNavigationProps = {
   menuItems: RootQueryToMenuItemConnection

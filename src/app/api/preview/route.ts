@@ -2,9 +2,9 @@ import { print } from 'graphql/language/printer'
 
 import { ContentNode, LoginPayload } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import gql from 'graphql-tag'
 import { draftMode } from 'next/headers'
 import { NextResponse } from 'next/server'
-import gql from 'graphql-tag'
 
 export const dynamic = 'force-dynamic'
 

@@ -1,8 +1,8 @@
 import {
-	ApolloWrapper,
-	GsapProvider,
-	ScrollProvider,
-	ThemeProvider,
+  ApolloWrapper,
+  GsapProvider,
+  ScrollProvider,
+  ThemeProvider,
 } from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
@@ -21,13 +21,11 @@ const maisonNeueExt = localFont({
   variable: '--font-maison-neue-ext',
 })
 
-
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -41,9 +39,7 @@ export default async function RootLayout({
           <GsapProvider>
             <ScrollProvider>
               <ApolloWrapper>
-                <ThemeProvider>
-                  {children}
-                </ThemeProvider>
+                <ThemeProvider>{children}</ThemeProvider>
               </ApolloWrapper>
             </ScrollProvider>
           </GsapProvider>

@@ -1,14 +1,6 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  createHttpLink,
-  defaultDataIdFromObject,
-} from '@apollo/client'
-import { draftMode, cookies } from 'next/headers'
-import { setContext } from '@apollo/client/link/context'
-import { relayStylePagination } from '@apollo/client/utilities'
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support'
+import { cookies, draftMode } from 'next/headers'
 
 export const { getClient } = registerApolloClient(() => {
   const { isEnabled: preview } = draftMode()

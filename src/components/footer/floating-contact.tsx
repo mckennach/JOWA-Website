@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Section, Container } from '../craft'
 import CustomIcons from '../custom-icons'
 import { Text } from '../ui/text'
 

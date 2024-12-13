@@ -1,14 +1,14 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useEffect, useRef } from 'react'
 
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
 import { Page } from '@/src/gql/graphql'
+import { Container, Section } from '../../craft'
 import CustomIcons from '../../custom-icons'
+import { Text } from '../../ui/text'
 
 gsap.registerPlugin(ScrollTrigger)
 

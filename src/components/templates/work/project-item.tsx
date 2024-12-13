@@ -1,11 +1,9 @@
 'use client'
 
+import { Project, Tag } from '@/src/gql/graphql'
+import { cn, imageLoader, zeroPad } from '@/src/lib/utils'
 import Image from 'next/image'
-import { imageLoader, zeroPad } from '@/src/lib/utils'
-import { Category, Project, Tag } from '@/src/gql/graphql'
-import { cn } from '@/src/lib/utils'
-import { useRouter } from 'next/navigation'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Text } from '../../ui/text'
 export default function ProjectItem({
   project,
@@ -72,9 +70,9 @@ export default function ProjectItem({
               fill={true}
               style={{
                 objectFit: 'cover',
-								objectPosition: 'center',
+                objectPosition: 'center',
               }}
-							sizes={featuredImage?.sizes ?? ''}
+              sizes={featuredImage?.sizes ?? ''}
               className=""
               loader={imageLoader}
               priority={true}

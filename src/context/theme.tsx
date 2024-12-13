@@ -1,6 +1,6 @@
 'use client'
-import { usePathname } from 'next/navigation'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { usePathname } from 'next/navigation'
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()

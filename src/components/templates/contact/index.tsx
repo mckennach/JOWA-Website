@@ -1,13 +1,13 @@
-import { print } from 'graphql'
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
-import { Page, Global } from '@/src/gql/graphql'
-import { TemplateProps } from '../page'
+import { Global, Page } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { CONTACT_PAGE_QUERY } from './contact-query'
 import { GLOBALS_QUERY } from '@/src/lib/queries'
+import { print } from 'graphql'
+import { Container, Section } from '../../craft'
+import { Text } from '../../ui/text'
+import { TemplateProps } from '../page'
 import ContactForm from './contact-form'
 import ContactInfo from './contact-info'
+import { CONTACT_PAGE_QUERY } from './contact-query'
 
 export default async function ContactTemplate({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page }>(

@@ -9,7 +9,6 @@ import { print } from 'graphql/language/printer'
 import { cookies, draftMode } from 'next/headers'
 import { Fragment, Suspense } from 'react'
 
-
 async function getData() {
   const { menuItems } = await fetchGraphQL<{
     menuItems: RootQueryToMenuItemConnection
@@ -43,8 +42,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-	const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth');
+  const cookieStore = await cookies()
+  const isAuth = cookieStore.get('user:auth')
 
   const { isEnabled } = draftMode()
   const menuItems = await getData()
@@ -52,13 +51,11 @@ export default async function RootLayout({
 
   return (
     <Fragment>
-			{isEnabled && <PreviewNotice />}
-			<SkipToContent />
-			<Suspense>
-				{isAuth && <Navigation menuItems={menuItems} />}
-			</Suspense>
-			<main className="max-w-full overflow-hidden">{children}</main>
-			{isAuth && <Footer globalData={globalData} />}
-		</Fragment>         
+      {isEnabled && <PreviewNotice />}
+      <SkipToContent />
+      <Suspense>{isAuth && <Navigation menuItems={menuItems} />}</Suspense>
+      <main className="max-w-full overflow-hidden">{children}</main>
+      {isAuth && <Footer globalData={globalData} />}
+    </Fragment>
   )
 }

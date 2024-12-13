@@ -1,7 +1,7 @@
+import { Container, Section } from '@/components/craft'
+import { imageLoader } from '@/src/lib/utils'
 import Image from 'next/image'
 import { BlockData } from '..'
-import { Section, Container } from '@/components/craft'
-import { imageLoader } from '@/src/lib/utils'
 
 type ImageBlockProps = {
   data: BlockData

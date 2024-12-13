@@ -1,31 +1,30 @@
 'use client'
-import MailchimpSubscribe from 'react-mailchimp-subscribe'
-import { Fragment, useEffect, useState, forwardRef } from 'react'
-import { Text } from '../../ui/text'
-import {
-  Page,
-  AcfMediaItemConnectionEdge,
-  PricingTypesReno,
-  PricingTypesNewBuild,
-  PricingTypesLaneway,
-} from '@/src/gql/graphql'
-import { Slider } from '@/components/ui/slider'
-import { set, useForm, useFormContext } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Slider } from '@/components/ui/slider'
 import { Input } from '@/src/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/src/components/ui/radio-group'
 import { Textarea } from '@/src/components/ui/textarea'
+import {
+  AcfMediaItemConnectionEdge,
+  Page,
+  PricingTypesLaneway,
+  PricingTypesNewBuild,
+  PricingTypesReno,
+} from '@/src/gql/graphql'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { forwardRef, Fragment, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { useForm } from 'react-hook-form'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
+import { z } from 'zod'
+import { Text } from '../../ui/text'
 
 type CalculatorFormProps = {
   page: Page

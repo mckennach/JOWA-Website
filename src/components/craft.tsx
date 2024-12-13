@@ -156,4 +156,4 @@ export default function FadeDiv({ children, className }: FadedDivProps) {
   )
 }
 
-export { Layout, Main, Section, Container, Article, FadeDiv }
+export { Article, Container, FadeDiv, Layout, Main, Section }

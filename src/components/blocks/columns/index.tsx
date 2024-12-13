@@ -1,7 +1,7 @@
 'use client'
 
-import { Section, Container, cn } from '@/components/craft'
-import Blocks, { BlockData } from '..'
+import { Container, Section, cn } from '@/components/craft'
+import { BlockData } from '..'
 import ImageBlock from '../image'
 import TextBlock from '../text-block'
 

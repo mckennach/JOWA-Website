@@ -4,21 +4,21 @@ import { Container, Section } from '@/src/components/craft'
 import ShareButton from '@/src/components/ui/share'
 import { Text } from '@/src/components/ui/text'
 import {
-	Post,
-	PostData,
-	PostDataPostContentBlockquoteLayout,
-	PostDataPostContentFullWidthImageLayout,
-	PostDataPostContentImageGalleryLayout,
-	PostDataPostContentImageTextSectionLayout,
-	PostDataPostContentTextSectionLayout
+  Post,
+  PostData,
+  PostDataPostContentBlockquoteLayout,
+  PostDataPostContentFullWidthImageLayout,
+  PostDataPostContentImageGalleryLayout,
+  PostDataPostContentImageTextSectionLayout,
+  PostDataPostContentTextSectionLayout,
 } from '@/src/gql/graphql'
 import { Fragment } from 'react'
 import {
-	Blockquote,
-	FullWidthImage,
-	ImageGallery,
-	ImageTextSection,
-	TextSection,
+  Blockquote,
+  FullWidthImage,
+  ImageGallery,
+  ImageTextSection,
+  TextSection,
 } from './post-content-blocks'
 export default function JournalPostContent({ post }: { post: Post }) {
   const { postData } = post

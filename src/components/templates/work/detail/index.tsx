@@ -1,17 +1,15 @@
-import { print } from 'graphql/language/printer'
+import { WORK_DETAIL_QUERY, WORK_QUERY } from '@/lib/queries'
 import {
   ContentNode,
   Project,
   RootQueryToProjectConnection,
 } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import { WORK_DETAIL_QUERY } from '@/lib/queries'
-import ProjectHero from './project-hero'
-import { Container, Section } from '../../../craft'
-import ProjectInfo from './project-info'
-import { WORK_QUERY } from '@/lib/queries'
+import { print } from 'graphql/language/printer'
 import NextPost from './next-post'
 import ProjectContent from './project-content'
+import ProjectHero from './project-hero'
+import ProjectInfo from './project-info'
 interface TemplateProps {
   node: ContentNode
 }
@@ -27,7 +25,7 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
     projects: RootQueryToProjectConnection
   }>(print(WORK_QUERY))
 
-	if (!project || !projects) return null;
+  if (!project || !projects) return null
 
   return (
     <>

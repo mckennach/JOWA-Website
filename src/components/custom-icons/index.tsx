@@ -1,11 +1,11 @@
+import { AboutLogo } from './about-logo'
+import { ArrowLeft } from './arrow-left'
+import { ArrowRight } from './arrow-right'
+import { Link } from './link'
 import { Logo } from './logo'
 import { LogoText } from './logo-text'
 import { Menu } from './menu'
-import { Link } from './link'
 import { Submark } from './submark'
-import { ArrowRight } from './arrow-right'
-import { ArrowLeft } from './arrow-left'
-import { AboutLogo } from './about-logo'
 export type Icon = {
   name:
     | 'arrow-right'

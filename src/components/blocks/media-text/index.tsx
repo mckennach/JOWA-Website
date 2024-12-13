@@ -1,15 +1,14 @@
 'use client'
 
-import { useRef } from 'react'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import Image from 'next/image'
-import { Section, Container, cn } from '@/components/craft'
-import { BlockData } from '..'
+import { Container, Section, cn } from '@/components/craft'
 import { MEDIA_QUERY } from '@/src/lib/queries'
-import { useCookies } from 'next-client-cookies'
-import { useQuery } from '@apollo/client'
 import { imageLoader } from '@/src/lib/utils'
+import { useQuery } from '@apollo/client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import Image from 'next/image'
+import { useRef } from 'react'
+import { BlockData } from '..'
 
 gsap.registerPlugin(useGSAP)
 

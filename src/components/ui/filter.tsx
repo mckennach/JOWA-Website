@@ -1,12 +1,11 @@
 'use client'
 
-import { cn } from '@/src/lib/utils'
-import { forwardRef, useState, useCallback, useEffect, useRef } from 'react'
 import { Text } from '@/src/components/ui/text'
-import { Category, Tag } from '@/src/gql/graphql'
+import { Tag } from '@/src/gql/graphql'
+import { cn } from '@/src/lib/utils'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
-import { useRouter, usePathname } from 'next/navigation'
-import { useSearchParams } from 'next/navigation'
 export type FilterItem = {
   label: string
   value: string

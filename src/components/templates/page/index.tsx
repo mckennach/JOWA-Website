@@ -1,9 +1,8 @@
-import { print } from 'graphql/language/printer'
 import { ContentNode, Page } from '@/gql/graphql'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { PAGE_QUERY } from '@/lib/queries'
-import { Section, Container } from '../../craft'
-import HomePage from '../home'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { print } from 'graphql/language/printer'
+import { Container, Section } from '../../craft'
 import { Text } from '../../ui/text'
 
 export interface TemplateProps {

@@ -12,7 +12,6 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import useLoading from '../loading/useLoading'
 
-
 type HomeAboutProps = {
   data: HomeHomeContent
   noLoading?: boolean
@@ -25,7 +24,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const contentRef = useRef(null)
   const image = data?.image?.node
   const { hasLoaded } = useLoading()
-	const gsap = _gsap;
+  const gsap = _gsap
   // useEffect(() => {
   //   const handleResize = () => {
   //     _ScrollTrigger.refresh()

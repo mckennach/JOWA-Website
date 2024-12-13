@@ -1,8 +1,7 @@
-import { Section, Container, cn } from '../../craft'
-import { print } from 'graphql/language/printer'
 import { ContentNode, Page } from '@/gql/graphql'
 import { PRICING_QUERY } from '@/lib/queries'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { print } from 'graphql/language/printer'
 import PricingCalculator from './calculator'
 
 interface TemplateProps {

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function PUT(request: NextRequest) {
   const requestBody = await request.text()

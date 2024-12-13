@@ -1,7 +1,7 @@
 'use client'
 
+import { Section } from '@/src/components/craft'
 import { Project, ProjectFields } from '@/src/gql/graphql'
-import { Section, Container } from '@/src/components/craft'
 import { Fragment } from 'react'
 import {
   FullWidthImage,

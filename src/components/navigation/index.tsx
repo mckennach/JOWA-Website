@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { MobileNavigation } from './mobile-navigation'
-import { cn } from '@/src/lib/utils'
 import { MenuItem, RootQueryToMenuItemConnection } from '@/gql/graphql'
-import CustomIcons from '../custom-icons'
-import { useMediaQuery } from 'usehooks-ts'
+import { cn } from '@/src/lib/utils'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import path from 'path'
+import { useEffect, useState } from 'react'
+import { useMediaQuery } from 'usehooks-ts'
+import CustomIcons from '../custom-icons'
+import { MobileNavigation } from './mobile-navigation'
 
 export default function Navigation({
   menuItems,
@@ -22,17 +21,15 @@ export default function Navigation({
   const matches = useMediaQuery('(min-width: 1024px)')
   const pathname = usePathname()
 
-
   useEffect(() => {
     const handleScroll = () => {
+      let scrollPosition = 10
 
-			let scrollPosition = 10;
-
-			if (pathname === '/') {
-				scrollPosition = 500;
-			} else if (pathname === '/work') {
-				scrollPosition = 10;
-			}
+      if (pathname === '/') {
+        scrollPosition = 500
+      } else if (pathname === '/work') {
+        scrollPosition = 10
+      }
 
       if (window.scrollY > scrollPosition) {
         setIsScrolled(true)

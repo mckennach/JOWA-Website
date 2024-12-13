@@ -1,10 +1,8 @@
-import { Section, Container, cn } from '../../craft'
-import { print } from 'graphql/language/printer'
-import { ContentNode, Page, Global } from '@/gql/graphql'
+import { ContentNode, Global, Page } from '@/gql/graphql'
 import { ABOUT_PAGE_QUERY, GLOBALS_QUERY } from '@/lib/queries'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { print } from 'graphql/language/printer'
 import AboutHeading from './about-heading'
-import TeamMembers from './about-team'
 import AboutLogo from './about-logo'
 import OurProcess from './our-process'
 interface TemplateProps {
@@ -21,7 +19,7 @@ export default async function AboutTemplate({ node }: TemplateProps) {
   }>(print(GLOBALS_QUERY), {
     id: '357',
   })
-	if(!page) return null;
+  if (!page) return null
   return (
     <>
       <AboutHeading page={page} globalData={global} />

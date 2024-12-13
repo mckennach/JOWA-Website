@@ -209,15 +209,15 @@
     @apply h-full w-full scroll-smooth bg-background text-foreground antialiased;
   }
 
-	.skip-to-content {
-		position: absolute;
-		transform: translateY(-150%);
-		transition: transform 150ms ease-in;
-	}
-	
-	.skip-to-content:focus {
-		transform: translateY(0);
-	}
+  .skip-to-content {
+    position: absolute;
+    transform: translateY(-150%);
+    transition: transform 150ms ease-in;
+  }
+
+  .skip-to-content:focus {
+    transform: translateY(0);
+  }
 
   .nav-fluid {
     @apply font-maisonNeueExt transition-all duration-300 ease-in-out ~text-xs/base before:transition-all before:duration-300 before:ease-in-out;

@@ -1,17 +1,17 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import { useEffect, useRef } from 'react'
 
-import { Section, Container } from '../../craft'
-import { Text } from '../../ui/text'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/client'
 import { TeamMember } from '@/gql/graphql'
+import { useQuery } from '@apollo/client'
+import gql from 'graphql-tag'
 import Image from 'next/image'
 import { imageLoader } from '../../../lib/utils'
+import { Container, Section } from '../../craft'
+import { Text } from '../../ui/text'
 gsap.registerPlugin(ScrollTrigger)
 
 const TEAM_MEMBERS_QUERY = gql`
@@ -85,19 +85,20 @@ export default function TeamMembers() {
               return (
                 <div key={key} className="mx-auto w-full max-w-[295px]">
                   <div className="relative mb-4 aspect-[295/351]">
-										{member?.memberData?.image?.node?.mediaItemUrl && (
-											<Image
-												src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
-												alt={member?.memberData?.image?.node?.altText ?? ''}
-												fill={true}
-												style={{
-													objectFit: 'cover',
-													objectPosition: 'center',
-												}}
-												loader={imageLoader}
-											/>
-										)}
-                    
+                    {member?.memberData?.image?.node?.mediaItemUrl && (
+                      <Image
+                        src={
+                          member?.memberData?.image?.node?.mediaItemUrl ?? ''
+                        }
+                        alt={member?.memberData?.image?.node?.altText ?? ''}
+                        fill={true}
+                        style={{
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                        }}
+                        loader={imageLoader}
+                      />
+                    )}
                   </div>
                   <div>
                     <Text

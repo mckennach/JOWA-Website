@@ -1,7 +1,7 @@
 'use client'
+import { Text } from '@/src/components/ui/text'
 import { Project } from '@/src/gql/graphql'
 import { Container, Section } from '../../../craft'
-import { Text } from '@/src/components/ui/text'
 
 const ProjectInfoTable = ({ project }: { project: Project }) => {
   const { projectInfo } = project?.projectFields ?? {}
