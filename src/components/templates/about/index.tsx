@@ -5,7 +5,6 @@ import { TEAM_MEMBERS_QUERY } from '@/src/lib/queries/pages/team-query'
 import { print } from 'graphql/language/printer'
 import AboutHeading from './about-heading'
 import AboutLogo from './about-logo'
-import TeamMembers from './about-team'
 import OurProcess from './our-process'
 interface TemplateProps {
   node: ContentNode
@@ -35,7 +34,7 @@ export default async function AboutTemplate({ node }: TemplateProps) {
       <AboutHeading page={page} globalData={global} />
       <OurProcess page={page} />
       <AboutLogo page={page} />
-      <TeamMembers members={teamMembers.nodes} />
+      {/* <TeamMembers members={teamMembers.nodes} /> */}
     </>
   )
 }
