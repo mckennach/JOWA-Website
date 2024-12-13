@@ -175,8 +175,8 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
           ref={intersectRef}
         >
 					<picture>
-						<source media="(max-width:768px)" srcSet={image?.srcSet ?? ''} type={image?.mediaDetails?.sizes?.mimeType} /> 
-						<source media="(max-width:640px)" srcSet={mobileImage?.srcSet ?? ''} type={image?.mediaDetails?.sizes?.mimeType} />
+						<source media="(max-width:768px)" srcSet={image?.srcSet ?? ''} type={image?.mimeType ?? ''} /> 
+						<source media="(max-width:640px)" srcSet={mobileImage?.srcSet ?? ''} type={image?.mimeType ?? ''} />
 						<Image
 							src={url ?? ''}
 							alt={alt ?? ''}

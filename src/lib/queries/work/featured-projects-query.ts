@@ -13,6 +13,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
             mediaItemUrl
 						sourceUrl(size: LARGE)
 						sizes(size: LARGE)
+						mimeType
 
           }
         }
@@ -24,6 +25,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
 							srcSet(size: _1536X1536)
+							mimeType
 							mediaDetails {
 								sizes {
 									mimeType
@@ -47,6 +49,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
 							srcSet(size: _1536X1536)
+							mimeType
 							mediaDetails {
 								sizes {
 									mimeType
@@ -74,6 +77,7 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
 							srcSet(size: _1536X1536)
+							mimeType
 							mediaDetails {
 								sizes {
 									mimeType
@@ -89,6 +93,7 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
 							srcSet(size: _1536X1536)
+							mimeType
 							mediaDetails {
 								sizes {
 									mimeType
@@ -111,6 +116,7 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               altText
               mediaItemUrl
 							sizes(size: MEDIUM_LARGE)
+							mimeType
 							mediaDetails {
 								sizes {
 									mimeType
