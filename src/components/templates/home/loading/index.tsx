@@ -60,7 +60,7 @@ export default function Loading({ project }: LoadingProps) {
         mm.add('(min-width: 1024px)', () => {
           tl.to(textRef.current, {
             opacity: 1,
-            duration: 1.5,
+            duration: .7,
             stagger: 0.25,
           })
         })
@@ -69,7 +69,7 @@ export default function Loading({ project }: LoadingProps) {
           containerRef.current,
           {
             backgroundColor: 'hsla(70, 14%, 67%, 0)',
-            duration: 1.5,
+            duration: .7,
             stagger: 0.25,
           },
           '<+=0.5'
@@ -85,7 +85,7 @@ export default function Loading({ project }: LoadingProps) {
             textRef.current,
             {
               opacity: 1,
-              duration: 1.5,
+              duration: .7,
               stagger: 0.25,
             },
             '>'
