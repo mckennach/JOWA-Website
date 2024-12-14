@@ -155,7 +155,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
         className="not-prose h-[130vh] max-w-full w-full"
       >
         <div
-          className="image relative w-full h-[calc(100vh-80px)] max-w-[2500px] mx-auto"
+          className="image relative w-full lg:aspect-[1400/890] h-[calc(100vh-80px)] max-w-[2500px] mx-auto"
           ref={intersectRef}
         >
           <Image
