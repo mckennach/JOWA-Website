@@ -3,23 +3,25 @@
 // import dynamic from 'next/dynamic'
 import { Container, Section } from '@/components/craft'
 import { Text } from '@/src/components/ui/text'
-import { Project } from '@/src/gql/graphql'
+import { MediaItem, Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 import _gsap from 'gsap/all'
-import Image from 'next/image'
+import { Image } from '@/src/components/ui/image'
+// import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
 import useLoading from '../loading/useLoading'
 type FeaturedProjects = {
   projects: Project[]
+  loadingProjects: Project[]
   noLoading?: boolean
 }
 
 export default function FeaturedProjects({
   projects,
-  noLoading,
+	loadingProjects,
 }: FeaturedProjects) {
   const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
@@ -27,11 +29,9 @@ export default function FeaturedProjects({
   const container = useRef(null)
   const galleryRefs = useRef<Array<HTMLDivElement | null>>([])
   const [count, setCount] = useState<number>(1)
-  const [caption, setCaption] = useState<string>(projectNodes[0]?.title ?? '')
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
-  const { hasLoaded } = useLoading()
-  const gsap = _gsap
+  const gsap = _gsap;
 
   useGSAP(
     () => {
@@ -62,12 +62,10 @@ export default function FeaturedProjects({
             scrub: 2,
             onEnter: () => {
               setActiveItem(projectNodes[i])
-              setCaption(projectNodes[i]?.title ?? '')
               setCount(i + 1)
             },
             onEnterBack: () => {
               setActiveItem(projectNodes[i])
-              setCaption(projectNodes[i]?.title ?? '')
               setCount(i + 1)
               if (i !== panels.length - 1) {
                 gsap.set(panel, {
@@ -97,30 +95,15 @@ export default function FeaturedProjects({
     <Section className="relative">
       <Container ref={container} className="relative overflow-hidden">
         {projectNodes.map((project, index) => {
-          const image =
-            project?.projectFields?.featuredImage?.node ??
-            project?.projectFields?.heroImage?.node
           return (
             <Slide
               key={index}
               index={index}
               setAnimationReady={setAnimationReady}
-              image={{
-                url: image?.sourceUrl ?? '',
-                alt: image?.altText ?? '',
-                sizes: image?.sizes ?? '',
-              }}
-              mobileImage={{
-                url:
-                  project?.projectFields?.mobileFeaturedImage?.node
-                    ?.sourceUrl ?? '',
-                alt:
-                  project?.projectFields?.mobileFeaturedImage?.node?.altText ??
-                  '',
-                sizes:
-                  project?.projectFields?.mobileFeaturedImage?.node?.sizes ??
-                  '',
-              }}
+              image={project?.projectFields?.featuredImage?.node ??
+								project?.projectFields?.heroImage?.node}
+              mobileImage={project?.projectFields?.mobileFeaturedImage?.node}
+              loadingImage={loadingProjects[index]?.projectFields?.featuredImage?.node}
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}
@@ -148,14 +131,15 @@ export default function FeaturedProjects({
 }
 
 type SlideProps = {
-  image: { url?: string; alt?: string; sizes?: string }
-  mobileImage: { url?: string; alt?: string; sizes?: string }
+  image?: MediaItem
+  mobileImage?: MediaItem
+  loadingImage?: MediaItem
   setAnimationReady: (value: boolean) => void
   index: number
 }
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  ({ image, mobileImage, setAnimationReady, index }, ref) => {
+  ({ image, mobileImage, loadingImage, setAnimationReady, index }, ref) => {
     const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
@@ -172,13 +156,15 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
           ref={intersectRef}
         >
           <Image
-            src={image?.url ?? ''}
-            alt={image.alt ?? ''}
+            src={image?.sourceUrl ?? ''}
+            alt={image?.altText ?? ''}
             fill={true}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
             }}
+						placeholder={loadingImage?.sourceUrl ? 'blur' : 'empty'}
+						blurDataURL={loadingImage?.sourceUrl ?? ''}
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full hidden md:block"
             loader={imageLoader}
@@ -187,13 +173,15 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             onLoad={() => setAnimationReady(true)}
           />
           <Image
-            src={mobileImage?.url ?? ''}
-            alt={mobileImage.alt ?? ''}
+            src={mobileImage?.sourceUrl ?? ''}
+            alt={mobileImage?.altText ?? ''}
             fill={true}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
             }}
+						placeholder={loadingImage?.sourceUrl ? 'blur' : 'empty'}
+						blurDataURL={loadingImage?.sourceUrl ?? ''}
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full block md:hidden"
             loader={imageLoader}

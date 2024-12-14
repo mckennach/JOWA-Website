@@ -7,15 +7,6 @@ export const FEATURED_PROJECTS_QUERY = gql`
         title
         slug
         uri
-        featuredImage {
-          node {
-            altText
-            mediaItemUrl
-            sourceUrl(size: LARGE)
-            sizes(size: LARGE)
-            mimeType
-          }
-        }
         projectFields {
           heroImage {
             node {
@@ -25,20 +16,6 @@ export const FEATURED_PROJECTS_QUERY = gql`
               sizes(size: MEDIUM_LARGE)
               srcSet(size: _1536X1536)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
-            }
-          }
-          projectInfo {
-            location
-            sqFt
-            category
-            projectType
-            services {
-              service
             }
           }
           featuredImage {
@@ -49,11 +26,6 @@ export const FEATURED_PROJECTS_QUERY = gql`
               sizes(size: MEDIUM_LARGE)
               srcSet(size: _1536X1536)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
             }
           }
           mobileFeaturedImage {
@@ -64,11 +36,6 @@ export const FEATURED_PROJECTS_QUERY = gql`
               sizes(size: MEDIUM_LARGE)
               srcSet(size: _1536X1536)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
             }
           }
         }
@@ -77,80 +44,42 @@ export const FEATURED_PROJECTS_QUERY = gql`
   }
 `
 
-export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
+export const LOADING_PROJECTS_QUERY = gql`
   query FeaturedProjects($ids: [ID]) {
     projects(where: { in: $ids }) {
       nodes {
         title
         slug
         uri
-        featuredImage {
-          node {
-            sourceUrl(size: LARGE)
-            altText
-            mediaItemUrl
-            sizes(size: MEDIUM_LARGE)
-            srcSet(size: _1536X1536)
-            mimeType
-            mediaDetails {
-              sizes {
-                mimeType
-              }
-            }
-          }
-        }
         projectFields {
           heroImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl(size: MEDIUM)
               altText
               mediaItemUrl
-              sizes(size: MEDIUM_LARGE)
-              srcSet(size: _1536X1536)
+              sizes(size: MEDIUM)
+              srcSet(size: MEDIUM)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
-            }
-          }
-          projectInfo {
-            location
-            sqFt
-            category
-            projectType
-            services {
-              service
             }
           }
           featuredImage {
             node {
-              sourceUrl(size: MEDIUM_LARGE)
+              sourceUrl(size: MEDIUM)
               altText
               mediaItemUrl
-              sizes(size: MEDIUM_LARGE)
+              sizes(size: MEDIUM)
+              srcSet(size: MEDIUM)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
             }
           }
           mobileFeaturedImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl(size: MEDIUM)
               altText
               mediaItemUrl
-              sizes(size: MEDIUM_LARGE)
-              srcSet(size: _1536X1536)
+              sizes(size: MEDIUM)
+              srcSet(size: MEDIUM)
               mimeType
-              mediaDetails {
-                sizes {
-                  mimeType
-                }
-              }
             }
           }
         }
