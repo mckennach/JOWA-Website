@@ -152,7 +152,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
         className="not-prose h-[130vh] max-w-full w-full"
       >
         <div
-          className="image relative max-w-full w-full h-[calc(100vh-80px)]"
+          className="image relative w-full h-[calc(100vh-80px)] max-w-[2500px] mx-auto"
           ref={intersectRef}
         >
           <Image
@@ -163,8 +163,6 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-						placeholder={loadingImage?.sourceUrl ? 'blur' : 'empty'}
-						blurDataURL={loadingImage?.sourceUrl ?? ''}
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full hidden md:block"
             loader={imageLoader}
@@ -180,8 +178,6 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-						placeholder={loadingImage?.sourceUrl ? 'blur' : 'empty'}
-						blurDataURL={loadingImage?.sourceUrl ?? ''}
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full block md:hidden"
             loader={imageLoader}
