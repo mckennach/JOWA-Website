@@ -1,11 +1,12 @@
 'use client'
 
 import { Post, Tag } from '@/src/gql/graphql'
-import Image from 'next/image'
+import _Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { cn, imageLoader } from '../../../lib/utils'
 import { Container, Section } from '../../craft'
 import { Text } from '../../ui/text'
+
 
 const JournalItems = ({ posts }: { posts: Post[] }) => {
   const searchParams = useSearchParams()
@@ -32,6 +33,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
 }
 
 const JournalItem = ({ post }: { post: Post }) => {
+	const Image = _Image;
   const router = useRouter()
   const date = new Date(post?.date as string)
   const dateString = date

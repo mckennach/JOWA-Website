@@ -3,30 +3,33 @@ import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense, lazy } from 'react'
-
-import FloatingContact from '@/components/footer/floating-contact'
-import PricingCTA from '@/components/footer/pricing-cta'
+import dynamic from 'next/dynamic'
+// import FloatingContact from '@/components/footer/floating-contact'
+// import PricingCTA from '@/components/footer/pricing-cta'
 import { ContentNode } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
-import EmailSignature from '@/src/components/templates/email-signature'
-import PageTemplate from '@/src/components/templates/page'
+// import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
 
-const LoginPage = lazy(() => import('@/src/components/templates/login'))
-const HomePage = lazy(() => import('@/src/components/templates/home'))
-const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
-const JournalDetailTemplate = lazy(
+const FloatingContact = dynamic(() => import('@/src/components/footer/floating-contact'))	
+const PricingCTA = dynamic(() => import('@/src/components/footer/pricing-cta'))
+const EmailSignature = dynamic(() => import('@/src/components/templates/email-signature'))
+const PageTemplate = dynamic(() => import('@/src/components/templates/page'))
+const LoginPage = dynamic(() => import('@/src/components/templates/login'))
+const HomePage = dynamic(() => import('@/src/components/templates/home'))
+const JournalTemplate = dynamic(() => import('@/src/components/templates/journal'))
+const JournalDetailTemplate = dynamic(
   () => import('@/src/components/templates/journal/detail')
 )
-const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
-const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
-const WorkDetailTemplate = lazy(
+const PricingTemplate = dynamic(() => import('@/src/components/templates/pricing'))
+const WorkTemplate = dynamic(() => import('@/src/components/templates/work'))
+const WorkDetailTemplate = dynamic(
   () => import('@/src/components/templates/work/detail')
 )
-const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
-const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
+const AboutTemplate = dynamic(() => import('@/src/components/templates/about'))
+const ContactTemplate = dynamic(() => import('@/src/components/templates/contact'))
 
 type Props = {
   params: { slug: string }
