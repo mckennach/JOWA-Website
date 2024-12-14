@@ -13,23 +13,30 @@ import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
 // import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
 import HomePage from '@/src/components/templates/home';
+import LoginPage from '@/src/components/templates/login';
+import JournalTemplate from '@/src/components/templates/journal'
+import JournalDetailTemplate from '@/src/components/templates/journal/detail'
+import PricingTemplate from '@/src/components/templates/pricing'
+import WorkTemplate from '@/src/components/templates/work'
+import WorkDetailTemplate from '@/src/components/templates/work/detail'
+import AboutTemplate from '@/src/components/templates/pricing'
+import ContactTemplate from '@/src/components/templates/contact'
 
 const FloatingContact = lazy(() => import('@/src/components/footer/floating-contact'))	
 const PricingCTA = lazy(() => import('@/src/components/footer/pricing-cta'))
 const EmailSignature = lazy(() => import('@/src/components/templates/email-signature'))
 const PageTemplate = lazy(() => import('@/src/components/templates/page'))
-const LoginPage = lazy(() => import('@/src/components/templates/login'))
-const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
-const JournalDetailTemplate = lazy(
-  () => import('@/src/components/templates/journal/detail')
-)
-const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
-const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
-const WorkDetailTemplate = lazy(
-  () => import('@/src/components/templates/work/detail')
-)
-const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
-const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
+// const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
+// const JournalDetailTemplate = lazy(
+//   () => import('@/src/components/templates/journal/detail')
+// )
+// const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
+// const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
+// const WorkDetailTemplate = lazy(
+//   () => import('@/src/components/templates/work/detail')
+// )
+// const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
+// const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
 
 type Props = {
   params: { slug: string }
