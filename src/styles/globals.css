@@ -277,7 +277,7 @@
   }
 
   .body-xl-fluid {
-    @apply ~text-base/bodyX space-y-8 font-maisonNeue font-normal tracking-normal;
+    @apply space-y-8 font-maisonNeue font-normal tracking-normal ~text-base/bodyX;
   }
 
   .body-sm-fluid,

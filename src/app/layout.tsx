@@ -1,13 +1,8 @@
-import {
-	GsapProvider,
-	ScrollProvider,
-	ThemeProvider
-} from '@/src/context'
+import { GsapProvider, ScrollProvider, ThemeProvider } from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cn } from '../lib/utils'
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
@@ -38,7 +33,7 @@ export default async function RootLayout({
         <CookiesProvider>
           <GsapProvider>
             <ScrollProvider>
-                <ThemeProvider>{children}</ThemeProvider>
+              <ThemeProvider>{children}</ThemeProvider>
             </ScrollProvider>
           </GsapProvider>
         </CookiesProvider>

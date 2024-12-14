@@ -22,12 +22,11 @@ export default async function AboutTemplate({ node }: TemplateProps) {
     id: '357',
   })
 
-	const { teamMembers } = await fetchGraphQL<{
+  const { teamMembers } = await fetchGraphQL<{
     teamMembers: TeamMemberConnection
   }>(print(TEAM_MEMBERS_QUERY), {
     id: '357',
-  });
-
+  })
 
   if (!page) return null
   return (
@@ -35,7 +34,9 @@ export default async function AboutTemplate({ node }: TemplateProps) {
       <AboutHeading page={page} globalData={global} />
       <OurProcess page={page} />
       <AboutLogo page={page} />
-			{page.aboutPage?.showTeamMembers && <TeamMembers members={teamMembers.nodes} />}
+      {page.aboutPage?.showTeamMembers && (
+        <TeamMembers members={teamMembers.nodes} />
+      )}
     </>
   )
 }

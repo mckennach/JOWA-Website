@@ -24,7 +24,7 @@ export const ABOUT_PAGE_QUERY = gql`
         specificServices {
           title
         }
-				showTeamMembers
+        showTeamMembers
       }
     }
   }

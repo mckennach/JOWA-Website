@@ -33,7 +33,7 @@ const TEAM_MEMBERS_QUERY = gql`
 `
 
 export default function TeamMembers({ members }: { members: TeamMember[] }) {
-	// console.log(membersTeam);
+  // console.log(membersTeam);
   // const { data, loading } = useQuery(TEAM_MEMBERS_QUERY)
   const containerRef = useRef(null)
 
@@ -80,39 +80,36 @@ export default function TeamMembers({ members }: { members: TeamMember[] }) {
           Our Team
         </Text>
         <div className="grid gap-8 lg:grid-cols-3">
-          {
-            members.map((member, key) => {
-              return (
-                <div key={key} className="mx-auto w-full max-w-[295px]">
-                  <div className="relative mb-4 aspect-[295/351]">
-                    {member?.memberData?.image?.node?.mediaItemUrl && (
-                      <Image
-                        src={
-                          member?.memberData?.image?.node?.mediaItemUrl ?? ''
-                        }
-                        alt={member?.memberData?.image?.node?.altText ?? ''}
-                        fill={true}
-                        style={{
-                          objectFit: 'cover',
-                          objectPosition: 'center',
-                        }}
-                        loader={imageLoader}
-                      />
-                    )}
-                  </div>
-                  <div>
-                    <Text
-                      type="label"
-                      tag="p"
-                      className="text-[24px] leading-[40px]"
-                    >
-                      {member?.memberData?.name}
-                    </Text>
-                    <Text>{member?.memberData?.jobTitle}</Text>
-                  </div>
+          {members.map((member, key) => {
+            return (
+              <div key={key} className="mx-auto w-full max-w-[295px]">
+                <div className="relative mb-4 aspect-[295/351]">
+                  {member?.memberData?.image?.node?.mediaItemUrl && (
+                    <Image
+                      src={member?.memberData?.image?.node?.mediaItemUrl ?? ''}
+                      alt={member?.memberData?.image?.node?.altText ?? ''}
+                      fill={true}
+                      style={{
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                      }}
+                      loader={imageLoader}
+                    />
+                  )}
                 </div>
-              )
-            })}
+                <div>
+                  <Text
+                    type="label"
+                    tag="p"
+                    className="text-[24px] leading-[40px]"
+                  >
+                    {member?.memberData?.name}
+                  </Text>
+                  <Text>{member?.memberData?.jobTitle}</Text>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </Container>
     </Section>

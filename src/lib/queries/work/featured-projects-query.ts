@@ -56,7 +56,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
               }
             }
           }
-					mobileFeaturedImage {
+          mobileFeaturedImage {
             node {
               sourceUrl(size: MEDIUM_LARGE)
               altText
@@ -138,7 +138,7 @@ export const MOBILE_FEATURED_PROJECTS_QUERY = gql`
               }
             }
           }
-					mobileFeaturedImage {
+          mobileFeaturedImage {
             node {
               sourceUrl(size: LARGE)
               altText

@@ -50,7 +50,7 @@ const config = {
         '3%': '.01',
       },
       fontSize: {
-				bodyX: ['1.375rem', '32px'],
+        bodyX: ['1.375rem', '32px'],
         body: ['2rem', '42px'],
         base: ['1rem', '1.4rem'],
         clamp: 'clamp(1rem, 5vw, 3rem)',

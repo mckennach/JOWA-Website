@@ -1,8 +1,6 @@
 import { Page, PostFormatToProjectConnection } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-import {
-	FEATURED_PROJECTS_QUERY
-} from '@/src/lib/queries/work/featured-projects-query'
+import { FEATURED_PROJECTS_QUERY } from '@/src/lib/queries/work/featured-projects-query'
 import { print } from 'graphql/language/printer'
 import { cookies } from 'next/headers'
 import { lazy } from 'react'
@@ -29,7 +27,6 @@ export default async function HomePage({ node }: TemplateProps) {
   }>(print(FEATURED_PROJECTS_QUERY), {
     ids: projectIds,
   })
-
 
   if (!projects || !featuredProjects) return null
 

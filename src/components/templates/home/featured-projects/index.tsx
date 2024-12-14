@@ -99,7 +99,7 @@ export default function FeaturedProjects({
         {projectNodes.map((project, index) => {
           const image =
             project?.projectFields?.featuredImage?.node ??
-            project?.projectFields?.heroImage?.node;
+            project?.projectFields?.heroImage?.node
           return (
             <Slide
               key={index}
@@ -110,11 +110,17 @@ export default function FeaturedProjects({
                 alt: image?.altText ?? '',
                 sizes: image?.sizes ?? '',
               }}
-							mobileImage={{
-								url: project?.projectFields?.mobileFeaturedImage?.node?.sourceUrl ?? '',
-								alt: project?.projectFields?.mobileFeaturedImage?.node?.altText ?? '',
-								sizes: project?.projectFields?.mobileFeaturedImage?.node?.sizes ?? ''
-							}}
+              mobileImage={{
+                url:
+                  project?.projectFields?.mobileFeaturedImage?.node
+                    ?.sourceUrl ?? '',
+                alt:
+                  project?.projectFields?.mobileFeaturedImage?.node?.altText ??
+                  '',
+                sizes:
+                  project?.projectFields?.mobileFeaturedImage?.node?.sizes ??
+                  '',
+              }}
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}
@@ -143,7 +149,7 @@ export default function FeaturedProjects({
 
 type SlideProps = {
   image: { url?: string; alt?: string; sizes?: string }
-	mobileImage: { url?: string; alt?: string; sizes?: string }
+  mobileImage: { url?: string; alt?: string; sizes?: string }
   setAnimationReady: (value: boolean) => void
   index: number
 }
@@ -180,7 +186,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             loading={index === 0 ? 'eager' : 'lazy'}
             onLoad={() => setAnimationReady(true)}
           />
-					<Image
+          <Image
             src={mobileImage?.url ?? ''}
             alt={mobileImage.alt ?? ''}
             fill={true}
@@ -189,7 +195,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectPosition: 'center',
             }}
             sizes="(max-width: 768px) 1500px, 400px"
-            className="brightness-75 filter max-w-full block md:hidden" 
+            className="brightness-75 filter max-w-full block md:hidden"
             loader={imageLoader}
             priority={index === 0}
             loading={index === 0 ? 'eager' : 'lazy'}
