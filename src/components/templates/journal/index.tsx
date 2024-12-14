@@ -12,16 +12,10 @@ import { JOURNALS_QUERY } from './journal-query'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
     print(JOURNALS_QUERY),
-    {
-      caches: true,
-    }
   )
 
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
     print(TAGS_QUERY),
-    {
-      caches: true,
-    }
   )
 
   const filterItems = tags.nodes.filter(

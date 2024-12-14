@@ -55,12 +55,13 @@ const JournalItem = ({ post }: { post: Post }) => {
       <div className="card-container relative space-y-6">
         <div className="image-hover relative aspect-square">
           <Image
-            src={post?.postData?.featuredImage?.node?.mediaItemUrl ?? ''}
+            src={post?.postData?.featuredImage?.node?.sourceUrl ?? ''}
             alt={post?.postData?.featuredImage?.node?.altText ?? ''}
             fill={true}
             style={{
               objectFit: 'cover',
             }}
+						sizes={post?.postData?.featuredImage?.node?.sizes ?? ''}
             loader={imageLoader}
           />
         </div>
