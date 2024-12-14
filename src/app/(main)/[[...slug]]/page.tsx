@@ -14,22 +14,22 @@ import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
 import { cookies } from 'next/headers'
 import HomePage from '@/src/components/templates/home';
 
-const FloatingContact = dynamic(() => import('@/src/components/footer/floating-contact'))	
-const PricingCTA = dynamic(() => import('@/src/components/footer/pricing-cta'))
-const EmailSignature = dynamic(() => import('@/src/components/templates/email-signature'))
-const PageTemplate = dynamic(() => import('@/src/components/templates/page'))
-const LoginPage = dynamic(() => import('@/src/components/templates/login'))
-const JournalTemplate = dynamic(() => import('@/src/components/templates/journal'))
-const JournalDetailTemplate = dynamic(
+const FloatingContact = lazy(() => import('@/src/components/footer/floating-contact'))	
+const PricingCTA = lazy(() => import('@/src/components/footer/pricing-cta'))
+const EmailSignature = lazy(() => import('@/src/components/templates/email-signature'))
+const PageTemplate = lazy(() => import('@/src/components/templates/page'))
+const LoginPage = lazy(() => import('@/src/components/templates/login'))
+const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
+const JournalDetailTemplate = lazy(
   () => import('@/src/components/templates/journal/detail')
 )
-const PricingTemplate = dynamic(() => import('@/src/components/templates/pricing'))
-const WorkTemplate = dynamic(() => import('@/src/components/templates/work'))
-const WorkDetailTemplate = dynamic(
+const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
+const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
+const WorkDetailTemplate = lazy(
   () => import('@/src/components/templates/work/detail')
 )
-const AboutTemplate = dynamic(() => import('@/src/components/templates/about'))
-const ContactTemplate = dynamic(() => import('@/src/components/templates/contact'))
+const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
+const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
 
 type Props = {
   params: { slug: string }
