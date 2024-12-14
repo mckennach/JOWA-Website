@@ -84,9 +84,9 @@ export default async function Page({ params }: Props) {
   const cookieStore = await cookies()
   const isAuth = cookieStore.get('user:auth')
 
-  // if (!isAuth) {
-  //   return <LoginPage />
-  // }
+  if (!isAuth) {
+    return <LoginPage />
+  }
 
   let detailSlug: string | boolean = false
 
