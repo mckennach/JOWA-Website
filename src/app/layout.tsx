@@ -7,6 +7,7 @@ import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cn } from '../lib/utils'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',

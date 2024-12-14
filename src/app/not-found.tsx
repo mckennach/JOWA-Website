@@ -1,10 +1,9 @@
 import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
 
-import { setSeoData } from '@/src/lib/api/seoData'
-
 import { ContentNode, Page } from '@/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import { setSeoData } from '@/src/lib/api/seoData'
 import { SEO_QUERY } from '@/src/lib/queries'
 import { PAGE_QUERY } from '@/src/lib/queries/pages/page-query'
 import Link from 'next/link'
