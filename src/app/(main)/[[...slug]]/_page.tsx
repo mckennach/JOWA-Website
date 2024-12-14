@@ -119,13 +119,18 @@ export default async function Page({ params }: Props) {
           <JournalTemplate node={contentNode} type="landing" />
         )}
       {contentNode.contentTypeName === 'page' &&
-        contentNode.slug === 'work' && <WorkTemplate node={contentNode} type="landing" />}
+        contentNode.slug === 'work' && (
+          <WorkTemplate node={contentNode} type="landing" />
+        )}
       {contentNode.contentTypeName === 'page' &&
         contentNode.slug !== 'journal' &&
         contentNode.slug !== 'work' && <PageTemplates node={contentNode} />}
-			{contentNode.contentTypeName === 'post' && <JournalTemplate node={contentNode} type="detail" />}
-			{contentNode.contentTypeName === 'work' && <WorkTemplate node={contentNode} type="detail" />}
+      {contentNode.contentTypeName === 'post' && (
+        <JournalTemplate node={contentNode} type="detail" />
+      )}
+      {contentNode.contentTypeName === 'work' && (
+        <WorkTemplate node={contentNode} type="detail" />
+      )}
     </Suspense>
   )
-
 }

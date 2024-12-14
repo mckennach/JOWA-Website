@@ -1,14 +1,14 @@
 'use client'
 
-import { forwardRef } from 'react';
-import NextImage, { ImageProps } from 'next/image';
+import NextImage, { ImageProps } from 'next/image'
+import { forwardRef } from 'react'
 
-const Image = forwardRef<HTMLPictureElement, ImageProps>(({ ...props }, ref) => {
-	return (
-		<NextImage {...props} />
-	)
-});
+const Image = forwardRef<HTMLPictureElement, ImageProps>(
+  ({ ...props }, ref) => {
+    return <NextImage {...props} />
+  }
+)
 
-Image.displayName = 'Image';
+Image.displayName = 'Image'
 
-export { Image };
+export { Image }

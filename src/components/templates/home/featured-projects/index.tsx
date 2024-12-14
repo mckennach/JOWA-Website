@@ -2,17 +2,16 @@
 
 // import dynamic from 'next/dynamic'
 import { Container, Section } from '@/components/craft'
+import { Image } from '@/src/components/ui/image'
 import { Text } from '@/src/components/ui/text'
 import { MediaItem, Project } from '@/src/gql/graphql'
 import { imageLoader, zeroPad } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 import _gsap from 'gsap/all'
-import { Image } from '@/src/components/ui/image'
 // import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
-import useLoading from '../loading/useLoading'
 type FeaturedProjects = {
   projects: Project[]
   loadingProjects: Project[]
@@ -21,7 +20,7 @@ type FeaturedProjects = {
 
 export default function FeaturedProjects({
   projects,
-	loadingProjects,
+  loadingProjects,
 }: FeaturedProjects) {
   const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
@@ -31,7 +30,7 @@ export default function FeaturedProjects({
   const [count, setCount] = useState<number>(1)
   const [activeItem, setActiveItem] = useState<Project>(projectNodes[0] ?? null)
   const [isActive, setIsActive] = useState<boolean>(true)
-  const gsap = _gsap;
+  const gsap = _gsap
 
   useGSAP(
     () => {
@@ -100,10 +99,14 @@ export default function FeaturedProjects({
               key={index}
               index={index}
               setAnimationReady={setAnimationReady}
-              image={project?.projectFields?.featuredImage?.node ??
-								project?.projectFields?.heroImage?.node}
+              image={
+                project?.projectFields?.featuredImage?.node ??
+                project?.projectFields?.heroImage?.node
+              }
               mobileImage={project?.projectFields?.mobileFeaturedImage?.node}
-              loadingImage={loadingProjects[index]?.projectFields?.featuredImage?.node}
+              loadingImage={
+                loadingProjects[index]?.projectFields?.featuredImage?.node
+              }
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}

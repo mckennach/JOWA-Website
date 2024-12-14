@@ -1,9 +1,9 @@
-import { type ClassValue, clsx } from 'clsx'
+import _clsx, { type ClassValue } from 'clsx'
 import { ImageLoaderProps } from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(_clsx(inputs))
 }
 
 export const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
