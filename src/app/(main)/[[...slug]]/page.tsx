@@ -12,13 +12,13 @@ import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
 // import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
+import HomePage from '@/src/components/templates/home';
 
 const FloatingContact = dynamic(() => import('@/src/components/footer/floating-contact'))	
 const PricingCTA = dynamic(() => import('@/src/components/footer/pricing-cta'))
 const EmailSignature = dynamic(() => import('@/src/components/templates/email-signature'))
 const PageTemplate = dynamic(() => import('@/src/components/templates/page'))
 const LoginPage = dynamic(() => import('@/src/components/templates/login'))
-const HomePage = dynamic(() => import('@/src/components/templates/home'))
 const JournalTemplate = dynamic(() => import('@/src/components/templates/journal'))
 const JournalDetailTemplate = dynamic(
   () => import('@/src/components/templates/journal/detail')
@@ -101,7 +101,6 @@ export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(detailSlug || params.slug)
 
   const isPreview = slug.includes('preview')
-  const slugToCheck = isPreview ? slug.split('preview/')[1] : slug
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(CONTENT_INFO_QUERY),
     {
