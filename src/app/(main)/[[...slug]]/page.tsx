@@ -19,7 +19,7 @@ import JournalDetailTemplate from '@/src/components/templates/journal/detail'
 import PricingTemplate from '@/src/components/templates/pricing'
 import WorkTemplate from '@/src/components/templates/work'
 import WorkDetailTemplate from '@/src/components/templates/work/detail'
-import AboutTemplate from '@/src/components/templates/pricing'
+import AboutTemplate from '@/src/components/templates/about'
 import ContactTemplate from '@/src/components/templates/contact'
 
 const FloatingContact = lazy(() => import('@/src/components/footer/floating-contact'))	
