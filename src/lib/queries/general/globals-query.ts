@@ -4,6 +4,7 @@ export const GLOBALS_QUERY = gql`
   query Globals($id: ID!) {
     global(id: $id, idType: DATABASE_ID) {
       globals {
+				passwordEnabled
         credits {
           target
           title

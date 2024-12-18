@@ -10,7 +10,7 @@ import { Text } from '../../ui/text'
 
 const JournalItems = ({ posts }: { posts: Post[] }) => {
   const searchParams = useSearchParams()
-  const searchCategory = searchParams.get('category')
+  const searchCategory = searchParams.get('q')
   const router = useRouter()
   return (
     <Section className="overflow-hidden">

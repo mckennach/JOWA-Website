@@ -37,6 +37,7 @@ async function getGlobalData() {
   return global
 }
 
+
 export default async function RootLayout({
   children,
 }: {
@@ -47,15 +48,15 @@ export default async function RootLayout({
 
   const { isEnabled } = draftMode()
   const menuItems = await getData()
-  const globalData = await getGlobalData()
+  const globalData = await getGlobalData();
 
   return (
     <Fragment>
       {isEnabled && <PreviewNotice />}
       <SkipToContent />
-      <Suspense>{isAuth && <Navigation menuItems={menuItems} />}</Suspense>
+      <Suspense>{(isAuth || globalData.globals?.passwordEnabled === false) && <Navigation menuItems={menuItems} />}</Suspense>
       <main className="max-w-full overflow-hidden">{children}</main>
-      {isAuth && <Footer globalData={globalData} />}
+      {(isAuth || globalData.globals?.passwordEnabled === false)  && <Footer globalData={globalData} />}
     </Fragment>
   )
 }

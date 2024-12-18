@@ -13,7 +13,7 @@ export default function ProjectItem({
   index: number
 }) {
   const searchParams = useSearchParams()
-  const searchCategory = searchParams.get('category')
+  const searchCategory = searchParams.get('q')
   const router = useRouter()
   const featuredImage =
     project?.featuredImage?.node ?? project?.projectFields?.heroImage?.node

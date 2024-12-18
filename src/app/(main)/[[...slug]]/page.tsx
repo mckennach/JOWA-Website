@@ -6,10 +6,10 @@ import { Suspense, lazy } from 'react'
 import dynamic from 'next/dynamic'
 // import FloatingContact from '@/components/footer/floating-contact'
 // import PricingCTA from '@/components/footer/pricing-cta'
-import { ContentNode } from '@/gql/graphql'
+import { ContentNode, Global } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
-import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
+import { CONTENT_INFO_QUERY, SEO_QUERY, GLOBALS_QUERY } from '@/lib/queries'
 // import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
 import HomePage from '@/src/components/templates/home';
@@ -26,17 +26,21 @@ const FloatingContact = lazy(() => import('@/src/components/footer/floating-cont
 const PricingCTA = lazy(() => import('@/src/components/footer/pricing-cta'))
 const EmailSignature = lazy(() => import('@/src/components/templates/email-signature'))
 const PageTemplate = lazy(() => import('@/src/components/templates/page'))
-// const JournalTemplate = lazy(() => import('@/src/components/templates/journal'))
-// const JournalDetailTemplate = lazy(
-//   () => import('@/src/components/templates/journal/detail')
-// )
-// const PricingTemplate = lazy(() => import('@/src/components/templates/pricing'))
-// const WorkTemplate = lazy(() => import('@/src/components/templates/work'))
-// const WorkDetailTemplate = lazy(
-//   () => import('@/src/components/templates/work/detail')
-// )
-// const AboutTemplate = lazy(() => import('@/src/components/templates/about'))
-// const ContactTemplate = lazy(() => import('@/src/components/templates/contact'))
+
+async function getGlobalData() {
+  const { global } = await fetchGraphQL<{
+    global: Global
+  }>(print(GLOBALS_QUERY), {
+    id: '357',
+  })
+
+  if (global === null) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return global
+}
+
 
 type Props = {
   params: { slug: string }
@@ -89,9 +93,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth')
+  const isAuth = cookieStore.get('user:auth');
+	const globalData = await getGlobalData();
 
-  if (!isAuth) {
+  if (!isAuth && globalData.globals?.passwordEnabled) {
     return <LoginPage />
   }
 
