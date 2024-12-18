@@ -6,6 +6,7 @@ import { cn } from '@/src/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
+
 export type FilterItem = {
   label: string
   value: string
@@ -39,6 +40,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     const [clickedOpen, setClickedOpen] = useState(false)
     const [activeItem, setActiveItem] = useState<Tag | null>(null)
     const [isOpen, setIsOpen] = useState(true)
+
     const handleSetActiveItem = useCallback(
       (item: Tag | null) => {
         setActiveItem(item)
@@ -53,21 +55,22 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           router.push(pathname)
         }
       },
-      [onChange, router, pathname] // eslint-disable-line react-hooks/exhaustive-deps
+      [onChange, router, pathname, searchParams]
     )
 
-    useEffect(() => {
-      const handleScroll = () => {
-        if (window.scrollY > 500) {
-          if (clickedOpen) return
-          setIsOpen(false)
-        } else {
-          setIsOpen(true)
-        }
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        if (clickedOpen) return
+        setIsOpen(false)
+      } else {
+        setIsOpen(true)
       }
+    }
+
+    useEffect(() => {
       window.addEventListener('scroll', handleScroll)
       return () => window.removeEventListener('scroll', handleScroll)
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [clickedOpen])
 
     useEffect(() => {
       if (searchCategory && items) {
@@ -81,6 +84,17 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       setClickedOpen(false)
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent, callback: () => void) => {
+      if (e.key === 'Enter') {
+        callback()
+      }
+    }
+
+    const handleClick = () => {
+      setIsOpen(!isOpen)
+      setClickedOpen(!isOpen)
+    }
+
     useOnClickOutside(containerRef, handleClose)
 
     return (
@@ -88,17 +102,9 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
         <div className="flex items-baseline" ref={containerRef}>
           <div
             className="flex basis-1/2 cursor-pointer border-b lg:basis-[12.5%]"
-            onClick={() => {
-              setIsOpen(!isOpen)
-              setClickedOpen(!isOpen)
-            }}
+            onClick={handleClick}
             tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                setIsOpen(!isOpen)
-                setClickedOpen(!isOpen)
-              }
-            }}
+            onKeyDown={(e) => handleKeyDown(e, handleClick)}
             role="button"
           >
             <Text type="label" className="">
@@ -115,14 +121,8 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               className={cn('flex cursor-pointer border-b')}
               tabIndex={0}
               role="button"
-              onClick={() => {
-                setIsOpen(true)
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  setIsOpen(true)
-                }
-              }}
+              onClick={() => setIsOpen(true)}
+              onKeyDown={(e) => handleKeyDown(e, () => setIsOpen(true))}
             >
               <Text
                 className={cn(
@@ -146,11 +146,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               tabIndex={0}
               role="button"
               onClick={() => handleSetActiveItem(null)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleSetActiveItem(null)
-                }
-              }}
+              onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(null))}
             >
               <Text
                 className={cn(
@@ -163,30 +159,24 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               </Text>
             </div>
             {items &&
-              items.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    tabIndex={0}
-                    role="button"
-                    className={cn(
-                      'flex cursor-pointer border-b',
-                      !isOpen && 'invisible opacity-0',
-                      activeItem === item && isOpen && 'text-accent-foreground'
-                    )}
-                    onClick={() => handleSetActiveItem(item)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleSetActiveItem(item)
-                      }
-                    }}
-                  >
-                    <Text type="label" className="hover:text-accent-foreground">
-                      {item.name}
-                    </Text>
-                  </div>
-                )
-              })}
+              items.map((item, index) => (
+                <div
+                  key={index}
+                  tabIndex={0}
+                  role="button"
+                  className={cn(
+                    'flex cursor-pointer border-b',
+                    !isOpen && 'invisible opacity-0',
+                    activeItem === item && isOpen && 'text-accent-foreground'
+                  )}
+                  onClick={() => handleSetActiveItem(item)}
+                  onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(item))}
+                >
+                  <Text type="label" className="hover:text-accent-foreground">
+                    {item.name}
+                  </Text>
+                </div>
+              ))}
           </div>
         </div>
       </div>
