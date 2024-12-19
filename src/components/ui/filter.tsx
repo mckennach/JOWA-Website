@@ -1,6 +1,7 @@
 'use client'
 
 import { Text } from '@/src/components/ui/text'
+import Link from 'next/link'
 import { Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -36,7 +37,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     const searchParams = useSearchParams()
     const searchCategory = searchParams.get('q')
     const router = useRouter()
-    const pathname = usePathname()
+    const pathname = usePathname();
     const [clickedOpen, setClickedOpen] = useState(false)
     const [activeItem, setActiveItem] = useState<Tag | null>(null)
     const [isOpen, setIsOpen] = useState(true)
@@ -45,13 +46,14 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       (item: Tag | null) => {
         setActiveItem(item)
         setIsOpen(false)
-        onChange(item)
+        onChange(item);
+				const params = new URLSearchParams(searchParams.toString())
         if (item) {
           const slug = item.slug
-          const params = new URLSearchParams(searchParams.toString())
           slug && params.set('q', slug)
           router.push(`${pathname}?${params.toString()}`)
         } else {
+					params.delete('q');
           router.push(pathname)
         }
       },
@@ -141,11 +143,18 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               !isOpen && 'invisible hidden opacity-0'
             )}
           >
-            <div
+            <Link
+							href={pathname}
               className={cn('flex border-b')}
               tabIndex={0}
               role="button"
-              onClick={() => handleSetActiveItem(null)}
+							onMouseOver={() => {
+								router.prefetch(pathname);
+							}}
+              onClick={(e) => {
+								e.preventDefault();
+								handleSetActiveItem(null)
+							}}
               onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(null))}
             >
               <Text
@@ -157,10 +166,11 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
               >
                 All
               </Text>
-            </div>
+            </Link>
             {items &&
               items.map((item, index) => (
-                <div
+                <Link
+									href={`${pathname}?q=${item.slug}`}
                   key={index}
                   tabIndex={0}
                   role="button"
@@ -169,13 +179,20 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
                     !isOpen && 'invisible opacity-0',
                     activeItem === item && isOpen && 'text-accent-foreground'
                   )}
-                  onClick={() => handleSetActiveItem(item)}
+									onMouseOver={() => {
+										router.prefetch(`${pathname}?q=${item.slug}`);
+									}}
+                  onClick={(e) => {
+										e.preventDefault();
+										handleSetActiveItem(item)
+									}}
                   onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(item))}
+
                 >
                   <Text type="label" className="hover:text-accent-foreground">
                     {item.name}
                   </Text>
-                </div>
+                </Link>
               ))}
           </div>
         </div>

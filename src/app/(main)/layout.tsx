@@ -44,7 +44,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth')
+  const isAuth = cookieStore.get('user:auth');
+  const loaded = cookieStore.get('animation-loaded')
 
   const { isEnabled } = draftMode()
   const menuItems = await getData()
@@ -54,9 +55,9 @@ export default async function RootLayout({
     <Fragment>
       {isEnabled && <PreviewNotice />}
       <SkipToContent />
-      <Suspense>{(isAuth || globalData.globals?.passwordEnabled === false) && <Navigation menuItems={menuItems} />}</Suspense>
+      <Suspense>{(isAuth || globalData.globals?.passwordEnabled === false) && loaded && <Navigation menuItems={menuItems} />}</Suspense>
       <main className="max-w-full overflow-hidden">{children}</main>
-      {(isAuth || globalData.globals?.passwordEnabled === false)  && <Footer globalData={globalData} />}
+      {(isAuth || globalData.globals?.passwordEnabled === false) && loaded  && <Footer globalData={globalData} />}
     </Fragment>
   )
 }

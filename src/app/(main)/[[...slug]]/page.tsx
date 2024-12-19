@@ -95,7 +95,7 @@ export default async function Page({ params }: Props) {
   const cookieStore = await cookies()
   const isAuth = cookieStore.get('user:auth');
 	const globalData = await getGlobalData();
-
+	
   if (!isAuth && globalData.globals?.passwordEnabled) {
     return <LoginPage />
   }
