@@ -20,10 +20,10 @@ export const FEATURED_PROJECTS_QUERY = gql`
           }
           featuredImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl(size: _1536X1536)
               altText
               mediaItemUrl
-              sizes(size: MEDIUM_LARGE)
+              sizes(size: _1536X1536)
               srcSet(size: _1536X1536)
               mimeType
             }
@@ -64,11 +64,11 @@ export const LOADING_PROJECTS_QUERY = gql`
           }
           featuredImage {
             node {
-              sourceUrl(size: MEDIUM)
+              sourceUrl(size: LARGE)
               altText
               mediaItemUrl
-              sizes(size: MEDIUM)
-              srcSet(size: MEDIUM)
+              sizes(size: LARGE)
+              srcSet(size: LARGE)
               mimeType
             }
           }
