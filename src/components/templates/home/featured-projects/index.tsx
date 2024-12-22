@@ -1,6 +1,7 @@
 'use client'
 
 // import dynamic from 'next/dynamic'
+import { useQuery } from '@apollo/client'
 import { Container, Section } from '@/components/craft'
 import { Image } from '@/src/components/ui/image'
 import { Text } from '@/src/components/ui/text'
@@ -12,9 +13,14 @@ import _gsap from 'gsap/all'
 import { useRouter } from 'next/navigation'
 import { forwardRef, useRef, useState } from 'react'
 import { useIntersectionObserver } from 'usehooks-ts'
+import {
+  FEATURED_PROJECTS_QUERY,
+} from '@/src/lib/queries/work/featured-projects-query'
+
 type FeaturedProjects = {
   projects: Project[]
-  loadingProjects: Project[]
+  loadingProjects: Project[];
+	projectIds?: string[];
   noLoading?: boolean
 }
 

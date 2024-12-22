@@ -1,4 +1,4 @@
-import { GsapProvider, ScrollProvider, ThemeProvider } from '@/src/context'
+import { GsapProvider, ScrollProvider, ThemeProvider, ApolloWrapper } from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
@@ -32,9 +32,11 @@ export default async function RootLayout({
       >
         <CookiesProvider>
           <GsapProvider>
-            <ScrollProvider>
-              <ThemeProvider>{children}</ThemeProvider>
-            </ScrollProvider>
+						<ApolloWrapper>
+							<ScrollProvider>
+								<ThemeProvider>{children}</ThemeProvider>
+							</ScrollProvider>
+						</ApolloWrapper>
           </GsapProvider>
         </CookiesProvider>
       </body>
