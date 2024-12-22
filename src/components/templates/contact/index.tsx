@@ -7,7 +7,7 @@ import { Text } from '../../ui/text'
 import { TemplateProps } from '../page'
 import ContactForm from './contact-form'
 import ContactInfo from './contact-info'
-import { CONTACT_PAGE_QUERY } from './contact-query'
+import { CONTACT_PAGE_QUERY } from '../../../lib/queries/pages/contact-query'
 
 export default async function ContactTemplate({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page }>(

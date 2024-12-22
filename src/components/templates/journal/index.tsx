@@ -8,7 +8,7 @@ import { Filter } from '../../ui/filter'
 import { Text } from '../../ui/text'
 import { TemplateProps } from '../page'
 import { JournalItems } from './journal-items'
-import { JOURNALS_QUERY } from './journal-query'
+import { JOURNALS_QUERY } from '../../../lib/queries/journal/journal-query'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
     print(JOURNALS_QUERY),

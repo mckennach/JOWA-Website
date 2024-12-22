@@ -8,6 +8,7 @@ import { GLOBALS_QUERY, MENU_ITEMS_QUERY } from '@/src/lib/queries'
 import { print } from 'graphql/language/printer'
 import { cookies, draftMode } from 'next/headers'
 import { Fragment, Suspense } from 'react'
+export const dynamic = 'force-dynamic';
 
 async function getData() {
   const { menuItems } = await fetchGraphQL<{

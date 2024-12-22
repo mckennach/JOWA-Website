@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import CustomIcons from '../custom-icons'
 import { MobileNavigation } from './mobile-navigation'
+import async from '../../app/(main)/[[...slug]]/page';
 
 export default function Navigation({
   menuItems,

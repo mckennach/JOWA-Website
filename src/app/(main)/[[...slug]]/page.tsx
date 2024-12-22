@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense, lazy } from 'react'
 import dynamic from 'next/dynamic'
+import { Fragment } from 'react'
 // import FloatingContact from '@/components/footer/floating-contact'
 // import PricingCTA from '@/components/footer/pricing-cta'
 import { ContentNode, Global } from '@/gql/graphql'
@@ -12,20 +13,18 @@ import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { CONTENT_INFO_QUERY, SEO_QUERY, GLOBALS_QUERY } from '@/lib/queries'
 // import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
-import HomePage from '@/src/components/templates/home';
-import LoginPage from '@/src/components/templates/login';
-import JournalTemplate from '@/src/components/templates/journal'
-import JournalDetailTemplate from '@/src/components/templates/journal/detail'
-import PricingTemplate from '@/src/components/templates/pricing'
-import WorkTemplate from '@/src/components/templates/work'
-import WorkDetailTemplate from '@/src/components/templates/work/detail'
-import AboutTemplate from '@/src/components/templates/about'
-import ContactTemplate from '@/src/components/templates/contact'
 
-const FloatingContact = lazy(() => import('@/src/components/footer/floating-contact'))	
-const PricingCTA = lazy(() => import('@/src/components/footer/pricing-cta'))
-const EmailSignature = lazy(() => import('@/src/components/templates/email-signature'))
-const PageTemplate = lazy(() => import('@/src/components/templates/page'))
+const HomePage = dynamic(() => import('@/src/components/templates/home'))
+const LoginPage = dynamic(() => import('@/src/components/templates/login'))
+const JournalTemplate = dynamic(() => import('@/src/components/templates/journal'))
+const JournalDetailTemplate = dynamic(() => import('@/src/components/templates/journal/detail'))
+const PricingTemplate = dynamic(() => import('@/src/components/templates/pricing'))
+const WorkTemplate = dynamic(() => import('@/src/components/templates/work'))
+const WorkDetailTemplate = dynamic(() => import('@/src/components/templates/work/detail'))
+const AboutTemplate = dynamic(() => import('@/src/components/templates/about'))
+const ContactTemplate = dynamic(() => import('@/src/components/templates/contact'))
+const EmailSignature = dynamic(() => import('@/src/components/templates/email-signature'))
+const PageTemplate = dynamic(() => import('@/src/components/templates/page'))
 
 async function getGlobalData() {
   const { global } = await fetchGraphQL<{
@@ -121,75 +120,76 @@ export default async function Page({ params }: Props) {
     }
   )
 
-  if (!contentNode) return notFound()
+  if (!contentNode) return notFound();
 
+
+
+	
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <HomePage node={contentNode} />
-            <PricingCTA />
-            <FloatingContact />
-          </Suspense>
+          </div>
         )
       case 'work':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <WorkTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
       case 'journal':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <JournalTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
       case 'about':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <AboutTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
       case 'contact':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <ContactTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
       case 'pricing':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <PricingTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
       case 'email-signature':
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <EmailSignature />
-          </Suspense>
+          </div>
         )
       default:
         return (
-          <Suspense fallback={<div className="h-screen w-screen" />}>
+          <div className="min-h-screen">
             <PageTemplate node={contentNode} />
-          </Suspense>
+          </div>
         )
     }
   } else if (contentNode.contentTypeName === 'work') {
     return (
-      <Suspense fallback={<div className="h-screen w-screen" />}>
+      <div className="min-h-screen">
         <WorkDetailTemplate node={contentNode} />
-        <PricingCTA />
-      </Suspense>
+      </div>
     )
   } else if (contentNode.contentTypeName === 'post') {
     return (
-      <Suspense fallback={<div className="h-screen w-screen" />}>
+      <div className="min-h-screen">
         <JournalDetailTemplate node={contentNode} />
-      </Suspense>
+      </div>
     )
   }
 
   return null
 }
+

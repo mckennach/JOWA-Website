@@ -1,5 +1,5 @@
 import { cookies, draftMode } from 'next/headers'
-
+import { unstable_cache } from 'next/cache'
 export async function fetchGraphQL<T = any>(
   query: string,
   variables?: { [key: string]: any },
@@ -34,7 +34,7 @@ export async function fetchGraphQL<T = any>(
           ...headers,
         },
         body,
-        cache: 'no-cache',
+        cache: 'default',
         next: {
           tags: ['wordpress'],
         },

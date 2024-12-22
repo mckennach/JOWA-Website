@@ -10,6 +10,11 @@ const nextConfig = {
       },
     ],
   },
+	experimental: {
+    turbo: {
+      // ...
+    },
+  },
   async headers() {
     return [
       {
