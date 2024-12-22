@@ -50,11 +50,11 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
 				const params = new URLSearchParams(searchParams.toString())
         if (item) {
           const slug = item.slug
-          slug && params.set('q', slug)
-          router.push(`${pathname}?${params.toString()}`)
+					let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + slug;
+					window.history.pushState({path:newurl},'',newurl);
         } else {
-					params.delete('q');
-          router.push(pathname)
+					let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+					window.history.pushState({path:newurl},'',newurl);
         }
       },
       [onChange, router, pathname, searchParams]
