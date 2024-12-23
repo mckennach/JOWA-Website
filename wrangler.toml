@@ -1,3 +1,2 @@
- [build.upload]
 	compatibility_date = "2024-12-23" # Or a more recent date
-	compatibility_flags = ["nodejs_compat"]
+	compatibility_flags = [ "nodejs_compat" ]
