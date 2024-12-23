@@ -3,6 +3,7 @@ import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cn } from '../lib/utils'
+import { cookies } from 'next/headers'
 export const runtime = 'edge';
 
 const maisonNeue = localFont({
@@ -22,13 +23,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+	const cookieStore = await cookies()
+  const loaded = cookieStore.get('animation-loaded')
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           maisonNeueExt.className,
           maisonNeueExt.variable,
-          maisonNeue.variable
+          maisonNeue.variable,
+					loaded ? '' : 'overflow-hidden'
         )}
       >
         <CookiesProvider>
