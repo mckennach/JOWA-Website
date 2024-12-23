@@ -56,9 +56,9 @@ export default async function RootLayout({
     <Fragment>
       {isEnabled && <PreviewNotice />}
       <SkipToContent />
-      <Suspense>{(isAuth || globalData.globals?.passwordEnabled === false) && loaded && <Navigation menuItems={menuItems} />}</Suspense>
+      <Suspense>{(isAuth || globalData.globals?.passwordEnabled === false) && <Navigation menuItems={menuItems} />}</Suspense>
       <main className="max-w-full overflow-hidden">{children}</main>
-      {(isAuth || globalData.globals?.passwordEnabled === false) && loaded  && <Footer globalData={globalData} />}
+      {(isAuth || globalData.globals?.passwordEnabled === false) && <Footer globalData={globalData} />}
     </Fragment>
   )
 }
