@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export const revalidate = 0
-
+export const runtime = 'edge';
 async function getTotalCounts() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`

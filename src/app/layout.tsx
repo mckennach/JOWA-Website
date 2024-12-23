@@ -3,6 +3,7 @@ import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cn } from '../lib/utils'
+export const runtime = 'edge';
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
