@@ -129,7 +129,7 @@ export default function Footer({ globalData }: { globalData: Global }) {
                   <Link
                     href={
                       credits?.title ??
-                      'https://bio.site/supersensitivestudios?fbclid=PAZXh0bgNhZW0CMTEAAaYVHhacjDkQyvQldO_86QXWuiVOPSJFHHXXvomcj-iFU5t721kmiATzBio_aem_-KroG2Pdc1qxCOkcKiGWOw'
+                      'https://www.instagram.com/supersensitivestudios/'
                     }
                     target="_blank"
                     rel="noreferrer"
