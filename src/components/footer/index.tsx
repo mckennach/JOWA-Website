@@ -128,7 +128,7 @@ export default function Footer({ globalData }: { globalData: Global }) {
                   Site by{' '}
                   <Link
                     href={
-                      credits?.title ??
+                      credits?.url ??
                       'https://www.instagram.com/supersensitivestudios/'
                     }
                     target="_blank"
