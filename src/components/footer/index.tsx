@@ -127,10 +127,7 @@ export default function Footer({ globalData }: { globalData: Global }) {
                 <Text type="caption" className="text-muted-foreground/25">
                   Site by{' '}
                   <Link
-                    href={
-                      credits?.url ??
-                      'https://www.instagram.com/supersensitivestudios/'
-                    }
+                    href="https://www.instagram.com/supersensitivestudios/"
                     target="_blank"
                     rel="noreferrer"
                   >
