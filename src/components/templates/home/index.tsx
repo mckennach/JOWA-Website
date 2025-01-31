@@ -11,7 +11,6 @@ import { HOME_PAGE_QUERY } from '../../../lib/queries/pages/home-query'
 import FloatingContact from '../../footer/floating-contact'
 import PricingCTA from '../../footer/pricing-cta'
 import { TemplateProps } from '../page'
-import Loading from './loading'
 
 const HomeAbout = lazy(() => import('./home-about'))
 const FeaturedProjects = lazy(() => import('./featured-projects'))

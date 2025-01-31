@@ -10,7 +10,7 @@ import _gsap from 'gsap/all'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
-import useLoading from '../loading/useLoading'
+import useLoading from '../../load-screen/useLoading'
 
 type HomeAboutProps = {
   data: HomeHomeContent
@@ -24,16 +24,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const contentRef = useRef(null)
   const image = data?.image?.node
   const { hasLoaded } = useLoading()
-  const gsap = _gsap
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     _ScrollTrigger.refresh()
-  //   }
-  //   window.addEventListener('resize', handleResize)
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize)
-  //   }
-  // }, [])
+  const gsap = _gsap;
 
   useGSAP(
     () => {
