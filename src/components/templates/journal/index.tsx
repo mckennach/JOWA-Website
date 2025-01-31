@@ -3,19 +3,19 @@ import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
 import { cn } from '@/src/lib/utils'
 import { print } from 'graphql'
+import { JOURNALS_QUERY } from '../../../lib/queries/journal/journal-query'
 import { Container, Section } from '../../craft'
 import { Filter } from '../../ui/filter'
 import { Text } from '../../ui/text'
 import { TemplateProps } from '../page'
 import { JournalItems } from './journal-items'
-import { JOURNALS_QUERY } from '../../../lib/queries/journal/journal-query'
 export default async function JournalTemplate({ node }: TemplateProps) {
   const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
-    print(JOURNALS_QUERY),
+    print(JOURNALS_QUERY)
   )
 
   const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
-    print(TAGS_QUERY),
+    print(TAGS_QUERY)
   )
 
   const filterItems = tags.nodes.filter(

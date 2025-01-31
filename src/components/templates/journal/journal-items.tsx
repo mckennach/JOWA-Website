@@ -7,7 +7,6 @@ import { cn, imageLoader } from '../../../lib/utils'
 import { Container, Section } from '../../craft'
 import { Text } from '../../ui/text'
 
-
 const JournalItems = ({ posts }: { posts: Post[] }) => {
   const searchParams = useSearchParams()
   const searchCategory = searchParams.get('q')
@@ -33,7 +32,7 @@ const JournalItems = ({ posts }: { posts: Post[] }) => {
 }
 
 const JournalItem = ({ post }: { post: Post }) => {
-	const Image = _Image;
+  const Image = _Image
   const router = useRouter()
   const date = new Date(post?.date as string)
   const dateString = date
@@ -63,7 +62,7 @@ const JournalItem = ({ post }: { post: Post }) => {
             style={{
               objectFit: 'cover',
             }}
-						sizes={post?.postData?.featuredImage?.node?.sizes ?? ''}
+            sizes={post?.postData?.featuredImage?.node?.sizes ?? ''}
             loader={imageLoader}
           />
         </div>

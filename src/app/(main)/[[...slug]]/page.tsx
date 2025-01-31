@@ -1,29 +1,39 @@
 import { setSeoData } from '@/lib/api/seoData'
 import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { Suspense, lazy } from 'react'
 import dynamic from 'next/dynamic'
-import { Fragment } from 'react'
+import { notFound } from 'next/navigation'
 // import FloatingContact from '@/components/footer/floating-contact'
 // import PricingCTA from '@/components/footer/pricing-cta'
 import { ContentNode, Global } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
-import { CONTENT_INFO_QUERY, SEO_QUERY, GLOBALS_QUERY } from '@/lib/queries'
+import { CONTENT_INFO_QUERY, GLOBALS_QUERY, SEO_QUERY } from '@/lib/queries'
 // import EmailSignature from '@/src/components/templates/email-signature'
 import { cookies } from 'next/headers'
 
 const HomePage = dynamic(() => import('@/src/components/templates/home'))
 const LoginPage = dynamic(() => import('@/src/components/templates/login'))
-const JournalTemplate = dynamic(() => import('@/src/components/templates/journal'))
-const JournalDetailTemplate = dynamic(() => import('@/src/components/templates/journal/detail'))
-const PricingTemplate = dynamic(() => import('@/src/components/templates/pricing'))
+const JournalTemplate = dynamic(
+  () => import('@/src/components/templates/journal')
+)
+const JournalDetailTemplate = dynamic(
+  () => import('@/src/components/templates/journal/detail')
+)
+const PricingTemplate = dynamic(
+  () => import('@/src/components/templates/pricing')
+)
 const WorkTemplate = dynamic(() => import('@/src/components/templates/work'))
-const WorkDetailTemplate = dynamic(() => import('@/src/components/templates/work/detail'))
+const WorkDetailTemplate = dynamic(
+  () => import('@/src/components/templates/work/detail')
+)
 const AboutTemplate = dynamic(() => import('@/src/components/templates/about'))
-const ContactTemplate = dynamic(() => import('@/src/components/templates/contact'))
-const EmailSignature = dynamic(() => import('@/src/components/templates/email-signature'))
+const ContactTemplate = dynamic(
+  () => import('@/src/components/templates/contact')
+)
+const EmailSignature = dynamic(
+  () => import('@/src/components/templates/email-signature')
+)
 const PageTemplate = dynamic(() => import('@/src/components/templates/page'))
 
 async function getGlobalData() {
@@ -39,7 +49,6 @@ async function getGlobalData() {
 
   return global
 }
-
 
 type Props = {
   params: { slug: string }
@@ -92,9 +101,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const cookieStore = await cookies()
-  const isAuth = cookieStore.get('user:auth');
-	const globalData = await getGlobalData();
-	
+  const isAuth = cookieStore.get('user:auth')
+  const globalData = await getGlobalData()
+
   if (!isAuth && globalData.globals?.passwordEnabled) {
     return <LoginPage />
   }
@@ -120,11 +129,8 @@ export default async function Page({ params }: Props) {
     }
   )
 
-  if (!contentNode) return notFound();
+  if (!contentNode) return notFound()
 
-
-
-	
   if (contentNode.contentTypeName === 'page') {
     switch (contentNode.slug) {
       case 'home-2':
@@ -192,4 +198,3 @@ export default async function Page({ params }: Props) {
 
   return null
 }
-

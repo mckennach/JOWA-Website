@@ -1,8 +1,11 @@
 import { Post, RootQueryToPostConnection } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { print } from 'graphql'
+import {
+  JOURNAL_QUERY,
+  JOURNALS_QUERY,
+} from '../../../../lib/queries/journal/journal-query'
 import { TemplateProps } from '../../page'
-import { JOURNAL_QUERY, JOURNALS_QUERY } from '../../../../lib/queries/journal/journal-query'
 import JournalHero from './hero'
 import NextPost from './next-post'
 import JournalPostContent from './post-content'

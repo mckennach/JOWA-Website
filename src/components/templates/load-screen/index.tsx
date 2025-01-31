@@ -1,22 +1,27 @@
 'use client'
-import { Project } from '@/src/gql/graphql'
+
+import { AcfMediaItemConnectionEdge } from '@/src/gql/graphql'
+import { Maybe } from '../../../gql/graphql'
+import CustomIcons from '../../custom-icons'
 import { createCookie } from '@/src/lib/api/actions'
+import { Container } from '../../craft'
 import { cn, imageLoader } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { gsap, ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
+// import { Project } from '@/src/gql/graphql'
+import { gsap, ScrollTrigger } from 'gsap/all'
 import { useRef, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { Container } from '../../../craft'
-import CustomIcons from '../../../custom-icons'
 import useLoading from './useLoading'
 gsap.registerPlugin(ScrollTrigger)
 
-interface LoadingProps {
-  project: Project
-}
-
-export default function Loading({ project }: LoadingProps) {
+export default function LoadingScreen({
+  text,
+  image,
+}: {
+  text?: Maybe<string>
+  image?: Maybe<AcfMediaItemConnectionEdge>
+}) {
   const mm = gsap.matchMedia()
   const { hasLoaded, setHasLoaded } = useLoading()
   const [hasLoadedInternal, setHasLoadedInternal] = useState(false)
@@ -28,9 +33,9 @@ export default function Loading({ project }: LoadingProps) {
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const logoRef = useRef(null)
-  const logoTextRef = useRef(null)
+  const logoTextRef = useRef(null);
 
-  useGSAP(
+	useGSAP(
     () => {
       if (containerRef.current === null) return
 
@@ -112,7 +117,6 @@ export default function Loading({ project }: LoadingProps) {
     }
   )
 
-
   return (
     <div
       className={cn(
@@ -144,7 +148,7 @@ export default function Loading({ project }: LoadingProps) {
           ref={textRef}
         >
           <p className="font-maisonNeue text-[32px] text-cream">
-            Where your vision unfolds.
+            {text ?? 'Where your vision unfolds.'}
           </p>
         </div>
       </Container>
@@ -153,8 +157,8 @@ export default function Loading({ project }: LoadingProps) {
         ref={imageRef}
       >
         <Image
-          src={project?.projectFields?.featuredImage?.node?.sourceUrl ?? ''}
-          alt="alt"
+          src={image?.node?.sourceUrl ?? ''}
+          alt={image?.node?.altText ?? ''}
           fill={true}
           priority={true}
           style={{

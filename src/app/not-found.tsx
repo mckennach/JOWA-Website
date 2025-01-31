@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { Container, Section } from '../components/craft'
 
 const notFoundPageWordPressId = 28
-export const runtime = 'edge';
+export const runtime = 'edge'
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(SEO_QUERY),

@@ -1,10 +1,15 @@
-import { GsapProvider, ScrollProvider, ThemeProvider, ApolloWrapper } from '@/src/context'
+import {
+  ApolloWrapper,
+  GsapProvider,
+  ScrollProvider,
+  ThemeProvider,
+} from '@/src/context'
 import '@/styles/globals.min.css'
 import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
-import { cn } from '../lib/utils'
 import { cookies } from 'next/headers'
-export const runtime = 'edge';
+import { cn } from '../lib/utils'
+export const runtime = 'edge'
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
@@ -23,7 +28,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-	const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const loaded = cookieStore.get('animation-loaded')
   return (
     <html lang="en" suppressHydrationWarning>
@@ -32,16 +37,16 @@ export default async function RootLayout({
           maisonNeueExt.className,
           maisonNeueExt.variable,
           maisonNeue.variable,
-					loaded ? '' : 'overflow-hidden'
+          loaded ? '' : 'overflow-hidden'
         )}
       >
         <CookiesProvider>
           <GsapProvider>
-						<ApolloWrapper>
-							<ScrollProvider>
-								<ThemeProvider>{children}</ThemeProvider>
-							</ScrollProvider>
-						</ApolloWrapper>
+            <ApolloWrapper>
+              <ScrollProvider>
+                <ThemeProvider>{children}</ThemeProvider>
+              </ScrollProvider>
+            </ApolloWrapper>
           </GsapProvider>
         </CookiesProvider>
       </body>

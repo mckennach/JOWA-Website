@@ -7,11 +7,11 @@ import {
 import { print } from 'graphql/language/printer'
 import { cookies } from 'next/headers'
 import { lazy } from 'react'
-import { TemplateProps } from '../page'
 import { HOME_PAGE_QUERY } from '../../../lib/queries/pages/home-query'
-import Loading from './loading'
-import PricingCTA from '../../footer/pricing-cta'
 import FloatingContact from '../../footer/floating-contact'
+import PricingCTA from '../../footer/pricing-cta'
+import { TemplateProps } from '../page'
+import Loading from './loading'
 
 const HomeAbout = lazy(() => import('./home-about'))
 const FeaturedProjects = lazy(() => import('./featured-projects'))
@@ -43,10 +43,9 @@ export default async function HomePage({ node }: TemplateProps) {
 
   return (
     <>
-      {loaded === undefined && <Loading project={projects?.nodes[0]} />}
       {featuredProjects?.nodes && featuredProjects?.nodes.length > 0 && (
         <FeaturedProjects
-					projectIds={projectIds}
+          projectIds={projectIds}
           projects={projects?.nodes}
           loadingProjects={loadingProjects?.nodes}
         />
@@ -54,8 +53,8 @@ export default async function HomePage({ node }: TemplateProps) {
       {homeContent && (
         <HomeAbout data={homeContent} noLoading={loaded !== undefined} />
       )}
-			<PricingCTA />
-			<FloatingContact />
+      <PricingCTA />
+      <FloatingContact />
     </>
   )
 }

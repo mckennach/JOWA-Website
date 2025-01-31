@@ -2,12 +2,12 @@ import { Global, Page } from '@/src/gql/graphql'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { GLOBALS_QUERY } from '@/src/lib/queries'
 import { print } from 'graphql'
+import { CONTACT_PAGE_QUERY } from '../../../lib/queries/pages/contact-query'
 import { Container, Section } from '../../craft'
 import { Text } from '../../ui/text'
 import { TemplateProps } from '../page'
 import ContactForm from './contact-form'
 import ContactInfo from './contact-info'
-import { CONTACT_PAGE_QUERY } from '../../../lib/queries/pages/contact-query'
 
 export default async function ContactTemplate({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page }>(

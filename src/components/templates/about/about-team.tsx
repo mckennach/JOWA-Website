@@ -1,13 +1,12 @@
 'use client'
 
+import { TeamMember } from '@/gql/graphql'
 import { useGSAP } from '@gsap/react'
+import gql from 'graphql-tag'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
-import { useEffect, useRef } from 'react'
-
-import { TeamMember } from '@/gql/graphql'
-import gql from 'graphql-tag'
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 import { imageLoader } from '../../../lib/utils'
 import { Container, Section } from '../../craft'
 import { Text } from '../../ui/text'

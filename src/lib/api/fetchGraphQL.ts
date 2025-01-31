@@ -1,5 +1,4 @@
 import { cookies, draftMode } from 'next/headers'
-import { unstable_cache } from 'next/cache'
 export async function fetchGraphQL<T = any>(
   query: string,
   variables?: { [key: string]: any },

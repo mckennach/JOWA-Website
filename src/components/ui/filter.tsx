@@ -1,9 +1,9 @@
 'use client'
 
 import { Text } from '@/src/components/ui/text'
-import Link from 'next/link'
 import { Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
+import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
@@ -37,7 +37,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     const searchParams = useSearchParams()
     const searchCategory = searchParams.get('q')
     const router = useRouter()
-    const pathname = usePathname();
+    const pathname = usePathname()
     const [clickedOpen, setClickedOpen] = useState(false)
     const [activeItem, setActiveItem] = useState<Tag | null>(null)
     const [isOpen, setIsOpen] = useState(true)
@@ -46,15 +46,25 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       (item: Tag | null) => {
         setActiveItem(item)
         setIsOpen(false)
-        onChange(item);
-				const params = new URLSearchParams(searchParams.toString())
+        onChange(item)
+        const params = new URLSearchParams(searchParams.toString())
         if (item) {
           const slug = item.slug
-					let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + slug;
-					window.history.pushState({path:newurl},'',newurl);
+          let newurl =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname +
+            '?q=' +
+            slug
+          window.history.pushState({ path: newurl }, '', newurl)
         } else {
-					let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-					window.history.pushState({path:newurl},'',newurl);
+          let newurl =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname
+          window.history.pushState({ path: newurl }, '', newurl)
         }
       },
       [onChange, router, pathname, searchParams]
@@ -144,18 +154,20 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
             )}
           >
             <Link
-							href={pathname}
+              href={pathname}
               className={cn('flex border-b')}
               tabIndex={0}
               role="button"
-							onMouseOver={() => {
-								router.prefetch(pathname);
-							}}
+              onMouseOver={() => {
+                router.prefetch(pathname)
+              }}
               onClick={(e) => {
-								e.preventDefault();
-								handleSetActiveItem(null)
-							}}
-              onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(null))}
+                e.preventDefault()
+                handleSetActiveItem(null)
+              }}
+              onKeyDown={(e) =>
+                handleKeyDown(e, () => handleSetActiveItem(null))
+              }
             >
               <Text
                 className={cn(
@@ -170,7 +182,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
             {items &&
               items.map((item, index) => (
                 <Link
-									href={`${pathname}?q=${item.slug}`}
+                  href={`${pathname}?q=${item.slug}`}
                   key={index}
                   tabIndex={0}
                   role="button"
@@ -179,15 +191,16 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
                     !isOpen && 'invisible opacity-0',
                     activeItem === item && isOpen && 'text-accent-foreground'
                   )}
-									onMouseOver={() => {
-										router.prefetch(`${pathname}?q=${item.slug}`);
-									}}
+                  onMouseOver={() => {
+                    router.prefetch(`${pathname}?q=${item.slug}`)
+                  }}
                   onClick={(e) => {
-										e.preventDefault();
-										handleSetActiveItem(item)
-									}}
-                  onKeyDown={(e) => handleKeyDown(e, () => handleSetActiveItem(item))}
-
+                    e.preventDefault()
+                    handleSetActiveItem(item)
+                  }}
+                  onKeyDown={(e) =>
+                    handleKeyDown(e, () => handleSetActiveItem(item))
+                  }
                 >
                   <Text type="label" className="hover:text-accent-foreground">
                     {item.name}

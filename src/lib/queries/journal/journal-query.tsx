@@ -28,8 +28,8 @@ export const JOURNALS_QUERY = gql`
           featuredImage {
             node {
               mediaItemUrl
-							sourceUrl(size: MEDIUM_LARGE)
-							sizes(size: MEDIUM_LARGE)
+              sourceUrl(size: MEDIUM_LARGE)
+              sizes(size: MEDIUM_LARGE)
               altText
             }
           }

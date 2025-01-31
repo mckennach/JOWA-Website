@@ -1,4 +1,5 @@
 import { WORK_DETAIL_QUERY, WORK_QUERY } from '@/lib/queries'
+import PricingCTA from '@/src/components/footer/pricing-cta'
 import {
   ContentNode,
   Project,
@@ -10,7 +11,6 @@ import NextPost from './next-post'
 import ProjectContent from './project-content'
 import ProjectHero from './project-hero'
 import ProjectInfo from './project-info'
-import PricingCTA from '@/src/components/footer/pricing-cta'
 interface TemplateProps {
   node: ContentNode
 }
@@ -34,7 +34,7 @@ export default async function WorkDetailTemplate({ node }: TemplateProps) {
       <ProjectInfo project={project} />
       <ProjectContent project={project} />
       <NextPost projects={projects} currentId={project.id} />
-			<PricingCTA />
+      <PricingCTA />
     </>
   )
 }
