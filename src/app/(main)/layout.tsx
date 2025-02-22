@@ -5,6 +5,7 @@ import SkipToContent from '@/src/components/navigation/skip-to-content'
 import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
 import LoadingScreen from '@/src/components/templates/load-screen'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+
 import {
   GLOBALS_QUERY,
   LOAD_SCREEN_QUERY,
@@ -59,6 +60,7 @@ async function getLoadScreenData() {
 
 export default async function RootLayout({
   children,
+  ...props
 }: {
   children: React.ReactNode
 }) {
@@ -70,7 +72,6 @@ export default async function RootLayout({
   const menuItems = await getData()
   const globalData = await getGlobalData()
   const loadScreenData = await getLoadScreenData()
-
   if (!isLoaded && isAuth) {
     return (
       <main>

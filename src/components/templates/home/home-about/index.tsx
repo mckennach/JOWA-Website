@@ -24,7 +24,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
   const contentRef = useRef(null)
   const image = data?.image?.node
   const { hasLoaded } = useLoading()
-  const gsap = _gsap;
+  const gsap = _gsap
 
   useGSAP(
     () => {

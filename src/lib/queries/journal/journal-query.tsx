@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const JOURNALS_QUERY = gql`
   query PostsQuery {
-    posts {
+    posts(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
       nodes {
         id
         uri
@@ -34,6 +34,7 @@ export const JOURNALS_QUERY = gql`
             }
           }
           customTitle
+          comingSoon
         }
       }
     }

@@ -1,18 +1,20 @@
 'use client'
 
 import { AcfMediaItemConnectionEdge } from '@/src/gql/graphql'
-import { Maybe } from '../../../gql/graphql'
-import CustomIcons from '../../custom-icons'
 import { createCookie } from '@/src/lib/api/actions'
-import { Container } from '../../craft'
 import { cn, imageLoader } from '@/src/lib/utils'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
+import { Maybe } from '../../../gql/graphql'
+import { Container } from '../../craft'
+import CustomIcons from '../../custom-icons'
 // import { Project } from '@/src/gql/graphql'
 import { gsap, ScrollTrigger } from 'gsap/all'
+import { usePathname } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import useLoading from './useLoading'
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function LoadingScreen({
@@ -29,13 +31,14 @@ export default function LoadingScreen({
     'loading-date',
     false
   )
+  const pathname = usePathname()
   const containerRef = useRef(null)
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const logoRef = useRef(null)
-  const logoTextRef = useRef(null);
+  const logoTextRef = useRef(null)
 
-	useGSAP(
+  useGSAP(
     () => {
       if (containerRef.current === null) return
 
@@ -116,6 +119,10 @@ export default function LoadingScreen({
       revertOnUpdate: true,
     }
   )
+
+  if (pathname !== '/') {
+    return null
+  }
 
   return (
     <div

@@ -94,17 +94,14 @@ export default function FeaturedProjects({
 
   return (
     <Section className="relative">
-      <Container ref={container} className="relative overflow-hidden">
+      <Container ref={container} className="relative overflow-hidden px-0">
         {projectNodes.map((project, index) => {
           return (
             <Slide
               key={index}
               index={index}
               setAnimationReady={setAnimationReady}
-              image={
-                project?.projectFields?.featuredImage?.node ??
-                project?.projectFields?.heroImage?.node
-              }
+              image={project?.projectFields?.featuredImage?.node}
               mobileImage={project?.projectFields?.mobileFeaturedImage?.node}
               loadingImage={
                 loadingProjects[index]?.projectFields?.featuredImage?.node
@@ -157,7 +154,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
         className="not-prose h-[130vh] max-w-full w-full"
       >
         <div
-          className="image relative w-full lg:aspect-[1400/890] h-[calc(100vh-80px)] max-w-[2500px] mx-auto"
+          className="image relative w-full aspect-[500/700] max-w-[2500px] mx-auto lg:aspect-[1400/890] h-[calc(100vh-80px)]"
           ref={intersectRef}
         >
           <Image
@@ -183,7 +180,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-            sizes="(max-width: 768px) 1500px, 400px"
+            // sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full block md:hidden"
             loader={imageLoader}
             priority={index === 0}

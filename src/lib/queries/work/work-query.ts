@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const WORK_QUERY = gql`
   query WorkQuery {
-    projects {
+    projects(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
       nodes {
         id
         title
@@ -35,6 +35,16 @@ export const WORK_QUERY = gql`
               title
             }
           }
+					landingImage {
+            cursor
+            node {
+              altText
+              mediaItemUrl
+              sourceUrl(size: LARGE)
+              sizes
+              title
+            }
+          }
           projectInfo {
             location
             sqFt
@@ -54,6 +64,7 @@ export const WORK_QUERY = gql`
               sizes
             }
           }
+          comingSoon
         }
         categories {
           nodes {

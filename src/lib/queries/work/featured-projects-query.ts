@@ -8,19 +8,9 @@ export const FEATURED_PROJECTS_QUERY = gql`
         slug
         uri
         projectFields {
-          heroImage {
-            node {
-              sourceUrl(size: LARGE)
-              altText
-              mediaItemUrl
-              sizes(size: MEDIUM_LARGE)
-              srcSet(size: _1536X1536)
-              mimeType
-            }
-          }
           featuredImage {
             node {
-              sourceUrl(size: _1536X1536)
+              sourceUrl(size: _2048X2048)
               altText
               mediaItemUrl
               sizes(size: _1536X1536)
@@ -30,7 +20,7 @@ export const FEATURED_PROJECTS_QUERY = gql`
           }
           mobileFeaturedImage {
             node {
-              sourceUrl(size: MEDIUM_LARGE)
+              sourceUrl(size: _1536X1536)
               altText
               mediaItemUrl
               sizes(size: MEDIUM_LARGE)

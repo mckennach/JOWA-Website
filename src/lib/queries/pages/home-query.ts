@@ -12,7 +12,7 @@ export const HOME_PAGE_QUERY = gql`
           image {
             node {
               altText
-              sourceUrl(size: LARGE)
+              sourceUrl(size: _1536X1536)
               sizes(size: LARGE)
               slug
               title

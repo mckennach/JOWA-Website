@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
+    "clean": "rm -rf .next && rm -rf node_modules && npm install",
     "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && npm run tw:build && next build",
     "start": "npm run dev",
     "start:dev": "NODE_ENV=development next start",

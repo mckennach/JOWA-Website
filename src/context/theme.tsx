@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
 
   const getTheme = () => {
-    let theme = 'default'
+    let theme = 'cream'
     if (pathname.includes('/work') || pathname.includes('/journal')) {
       theme = 'cream'
       if (pathname.includes('/work') && pathname.split('/').length > 2) {
@@ -20,6 +20,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (pathname.includes('/about')) {
       theme = 'walnut'
+    }
+
+    if (pathname === '/') {
+      return 'cream'
     }
 
     return theme
