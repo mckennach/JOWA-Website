@@ -168,8 +168,8 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full hidden md:block"
             loader={imageLoader}
-            priority={index === 0}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            // priority={index === 0}
+            loading={'lazy'}
             onLoad={() => setAnimationReady(true)}
           />
           <Image
