@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export const revalidate = 0
-// export const runtime = 'edge'
+export const runtime = 'edge'
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/robots.txt`,
