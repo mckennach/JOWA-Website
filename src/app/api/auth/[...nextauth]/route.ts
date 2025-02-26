@@ -1,13 +1,7 @@
 // imports
+import { authOptions } from "@/src/lib/api/auth"
 import NextAuth from "next-auth"
 
-// importing providers
-import { CredentialsProvider } from "next-auth/providers/credentials"
-
-const handler = NextAuth({
-    providers: [
-        
-    ]
-})
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }
