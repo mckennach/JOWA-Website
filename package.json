@@ -26,6 +26,7 @@
     "@radix-ui/react-slider": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
+    "@tailwindcss/cli": "^4.0.9",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-mailchimp-subscribe": "^2.1.4",
@@ -74,8 +75,8 @@
     "webpack-bundle-analyzer": "^4.10.2",
     "wrangler": "^3.110.0"
   },
-	"overrides": {  
-    "react": "^19.0.0",  
-    "react-dom": "^19.0.0"  
-  }  
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
 }
