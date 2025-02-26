@@ -4,8 +4,8 @@ import Navigation from '@/src/components/navigation'
 import SkipToContent from '@/src/components/navigation/skip-to-content'
 import { PreviewNotice } from '@/src/components/preview-notice/preview-notice'
 import LoadingScreen from '@/src/components/templates/load-screen'
+import { SessionProvider } from '@/src/context'
 import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
-
 import {
   GLOBALS_QUERY,
   LOAD_SCREEN_QUERY,
@@ -13,8 +13,6 @@ import {
 } from '@/src/lib/queries'
 import { print } from 'graphql/language/printer'
 import { cookies, draftMode } from 'next/headers'
-import { Fragment, Suspense } from 'react'
-export const dynamic = 'force-dynamic'
 
 async function getData() {
   const { menuItems } = await fetchGraphQL<{
@@ -60,7 +58,6 @@ async function getLoadScreenData() {
 
 export default async function RootLayout({
   children,
-  ...props
 }: {
   children: React.ReactNode
 }) {
@@ -68,34 +65,27 @@ export default async function RootLayout({
   const isAuth = cookieStore.get('user:auth')
   const isLoaded = cookieStore.get('animation-loaded')
 
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   const menuItems = await getData()
   const globalData = await getGlobalData()
   const loadScreenData = await getLoadScreenData()
+
   if (!isLoaded && isAuth) {
-    return (
-      <main>
-        <LoadingScreen
-          text={loadScreenData.globals?.loadScreenText}
-          image={loadScreenData.globals?.loadScreenImage}
-        />
-      </main>
-    )
+    ;<main>
+      <LoadingScreen
+        text={loadScreenData.globals?.loadScreenText}
+        image={loadScreenData.globals?.loadScreenImage}
+      />
+    </main>
   }
 
   return (
-    <Fragment>
-      {isEnabled && <PreviewNotice />}
+    <SessionProvider>
       <SkipToContent />
-      <Suspense>
-        {(isAuth || globalData.globals?.passwordEnabled === false) && (
-          <Navigation menuItems={menuItems} />
-        )}
-      </Suspense>
-      <main className="max-w-full overflow-hidden">{children}</main>
-      {(isAuth || globalData.globals?.passwordEnabled === false) && (
-        <Footer globalData={globalData} />
-      )}
-    </Fragment>
+      <Navigation menuItems={menuItems} />
+      {isEnabled && <PreviewNotice />}
+      {children}
+      <Footer globalData={globalData} />
+    </SessionProvider>
   )
 }

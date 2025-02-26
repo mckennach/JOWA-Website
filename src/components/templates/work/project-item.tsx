@@ -4,8 +4,8 @@ import { Project, Tag } from '@/src/gql/graphql'
 import { cn, imageLoader, zeroPad } from '@/src/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import CustomIcons from '../../custom-icons'
 import { useRouter, useSearchParams } from 'next/navigation'
+import CustomIcons from '../../custom-icons'
 import { Text } from '../../ui/text'
 export default function ProjectItem({
   project,
@@ -18,8 +18,9 @@ export default function ProjectItem({
   const searchCategory = searchParams.get('q')
   const router = useRouter()
   const featuredImage =
-    project?.projectFields?.landingImage?.node ?? project?.projectFields?.landingImage?.node;
-	
+    project?.projectFields?.landingImage?.node ??
+    project?.projectFields?.landingImage?.node
+
   const categoryExists =
     project &&
     project.tags &&
@@ -57,7 +58,9 @@ export default function ProjectItem({
               <div>
                 {project.projectFields?.projectInfo?.category && (
                   <Text type="label" className="text-accent">
-                    {project?.projectFields?.comingSoon ? 'COMING SOON' : project.projectFields?.projectInfo?.category}
+                    {project?.projectFields?.comingSoon
+                      ? 'COMING SOON'
+                      : project.projectFields?.projectInfo?.category}
                   </Text>
                 )}
               </div>
@@ -77,28 +80,27 @@ export default function ProjectItem({
           >
             <div className="relative aspect-[800/620] bg-cream cursor-pointer after:absolute after:z-30 after:h-full after:w-full after:bg-transparent after:transition-all after:duration-300 hover:after:bg-accent/40">
               {featuredImage?.sourceUrl ? (
-								<Image
-                src={featuredImage?.sourceUrl ?? '/placeholder.svg'}
-                alt={featuredImage?.altText ?? ''}
-                fill={true}
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-                sizes={featuredImage?.sizes ?? ''}
-                className=""
-                loader={featuredImage?.sourceUrl ? imageLoader : undefined}
-                priority={true}
-              />
-							) : (
-								<CustomIcons
-										name="submark"
-										className={cn(
-											'scale-[4] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-nav-foreground transition-all duration-300 ease-in-out',													
-										)}
-									/>
-							)}
-							
+                <Image
+                  src={featuredImage?.sourceUrl ?? '/placeholder.svg'}
+                  alt={featuredImage?.altText ?? ''}
+                  fill={true}
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  sizes={featuredImage?.sizes ?? ''}
+                  className=""
+                  loader={featuredImage?.sourceUrl ? imageLoader : undefined}
+                  priority={true}
+                />
+              ) : (
+                <CustomIcons
+                  name="submark"
+                  className={cn(
+                    'scale-[4] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-nav-foreground transition-all duration-300 ease-in-out'
+                  )}
+                />
+              )}
             </div>
           </Link>
         </div>

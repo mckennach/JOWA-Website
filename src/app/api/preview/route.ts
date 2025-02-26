@@ -36,8 +36,8 @@ export async function GET(request: Request) {
   const { login } = await fetchGraphQL<{ login: LoginPayload }>(print(mutation))
 
   const authToken = login.authToken
-
-  draftMode().enable()
+  const { enable } = await draftMode()
+  enable()
 
   const query = gql`
     query GetContentNode($id: ID!) {

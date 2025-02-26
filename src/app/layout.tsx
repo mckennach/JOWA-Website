@@ -5,7 +5,6 @@ import {
   ThemeProvider,
 } from '@/src/context'
 import '@/styles/globals.min.css'
-import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cookies } from 'next/headers'
 import { cn } from '../lib/utils'
@@ -40,15 +39,25 @@ export default async function RootLayout({
           loaded ? '' : 'overflow-hidden'
         )}
       >
-        <CookiesProvider>
-          <GsapProvider>
-            <ApolloWrapper>
-              <ScrollProvider>
-                <ThemeProvider>{children}</ThemeProvider>
-              </ScrollProvider>
-            </ApolloWrapper>
-          </GsapProvider>
-        </CookiesProvider>
+        {/* <CookiesProvider> */}
+        <GsapProvider>
+          <ApolloWrapper>
+            <ScrollProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </ScrollProvider>
+          </ApolloWrapper>
+        </GsapProvider>
+        {/* </CookiesProvider> */}
+
+        {/* <CookiesProvider>
+						<GsapProvider>
+							<ApolloWrapper>
+								<ScrollProvider>
+									<ThemeProvider>{children}</ThemeProvider>
+								</ScrollProvider>
+							</ApolloWrapper>
+						</GsapProvider>
+					</CookiesProvider> */}
       </body>
     </html>
   )

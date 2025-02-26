@@ -2,11 +2,12 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support'
 import { cookies, draftMode } from 'next/headers'
 
-export const { getClient } = registerApolloClient(() => {
-  const { isEnabled: preview } = draftMode()
+export const { getClient } = registerApolloClient(async () => {
+  const { isEnabled: preview } = await draftMode()
   let authHeader = ''
+  const cookieStore = await cookies()
   if (preview) {
-    const auth = cookies().get('wp_jwt')?.value
+    const auth = cookieStore.get('wp_jwt')?.value
     if (auth) {
       authHeader = `Bearer ${auth}`
     }

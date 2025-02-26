@@ -67,7 +67,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
           window.history.pushState({ path: newurl }, '', newurl)
         }
       },
-      [onChange, router, pathname, searchParams]
+      [onChange, searchParams]
     )
 
     const handleScroll = () => {

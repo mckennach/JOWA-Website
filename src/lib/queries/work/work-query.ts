@@ -35,7 +35,7 @@ export const WORK_QUERY = gql`
               title
             }
           }
-					landingImage {
+          landingImage {
             cursor
             node {
               altText
