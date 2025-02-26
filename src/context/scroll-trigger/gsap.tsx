@@ -1,6 +1,6 @@
 'use client'
 
-import _Tempus from '@studio-freight/tempus'
+import _Tempus from 'tempus'
 import _gsap from 'gsap'
 
 import { useLayoutEffect } from 'react'
@@ -16,7 +16,7 @@ export function GSAP({ scrollTrigger = false }) {
     _gsap.ticker.remove(_gsap.updateRoot)
     _Tempus?.add((time: number) => {
       _gsap.updateRoot(time / 1000)
-    }, 0)
+    }, { priority: 1 });
   }, [])
 
   return scrollTrigger && <ScrollTriggerConfig />

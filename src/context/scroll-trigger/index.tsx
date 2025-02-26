@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactLenis } from '@studio-freight/react-lenis'
+import { ReactLenis } from 'lenis/react'
 import React, { createContext, useContext, useRef } from 'react'
 import { LenisRef } from '../gsap'
 
@@ -15,7 +15,7 @@ export type ScrollContextProps = React.RefObject<LenisRef>
 export const ScrollContext = createContext<ScrollContextProps | null>(null)
 
 export function ScrollProvider({ children }: ScrollContainerProps) {
-  const lenisRef = useRef<LenisRef>({})
+  const lenisRef = useRef(null)
 
   return (
     <ScrollContext.Provider value={lenisRef}>
