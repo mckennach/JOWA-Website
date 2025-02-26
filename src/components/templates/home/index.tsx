@@ -16,8 +16,6 @@ const HomeAbout = lazy(() => import('./home-about'))
 const FeaturedProjects = lazy(() => import('./featured-projects'))
 
 export default async function HomePage({ node }: TemplateProps) {
-  const cookieStore = await cookies()
-  const loaded = cookieStore.get('animation-loaded')
 
   const { page } = await fetchGraphQL<{ page: Page }>(print(HOME_PAGE_QUERY), {
     id: node.databaseId,
@@ -26,11 +24,6 @@ export default async function HomePage({ node }: TemplateProps) {
   const { featuredProjects, homeContent } = page.home ?? {}
   const projectIds = featuredProjects?.nodes.map((project) => project.id)
 
-  const { projects: loadingProjects } = await fetchGraphQL<{
-    projects: PostFormatToProjectConnection
-  }>(print(LOADING_PROJECTS_QUERY), {
-    ids: projectIds,
-  })
 
   const { projects } = await fetchGraphQL<{
     projects: PostFormatToProjectConnection
@@ -46,11 +39,10 @@ export default async function HomePage({ node }: TemplateProps) {
         <FeaturedProjects
           projectIds={projectIds}
           projects={projects?.nodes}
-          loadingProjects={loadingProjects?.nodes}
         />
       )}
       {homeContent && (
-        <HomeAbout data={homeContent} noLoading={loaded !== undefined} />
+        <HomeAbout data={homeContent} noLoading={true} />
       )}
       <PricingCTA />
       <FloatingContact />

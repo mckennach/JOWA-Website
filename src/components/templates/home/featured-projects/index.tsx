@@ -15,14 +15,12 @@ import { useIntersectionObserver } from 'usehooks-ts'
 
 type FeaturedProjects = {
   projects: Project[]
-  loadingProjects: Project[]
   projectIds?: string[]
   noLoading?: boolean
 }
 
 export default function FeaturedProjects({
   projects,
-  loadingProjects,
 }: FeaturedProjects) {
   const [animationReady, setAnimationReady] = useState(false)
   const router = useRouter()
@@ -103,9 +101,6 @@ export default function FeaturedProjects({
               setAnimationReady={setAnimationReady}
               image={project?.projectFields?.featuredImage?.node}
               mobileImage={project?.projectFields?.mobileFeaturedImage?.node}
-              loadingImage={
-                loadingProjects[index]?.projectFields?.featuredImage?.node
-              }
               ref={(el) => {
                 galleryRefs.current[index] = el
               }}
@@ -141,7 +136,7 @@ type SlideProps = {
 }
 
 const Slide = forwardRef<HTMLDivElement, SlideProps>(
-  ({ image, mobileImage, loadingImage, setAnimationReady, index }, ref) => {
+  ({ image, mobileImage, setAnimationReady, index }, ref) => {
     const { ref: intersectRef } = useIntersectionObserver({
       threshold: 0.5,
     })
@@ -168,8 +163,8 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
             sizes="(max-width: 768px) 1500px, 400px"
             className="brightness-75 filter max-w-full hidden md:block"
             loader={imageLoader}
-            // priority={index === 0}
-            loading={'lazy'}
+            priority={index === 0}
+						loading={index === 0 ? 'eager' : 'lazy'}
             onLoad={() => setAnimationReady(true)}
           />
           <Image

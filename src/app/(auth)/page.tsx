@@ -10,8 +10,7 @@ import HomePage from '@/src/components/templates/home'
 import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { auth, signOut } from '@/src/lib/api/auth'
-import { redirect } from 'next/navigation'
+
 export async function generateMetadata(): Promise<Metadata> {
   const slug = nextSlugToWpSlug('/')
 
