@@ -122,8 +122,6 @@ const CalculatorForm = forwardRef<HTMLFormElement, CalculatorFormProps>(
     }, [form]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
-      console.log(status, message)
-
       if (status === 'success') {
         form.reset()
         setSuccessMessage('Thank you for subscribing!')
