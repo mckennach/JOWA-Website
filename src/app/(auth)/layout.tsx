@@ -85,7 +85,7 @@ export default async function RootLayout({
       <SkipToContent />
       <Navigation menuItems={menuItems} />
       {isEnabled && <PreviewNotice />}
-      {children}
+      <main className="max-w-full overflow-hidden">{children}</main>
       <Footer globalData={globalData} />
     </SessionProvider>
   )
