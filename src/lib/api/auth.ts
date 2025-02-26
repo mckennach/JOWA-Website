@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+	
   providers: [
     CredentialsProvider({
       name: 'password',
@@ -26,5 +27,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.AUTH_SECRET,
+  secret: 'thisisasupersecret',
 })
