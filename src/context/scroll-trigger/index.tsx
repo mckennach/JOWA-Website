@@ -10,7 +10,7 @@ interface ScrollContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
 }
 
-export type ScrollContextProps = React.RefObject<LenisRef>
+export type ScrollContextProps = React.RefObject<any>
 
 export const ScrollContext = createContext<ScrollContextProps | null>(null)
 

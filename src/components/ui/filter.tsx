@@ -5,7 +5,7 @@ import { Tag } from '@/src/gql/graphql'
 import { cn } from '@/src/lib/utils'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
 
 export type FilterItem = {
@@ -33,7 +33,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
     },
     ref
   ) => {
-    const containerRef = useRef(null)
+    const containerRef = useRef<HTMLDivElement>(null)
     const searchParams = useSearchParams()
     const searchCategory = searchParams.get('q')
     const router = useRouter()
@@ -107,7 +107,7 @@ const Filter = forwardRef<HTMLDivElement, FilterProps>(
       setClickedOpen(!isOpen)
     }
 
-    useOnClickOutside(containerRef, handleClose)
+    useOnClickOutside(containerRef as RefObject<HTMLDivElement>, handleClose)
 
     return (
       <div ref={ref} className={cn('max-w-full', className)} {...props}>
