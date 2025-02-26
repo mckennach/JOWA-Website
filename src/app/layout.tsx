@@ -37,7 +37,7 @@ export default async function RootLayout({
           maisonNeueExt.className,
           maisonNeueExt.variable,
           maisonNeue.variable,
-          loaded ? '' : 'overflow-hidden'
+          // loaded ? '' : 'overflow-hidden'
         )}
       >
         <CookiesProvider>

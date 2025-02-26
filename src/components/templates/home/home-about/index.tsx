@@ -72,7 +72,7 @@ export default function HomeAbout({ data, noLoading }: HomeAboutProps) {
     },
     {
       scope: containerRef,
-      dependencies: [hasLoaded],
+      dependencies: [],
       revertOnUpdate: true,
     }
   )
