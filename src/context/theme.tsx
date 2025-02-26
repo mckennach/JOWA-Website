@@ -14,6 +14,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
 
+		if(pathname.includes('/pricing')) {
+			theme = 'default'
+		}
+
     if (pathname.includes('/contact')) {
       theme = 'sencha'
     }

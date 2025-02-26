@@ -9,7 +9,7 @@ import { CookiesProvider } from 'next-client-cookies/server'
 import localFont from 'next/font/local'
 import { cookies } from 'next/headers'
 import { cn } from '../lib/utils'
-export const runtime = 'edge'
+// export const runtime = 'edge'
 
 const maisonNeue = localFont({
   src: '../../public/fonts/MaisonNeue-Book.woff2',
