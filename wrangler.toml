@@ -1,4 +1,4 @@
 name = "jowa-dev-2"
 compatibility_date = "2024-12-23" # Or a more recent date
 compatibility_flags = [ "nodejs_compat" ]
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = "/.vercel/output/static"
