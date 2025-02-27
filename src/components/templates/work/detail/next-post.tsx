@@ -42,7 +42,7 @@ export default function NextPost({
                   <div
                     className="max-w-[700px] cursor-pointer"
                     onClick={() => {
-                      router.push(`/work/${nextPost.slug}`)
+											!nextPost.projectFields?.comingSoon && router.push(`/work/${nextPost.slug}`)
                     }}
                   >
                     <div className="space-y-4">
@@ -79,7 +79,7 @@ export default function NextPost({
                   <div
                     className="image-hover relative aspect-[800/624] cursor-pointer"
                     onClick={() => {
-                      router.push(`/work/${nextPost.slug}`)
+                      !nextPost.projectFields?.comingSoon && router.push(`/work/${nextPost.slug}`)
                     }}
                   >
                     <Image
