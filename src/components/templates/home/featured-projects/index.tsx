@@ -13,19 +13,19 @@ type FeaturedProjects = {
 }
 
 export default function FeaturedProjects({ projects }: FeaturedProjects) {
-  const matches = useMediaQuery('(min-width: 768px)', {
+  const matches = useMediaQuery('(min-width: 640px)', {
     defaultValue: true,
   })
 
   return (
     <Section className="relative">
       {matches && (
-        <Container className="relative overflow-hidden px-0 hidden md:block">
+        <Container className="relative overflow-hidden px-0 hidden sm:block">
           <FeaturedProjectsDesktop projects={projects} />
         </Container>
       )}
       {!matches && (
-        <Container className="relative overflow-hidden px-0 block md:hidden">
+        <Container className="relative overflow-hidden px-0 block sm:hidden">
           <FeaturedProjectsMobile projects={projects} />
         </Container>
       )}

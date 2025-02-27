@@ -110,7 +110,7 @@ export default function FeaturedProjectsDesktop({
       ))}
       {isActive && (
         <div
-          className="fixed bottom-10 z-30 cursor-pointer pl-8 text-secondary md:pl-16"
+          className="fixed bottom-10 z-30 cursor-pointer pl-8 text-secondary sm:pl-16"
           onClick={() => {
             router.push(`/work/${activeItem?.slug}`)
           }}
@@ -159,7 +159,7 @@ const Slide = forwardRef<HTMLDivElement, SlideProps>(
               objectPosition: 'center',
             }}
             sizes="(max-width: 768px) 1500px, 400px"
-            className="brightness-75 filter max-w-full hidden md:block"
+            className="brightness-75 filter max-w-full hidden sm:block"
             loader={imageLoader}
             priority={index === 0}
             loading={index === 0 ? 'eager' : 'lazy'}
