@@ -38,6 +38,7 @@ export default function ProjectItem({
         <div className="flex basis-full items-end lg:basis-1/2">
           <Link
             href={`/work/${project.slug}`}
+						onClick={project?.projectFields?.comingSoon ? (e) => e.preventDefault() : undefined}
             aria-disabled={project?.projectFields?.comingSoon ?? false}
             tabIndex={project?.projectFields?.comingSoon ? -1 : 0}
             className={
@@ -71,6 +72,7 @@ export default function ProjectItem({
           <Link
             href={`/work/${project.slug}`}
             aria-disabled={project?.projectFields?.comingSoon ?? false}
+						onClick={project?.projectFields?.comingSoon ? (e) => e.preventDefault() : undefined}
             tabIndex={project?.projectFields?.comingSoon ? -1 : 0}
             className={
               project?.projectFields?.comingSoon
