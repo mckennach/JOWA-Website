@@ -38,7 +38,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
 					<SheetTitle className="sr-only">Menu</SheetTitle>
 					<SheetDescription className='sr-only'>
             Navigate website
-        </SheetDescription>
+        	</SheetDescription>
           <div className="flex w-full items-center justify-between">
             <MobileLink href="/" onOpenChange={setOpen}>
               <CustomIcons name="submark" className="text-accent-foreground" />

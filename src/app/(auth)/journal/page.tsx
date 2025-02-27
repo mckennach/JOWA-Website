@@ -53,7 +53,7 @@ export default async function Page() {
   if (!contentNode) return notFound()
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-dvh">
       <JournalPage node={contentNode} />
     </div>
   )

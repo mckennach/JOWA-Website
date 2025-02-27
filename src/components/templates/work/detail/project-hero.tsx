@@ -6,7 +6,7 @@ import { imageLoader } from '@/src/lib/utils'
 import Image from 'next/image'
 export default function ProjectHero({ project }: { project: Project }) {
   return (
-    <header className="relative h-auto overflow-hidden max-h-screen">
+    <header className="relative h-auto overflow-hidden max-h-dvh">
       <div className="relative aspect-[3/4] lg:aspect-[16/9]">
         <Image
           src={project.projectFields?.heroImage?.node.sourceUrl ?? ''}

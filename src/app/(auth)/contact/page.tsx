@@ -56,7 +56,7 @@ export default async function Page() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="min-h-screen">
+      <div className="min-h-dvh">
         <ContactPage node={contentNode} />
       </div>
     </Suspense>

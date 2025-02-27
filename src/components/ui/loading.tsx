@@ -4,7 +4,7 @@ import { Container, Section } from '../craft'
 
 const Loading: React.FC = () => {
   return (
-    <Section className="aspect-[16/9] min-w-screen bg-background">
+    <Section className="min-h-dvh aspect-[16/9] min-w-screen bg-background">
       <Container className="flex items-center justify-center h-full">
         <div />
       </Container>

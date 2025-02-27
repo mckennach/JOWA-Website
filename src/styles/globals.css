@@ -201,7 +201,7 @@
   }
 
   body {
-    @apply min-h-screen scroll-smooth bg-background text-foreground antialiased;
+    @apply min-h-dvh scroll-smooth bg-background text-foreground antialiased;
     font-family: 'Maison Neue Ext', sans-serif;
   }
 

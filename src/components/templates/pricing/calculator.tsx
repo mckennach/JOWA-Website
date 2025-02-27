@@ -96,7 +96,7 @@ export default function PricingCalculator({ page }: PricingCalculatorProps) {
         <PricingCalculatorForm page={page} setImage={setImage} />
       </Container>
       <div className="hidden lg:block" ref={imageRef}>
-        <div className="relative h-screen w-full overflow-hidden">
+        <div className="relative h-dvh w-full overflow-hidden">
           <Image
             src={image?.sourceUrl ?? ''}
             alt={image?.altText ?? ''}

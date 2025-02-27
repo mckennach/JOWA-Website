@@ -135,62 +135,62 @@ export default async function Page({ params }: Props) {
     switch (contentNode.slug) {
       case 'home-2':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <HomePage node={contentNode} />
           </div>
         )
       case 'work':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <WorkTemplate node={contentNode} />
           </div>
         )
       case 'journal':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <JournalTemplate node={contentNode} />
           </div>
         )
       case 'about':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <AboutTemplate node={contentNode} />
           </div>
         )
       case 'contact':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <ContactTemplate node={contentNode} />
           </div>
         )
       case 'pricing':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <PricingTemplate node={contentNode} />
           </div>
         )
       case 'email-signature':
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <EmailSignature />
           </div>
         )
       default:
         return (
-          <div className="min-h-screen">
+          <div className="min-h-dvh">
             <PageTemplate node={contentNode} />
           </div>
         )
     }
   } else if (contentNode.contentTypeName === 'work') {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-dvh">
         <WorkDetailTemplate node={contentNode} />
       </div>
     )
   } else if (contentNode.contentTypeName === 'post') {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-dvh">
         <JournalDetailTemplate node={contentNode} />
       </div>
     )

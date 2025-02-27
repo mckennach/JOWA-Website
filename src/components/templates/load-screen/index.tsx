@@ -127,7 +127,7 @@ export default function LoadingScreen({
   return (
     <div
       className={cn(
-        'fixed left-0 top-0 z-[999] h-screen w-screen bg-background transition-all duration-300 ease-linear',
+        'fixed left-0 top-0 z-[999] h-dvh w-screen bg-background transition-all duration-300 ease-linear',
         hasLoaded
           ? 'pointer-events-none opacity-0'
           : 'pointer-events-auto opacity-100'
@@ -160,7 +160,7 @@ export default function LoadingScreen({
         </div>
       </Container>
       <div
-        className="absolute left-0 right-0 top-0 z-0 mx-auto h-screen w-screen"
+        className="absolute left-0 right-0 top-0 z-0 mx-auto h-dvh w-screen"
         ref={imageRef}
       >
         <Image

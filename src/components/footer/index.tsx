@@ -29,7 +29,7 @@ export default function Footer({ globalData }: { globalData: Global }) {
 
   return (
     <footer
-      className="cream relative z-50 h-screen bg-background text-foreground"
+      className="cream relative z-50 h-dvh bg-background text-foreground"
       ref={ref}
     >
       <Section className="h-full">
