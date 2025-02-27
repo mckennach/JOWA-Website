@@ -15,8 +15,12 @@ type Props = {
   params: { slug: string }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }>}): Promise<Metadata> {
-	const sl = (await params).slug;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const sl = (await params).slug
   const slug = nextSlugToWpSlug(`/work/${sl}`)
 
   const isPreview = slug.includes('preview')
@@ -43,8 +47,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   } as Metadata
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }>}) {
-	const sl = (await params).slug;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const sl = (await params).slug
   const slug = nextSlugToWpSlug(`/work/${sl}`)
 
   const isPreview = slug.includes('preview')

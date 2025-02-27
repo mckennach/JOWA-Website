@@ -1,25 +1,25 @@
-import { RootQueryToPostConnection, TagConnection } from '@/src/gql/graphql'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+'use client'
+
+import { PostConnection, TagConnection } from '@/src/gql/graphql'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
 import { cn } from '@/src/lib/utils'
-import { print } from 'graphql'
+import { useQuery } from '@apollo/client'
 import { JOURNALS_QUERY } from '../../../lib/queries/journal/journal-query'
 import { Container, Section } from '../../craft'
 import { Filter } from '../../ui/filter'
 import { Text } from '../../ui/text'
 import { TemplateProps } from '../page'
 import { JournalItems } from './journal-items'
-export default async function JournalTemplate({ node }: TemplateProps) {
-  const { posts } = await fetchGraphQL<{ posts: RootQueryToPostConnection }>(
-    print(JOURNALS_QUERY)
-  )
+export default function JournalTemplate({ node }: TemplateProps) {
+  const { data: postsData, loading: projectDataLoading } = useQuery<{
+    posts: PostConnection
+  }>(JOURNALS_QUERY)
+  const { data: tagsData, loading: tagsLoading } = useQuery<{
+    tags: TagConnection
+  }>(TAGS_QUERY)
 
-  const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
-    print(TAGS_QUERY)
-  )
-
-  const filterItems = tags.nodes.filter(
-    (tag) => tag?.posts && tag?.posts?.nodes?.length > 0
+  const filterItems = tagsData?.tags.nodes.filter(
+    (tag) => tag?.projects && tag?.projects?.nodes?.length > 0
   )
 
   return (
@@ -40,7 +40,9 @@ export default async function JournalTemplate({ node }: TemplateProps) {
           </Text>
         </Container>
       </Section>
-      {posts && posts.nodes && <JournalItems posts={posts.nodes} />}
+      {postsData?.posts?.nodes && (
+        <JournalItems posts={postsData?.posts?.nodes} />
+      )}
     </>
   )
 }

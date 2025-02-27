@@ -36,7 +36,7 @@ export default async function RootLayout({
         className={cn(
           maisonNeueExt.className,
           maisonNeueExt.variable,
-          maisonNeue.variable,
+          maisonNeue.variable
           // loaded ? '' : 'overflow-hidden'
         )}
       >

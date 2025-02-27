@@ -1,6 +1,3 @@
-// import FloatingContact from '@/components/footer/floating-contact'
-// import PricingCTA from '@/components/footer/pricing-cta'
-// import EmailSignature from '@/src/components/templates/email-signature'
 import { ContentNode } from '@/gql/graphql'
 import { fetchGraphQL } from '@/lib/api/fetchGraphQL'
 import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
@@ -50,7 +47,7 @@ export default async function Page() {
     }
   )
 
-  if (!contentNode) return notFound();
+  if (!contentNode) return notFound()
 
   return (
     <div className="min-h-screen">

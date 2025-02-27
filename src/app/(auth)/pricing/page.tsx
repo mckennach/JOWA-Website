@@ -7,9 +7,11 @@ import { nextSlugToWpSlug } from '@/lib/api/nextSlugToWpSlug'
 import { setSeoData } from '@/lib/api/seoData'
 import { CONTENT_INFO_QUERY, SEO_QUERY } from '@/lib/queries'
 import PricingPage from '@/src/components/templates/pricing'
+import Loading from '@/src/components/ui/loading'
 import { print } from 'graphql/language/printer'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
 export async function generateMetadata(): Promise<Metadata> {
   const slug = nextSlugToWpSlug('/pricing')
@@ -53,8 +55,10 @@ export default async function Page() {
   if (!contentNode) return notFound()
 
   return (
-    <div className="min-h-screen">
-      <PricingPage node={contentNode} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className="min-h-screen">
+        <PricingPage node={contentNode} />
+      </div>
+    </Suspense>
   )
 }

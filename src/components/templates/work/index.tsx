@@ -1,34 +1,28 @@
+'use client'
+
 import { ContentNode, Project, TagConnection } from '@/gql/graphql'
 import { WORK_QUERY } from '@/lib/queries'
-import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
 import { TAGS_QUERY } from '@/src/lib/queries/general/tags'
-import { print } from 'graphql/language/printer'
+import { useQuery } from '@apollo/client'
 import { Container, Section, cn } from '../../craft'
 import { Filter } from '../../ui/filter'
+import Loading from '../../ui/loading'
 import ProjectItem from './project-item'
 interface TemplateProps {
   node: ContentNode
 }
 
-export default async function WorkTemplate({ node }: TemplateProps) {
-  const {
-    projects: { nodes },
-  } = await fetchGraphQL<{ projects: { nodes: Array<Project> } }>(
-    print(WORK_QUERY)
-  )
+export default function WorkTemplate({ node }: TemplateProps) {
+  const { data: projectData, loading: projectDataLoading } = useQuery<{
+    projects: { nodes: Array<Project> }
+  }>(WORK_QUERY)
+  const { data: tagsData, loading: tagsLoading } = useQuery<{
+    tags: TagConnection
+  }>(TAGS_QUERY)
 
-  const { tags } = await fetchGraphQL<{ tags: TagConnection }>(
-    print(TAGS_QUERY),
-    {
-      caches: true,
-    }
-  )
-
-  const filterItems = tags.nodes.filter(
+  const filterItems = tagsData?.tags.nodes.filter(
     (tag) => tag?.projects && tag?.projects?.nodes?.length > 0
   )
-
-  if (!nodes) return null
 
   return (
     <Section
@@ -44,9 +38,13 @@ export default async function WorkTemplate({ node }: TemplateProps) {
           items={filterItems}
           columns={false}
         />
-        {nodes.map((project, index) => (
-          <ProjectItem key={project.id} project={project} index={index} />
-        ))}
+        {projectData?.projects?.nodes ? (
+          projectData?.projects?.nodes.map((project, index) => (
+            <ProjectItem key={project.id} project={project} index={index} />
+          ))
+        ) : (
+          <Loading />
+        )}
       </Container>
     </Section>
   )

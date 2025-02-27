@@ -54,10 +54,14 @@ type Props = {
   params: { slug: string }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }>}): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
   const cookieStore = await cookies()
   const isAuth = cookieStore.get('user:auth')
-	const sl = (await params).slug;
+  const sl = (await params).slug
   if (!isAuth)
     return {
       title: 'Login',
@@ -99,11 +103,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   } as Metadata
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }>}) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const cookieStore = await cookies()
   const isAuth = cookieStore.get('user:auth')
   const globalData = await getGlobalData()
-	const sl = (await params).slug;
+  const sl = (await params).slug
   if (!isAuth && globalData.globals?.passwordEnabled) {
     return <LoginPage />
   }

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   trailingSlash: false,
   images: {
     remotePatterns: [
@@ -14,6 +15,9 @@ const nextConfig = {
     turbo: {
       // ...
     },
+  },
+  compiler: {
+    styledComponents: true,
   },
   async headers() {
     return [

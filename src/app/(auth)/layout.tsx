@@ -13,7 +13,6 @@ import {
 } from '@/src/lib/queries'
 import { print } from 'graphql/language/printer'
 import { cookies, draftMode } from 'next/headers'
-import { Fragment } from 'react'
 
 async function getData() {
   const { menuItems } = await fetchGraphQL<{
@@ -72,7 +71,7 @@ export default async function RootLayout({
   const loadScreenData = await getLoadScreenData()
 
   if (!isLoaded && isAuth) {
-    <main>
+    ;<main>
       <LoadingScreen
         text={loadScreenData.globals?.loadScreenText}
         image={loadScreenData.globals?.loadScreenImage}

@@ -7,7 +7,7 @@ import { auth, signIn } from '@/src/lib/api/auth'
 import { redirect } from 'next/navigation'
 
 export default async function SignIn() {
-  const session = await auth();
+  const session = await auth()
   const credentialAction = async (formData: FormData) => {
     'use server'
     try {
@@ -16,10 +16,9 @@ export default async function SignIn() {
       console.log(error)
     }
   }
-	if (session) {
+  if (session) {
     redirect('/')
   }
-
 
   return (
     <Section>

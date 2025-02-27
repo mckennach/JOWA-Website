@@ -1,10 +1,8 @@
-import { NextResponse, NextRequest } from 'next/server'
-import NextAuth from "next-auth"
-import { auth as middleware } from './lib/api/auth';
-
+import { NextResponse } from 'next/server'
+import { auth as middleware } from './lib/api/auth'
 
 export default middleware(async function middleware(req) {
-  	if (!process.env.WP_USER || !process.env.WP_APP_PASS) {
+  if (!process.env.WP_USER || !process.env.WP_APP_PASS) {
     return NextResponse.next()
   }
 
@@ -22,7 +20,7 @@ export default middleware(async function middleware(req) {
     }
   )
 
-	const data = await response.json()
+  const data = await response.json()
 
   if (!req.auth && req.nextUrl.pathname !== '/login') {
     const newUrl = new URL('/login', req.nextUrl.origin)
@@ -57,8 +55,7 @@ export default middleware(async function middleware(req) {
 //   }
 // });
 
-export const config = { matcher: ['/((?!api|_next|.*\\..*|login).*)'] };
-
+export const config = { matcher: ['/((?!api|_next|.*\\..*|login).*)'] }
 
 // if (!process.env.WP_USER || !process.env.WP_APP_PASS) {
 // 	return NextResponse.next()
