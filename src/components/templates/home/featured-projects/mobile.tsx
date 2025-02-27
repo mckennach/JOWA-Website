@@ -23,7 +23,7 @@ export default function FeaturedProjectsMobile({ projects }: FeaturedProjects) {
       {projectNodes.map((project, index) => {
         return (
           <div className="relative not-prose max-w-full w-full" key={index}>
-            <div className="image relative w-full aspect-[9/16] mx-auto">
+            <div className="image relative w-full aspect-[3/4] mx-auto">
               <Image
                 src={
                   project?.projectFields?.mobileFeaturedImage?.node
