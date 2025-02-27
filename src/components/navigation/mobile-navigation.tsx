@@ -2,6 +2,9 @@
 
 import {
   Sheet,
+	SheetHeader,
+	SheetTitle,
+	SheetDescription,
   SheetClose,
   SheetContent,
   SheetTrigger,
@@ -31,7 +34,11 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
         side="top"
         className="mobile-navigation max-w-screen z-[999] flex h-dvh max-h-dvh flex-col bg-popover p-0 @container"
       >
-        <header className="flex basis-1/4 items-start px-4 py-8">
+        <SheetHeader className="flex basis-1/4 items-start px-4 py-8">
+					<SheetTitle className="sr-only">Menu</SheetTitle>
+					<SheetDescription className='sr-only'>
+            Navigate website
+        </SheetDescription>
           <div className="flex w-full items-center justify-between">
             <MobileLink href="/" onOpenChange={setOpen}>
               <CustomIcons name="submark" className="text-accent-foreground" />
@@ -40,7 +47,7 @@ export function MobileNavigation({ menuItems }: MobileNavigationProps) {
               <X className="text-accent-foreground" width={30} />
             </SheetClose>
           </div>
-        </header>
+        </SheetHeader>
         <div className="my-4 flex basis-3/4 flex-col justify-end">
           <div className="flex flex-col space-y-3 text-foreground">
             <ul className="w-full [&>li]:border-b">

@@ -6,7 +6,7 @@ const Loading: React.FC = () => {
   return (
     <Section className="aspect-[16/9] min-w-screen bg-background">
       <Container className="flex items-center justify-center h-full">
-        <LoaderCircle className="animate-spin w-12 h-12 text-foreground" />
+        <div />
       </Container>
     </Section>
   )
