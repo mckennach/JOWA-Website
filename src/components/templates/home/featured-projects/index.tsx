@@ -13,7 +13,7 @@ type FeaturedProjects = {
 }
 
 export default function FeaturedProjects({ projects }: FeaturedProjects) {
-  const matches = useMediaQuery('(min-width: 1024px)', {
+  const matches = useMediaQuery('(min-width: 768px)', {
     defaultValue: true,
   })
 
