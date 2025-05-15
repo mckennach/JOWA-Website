@@ -2,12 +2,35 @@ import { Container, Section } from '@/components/craft'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Text } from '@/components/ui/text'
-
+import { Global, RootQueryToMenuItemConnection } from '@/gql/graphql'
+import { fetchGraphQL } from '@/src/lib/api/fetchGraphQL'
+import {
+  GLOBALS_QUERY,
+  LOAD_SCREEN_QUERY,
+  MENU_ITEMS_QUERY,
+} from '@/src/lib/queries'
+import { print } from 'graphql/language/printer'
 import { auth, signIn } from '@/src/lib/api/auth'
 import { redirect } from 'next/navigation'
 
+async function getGlobalData() {
+  const { global } = await fetchGraphQL<{
+    global: Global
+  }>(print(GLOBALS_QUERY), {
+    id: '357',
+  })
+
+  if (global === null) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return global
+}
+
 export default async function SignIn() {
-  const session = await auth()
+	const globalData = await getGlobalData()
+
+  const session = await auth();
   const credentialAction = async (formData: FormData) => {
     'use server'
     try {
@@ -16,6 +39,13 @@ export default async function SignIn() {
       console.log(error)
     }
   }
+
+	// if(globalData.globals?.passwordEnabled) {
+	// 	const formData = new FormData();
+	// 	formData.append('password', 'jowa2024!');
+	// 	await credentialAction(formData);
+	// }
+
   if (session) {
     redirect('/')
   }

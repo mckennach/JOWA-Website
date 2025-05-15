@@ -280,10 +280,19 @@
     @apply space-y-8 font-maisonNeue font-normal tracking-normal ~text-base/bodyX;
   }
 
-  .body-sm-fluid,
-  .process-description {
+  .body-sm-fluid {
     @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/2xl lg:leading-[34px];
   }
+
+
+	.process-description, .process-description p {
+    @apply font-maisonNeue font-normal leading-[30px] tracking-normal ~text-xs/xl lg:leading-[34px];
+  }
+
+	.process-description h3 {
+    @apply space-y-8 font-maisonNeueExt font-normal leading-[42.5px] tracking-normal ~text-xl/2xl lg:leading-[63px];
+
+	}
 
   .body-xs-fluid {
     @apply font-maisonNeue text-base font-normal leading-[30px] tracking-normal lg:leading-[34px];
